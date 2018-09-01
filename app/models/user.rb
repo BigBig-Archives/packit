@@ -5,5 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :bags
   has_many :items
+  has_many :packed_bags
   has_many :journeys
 end

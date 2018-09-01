@@ -8,8 +8,8 @@
   weight: @bag_ref.weight
 %>
 
-<%#= render 'shared/form_bag',
-  instance: @new_bag
+<%= render 'shared/form_bag',
+  new_bag: @new_bag
 %>
 
 <%= simple_form_for ([:user, @new_bag]) do |f| %>

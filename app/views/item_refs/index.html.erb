@@ -1,11 +1,11 @@
-<h1>Items#index</h1>
+<h1>ItemRefs#index</h1>
 
 <ul>
-  <% @items.each do |item| %>
+  <% @item_refs.each do |item_ref| %>
     <%= render 'shared/item_overview',
-      item: item,
-      name: item.name,
-      size: item.size
+      item: item_ref,
+      name: item_ref.name,
+      size: item_ref.size
     %>
   <% end %>
 </ul>

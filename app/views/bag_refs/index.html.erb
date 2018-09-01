@@ -3,7 +3,7 @@
 <ul>
   <% @bag_refs.each do |bag_ref| %>
     <%= render 'shared/bag_overview',
-      bag: bag_refg_ref,
+      path: bag_ref_path(bag_ref),
       name: bag_ref.name,
       size: bag_ref.size
     %>

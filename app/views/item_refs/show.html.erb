@@ -1,13 +1,25 @@
-<h1>Items#show</h1>
+<h1>itemRefs#show</h1>
 
 <%= render 'shared/item_extended',
-  name: @item.name,
-  category: @item.category,
-  size: @item.size,
-  weight: @item.weight
+  name: @item_ref.name,
+  category: @item_ref.category,
+  size: @item_ref.size,
+  weight: @item_ref.weight
 %>
+
+<%= render 'shared/form_item',
+  new_item: @new_item
+%>
+
+<%= simple_form_for ([:user, @new_item]) do |f| %>
+  <%= f.input :item_ref_id, as: :hidden, input_html: { value: @item_ref.id } %>
+  <%= f.input :custom_size %>
+  <%= f.input :custom_weight %>
+  <%= f.button :submit %>
+  <%= f.input :commentary %>
+<% end %>
 
 <%= render 'shared/back_to',
   destination: 'all items',
-  destination_path: items_path
+  destination_path: item_refs_path
 %>

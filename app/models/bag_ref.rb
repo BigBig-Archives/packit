@@ -1,0 +1,2 @@
+class BagRef < ApplicationRecord
+end

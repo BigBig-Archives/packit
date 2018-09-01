@@ -3,8 +3,8 @@
 <ul>
   <% @bags.each do |bag| %>
     <%= render 'shared/bag_overview',
-      bag: bag,
-      name: bag.bag.name,
+      path: user_bags_path,
+      name: bag.bag_ref.name,
       size: bag.custom_size
     %>
   <% end %>
