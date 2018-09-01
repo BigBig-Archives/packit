@@ -2,10 +2,10 @@ class ItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @items = Item.all
+    @item_refs = ItemRef.all
   end
 
   def show
-    @item = Item.find(params[:id])
+    @item_ref = ItemRef.find(params[:id])
   end
 end

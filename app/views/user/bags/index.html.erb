@@ -1,11 +1,11 @@
-<h1>Bags#index</h1>
+<h1>User:Bags#index</h1>
 
 <ul>
   <% @bags.each do |bag| %>
     <%= render 'shared/bag_overview',
       bag: bag,
-      name: bag.name,
-      size: bag.size
+      name: bag.bag.name,
+      size: bag.custom_size
     %>
   <% end %>
 </ul>

@@ -1,4 +1,4 @@
-class UserBag < ApplicationRecord
+class Bag < ApplicationRecord
   belongs_to :user
-  belongs_to :bag
+  belongs_to :bag_ref
 end

@@ -1,0 +1,26 @@
+<h1>BagRefs#show</h1>
+
+<%= render 'shared/bag_extended',
+  name: @bag_ref.name,
+  category: @bag_ref.category,
+  size: @bag_ref.size,
+  capacity: @bag_ref.capacity,
+  weight: @bag_ref.weight
+%>
+
+<%#= render 'shared/form_bag',
+  instance: @new_bag
+%>
+
+<%= simple_form_for ([:user, @new_bag]) do |f| %>
+  <%= f.input :bag_ref_id, as: :hidden, input_html: { value: @bag_ref.id } %>
+  <%= f.input :custom_size %>
+  <%= f.input :custom_capacity %>
+  <%= f.input :custom_weight %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= render 'shared/back_to',
+  destination: 'all bags',
+  destination_path: bag_refs_path
+%>

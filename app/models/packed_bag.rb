@@ -1,4 +1,4 @@
 class PackedBag < ApplicationRecord
-  belongs_to :user_bag
+  belongs_to :bag
   has_many :packed_items
 end

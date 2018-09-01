@@ -1,0 +1,11 @@
+<h1>BagRefs#index</h1>
+
+<ul>
+  <% @bag_refs.each do |bag_ref| %>
+    <%= render 'shared/bag_overview',
+      bag: bag_refg_ref,
+      name: bag_ref.name,
+      size: bag_ref.size
+    %>
+  <% end %>
+</ul>
