@@ -10,10 +10,99 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_31_204402) do
+ActiveRecord::Schema.define(version: 2018_08_31_211708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bags", force: :cascade do |t|
+    t.string "name"
+    t.integer "category"
+    t.integer "size"
+    t.integer "capacity"
+    t.integer "weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.integer "category"
+    t.integer "size"
+    t.integer "weight"
+    t.string "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "journey_bags", force: :cascade do |t|
+    t.bigint "journey_id"
+    t.bigint "packed_bag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["journey_id"], name: "index_journey_bags_on_journey_id"
+    t.index ["packed_bag_id"], name: "index_journey_bags_on_packed_bag_id"
+  end
+
+  create_table "journeys", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "category"
+    t.string "country"
+    t.string "city"
+    t.string "photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_journeys_on_user_id"
+  end
+
+  create_table "packed_bags", force: :cascade do |t|
+    t.bigint "user_bag_id"
+    t.integer "custom_load"
+    t.integer "custom_weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_bag_id"], name: "index_packed_bags_on_user_bag_id"
+  end
+
+  create_table "packed_items", force: :cascade do |t|
+    t.bigint "packed_bag_id"
+    t.bigint "user_item_id"
+    t.integer "quantity"
+    t.integer "priority"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["packed_bag_id"], name: "index_packed_items_on_packed_bag_id"
+    t.index ["user_item_id"], name: "index_packed_items_on_user_item_id"
+  end
+
+  create_table "user_bags", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "bag_id"
+    t.integer "custom_size"
+    t.integer "custom_capacity"
+    t.integer "custom_weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bag_id"], name: "index_user_bags_on_bag_id"
+    t.index ["user_id"], name: "index_user_bags_on_user_id"
+  end
+
+  create_table "user_items", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "item_id"
+    t.string "commentary"
+    t.integer "custom_size"
+    t.integer "custom_weight"
+    t.string "photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "quantity"
+    t.index ["item_id"], name: "index_user_items_on_item_id"
+    t.index ["user_id"], name: "index_user_items_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +112,24 @@ ActiveRecord::Schema.define(version: 2018_08_31_204402) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "photo"
+    t.integer "size"
+    t.integer "traveller_category"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "journey_bags", "journeys"
+  add_foreign_key "journey_bags", "packed_bags"
+  add_foreign_key "journeys", "users"
+  add_foreign_key "packed_bags", "user_bags"
+  add_foreign_key "packed_items", "packed_bags"
+  add_foreign_key "packed_items", "user_items"
+  add_foreign_key "user_bags", "bags"
+  add_foreign_key "user_bags", "users"
+  add_foreign_key "user_items", "items"
+  add_foreign_key "user_items", "users"
 end
