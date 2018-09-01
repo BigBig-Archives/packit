@@ -1,2 +1,11 @@
 <h1>Items#index</h1>
-<p>Find me in app/views/items/index.html.erb</p>
+
+<ul>
+  <% @items.each do |item| %>
+    <%= render 'shared/item_overview',
+      item: item,
+      name: item.name,
+      size: item.size
+    %>
+  <% end %>
+</ul>

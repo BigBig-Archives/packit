@@ -1,2 +1,13 @@
 <h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+
+<%= render 'shared/item_extended',
+  name: @item.name,
+  category: @item.category,
+  size: @item.size,
+  weight: @item.weight
+%>
+
+<%= render 'shared/back_to',
+  destination: 'all items',
+  destination_path: items_path
+%>

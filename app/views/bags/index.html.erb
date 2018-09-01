@@ -2,7 +2,7 @@
 
 <ul>
   <% @bags.each do |bag| %>
-    <%= render 'shared/bags',
+    <%= render 'shared/bag_overview',
       bag: bag,
       name: bag.name,
       size: bag.size
