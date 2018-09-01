@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :user
   root to: 'pages#home'
   resources :bags, only: %i[index show]
   resources :items, only: %i[index show]
 
   namespace :user do
-    get 'dashboard', to: 'user#dashboard'
+    get 'dashboard', to: 'dashboard#show'
     resources :user_bags
     resources :user_items
     resources :user_packed_item

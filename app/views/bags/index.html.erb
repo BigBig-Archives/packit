@@ -1,0 +1,11 @@
+<h1>Bags#index</h1>
+
+<ul>
+  <% @bags.each do |bag| %>
+    <%= render 'shared/bags',
+      bag: bag,
+      name: bag.name,
+      size: bag.size
+    %>
+  <% end %>
+</ul>
