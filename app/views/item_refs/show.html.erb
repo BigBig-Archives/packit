@@ -1,4 +1,4 @@
-<h1>itemRefs#show</h1>
+<h1>ItemRef</h1>
 
 <%= render 'shared/item_extended',
   name: @item_ref.name,
@@ -8,18 +8,9 @@
 %>
 
 <%= render 'shared/form_item',
-  new_item: @new_item
+  item_ref: @item_ref,
+  new_item: @new_item,
+  action: 'add to my items'
 %>
 
-<%= simple_form_for ([:user, @new_item]) do |f| %>
-  <%= f.input :item_ref_id, as: :hidden, input_html: { value: @item_ref.id } %>
-  <%= f.input :custom_size %>
-  <%= f.input :custom_weight %>
-  <%= f.button :submit %>
-  <%= f.input :commentary %>
-<% end %>
-
-<%= render 'shared/back_to',
-  destination: 'all items',
-  destination_path: item_refs_path
-%>
+<%= render 'shared/back_list' %>

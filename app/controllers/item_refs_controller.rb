@@ -3,6 +3,7 @@ class ItemRefsController < ApplicationController
 
   def index
     @item_refs = ItemRef.all
+    @new_item = Item.new
   end
 
   def show

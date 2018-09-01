@@ -1,7 +1,7 @@
 <%= simple_form_for ([:user, new_item]) do |f| %>
-  <%= f.input :item_ref_id, as: :hidden, input_html: { value: @item_ref.id } %>
-  <%= f.input :custom_size %>
-  <%= f.input :custom_weight %>
+  <%= f.input :item_ref_id, as: :hidden, input_html: { value: item_ref.id } %>
+  <%#= f.input :custom_size %>
+  <%#= f.input :custom_weight %>
   <%= f.input :commentary %>
-  <%= f.button :submit %>
+  <%= f.submit action, class: 'text-primary' %>
 <% end %>

@@ -9,16 +9,9 @@
 %>
 
 <%= render 'shared/form_bag',
-  new_bag: @new_bag
+  new_bag: @new_bag,
+  action: 'add to my bags'
 %>
-
-<%= simple_form_for ([:user, @new_bag]) do |f| %>
-  <%= f.input :bag_ref_id, as: :hidden, input_html: { value: @bag_ref.id } %>
-  <%= f.input :custom_size %>
-  <%= f.input :custom_capacity %>
-  <%= f.input :custom_weight %>
-  <%= f.button :submit %>
-<% end %>
 
 <%= render 'shared/back_to',
   destination: 'all bags',
