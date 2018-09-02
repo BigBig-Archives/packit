@@ -47,6 +47,11 @@ label{
   width: 150px;
 }
 
+input[type=text]{
+  width: calc(100% - 10px) !important;
+  border-box: box-sizing;
+}
+
 .simple-action {
   display: inline-block;
   margin: 0;

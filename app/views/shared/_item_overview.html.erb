@@ -1,7 +1,7 @@
 <li>
   <%= link_to item.item_ref.name, user_item_path(item) %>
   <%= link_to 'delete', user_item_path(item), method: :delete, class: 'back back-danger' %>
-  <% unless local_assigns[:commentary].nil? || local_assigns[:commentary].blank? %>
+  <% unless item.commentary.nil? %>
       <p><small><%= item.commentary %></small></p>
   <% end %>
 </li>
