@@ -1,18 +1,18 @@
 // Graphical variables
-@import "config/fonts";
-@import "config/colors";
-@import "config/bootstrap_variables";
+@import 'config/fonts';
+@import 'config/colors';
+@import 'config/bootstrap_variables';
 
 // External libraries
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "font-awesome-sprockets";
-@import "font-awesome";
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 
 // Your CSS partials
-@import "layouts/index";
-@import "components/index";
-@import "pages/index";
+@import 'layouts/index';
+@import 'components/index';
+@import 'pages/index';
 
 // Debug CSS
 
@@ -31,7 +31,7 @@ body {
     display: inline-block;
     // border: solid 1px rgba(255, 0, 0, 0.1);
   }
-  strong > a {
+  strong > a, p > small {
     display: inline;
     border: none;
     margin: 0;

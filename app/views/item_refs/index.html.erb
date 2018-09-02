@@ -1,11 +1,16 @@
-<h1>ItemRefs#index</h1>
+<h1>ItemRefs</h1>
 
 <ul>
   <% @item_refs.each do |item_ref| %>
     <%= render 'shared/item_overview',
-      item: item_ref,
+      new_item: @new_item,
+      item_ref: item_ref,
+      type: 'ref',
+      path: item_ref_path(item_ref),
       name: item_ref.name,
       size: item_ref.size
     %>
   <% end %>
 </ul>
+
+<%= render 'shared/back_list' %>

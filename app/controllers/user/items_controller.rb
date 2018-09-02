@@ -1,9 +1,12 @@
 class User::ItemsController < ApplicationController
+  before_action :set_item, only: %i[show update destroy]
   before_action :set_item_ref, only: %i[create]
 
   def index
     @items = current_user.items
   end
+
+  def show; end
 
   def create
     @item = Item.new(item_params)
@@ -14,6 +17,18 @@ class User::ItemsController < ApplicationController
       redirect_to user_items_path
     else
       render 'items/show'
+    end
+  end
+
+  def update
+    raise
+  end
+
+  def destroy
+    if @item.destroy
+      redirect_to user_items_path
+    else
+      render index
     end
   end
 

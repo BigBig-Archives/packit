@@ -1,11 +1,13 @@
-<h1>User:Items#index</h1>
+<h1>User:Items</h1>
 
 <ul>
   <% @items.each do |item| %>
     <%= render 'shared/item_overview',
-      path: user_items_path,
-      name: item.item_ref.name,
-      size: item.custom_size
+      type: 'owned',
+      item: item,
+      commentary: item.commentary
     %>
   <% end %>
 </ul>
+
+<%= render 'shared/back_list' %>
