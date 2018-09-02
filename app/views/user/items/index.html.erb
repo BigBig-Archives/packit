@@ -1,12 +1,27 @@
 <h1>User:Items</h1>
 
 <ul>
-  <% @items.each do |item| %>
-    <%= render 'shared/item_overview',
-      type: 'owned',
-      item: item,
-      commentary: item.commentary
-    %>
+  <% @categories.each do |category| %>
+    <li>
+      Catégorie <%= category %>
+      <ul>
+        <% @item_refs.each do |item_ref| %>
+          <% if item_ref.category == category %>
+            <li>
+              <%= item_ref.name %>
+              (<%= @item_refs_count[item_ref.id] %>)
+              <ul>
+                <% @user_items.each do |user_item| %>
+                  <% if user_item.item_ref == item_ref %>
+                      <%= render 'shared/item_overview', item: user_item %>
+                  <% end %>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </li>
   <% end %>
 </ul>
 

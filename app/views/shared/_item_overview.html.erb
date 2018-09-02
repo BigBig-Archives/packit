@@ -1,23 +1,7 @@
-<% if type == 'ref' %>
-
-  <li>
-    <%= link_to name, path %>
-    <%= simple_form_for ([:user, new_item]) do |f| %>
-      <%= f.input :item_ref_id, as: :hidden, input_html: { value: item_ref.id } %>
-      <%#= f.input :custom_size %>
-      <%#= f.input :custom_weight %>
-      <%= f.submit 'add', class: 'text-primary' %>
-    <% end %>
-  </li>
-
-<% elsif type == 'owned' %>
-
-  <li>
-    <%= link_to item.item_ref.name, user_item_path(item) %>
-    <%= link_to 'delete', user_item_path(item), method: :delete, class: 'text-danger' %>
-    <% unless local_assigns[:commentary].nil? || local_assigns[:commentary].blank? %>
-        <p><small><%= commentary %></small></p>
-    <% end %>
-  </li>
-
-<% end %>
+<li>
+  <%= link_to item.item_ref.name, user_item_path(item) %>
+  <%= link_to 'delete', user_item_path(item), method: :delete, class: 'back back-danger' %>
+  <% unless item.commentary.nil? %>
+      <p><small><%= item.commentary %></small></p>
+  <% end %>
+</li>

@@ -7,10 +7,10 @@
   weight: @item_ref.weight
 %>
 
-<%= render 'shared/form_item',
-  item_ref: @item_ref,
+<%= render 'shared/item_button_add',
   new_item: @new_item,
-  action: 'add to my items'
+  item: @item_ref,
+  commentary: true
 %>
 
 <%= render 'shared/back_list' %>

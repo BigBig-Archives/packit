@@ -69,9 +69,33 @@ sweater = ItemRef.create!(
   picture: 'url'
 )
 
+hat = ItemRef.create!(
+  name: 'hat',
+  category: 1,
+  size: 1,
+  weight: 1,
+  picture: 'url'
+)
+
 book = ItemRef.create!(
   name: 'book',
   category: 3,
+  size: 1,
+  weight: 1,
+  picture: 'url'
+)
+
+toothbrush = ItemRef.create!(
+  name: 'toothbrush',
+  category: 2,
+  size: 1,
+  weight: 1,
+  picture: 'url'
+)
+
+hairdryer = ItemRef.create!(
+  name: 'hairdryer',
+  category: 2,
   size: 1,
   weight: 1,
   picture: 'url'
