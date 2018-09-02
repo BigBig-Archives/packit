@@ -3,9 +3,7 @@
 <ul>
   <% @items.each do |item| %>
     <%= render 'shared/item_overview',
-      type: 'owned',
-      item: item,
-      commentary: item.commentary
+      item: item
     %>
   <% end %>
 </ul>

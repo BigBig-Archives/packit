@@ -1,0 +1,9 @@
+<!-- new_item, item -->
+
+<li>
+  <%= link_to item.name, item %>
+  <%= render 'shared/item_button_add',
+    new_item: new_item,
+    item: item
+  %>
+</li>

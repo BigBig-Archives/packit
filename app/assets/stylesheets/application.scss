@@ -46,3 +46,27 @@ body ul{
 label{
   width: 150px;
 }
+
+.simple-action {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.back {
+  color: white;
+  border: solid 1px rgba(255, 0, 0, 0.25);
+}
+
+.back-danger {
+  background-color: $brand-danger;
+}
+
+.back-warning {
+  background-color: $brand-warning;
+}
+
+.back-primary {
+  background-color: $brand-primary;
+}
