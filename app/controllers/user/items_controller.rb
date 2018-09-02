@@ -16,8 +16,6 @@ class User::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.user = current_user
-    @item.custom_size = @item_ref.size if @item.custom_size.nil?
-    @item.custom_weight = @item_ref.weight if @item.custom_weight.nil?
     if @item.save
       redirect_to user_items_path
     else

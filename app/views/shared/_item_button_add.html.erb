@@ -1,6 +1,8 @@
 <%= simple_form_for ([:user, new_item]), html: {class: 'simple-action'} do |f| %>
   <%= f.input :item_ref_id, as: :hidden, input_html: { value: item.id } %>
-  <% if commentary %>
+  <% if customize %>
+      <%= f.input :custom_size %>
+      <%= f.input :custom_weight %>
       <%= f.input :commentary %>
   <% end %>
   <%= f.submit 'add', class: 'back back-primary' %>
