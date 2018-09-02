@@ -3,7 +3,14 @@ class User::ItemsController < ApplicationController
   before_action :set_item_ref, only: %i[create]
 
   def index
-    @items = current_user.items
+    @items = {}
+    @user_items = current_user.items.order(item_ref_id: :asc)
+    @item_refs = @user_items.group(:item_ref_id).count
+    @item_refs.each do |item_ref_id|
+      @items[item_ref_id] = @item_refs[item_ref_id]
+    end
+    # @items_categories = ItemRef.order(category: :asc).group(:category).count
+    raise
   end
 
   def show; end
