@@ -14,6 +14,7 @@ PackedItem.destroy_all
 PackedBag.destroy_all
 Item.destroy_all
 ItemRef.destroy_all
+Category.destroy_all
 Bag.destroy_all
 BagRef.destroy_all
 User.destroy_all
@@ -22,146 +23,60 @@ User.destroy_all
 
 user = User.create!(
   email: 'user@mail.com',
-  password: 'azeqsd'
+  password: 'aaaaaa'
 )
-
-# BAGS
-
-suitcase = BagRef.create!(
-  name: 'suitcase',
-  category: 1,
-  size: 1,
-  capacity: 1,
-  weight: 1
-)
-
-rucksack = BagRef.create!(
-  name: 'rucksack',
-  category: 2,
-  size: 1,
-  capacity: 1,
-  weight: 1
-)
-
-# user_suitcase = UserBag.create!(
-#   user_id: user.id,
-#   bag_id: suitcase.id,
-#   custom_size: 2,
-#   custom_capacity: 1,
-#   custom_weight: 3,
-# )
-
-# user_rucksack = UserBag.create!(
-#   user_id: user.id,
-#   bag_id: rucksack.id,
-#   custom_size: 2,
-#   custom_capacity: 1,
-#   custom_weight: 3,
-# )
 
 # ITEMS
 
-sweater = ItemRef.create!(
-  name: 'sweater',
-  category: 1,
-  size: 1,
-  weight: 1,
-  picture: 'url'
+clothes = Category.create!(
+  name: 'clothes'
 )
 
-hat = ItemRef.create!(
-  name: 'hat',
-  category: 1,
-  size: 1,
-  weight: 1,
-  picture: 'url'
+  sweater = ItemRef.create!(
+    name: 'sweater',
+    category_id: clothes.id,
+    size: 1,
+    weight: 1,
+    picture: 'url'
+  )
+
+  hat = ItemRef.create!(
+    name: 'hat',
+    category_id: clothes.id,
+    size: 1,
+    weight: 1,
+    picture: 'url'
+  )
+
+hygiene = Category.create!(
+  name: 'hygiene'
 )
 
-book = ItemRef.create!(
-  name: 'book',
-  category: 3,
-  size: 1,
-  weight: 1,
-  picture: 'url'
+  toothbrush = ItemRef.create!(
+    name: 'toothbrush',
+    category_id: hygiene.id,
+    size: 1,
+    weight: 1,
+    picture: 'url'
+  )
+
+  hairdryer = ItemRef.create!(
+    name: 'hairdryer',
+    category_id: hygiene.id,
+    size: 1,
+    weight: 1,
+    picture: 'url'
+  )
+
+hobbies = Category.create!(
+  name: 'hobbies'
 )
 
-toothbrush = ItemRef.create!(
-  name: 'toothbrush',
-  category: 2,
-  size: 1,
-  weight: 1,
-  picture: 'url'
-)
+  book = ItemRef.create!(
+    name: 'book',
+    category_id: hobbies.id,
+    size: 1,
+    weight: 1,
+    picture: 'url'
+  )
 
-hairdryer = ItemRef.create!(
-  name: 'hairdryer',
-  category: 2,
-  size: 1,
-  weight: 1,
-  picture: 'url'
-)
-
-# user_sweater = UserItem.create!(
-#   user_id: user.id,
-#   item_id: sweater.id,
-#   commentary: 'comment',
-#   custom_size: 1,
-#   custom_weight: 1,
-#   photo: 'url'
-# )
-
-# user_book = UserItem.create!(
-#   user_id: user.id,
-#   item_id: book.id,
-#   commentary: 'comment',
-#   custom_size: 1,
-#   custom_weight: 1,
-#   photo: 'url'
-# )
-
-# # PACKED BAGS AND ITEMS
-
-# packed_suitcase = PackedBag.create!(
-#   user_bag_id: user_suitcase.id,
-#   custom_load: 1,
-#   custom_weight: 1
-# )
-
-# packed_rucksack = PackedBag.create!(
-#   user_bag_id: UserBag.first.id,
-#   custom_load: 1,
-#   custom_weight: 1
-# )
-
-# sweater_to_suitcase = PackedItem.create!(
-#   user_item_id: book.id,
-#   packed_bag_id: packed_suitcase.id
-# )
-
-# sweater_to_rucksack = PackedItem.create!(
-#   user_item_id: sweater.id,
-#   packed_bag_id: packed_rucksack.id
-# )
-
-# # JOURNEYS
-
-# journey = Journey.create!(
-#   user_id: user.id,
-#   name: 'Portugal',
-#   start_date: Date.today + 2.days,
-#   end_date: Date.today + 5.days,
-#   category: 1,
-#   country: 'Portugal',
-#   city: 'Porto',
-#   photo: 'url'
-# )
-
-# journey_suitcase = JourneyBag.create!(
-#   journey_id: journey.id,
-#   packed_bag_id: packed_suitcase.id
-# )
-
-# journey_rucksack = JourneyBag.create!(
-#   journey_id: journey.id,
-#   packed_bag_id: packed_rucksack.id
-# )

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_01_160754) do
+ActiveRecord::Schema.define(version: 2018_09_03_183354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,14 +37,21 @@ ActiveRecord::Schema.define(version: 2018_09_01_160754) do
     t.index ["user_id"], name: "index_bags_on_user_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "item_refs", force: :cascade do |t|
     t.string "name"
-    t.integer "category"
     t.integer "size"
     t.integer "weight"
     t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_item_refs_on_category_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -122,6 +129,7 @@ ActiveRecord::Schema.define(version: 2018_09_01_160754) do
 
   add_foreign_key "bags", "bag_refs"
   add_foreign_key "bags", "users"
+  add_foreign_key "item_refs", "categories"
   add_foreign_key "items", "item_refs"
   add_foreign_key "items", "users"
   add_foreign_key "journey_bags", "journeys"
