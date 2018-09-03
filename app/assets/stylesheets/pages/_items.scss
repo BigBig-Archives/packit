@@ -1,0 +1,9 @@
+.flex-wrapper {
+  display: flex;
+  #references {
+    flex: 1;
+  }
+  #user_items {
+    flex: 1;
+  }
+}

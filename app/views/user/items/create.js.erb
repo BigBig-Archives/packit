@@ -1,0 +1,16 @@
+function refreshForm(innerHTML) {
+  const newitemForm = document.getElementById('new_item');
+  newItemForm.innerHTML = innerHTML;
+}
+
+function addItem(itemHTML) {
+  const items = document.getElementById('items');
+  items.insertAdjacentHTML('beforeend', itemHTML);
+}
+
+<% if @item.errors.any? %>
+  refreshForm('<%= j render "user/items/index" %>');
+<% else %>
+  additem('<%= j render "items/index"');
+  refreshForm('<%= j render "user/items/index" %>');
+<% end %>

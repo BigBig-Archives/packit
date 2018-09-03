@@ -14,9 +14,10 @@ PackedItem.destroy_all
 PackedBag.destroy_all
 Item.destroy_all
 ItemRef.destroy_all
-Category.destroy_all
+ItemCategory.destroy_all
 Bag.destroy_all
 BagRef.destroy_all
+BagCategory.destroy_all
 User.destroy_all
 
 # USERS
@@ -28,7 +29,7 @@ user = User.create!(
 
 # ITEMS
 
-clothes = Category.create!(
+clothes = ItemCategory.create!(
   name: 'clothes'
 )
 
@@ -37,7 +38,7 @@ clothes = Category.create!(
     category_id: clothes.id,
     size: 1,
     weight: 1,
-    picture: 'url'
+    picture: 'item_1.png'
   )
 
   hat = ItemRef.create!(
@@ -45,10 +46,10 @@ clothes = Category.create!(
     category_id: clothes.id,
     size: 1,
     weight: 1,
-    picture: 'url'
+    picture: 'item_2.png'
   )
 
-hygiene = Category.create!(
+hygiene = ItemCategory.create!(
   name: 'hygiene'
 )
 
@@ -57,7 +58,7 @@ hygiene = Category.create!(
     category_id: hygiene.id,
     size: 1,
     weight: 1,
-    picture: 'url'
+    picture: 'item_3.png'
   )
 
   hairdryer = ItemRef.create!(
@@ -65,10 +66,10 @@ hygiene = Category.create!(
     category_id: hygiene.id,
     size: 1,
     weight: 1,
-    picture: 'url'
+    picture: 'item_4.png'
   )
 
-hobbies = Category.create!(
+hobbies = ItemCategory.create!(
   name: 'hobbies'
 )
 
@@ -77,6 +78,6 @@ hobbies = Category.create!(
     category_id: hobbies.id,
     size: 1,
     weight: 1,
-    picture: 'url'
+    picture: 'item_5.png'
   )
 

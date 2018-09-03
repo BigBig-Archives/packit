@@ -1,4 +1,4 @@
 class Bag < ApplicationRecord
   belongs_to :user
-  belongs_to :bag_ref
+  belongs_to :reference, class_name: 'BagRef'
 end

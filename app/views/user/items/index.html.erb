@@ -1,63 +1,15 @@
 <h1>User:Items</h1>
 
 <div class="container">
-  <div class="row">
-
-    <!-- REFERENCES -->
-    <div class="col-xs-5">
-      <ul>
-        <% @categories.each do |category| %>
-          <li>
-            <%= category.name %>
-            <ul>
-              <% @item_refs.each do |item_ref| %>
-                <% if item_ref.category == category %>
-                  <li>
-                    <%= render 'shared/item_ref_overview',
-                      item: item_ref,
-                      new_item: @new_item
-                    %>
-                  </li>
-                <% end %>
-              <% end %>
-            </ul>
-          </li>
-        <% end %>
-      </ul>
+  <% @categories.each do |category| %>
+    <div class="row">
+      <h4><%= category.name.upcase %></h4>
+      <% @references.select { |reference| reference.category == category }.each do |reference| %>
+        <%= render 'shared/item',
+          reference: reference,
+          new_item: @new_item
+        %>
+      <% end %>
     </div>
-    <!-- // REFERENCES -->
-
-    <!-- USER ITEMS -->
-    <div class="col-xs-5">
-
-      <ul>
-        <% @categories_matching.each do |category| %>
-          <li>
-            <%= category.name %>
-            <ul>
-              <% @item_refs_matching.each do |item_ref| %>
-                <% if item_ref.category == category %>
-                  <li>
-                    <%= item_ref.name %>
-                    (<%= @item_refs_count[item_ref.id] %>)
-                    <ul>
-                      <% @user_items.each do |user_item| %>
-                        <% if user_item.item_ref == item_ref %>
-                            <%= render 'shared/item_overview', item: user_item %>
-                        <% end %>
-                      <% end %>
-                    </ul>
-                  </li>
-                <% end %>
-              <% end %>
-            </ul>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-    <!-- // USER ITEMS -->
-
-  </div>
+  <% end %>
 </div>
-
-<%= render 'shared/back_list' %>

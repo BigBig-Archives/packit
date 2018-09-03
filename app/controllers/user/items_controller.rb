@@ -3,14 +3,14 @@ class User::ItemsController < ApplicationController
   before_action :set_item_ref, only: %i[create]
 
   def index
-    @categories = Category.all
-    @item_refs = ItemRef.all
-    @user_items = current_user.items
-    @item_refs_matching = @user_items.map { |item| item.item_ref }.uniq
-    @item_refs_matching.sort!
-    @categories_matching = @item_refs_matching.map { |item_ref| item_ref.category }.uniq
-    @categories_matching.sort!
-    @item_refs_count = @user_items.group(:item_ref_id).count
+    @categories = ItemCategory.all
+    @references = ItemRef.all
+    @owned_items = current_user.items
+    @owned_references = @owned_items.map { |item| item.reference }.uniq
+    @owned_references.sort!
+    @owned_categories = @owned_references.map { |reference| reference.category }.uniq
+    @owned_categories.sort!
+    @owned_references_count = @owned_items.group(:reference_id).count
     @new_item = Item.new
   end
 
@@ -20,9 +20,15 @@ class User::ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.user = current_user
     if @item.save
-      redirect_to user_items_path
+      respond_to do |format|
+        format.html { redirect_to user_items_path }
+        format.js
+      end
     else
-      render 'items/show'
+      respond_to do |format|
+        format.html { render_index }
+        format.js
+      end
     end
   end
 
@@ -45,10 +51,23 @@ class User::ItemsController < ApplicationController
   end
 
   def set_item_ref
-    @item_ref = ItemRef.find(params[:item][:item_ref_id])
+    @item_ref = ItemRef.find(params[:item][:reference_id])
   end
 
   def item_params
-    params.require(:item).permit(:item_ref_id, :custom_size, :custom_weight, :commentary)
+    params.require(:item).permit(:reference_id, :custom_size, :custom_weight, :commentary)
+  end
+
+  def render_index
+    @categories = ItemCategory.all
+    @references = ItemRef.all
+    @owned_items = current_user.items
+    @owned_references = @owned_items.map { |item| item.reference }.uniq
+    @owned_references.sort!
+    @owned_categories = @owned_references.map { |reference| reference.category }.uniq
+    @owned_categories.sort!
+    @owned_references_count = @owned_items.group(:reference_id).count
+    @new_item = Item.new
+    render 'user/items/index'
   end
 end
