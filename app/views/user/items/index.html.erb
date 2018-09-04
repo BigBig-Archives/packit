@@ -1,15 +1,1 @@
-<h1>User:Items</h1>
-
-<div class="container">
-  <% @categories.each do |category| %>
-    <div class="row">
-      <h4><%= category.name.upcase %></h4>
-      <% @references.select { |reference| reference.category == category }.each do |reference| %>
-        <%= render 'shared/item',
-          reference: reference,
-          new_item: @new_item
-        %>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+<h1>Items owned by user</h1>

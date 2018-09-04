@@ -1,5 +1,5 @@
 <!-- reference -->
 
 <% unless reference.items.empty? %>
-  <%= link_to '-', user_item_path(reference.items.select { |item| item.user == current_user }.last), method: :delete %>
+  <%= link_to '-', user_item_path(reference.items.last, params: {reference: reference}), method: :delete, remote: :true  %>
 <% end %>

@@ -1,12 +1,17 @@
-<h1>ItemRefs</h1>
+<h1>Items</h1>
 
-<ul>
-  <% @item_refs.each do |item| %>
-    <%= render 'shared/item_ref_overview',
-      new_item: @new_item,
-      item: item
-    %>
+<div class="container">
+  <% @categories.each do |category| %>
+    <div class="row">
+      <h4><%= category.name.upcase %></h4>
+      <% category.references.each do |reference| %>
+        <div class="item-container" data-reference=<%= reference.id %>>
+          <%= render 'item',
+            reference: reference,
+            new_item: @new_item
+          %>
+        </div>
+      <% end %>
+    </div>
   <% end %>
-</ul>
-
-<%= render 'shared/back_list' %>
+</div>

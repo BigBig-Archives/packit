@@ -1,11 +1,7 @@
-<!-- new_item, reference -->
+<!-- reference -->
 
-<%= simple_form_for ([:user, new_item]), html: {class: 'simple-action'} do |f| %>
-  <%= f.input :reference_id, as: :hidden, input_html: { value: reference.id } %>
-  <% if customize %>
-      <%= f.input :custom_size %>
-      <%= f.input :custom_weight %>
-      <%= f.input :commentary %>
+<% unless reference.items.count >= 99 %>
+  <%= link_to user_items_path(params: {reference: reference}), method: :post, remote: :true do %>
+    +
   <% end %>
-  <%= f.submit '+', class: 'back back-primary' %>
 <% end %>

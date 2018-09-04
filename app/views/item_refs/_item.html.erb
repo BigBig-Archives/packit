@@ -1,0 +1,15 @@
+<% count = reference.items.select { |item| item.user == current_user }.count %>
+
+<div class="item-card <%= 'owned' unless count.zero? %>">
+  <%= image_tag "items/#{reference.picture}" %>
+  <p><%= reference.name %></p>
+  <div class="item-count">
+    <%= count %>
+  </div>
+  <div class="add">
+    <%= render 'shared/add_item', reference: reference %>
+  </div>
+  <div class="remove">
+    <%= render 'shared/remove_item', reference: reference %>
+  </div>
+</div>
