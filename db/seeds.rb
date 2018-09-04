@@ -27,6 +27,16 @@ user = User.create!(
   password: 'aaaaaa'
 )
 
+user2 = User.create!(
+  email: 'user2@mail.com',
+  password: 'aaaaaa'
+)
+
+user3 = User.create!(
+  email: 'user3@mail.com',
+  password: 'aaaaaa'
+)
+
 # ITEMS
 
 clothes = ItemCategory.create!(
@@ -49,6 +59,14 @@ clothes = ItemCategory.create!(
     picture: 'item_2.png'
   )
 
+  trousers = ItemRef.create!(
+    name: 'trousers',
+    category_id: clothes.id,
+    size: 1,
+    weight: 1,
+    picture: 'item_6.png'
+  )
+
 hygiene = ItemCategory.create!(
   name: 'hygiene'
 )
@@ -67,6 +85,14 @@ hygiene = ItemCategory.create!(
     size: 1,
     weight: 1,
     picture: 'item_4.png'
+  )
+
+  nailsclipper = ItemRef.create!(
+    name: 'nails clipper',
+    category_id: hygiene.id,
+    size: 1,
+    weight: 1,
+    picture: 'item_7.png'
   )
 
 hobbies = ItemCategory.create!(

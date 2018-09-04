@@ -1,79 +1,75 @@
 .item-container {
   display: inline-block;
-  padding: 20px;
-}
-
-.item-card {
-  opacity: 0.5;
-  position: relative;
-  width: 180px;
-  height: 180px;
-  border-radius: 4px;
+  padding: 10px;
+  margin: 10px 5px;
   border: solid 2px $blue;
-  padding: 20px 40px;
-  img {
-    width: 100%;
-    margin-bottom: 10px;
+  border-radius: 25px;
+
+  .item-img-container {
+    opacity: 0.4;
+    width: 120px;
+    height: 100px;
+    padding: 5px 15px;
+    img {
+      width: 100%;
+    }
   }
-  p {
-    text-align: center;
+
+  .name-container {
+    p {
+      text-align: center;
+      margin: 0;
+      margin-top: 5px;
+    }
   }
-  .item-count {
-    position: absolute;
-    top: 20px;
-    right: -20px;
+
+  .buttons {
+    background-color: red;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: #f4f4f4;
-    border-radius: 50%;
-    border: solid 2px $blue;
-  }
-  .add, .remove {
-    position: absolute;
-    bottom: -20px;
-    a {
+    .add, .remove-enable, .remove-disable, .count {
+      flex: 1;
       display: block;
       text-align: center;
-      line-height: 35px;
-      width: 40px;
+      line-height: 40px;
       height: 40px;
       background-color: #f4f4f4;
-      border-radius: 4px;
-      border: solid 2px $blue;
       -webkit-appearance: none;
       padding: 0;
       border-image: none;
+    }
+    .add, .remove-enable, .remove-disable{
       font-weight: normal;
-      font-size: 20px;
+      font-size: 24px;
       &:hover {
         text-decoration: none;
         font-weight: bold;
       }
     }
-  }
-  .add {
-    right: 30px;
-    a {
+    .count {
+      font-weight: bold;
+      color: $middle-gray;
+    }
+    .add {
       color: $green;
+      &:hover {
+        color: $green;
+      }
     }
-    &:hover {
-      color: $green;
+    .remove-enable {
+      color: $red;
+      &:hover {
+        color: $red;
+      }
+    }
+    .remove-disable {
+      color: $middle-gray;
+      &:hover {
+        color: $middle-gray;
+      }
     }
   }
-  .remove {
-    left: 30px;
-    a {
-      color: $red;
-    }
-    &:hover {
-      color: $red;
-    }
-  }
-}
 
-.owned {
-  opacity: 1;
+  .owned {
+    opacity: 1;
+  }
 }

@@ -1,5 +1,7 @@
 <!-- reference -->
 
-<% unless reference.items.empty? %>
-  <%= link_to '-', user_item_path(reference.items.last, params: {reference: reference}), method: :delete, remote: :true  %>
+<% if reference.items.any? %>
+  <%= link_to '-', user_item_path(reference.items.last, params: {reference: reference}), class: 'remove-enable', method: :delete, remote: :true  %>
+<% else %>
+  <span class="remove-disable">-</span>
 <% end %>

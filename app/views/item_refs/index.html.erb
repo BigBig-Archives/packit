@@ -3,13 +3,11 @@
 <div class="container">
   <% @categories.each do |category| %>
     <div class="row">
+      <hr>
       <h4><%= category.name.upcase %></h4>
       <% category.references.each do |reference| %>
         <div class="item-container" data-reference=<%= reference.id %>>
-          <%= render 'item',
-            reference: reference,
-            new_item: @new_item
-          %>
+          <%= render 'item', reference: reference %>
         </div>
       <% end %>
     </div>

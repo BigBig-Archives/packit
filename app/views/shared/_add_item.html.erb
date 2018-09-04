@@ -1,7 +1,7 @@
 <!-- reference -->
 
 <% unless reference.items.count >= 99 %>
-  <%= link_to user_items_path(params: {reference: reference}), method: :post, remote: :true do %>
+  <%= link_to user_items_path(params: {reference: reference}), class: 'add', method: :post, remote: :true do %>
     +
   <% end %>
 <% end %>
