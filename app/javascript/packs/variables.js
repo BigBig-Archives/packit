@@ -1,7 +1,9 @@
 // Sort item refs
-let item_refs_results;
-let category_nav;
+let itemResultsContainer;
+let itemResults;
+let itemNavContainer;
+let itemNavElts;
 
 // Add or remove item
-let item_container;
-let item_content;
+let itemContainer;
+let itemContent;

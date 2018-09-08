@@ -2,7 +2,7 @@
   display: inline-block;
   .item-card {
     width: $p176;
-    margin: $p16;
+    margin: $p8;
     padding: $p16;
     border: solid $p4 lighten($green, 40%);
     border-radius: $border-radius-large;
@@ -33,7 +33,7 @@
         flex: 1;
         color: $green;
       }
-      .add, .remove-enable, .remove-disable i {
+      .add, .remove-enable, .remove-disable, i {
         font-size: $p32;
       }
       .add, .remove-enable i:hover {

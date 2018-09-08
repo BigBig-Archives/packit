@@ -2,6 +2,8 @@ class ItemRefsController < ApplicationController
 
   def index
     @categories = ItemCategory.all
+    @categories_displayed = ItemCategory.all
+    @filter = 'all'
     @references = ItemRef.all
     @owned_items = current_user.items
     @owned_references = @owned_items.map { |item| item.reference }.uniq
@@ -11,14 +13,14 @@ class ItemRefsController < ApplicationController
     @owned_references_count = @owned_items.group(:reference_id).count
     @new_item = Item.new
     if params.key?(:category)
-      @category = ItemCategory.find(params[:category])
-      render :sort
+      unless params[:category] == 'all'
+        @filter = ItemCategory.find(params[:category])
+        @categories_displayed = [@filter]
+      end
+      render 'sort.js'
     else
       render :index
     end
-  end
-
-  def sort
   end
 
   def show; end

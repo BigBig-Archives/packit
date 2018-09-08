@@ -1,20 +1,9 @@
 <div class="container">
-  <nav class="nav nav-pills flex-column flex-sm-row nav-categories">
-    <%= link_to item_refs_path(params: {category: nil}), class: "flex-sm-fill text-sm-center nav-link active", remote: :true do %>
-      All categories
-    <% end %>
-    <% @categories.each do |category| %>
-      <%= link_to item_refs_path(params: {category: category}), class: "flex-sm-fill text-sm-center nav-link", remote: :true do %>
-      <%= category.name %>
-      <% end %>
-    <% end %>
+  <nav class="nav nav-pills flex-column flex-sm-row nav-categories nav-items">
+    <%= render 'nav', categories: @categories, filter: @filter %>
   </nav>
 
   <div class="item-results">
-    <% if @category.nil? %>
-      <%= render 'results', categories: @categories, sorted: false %>
-    <% else %>
-      <%= render 'results', categories: @category, sorted: true %>
-    <% end %>
+    <%= render 'results', categories_displayed: @categories_displayed %>
   </div>
 </div>

@@ -1,11 +1,7 @@
-item_refs_results = document.querySelector('.item-results');
+itemResultsContainer = document.querySelector('.item-results');
+itemResults = `<%= j render 'results', categories_displayed: @categories_displayed %>`;
+itemResultsContainer.innerHTML = itemResults;
 
-<% render 'results', categories: @category, sorted: true %>
-
-categoriesNav = document.querySelectorAll(".nav-categories > .nav-link");
-
-// for(let i = 0; i < categoriesNav.length; i++) {
-//   categoriesNav[i].addEventListener('click', (function(e){
-//     console.log(e);
-//   });
-// }
+itemNavContainer = document.querySelector('nav');
+itemNavElts = `<%= j render 'nav', categories: @categories, filter: @filter %>`;
+itemNavContainer.innerHTML = itemNavElts;
