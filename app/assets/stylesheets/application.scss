@@ -1,10 +1,11 @@
 // Graphical variables
 @import 'config/fonts';
 @import 'config/colors';
+@import 'config/rem';
 @import 'config/bootstrap_variables';
 
 // External libraries
-@import 'bootstrap-sprockets';
+// @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
@@ -14,73 +15,3 @@
 @import 'components/index';
 @import 'pages/index';
 
-// Debug CSS
-
-body{
-  padding: 50px;
-}
-
-// body *{
-//   border: solid 1px rgba(255, 0, 0, 0.25);
-//   margin: 4px;
-//   padding: 4px;
-// }
-
-// body {
-//   a, span, small {
-//     display: inline-block;
-//     // border: solid 1px rgba(255, 0, 0, 0.1);
-//   }
-//   strong > a, p > small {
-//     display: inline;
-//     border: none;
-//     margin: 0;
-//     padding: 0;
-//   }
-// }
-
-// ul{
-//   list-style: none;
-// }
-
-// li{
-//   border-color: rgba(150, 0, 250, 0.25);
-//   border-left-width: 4px;
-// }
-
-// label{
-//   width: 150px;
-// }
-
-// input[type=text]{
-//   width: calc(100% - 10px) !important;
-//   border-box: box-sizing;
-// }
-
-// .simple-action {
-//   display: inline-block;
-//   margin: 0;
-//   padding: 0;
-//   border: none;
-// }
-
-// .back {
-//   color: white;
-//   border: solid 1px rgba(250, 0, 0, 0.25);
-// }
-
-// .back-danger {
-//   background-color: $brand-danger;
-// }
-
-// .back-warning {
-//   background-color: $brand-warning;
-// }
-
-// .back-primary {
-//   background-color: $brand-primary;
-// }
-
-// .back-item {
-//   background-color: $brand-success;
-// }

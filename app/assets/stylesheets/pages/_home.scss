@@ -1,1 +1,90 @@
-// Specific CSS for your home-page
+.rem-convert {
+  display: flex;
+  .pixels, .bars {
+    flex: 1;
+    margin: $p8;
+    div {
+      height: $p32;
+      margin: $p4 $p2;
+    }
+  }
+  .pixels {
+    text-align: right;
+    line-height: $p32;
+    font-size: $p16;
+  }
+  .bars {
+    div {
+      background-color: $blue;
+    }
+    div:nth-of-type(1) { width: $p1; }
+    div:nth-of-type(2) { width: $p2; }
+    div:nth-of-type(3) { width: $p4; }
+    div:nth-of-type(4) { width: $p8; }
+    div:nth-of-type(5) { width: $p16; }
+    div:nth-of-type(6) { width: $p24; }
+    div:nth-of-type(7) { width: $p32; }
+    div:nth-of-type(8) { width: $p40; }
+    div:nth-of-type(9) { width: $p48; }
+    div:nth-of-type(10) { width: $p56; }
+    div:nth-of-type(11) { width: $p64; }
+    div:nth-of-type(12) { width: $p72; }
+    div:nth-of-type(13) { width: $p80; }
+    div:nth-of-type(14) { width: $p88; }
+    div:nth-of-type(15) { width: $p96; }
+    div:nth-of-type(16) { width: $p104; }
+    div:nth-of-type(17) { width: $p112; }
+    div:nth-of-type(18) { width: $p120; }
+    div:nth-of-type(19) { width: $p128; }
+    div:nth-of-type(20) { width: $p136; }
+    div:nth-of-type(21) { width: $p144; }
+    div:nth-of-type(22) { width: $p152; }
+    div:nth-of-type(23) { width: $p160; }
+    div:nth-of-type(24) { width: $p168; }
+    div:nth-of-type(25) { width: $p176; }
+    div:nth-of-type(26) { width: $p184; }
+    div:nth-of-type(27) { width: $p192; }
+    div:nth-of-type(28) { width: $p200; }
+    div:nth-of-type(29) { width: $p208; }
+    div:nth-of-type(30) { width: $p216; }
+    div:nth-of-type(31) { width: $p224; }
+    div:nth-of-type(32) { width: $p232; }
+    div:nth-of-type(33) { width: $p240; }
+    div:nth-of-type(34) { width: $p248; }
+    div:nth-of-type(35) { width: $p256; }
+    div:nth-of-type(36) { width: $p264; }
+    div:nth-of-type(37) { width: $p272; }
+    div:nth-of-type(38) { width: $p280; }
+    div:nth-of-type(39) { width: $p288; }
+    div:nth-of-type(40) { width: $p296; }
+    div:nth-of-type(41) { width: $p304; }
+    div:nth-of-type(42) { width: $p312; }
+    div:nth-of-type(43) { width: $p320; }
+    div:nth-of-type(44) { width: $p328; }
+    div:nth-of-type(45) { width: $p336; }
+    div:nth-of-type(46) { width: $p344; }
+    div:nth-of-type(47) { width: $p352; }
+    div:nth-of-type(48) { width: $p360; }
+    div:nth-of-type(49) { width: $p368; }
+    div:nth-of-type(50) { width: $p376; }
+    div:nth-of-type(51) { width: $p384; }
+    div:nth-of-type(52) { width: $p392; }
+    div:nth-of-type(53) { width: $p400; }
+    div:nth-of-type(54) { width: $p408; }
+    div:nth-of-type(55) { width: $p416; }
+    div:nth-of-type(56) { width: $p424; }
+    div:nth-of-type(57) { width: $p432; }
+    div:nth-of-type(58) { width: $p440; }
+    div:nth-of-type(59) { width: $p448; }
+    div:nth-of-type(60) { width: $p456; }
+    div:nth-of-type(61) { width: $p464; }
+    div:nth-of-type(62) { width: $p472; }
+    div:nth-of-type(63) { width: $p480; }
+    div:nth-of-type(64) { width: $p488; }
+    div:nth-of-type(65) { width: $p496; }
+    div:nth-of-type(66) { width: $p504; }
+    div:nth-of-type(67) { width: $p512; }
+  }
+}
+
+
