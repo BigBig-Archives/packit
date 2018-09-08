@@ -1,15 +1,20 @@
-<h1>Items</h1>
-
 <div class="container">
-  <% @categories.each do |category| %>
-    <div class="row">
-      <hr>
-      <h4><%= category.name.upcase %></h4>
-      <% category.references.each do |reference| %>
-        <div class="item-container" data-reference=<%= reference.id %>>
-          <%= render 'item', reference: reference %>
-        </div>
+  <nav class="nav nav-pills flex-column flex-sm-row nav-categories">
+    <%= link_to item_refs_path(params: {category: nil}), class: "flex-sm-fill text-sm-center nav-link active", remote: :true do %>
+      All categories
+    <% end %>
+    <% @categories.each do |category| %>
+      <%= link_to item_refs_path(params: {category: category}), class: "flex-sm-fill text-sm-center nav-link", remote: :true do %>
+      <%= category.name %>
       <% end %>
-    </div>
-  <% end %>
+    <% end %>
+  </nav>
+
+  <div class="item-results">
+    <% if @category.nil? %>
+      <%= render 'results', categories: @categories, sorted: false %>
+    <% else %>
+      <%= render 'results', categories: @category, sorted: true %>
+    <% end %>
+  </div>
 </div>

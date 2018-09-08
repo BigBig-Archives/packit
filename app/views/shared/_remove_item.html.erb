@@ -1,7 +1,13 @@
 <!-- reference -->
 
 <% if reference.items.any? %>
-  <%= link_to '-', user_item_path(reference.items.last, params: {reference: reference}), class: 'remove-enable', method: :delete, remote: :true  %>
+  <%= link_to user_item_path(reference.items.last, params: {reference: reference}), class: 'remove-enable', method: :delete, remote: :true do %>
+    <i class="fas fa-minus-circle"></i>
+  <% end %>
 <% else %>
-  <span class="remove-disable">-</span>
+  <span class="remove-disable">
+    <i class="fas fa-minus-circle"></i>
+  </span>
 <% end %>
+
+

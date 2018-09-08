@@ -22,88 +22,48 @@ User.destroy_all
 
 # USERS
 
-user = User.create!(
-  email: 'user@mail.com',
-  password: 'aaaaaa'
-)
-
-user2 = User.create!(
-  email: 'user2@mail.com',
-  password: 'aaaaaa'
-)
-
-user3 = User.create!(
-  email: 'user3@mail.com',
-  password: 'aaaaaa'
-)
+user = User.create!(email: 'user@mail.com', password: 'aaaaaa')
+user2 = User.create!(email: 'user2@mail.com', password: 'aaaaaa')
+user3 = User.create!(email: 'user3@mail.com', password: 'aaaaaa')
 
 # ITEMS
 
-clothes = ItemCategory.create!(
-  name: 'clothes'
-)
-
-  sweater = ItemRef.create!(
-    name: 'sweater',
+clothes = ItemCategory.create!(name: 'clothes')
+10.times do |i|
+  ItemRef.create!(
+    name: Faker::Zelda.item,
     category_id: clothes.id,
     size: 1,
     weight: 1,
-    picture: 'item_1.png'
+    picture: "item_#{i + 1}"
   )
+end
+# img / 21
 
-  hat = ItemRef.create!(
-    name: 'hat',
-    category_id: clothes.id,
-    size: 1,
-    weight: 1,
-    picture: 'item_2.png'
-  )
-
-  trousers = ItemRef.create!(
-    name: 'trousers',
-    category_id: clothes.id,
-    size: 1,
-    weight: 1,
-    picture: 'item_6.png'
-  )
-
-hygiene = ItemCategory.create!(
-  name: 'hygiene'
-)
-
-  toothbrush = ItemRef.create!(
-    name: 'toothbrush',
+hygiene = ItemCategory.create!(name: 'hygiene')
+8.times do |i|
+  ItemRef.create!(
+    name: Faker::Dessert.topping,
     category_id: hygiene.id,
     size: 1,
     weight: 1,
-    picture: 'item_3.png'
+    picture: "item_#{i + 1 + 10}"
   )
+end
+# img / 13
 
-  hairdryer = ItemRef.create!(
-    name: 'hairdryer',
-    category_id: hygiene.id,
-    size: 1,
-    weight: 1,
-    picture: 'item_4.png'
-  )
-
-  nailsclipper = ItemRef.create!(
-    name: 'nails clipper',
-    category_id: hygiene.id,
-    size: 1,
-    weight: 1,
-    picture: 'item_7.png'
-  )
-
-hobbies = ItemCategory.create!(
-  name: 'hobbies'
-)
-
-  book = ItemRef.create!(
-    name: 'book',
+hobbies = ItemCategory.create!(name: 'hobbies')
+13.times do |i|
+  ItemRef.create!(
+    name: Faker::Food.vegetables,
     category_id: hobbies.id,
     size: 1,
     weight: 1,
-    picture: 'item_5.png'
+    picture: "item_#{i + 1 + 10 + 8}"
   )
+end
+# img / 0
 
+ItemCategory.create!(name: 'bedding')
+ItemCategory.create!(name: 'papers')
+ItemCategory.create!(name: 'tools')

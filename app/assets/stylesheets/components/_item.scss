@@ -1,75 +1,67 @@
-.item-container {
+.item-ref {
   display: inline-block;
-  padding: 10px;
-  margin: 10px 5px;
-  border: solid 2px $blue;
-  border-radius: 25px;
-
-  .item-img-container {
-    opacity: 0.4;
-    width: 120px;
-    height: 100px;
-    padding: 5px 15px;
-    img {
-      width: 100%;
+  .item-card {
+    width: $p176;
+    margin: $p16;
+    padding: $p16;
+    border: solid $p4 lighten($green, 40%);
+    border-radius: $border-radius-large;
+    text-align: center;
+    .picture {
+      width: $p96;
+      height: $p96;
+      opacity: 0.5;
+      margin-bottom: $p8;
     }
-  }
-
-  .name-container {
-    p {
-      text-align: center;
-      margin: 0;
-      margin-top: 5px;
+    .name {
+      margin: 0 auto;
+      font-weight: bolder;
+      color: lighten($gray, 20%);
+      width: $p128;
+      padding: $p4;
+      word-wrap: break-word;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-  }
-
-  .buttons {
-    background-color: red;
-    display: flex;
-    .add, .remove-enable, .remove-disable, .count {
-      flex: 1;
-      display: block;
-      text-align: center;
-      line-height: 40px;
-      height: 40px;
-      background-color: #f4f4f4;
-      -webkit-appearance: none;
-      padding: 0;
-      border-image: none;
-    }
-    .add, .remove-enable, .remove-disable{
-      font-weight: normal;
-      font-size: 24px;
-      &:hover {
-        text-decoration: none;
-        font-weight: bold;
-      }
-    }
-    .count {
-      font-weight: bold;
-      color: $middle-gray;
-    }
-    .add {
-      color: $green;
-      &:hover {
+    .qty-buttons{
+      display: flex;
+      align-items: center;
+      margin-top: $p8;
+      height: $p40;
+      .add, .remove-enable, .remove-disable, .count {
+        flex: 1;
         color: $green;
       }
-    }
-    .remove-enable {
-      color: $red;
-      &:hover {
-        color: $red;
+      .add, .remove-enable, .remove-disable i {
+        font-size: $p32;
+      }
+      .add, .remove-enable i:hover {
+        font-size: $p32 + $p1;
+      }
+      .remove-disable {
+        color: lighten($green, 40%);
+      }
+      .count {
+        font-size: $p16 + $p4;
+        line-height: $p40;
+        font-weight: bolder;
+        color: lighten($green, 40%);
       }
     }
-    .remove-disable {
-      color: $middle-gray;
-      &:hover {
-        color: $middle-gray;
-      }
+    .more-buttons .options-button {
+      font-weight: bolder;
+      color: lighten($gray, 50%);
     }
   }
 
-  .owned {
-    opacity: 1;
+  .item-owned {
+    border: solid $p4 lighten($green, 20%);
+    .picture {
+      opacity: 1;
+    }
+    .qty-buttons .count {
+      color: $green;
+    }
   }
 }

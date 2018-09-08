@@ -1,4 +1,3 @@
-console.log ('-1');
 item_container = document.querySelector("[data-reference=\"<%= @item.reference.id %>\"]");
 item_content = `<%= j render 'item_refs/item', reference: @item.reference %>`;
 item_container.innerHTML = item_content;
