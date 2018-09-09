@@ -1,7 +1,36 @@
-itemResultsContainer = document.querySelector('.item-results');
-itemResults = `<%= j render 'results', categories_displayed: @categories_displayed %>`;
-itemResultsContainer.innerHTML = itemResults;
+// REFRESH FILTER BY CATEGORY
 
-itemNavContainer = document.querySelector('nav');
-itemNavElts = `<%= j render 'nav', categories: @categories, filter: @filter %>`;
-itemNavContainer.innerHTML = itemNavElts;
+container = document.querySelector('#filter-by-category');
+content = `<%= j render 'filter_by_category',
+  categories: @categories,
+  filtered_by_category: @filtered_by_category,
+  category_selected: @category_selected,
+  filtered_by_owned: @filtered_by_owned,
+  owned_selected: @owned_selected
+%>`;
+container.innerHTML = content;
+
+// REFRESH FILTER BY OWNED
+
+container = document.querySelector('#filter-by-owned');
+content = `<%= j render 'filter_by_owned',
+  category_selected_id: @category_selected_id,
+  filtered_by_category: @filtered_by_category,
+  category_selected: @category_selected,
+  filtered_by_owned: @filtered_by_owned,
+  owned_selected: @owned_selected
+%>`;
+container.innerHTML = content;
+
+// REFRESH RESULTS
+
+container = document.querySelector('#results');
+content= `<%= j render 'results',
+  categories: @categories,
+  owned_references: @owned_references,
+  filtered_by_category: @filtered_by_category,
+  filtered_by_owned: @filtered_by_owned,
+  category_selected: @category_selected,
+  owned_selected: @owned_selected
+%>`;
+container.innerHTML = content;
