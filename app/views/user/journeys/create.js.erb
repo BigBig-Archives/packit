@@ -1,0 +1,3 @@
+container = document.querySelector("#journeys-container");
+content = `<%= j render 'journey', journey: @journey %>`;
+container.insertAdjacentHTML('afterbegin', content);

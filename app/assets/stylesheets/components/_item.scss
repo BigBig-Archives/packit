@@ -29,15 +29,16 @@
       align-items: center;
       margin-top: $p8;
       height: $p40;
-      .add, .remove-enable, .remove-disable, .count {
+      .add,
+      .remove-enable,
+      .remove-disable, .count {
         flex: 1;
         color: $green;
       }
-      .add, .remove-enable, .remove-disable, i {
+      .add,
+      .remove-enable,
+      .remove-disable, i {
         font-size: $p32;
-      }
-      .add, .remove-enable i:hover {
-        font-size: $p32 + $p1;
       }
       .remove-disable {
         color: lighten($green, 40%);

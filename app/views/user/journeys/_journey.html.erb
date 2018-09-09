@@ -1,0 +1,7 @@
+<div data-journey=<%= journey.id %>>
+  <p>
+    <%= link_to journey.name, user_journey_path(journey) %>
+    <small> - </small>
+    <small><%= link_to 'delete', user_journey_path(journey), method: :delete, remote: :true, data: {confirm: "Are you sure you want to delete this journey?"}  %></small>
+  </p>
+</div>

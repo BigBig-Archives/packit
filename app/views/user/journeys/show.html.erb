@@ -1,0 +1,14 @@
+<h1><%= @journey.name %></h1>
+<hr>
+
+<h3>Let's pack your bag!</h3>
+
+<p>Start with a empty bag</p>
+<%= render 'user/bags/select',
+  bags: @bags
+%>
+
+<p>Start with a previous packed bag</p>
+<%= render 'user/packed_bags/select',
+  packed_bags: @packed_bags
+%>
