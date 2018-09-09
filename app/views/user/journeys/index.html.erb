@@ -2,13 +2,12 @@
 
 <div id="journeys-container">
   <% @journeys.each do |journey| %>
-    <%= render 'journey',
+    <%= render 'user/journeys/journey',
       journey: journey
     %>
   <% end %>
 </div>
 
-<%= render 'form',
-  user: current_user,
+<%= render 'user/journeys/form',
   journey: @new_journey
 %>

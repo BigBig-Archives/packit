@@ -3,12 +3,15 @@
 
 <h3>Let's pack your bag!</h3>
 
-<p>Start with a empty bag</p>
+<p><strong>Start with a empty bag</strong></p>
 <%= render 'user/bags/select',
-  bags: @bags
+  bags: @bags,
+  bag_refs: @bag_refs,
+  new_bag: @new_bag
 %>
 
-<p>Start with a previous packed bag</p>
+
+<p><strong>Start with a previous packed bag</strong></p>
 <%= render 'user/packed_bags/select',
   packed_bags: @packed_bags
 %>

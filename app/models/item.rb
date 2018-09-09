@@ -5,8 +5,4 @@ class Item < ApplicationRecord
   def standard?
     self.custom_size.nil? && self.custom_weight.nil?
   end
-
-  def true?
-    true
-  end
 end

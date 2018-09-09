@@ -1,0 +1,7 @@
+<div data-bag=<%= bag.id %>>
+  <span><%= bag.name %></span>
+  <span> - </span>
+  <%= link_to 'take this bag', user_packed_bags_path, method: :post %>
+  <span> - </span>
+  <%= link_to 'delete', user_bag_path(bag), remote: :true, method: :delete %>
+</div>

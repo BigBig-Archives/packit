@@ -1,0 +1,3 @@
+container = document.querySelector("#owned-bags");
+content = `<%= j render 'bag_to_pack', bag: @bag %>`;
+container.insertAdjacentHTML('beforeend', content);

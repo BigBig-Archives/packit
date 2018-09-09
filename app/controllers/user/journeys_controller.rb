@@ -9,6 +9,8 @@ class User::JourneysController < ApplicationController
   def show
     @bags = current_user.bags
     @packed_bags = current_user.packed_bags
+    @bag_refs = BagRef.all
+    @new_bag = Bag.new
   end
 
   def create

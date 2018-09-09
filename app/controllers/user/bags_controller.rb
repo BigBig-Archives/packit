@@ -1,5 +1,6 @@
 class User::BagsController < ApplicationController
-  before_action :set_bag_ref, only: %i[create]
+  before_action :set_bag, only: %i[update destroy]
+  before_action :set_reference, only: %i[create]
 
   def index
     @bags = current_user.bags
@@ -11,10 +12,17 @@ class User::BagsController < ApplicationController
     @bag.custom_size = @bag_ref.size if @bag.custom_size.nil?
     @bag.custom_capacity = @bag_ref.capacity if @bag.custom_capacity.nil?
     @bag.custom_weight = @bag_ref.weight if @bag.custom_weight.nil?
-    if @bag.save
-      redirect_to user_bags_path
-    else
-      render 'bags/show'
+    @bag.save
+  end
+
+  def destroy
+    respond_to do |format|
+      if @bag.destroy
+        format.html { redirect_to 'journeys/show', notice: 'Bag was successfully destroyed.' }
+        format.js
+      else
+        format.js { render :error }
+      end
     end
   end
 
@@ -24,11 +32,11 @@ class User::BagsController < ApplicationController
     @bag = Bag.find(params[:id])
   end
 
-  def set_bag_ref
-    @bag_ref = BagRef.find(params[:bag][:bag_ref_id])
+  def set_reference
+    @bag_ref = BagRef.find(params[:bag][:reference_id])
   end
 
   def bag_params
-    params.require(:bag).permit(:bag_ref_id, :custom_size, :custom_capacity, :custom_weight)
+    params.require(:bag).permit(:reference_id, :name, :custom_size, :custom_capacity, :custom_weight)
   end
 end

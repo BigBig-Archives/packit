@@ -19,7 +19,7 @@ User.destroy_all
 user1 = User.create!(email: 'user@mail.com', password: 'aaaaaa')
 user2 = User.create!(email: 'user2@mail.com', password: 'aaaaaa')
 
-# ITEMS
+# ITEM_REFS
 
 tools         = ItemCategory.create!(name: 'tools', picture: 'tools')
 food          = ItemCategory.create!(name: 'food', picture: 'food')
@@ -41,7 +41,7 @@ csv.each do |row|
   )
 end
 
-# BAGS
+# BAG_REFS
 
 BagCategory.create(name: 'hiking')
 
@@ -70,3 +70,39 @@ bag2 = Bag.create!(
 
 # PACKED_BAGS
 
+packed_bag1 = PackedBag.create!(
+  name:   'Best packed bag',
+  bag_id: bag1.id
+)
+
+# PACKED_ITEMS
+
+sunglasses = Item.create!(
+  user_id:      user1.id,
+  reference_id: ItemRef.where(name: 'sunglasses').first.id
+)
+
+preserve1 = Item.create!(
+  user_id:      user1.id,
+  reference_id: ItemRef.where(name: 'preserve').first.id
+)
+
+preserve2 = Item.create!(
+  user_id:      user1.id,
+  reference_id: ItemRef.where(name: 'preserve').first.id
+)
+
+PackedItem.create!(
+  packed_bag_id: packed_bag1.id,
+  item_id: sunglasses.id,
+)
+
+PackedItem.create!(
+  packed_bag_id: packed_bag1.id,
+  item_id: preserve1.id,
+)
+
+PackedItem.create!(
+  packed_bag_id: packed_bag1.id,
+  item_id: preserve2.id,
+)
