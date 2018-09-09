@@ -1,0 +1,9 @@
+<% categories_displayed.each do |category| %>
+  <% category.references.each do |reference| %>
+    <% if @owned_references.include? reference %>
+      <div class="item-ref" data-reference=<%= reference.id %>>
+        <%= render 'item', reference: reference %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

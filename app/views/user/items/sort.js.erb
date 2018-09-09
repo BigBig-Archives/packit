@@ -1,0 +1,7 @@
+itemResultsContainer = document.querySelector('.item-results');
+itemResults = `<%= j render 'results', categories_displayed: @owned_categories_displayed %>`;
+itemResultsContainer.innerHTML = itemResults;
+
+itemNavContainer = document.querySelector('nav');
+itemNavElts = `<%= j render 'nav', categories: @owned_categories, filter: @filter %>`;
+itemNavContainer.innerHTML = itemNavElts;

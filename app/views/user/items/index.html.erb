@@ -1,1 +1,9 @@
-<h1>Items owned by user</h1>
+<div class="container">
+  <nav class="nav nav-pills nav-justified nav-categories nav-items">
+    <%= render 'nav', categories: @owned_categories, filter: @filter %>
+  </nav>
+
+  <div class="item-results">
+    <%= render 'results', categories_displayed: @owned_categories_displayed %>
+  </div>
+</div>

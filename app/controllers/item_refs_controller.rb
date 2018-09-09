@@ -17,17 +17,9 @@ class ItemRefsController < ApplicationController
         @filter = ItemCategory.find(params[:category])
         @categories_displayed = [@filter]
       end
-      render 'sort.js'
+      render :sort
     else
       render :index
     end
   end
-
-  def show; end
-
-  def create; end
-
-  def update; end
-
-  def destroy; end
 end
