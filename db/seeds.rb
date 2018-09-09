@@ -1,10 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'csv'
 
 # CLEAN DATABASE
 
@@ -28,42 +22,23 @@ user3 = User.create!(email: 'user3@mail.com', password: 'aaaaaa')
 
 # ITEMS
 
-clothes = ItemCategory.create!(name: 'clothes')
-10.times do |i|
+tools         = ItemCategory.create!(name: 'tools', picture: 'tools')
+food          = ItemCategory.create!(name: 'food', picture: 'food')
+clothes       = ItemCategory.create!(name: 'clothes', picture: 'clothes')
+bedtime       = ItemCategory.create!(name: 'bedtime', picture: 'bedtime')
+sport         = ItemCategory.create!(name: 'sport', picture: 'sport')
+hobbies       = ItemCategory.create!(name: 'hobbies', picture: 'hobbies')
+miscellaneous = ItemCategory.create!(name: 'miscellaneous', picture: 'miscellaneous')
+
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'items.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
   ItemRef.create!(
-    name: Faker::Zelda.item,
-    category_id: clothes.id,
-    size: 1,
-    weight: 1,
-    picture: "item_#{i + 1}"
+    name:        row['name'],
+    size:        row['size'],
+    weight:      row['weight'],
+    picture:     row['picture'],
+    category_id: ItemCategory.where(name: row['category']).first.id
   )
 end
-# img / 21
 
-hygiene = ItemCategory.create!(name: 'hygiene')
-8.times do |i|
-  ItemRef.create!(
-    name: Faker::Dessert.topping,
-    category_id: hygiene.id,
-    size: 1,
-    weight: 1,
-    picture: "item_#{i + 1 + 10}"
-  )
-end
-# img / 13
-
-hobbies = ItemCategory.create!(name: 'hobbies')
-13.times do |i|
-  ItemRef.create!(
-    name: Faker::Food.vegetables,
-    category_id: hobbies.id,
-    size: 1,
-    weight: 1,
-    picture: "item_#{i + 1 + 10 + 8}"
-  )
-end
-# img / 0
-
-ItemCategory.create!(name: 'bedding')
-ItemCategory.create!(name: 'papers')
-ItemCategory.create!(name: 'tools')

@@ -1,0 +1,13 @@
+.filter-category {
+  display: flex;
+  a {
+    flex: 1;
+    text-align: center;
+    img {
+      display: block;
+      margin: auto;
+      width: $p48;
+      height: $p48;
+    }
+  }
+}
