@@ -12,6 +12,7 @@ class User::PackedBagsController < ApplicationController
     end
     if params.key?("owned") && params[:owned] == "true"
       @items = @items.select { |item| item.count_owned(current_user) > 0 }
+      @items = @items - @packed_bag.item_refs
     end
     respond_to do |format|
       format.html { render 'user/packed_bags/show' }

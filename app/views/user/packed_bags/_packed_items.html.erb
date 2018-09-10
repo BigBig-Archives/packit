@@ -1,5 +1,8 @@
-<% @packed_bag.packed_items.each do |packed_item| %>
+<p>Weight: <%= @packed_bag.weight %></p>
+<p>Load: <%= @packed_bag.load %></p>
+<p>Loaded: <%= @packed_bag.loaded %></p>
+<% @packed_bag.packed_items.map { |packed_item| packed_item.item_ref }.uniq.each do |item_ref| %>
   <%= render 'user/packed_items/packed_item',
-    packed_item: packed_item
+    item: item_ref
   %>
 <% end %>
