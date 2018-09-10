@@ -7,7 +7,6 @@ class User::BagsController < ApplicationController
     @bag = Bag.new(bag_params)
     @bag.reference = @reference
     @bag.user = current_user
-    @bag.custom_capacity = @reference.capacity if @bag.custom_capacity.nil?
     if @bag.save
       respond_to do |format|
         format.html { redirect_to user_journey_path(@journey), notice: 'Bag created.' }

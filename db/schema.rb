@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_10_120822) do
+ActiveRecord::Schema.define(version: 2018_09_10_132401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,15 +73,6 @@ ActiveRecord::Schema.define(version: 2018_09_10_120822) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
-  create_table "journey_bags", force: :cascade do |t|
-    t.bigint "journey_id"
-    t.bigint "packed_bag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["journey_id"], name: "index_journey_bags_on_journey_id"
-    t.index ["packed_bag_id"], name: "index_journey_bags_on_packed_bag_id"
-  end
-
   create_table "journeys", force: :cascade do |t|
     t.bigint "user_id"
     t.string "name"
@@ -103,7 +94,9 @@ ActiveRecord::Schema.define(version: 2018_09_10_120822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.bigint "journey_id"
     t.index ["bag_id"], name: "index_packed_bags_on_bag_id"
+    t.index ["journey_id"], name: "index_packed_bags_on_journey_id"
   end
 
   create_table "packed_items", force: :cascade do |t|
@@ -140,8 +133,6 @@ ActiveRecord::Schema.define(version: 2018_09_10_120822) do
   add_foreign_key "item_refs", "item_categories", column: "category_id"
   add_foreign_key "items", "item_refs", column: "reference_id"
   add_foreign_key "items", "users"
-  add_foreign_key "journey_bags", "journeys"
-  add_foreign_key "journey_bags", "packed_bags"
   add_foreign_key "journeys", "users"
   add_foreign_key "packed_bags", "bags"
   add_foreign_key "packed_items", "items"

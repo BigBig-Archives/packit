@@ -1,6 +1,6 @@
 class Journey < ApplicationRecord
   belongs_to :user
-  has_many :journey_bags, dependent: :destroy
+  has_many :packed_bags, dependent: :destroy
 
   validates :name, presence: { message: "Name can't be blank" }
   validates :start_date, :end_date, presence: true

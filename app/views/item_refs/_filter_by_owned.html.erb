@@ -1,11 +1,7 @@
-<%= link_to item_refs_path(params: {
-  filtered_by_owned: true, owned: -1, filtered_by_category: filtered_by_category, category: category_selected
-}), class: "nav-link #{'active' if owned_selected == -1}", remote: :true do %> not owned <% end %>
+<%= link_to item_refs_path(params.merge(owned: false)), class: "nav-link", remote: :true do %>
+  all items
+<% end %>
 
-<%= link_to item_refs_path(params: {
-  filtered_by_owned: false, owned: 0, filtered_by_category: filtered_by_category, category: category_selected
-}), class: "nav-link #{'active' if owned_selected.zero?}", remote: :true do %> all <% end %>
-
-<%= link_to item_refs_path(params: {
-  filtered_by_owned: true, owned: 1, filtered_by_category: filtered_by_category, category: category_selected
-}), class: "nav-link #{'active' if owned_selected == 1}", remote: :true do %> owned <% end %>
+<%= link_to item_refs_path(params.merge(owned: false)), class: "nav-link", remote: :true do %>
+  items used in previous packed bags
+<% end %>

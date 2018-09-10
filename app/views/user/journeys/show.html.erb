@@ -1,23 +1,41 @@
 <h1><%= @journey.name %></h1>
 <hr>
 
-<h2>Let's pack your bag!</h2>
+<% if @journey.packed_bags.count.zero? %>
 
-<hr>
+  <h2>Let's pack your bag!</h2>
 
-<h4>Start with an empty bag</h4>
-<%= render 'user/bags/select',
-  references: @references,
-  new_bag: @bag
-%>
+  <hr>
 
-<hr>
+  <h4>Start with an empty bag</h4>
+  <%= render 'user/bags/select',
+    references: @references,
+    new_bag: @bag
+  %>
 
-<h4>Start with a previous packed bag</h4>
-<div class="container" id="bags-container">
-  <div class="row">
-    <%= render 'user/packed_bags/select',
-      packed_bags: current_user.packed_bags
-    %>
+  <hr>
+
+  <h4>Start with a previous packed bag</h4>
+  <div class="container" id="bags-container">
+    <div class="row">
+      <% current_user.packed_bags.each do |packed_bag| %>
+        <%= render 'user/packed_bags/packed_bag_select',
+          packed_bag: packed_bag,
+          details: true
+        %>
+      <% end %>
+    </div>
   </div>
-</div>
+
+<% else %>
+
+  <h2>You packed bags!</h2>
+
+  <% @journey.packed_bags.each do |packed_bag| %>
+    <%= render 'user/packed_bags/packed_bag',
+      packed_bag: packed_bag,
+      details: false
+    %>
+  <% end %>
+
+<% end %>

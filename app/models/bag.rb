@@ -6,11 +6,15 @@ class Bag < ApplicationRecord
   validates :custom_capacity, inclusion: {
     in: (5..99).to_a,
     message: "Size should be between 5 and 99 liters"
-  }
+  }, allow_nil: true
 
   before_create :rename
 
   def rename
     self.name = self.reference.name if self.name.nil?
+  end
+
+  def capacity
+    self.custom_capacity.nil? ? self.reference.capacity : self.custom_capacity
   end
 end

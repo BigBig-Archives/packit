@@ -1,19 +1,11 @@
-<%= link_to item_refs_path(params: {
-  filtered_by_category: false, category: 0, filtered_by_owned: filtered_by_owned, owned: owned_selected
-}), class: "
-#{'active' unless filtered_by_category}", remote: :true do %>
+<<%= link_to item_refs_path(params.merge(category: 0)), class: "", remote: :true do %>
   <%= image_tag "categories/all" %>
   <small><strong>ALL</strong></small>
 <% end %>
+
 <% categories.each do |category| %>
-  <%= link_to item_refs_path(params:
-  {filtered_by_category: true, category: category, filtered_by_owned: filtered_by_owned, owned:owned_selected
-  }), class: "#{'active' if category_selected == category}", remote: :true do %>
-  <% count = 0 %>
-  <% category.references.each do |reference| %>
-    <% count += reference.items.select { |item| item.user == current_user }.count %>
-  <% end %>
-  <%= image_tag "categories/#{category.picture}" %>
-  <small><%= category.name.upcase %> (<%= count %>)</small>
+  <%= link_to item_refs_path(params.merge(category: category.id)), class: "", remote: :true do %>
+    <%= image_tag "categories/#{category.picture}" %>
+    <small><%= category.name.upcase %> (<%= count %>)</small>
   <% end %>
 <% end %>
