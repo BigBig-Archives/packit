@@ -1,11 +1,11 @@
-<<%= link_to item_refs_path(params.merge(category: 0)), class: "", remote: :true do %>
-  <%= image_tag "categories/all" %>
+<<%= link_to user_packed_bag_path(@packed_bag, params: { category: 0, owned: params[:owned] }), class: "", remote: :true do %>
+  <%#= image_tag "categories/all" %>
   <small><strong>ALL</strong></small>
 <% end %>
 
 <% categories.each do |category| %>
-  <%= link_to item_refs_path(params.merge(category: category.id)), class: "", remote: :true do %>
-    <%= image_tag "categories/#{category.picture}" %>
-    <small><%= category.name.upcase %> (<%= count %>)</small>
+  <%= link_to user_packed_bag_path(@packed_bag, params: { category: category.id, owned: params[:owned] }), class: "", remote: :true do %>
+    <%#= image_tag "categories/#{category.picture}" %>
+    <small><%= category.name.upcase %></small>
   <% end %>
 <% end %>

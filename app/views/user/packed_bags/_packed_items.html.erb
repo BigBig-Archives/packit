@@ -1,0 +1,5 @@
+<% @packed_bag.packed_items.each do |packed_item| %>
+  <%= render 'user/packed_items/packed_item',
+    packed_item: packed_item
+  %>
+<% end %>

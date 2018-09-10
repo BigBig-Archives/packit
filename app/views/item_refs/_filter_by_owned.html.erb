@@ -1,7 +1,7 @@
-<%= link_to item_refs_path(params.merge(owned: false)), class: "nav-link", remote: :true do %>
+<%= link_to user_packed_bag_path(@packed_bag, params: { owned: false,  category: params[:category] }), class: "nav-link", remote: :true do %>
   all items
 <% end %>
 
-<%= link_to item_refs_path(params.merge(owned: false)), class: "nav-link", remote: :true do %>
+<%= link_to user_packed_bag_path(@packed_bag, params: { owned: true,  category: params[:category] }), class: "nav-link", remote: :true do %>
   items used in previous packed bags
 <% end %>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'dashboard#show'
     resources :bags, only: %i[create update destroy]
     resources :items, only: %i[create update destroy]
-    resources :packed_item
+    resources :packed_items
     resources :packed_bags
     resources :journeys, only: %i[index show create update destroy]
     resources :journey_bags

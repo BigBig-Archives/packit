@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_10_132401) do
+ActiveRecord::Schema.define(version: 2018_09_10_193933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,11 +101,11 @@ ActiveRecord::Schema.define(version: 2018_09_10_132401) do
 
   create_table "packed_items", force: :cascade do |t|
     t.bigint "packed_bag_id"
-    t.bigint "item_id"
     t.integer "priority"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_packed_items_on_item_id"
+    t.bigint "item_ref_id"
+    t.index ["item_ref_id"], name: "index_packed_items_on_item_ref_id"
     t.index ["packed_bag_id"], name: "index_packed_items_on_packed_bag_id"
   end
 
@@ -135,6 +135,6 @@ ActiveRecord::Schema.define(version: 2018_09_10_132401) do
   add_foreign_key "items", "users"
   add_foreign_key "journeys", "users"
   add_foreign_key "packed_bags", "bags"
-  add_foreign_key "packed_items", "items"
+  add_foreign_key "packed_items", "item_refs"
   add_foreign_key "packed_items", "packed_bags"
 end

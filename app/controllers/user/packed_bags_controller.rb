@@ -2,11 +2,21 @@ class User::PackedBagsController < ApplicationController
   before_action :set_packed_bag, only: %i[show update destroy]
 
   def show
+    @categories = ItemCategory.all
     @items = ItemRef.all
     @packed_item = PackedItem.new
 
     # Filters
-    params.key?("category")
+    if params.key?("category") && params[:category].to_i > 0
+      @items = @items.where(category_id: params[:category])
+    end
+    if params.key?("owned") && params[:owned] == "true"
+      @items = @items.select { |item| item.count_owned(current_user) > 0 }
+    end
+    respond_to do |format|
+      format.html { render 'user/packed_bags/show' }
+      format.js { render 'user/packed_bags/sort' }
+    end
   end
 
   def create
