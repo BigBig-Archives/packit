@@ -1,18 +1,30 @@
-<div class="bags">
-  <div id="owned-bags">
-    <% bags.each do |bag| %>
+<hr>
+
+<h6>Take a bag of yours</h6>
+
+<div class="container" id="bags-container">
+  <div class="row">
+    <% current_user.bags.each do |bag| %>
       <%= render 'user/bags/bag_to_pack',
-        bag: bag
+        bag: bag,
+        journey: journey
       %>
     <% end %>
   </div>
-  <hr>
-  <p><strong>new empty bag</strong></p>
-  <% bag_refs.each do |bag_ref| %>
-    <%= render 'user/bags/form',
-      bag_ref: bag_ref,
-      new_bag: new_bag
-    %>
-  <hr>
-  <% end %>
+</div>
+
+<hr>
+
+<h6>Add a new bag</h6>
+
+<div class="container" id="bags-container">
+  <div class="row">
+    <% references.each do |reference| %>
+      <%= render 'user/bags/form',
+        reference: reference,
+        new_bag: new_bag,
+        journey: journey
+      %>
+    <% end %>
+  </div>
 </div>

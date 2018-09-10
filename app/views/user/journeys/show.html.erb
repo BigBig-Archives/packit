@@ -1,16 +1,25 @@
 <h1><%= @journey.name %></h1>
 <hr>
 
-<h3>Let's pack your bag!</h3>
+<h2>Let's pack your bag!</h2>
 
-<p><strong>Start with a empty bag</strong></p>
+<hr>
+
+<h4>Start with an empty bag</h4>
 <%= render 'user/bags/select',
-  bags: @bags,
-  bag_refs: @bag_refs,
-  new_bag: @new_bag
+  references: @references,
+  new_bag: @bag,
+  journey: @journey
 %>
 
-<p><strong>Start with a previous packed bag</strong></p>
-<%= render 'user/packed_bags/select',
-  packed_bags: @packed_bags
-%>
+<hr>
+
+<h4>Start with a previous packed bag</h4>
+<div class="container" id="bags-container">
+  <div class="row">
+    <%= render 'user/packed_bags/select',
+      packed_bags: current_user.packed_bags,
+      journey: @journey
+    %>
+  </div>
+</div>
