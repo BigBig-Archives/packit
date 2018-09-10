@@ -1,3 +1,3 @@
 class ItemCategory < ApplicationRecord
-  has_many :references, class_name: 'ItemRef', foreign_key: :category
+  has_many :references, class_name: 'ItemRef', foreign_key: :category, dependent: :destroy
 end

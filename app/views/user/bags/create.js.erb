@@ -1,0 +1,7 @@
+<% if @bag.errors.any? %>
+  console.log("errors: <%= j @bag.errors.full_messages.join('; ') %>")
+<% else %>
+  container = document.querySelector("#owned-bags");
+  content = `<%= j render 'bag_to_pack', bag: @bag %>`;
+  container.insertAdjacentHTML('beforeend', content);
+<% end %>

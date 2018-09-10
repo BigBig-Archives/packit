@@ -1,5 +1,6 @@
 class User::BagsController < ApplicationController
-  before_action :set_bag_ref, only: %i[create]
+  before_action :set_bag, only: %i[update destroy]
+  before_action :set_reference, only: %i[create]
 
   def index
     @bags = current_user.bags
@@ -8,13 +9,33 @@ class User::BagsController < ApplicationController
   def create
     @bag = Bag.new(bag_params)
     @bag.user = current_user
-    @bag.custom_size = @bag_ref.size if @bag.custom_size.nil?
-    @bag.custom_capacity = @bag_ref.capacity if @bag.custom_capacity.nil?
-    @bag.custom_weight = @bag_ref.weight if @bag.custom_weight.nil?
+    @bag.custom_size = @reference.size if @bag.custom_size.nil?
+    @bag.custom_capacity = @reference.capacity if @bag.custom_capacity.nil?
+    @bag.custom_weight = @reference.weight if @bag.custom_weight.nil?
     if @bag.save
-      redirect_to user_bags_path
+      respond_to do |format|
+        format.html { redirect_to 'journeys/show', notice: 'Bag created.' }
+        format.js { render 'user/bags/create' }
+      end
     else
-      render 'bags/show'
+      respond_to do |format|
+        format.html { redirect_to 'journeys/show', notice: 'Bag not created.' }
+        format.js { render 'user/bags/create' }
+      end
+    end
+  end
+
+  def destroy
+    if @bag.destroy
+      respond_to do |format|
+        format.html { redirect_to 'journeys/show', notice: 'Bag destroyed.' }
+        format.js { render 'user/bags/destroy' }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to 'journeys/show', notice: 'Bag not destroyed.' }
+        format.js { render 'user/bags/destroy' }
+      end
     end
   end
 
@@ -24,11 +45,11 @@ class User::BagsController < ApplicationController
     @bag = Bag.find(params[:id])
   end
 
-  def set_bag_ref
-    @bag_ref = BagRef.find(params[:bag][:bag_ref_id])
+  def set_reference
+    @reference = BagRef.find(params[:bag][:reference_id])
   end
 
   def bag_params
-    params.require(:bag).permit(:bag_ref_id, :custom_size, :custom_capacity, :custom_weight)
+    params.require(:bag).permit(:reference_id, :name, :custom_size, :custom_capacity, :custom_weight)
   end
 end

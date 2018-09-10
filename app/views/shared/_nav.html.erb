@@ -1,12 +1,12 @@
 <hr>
 <div class="nav justify-content-center">
-  <%= render 'shared/back_to',
+  <%= render 'shared/go_to',
     destination: 'all items',
     destination_path: item_refs_path
   %>
-  <%= render 'shared/back_to',
-    destination: 'my items',
-    destination_path: user_items_path
+  <%= render 'shared/go_to',
+    destination: 'my journeys',
+    destination_path: user_journeys_path
   %>
   <%= render 'shared/log' %>
 </div>

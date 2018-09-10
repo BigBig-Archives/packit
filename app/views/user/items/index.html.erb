@@ -1,9 +1,26 @@
-<div class="container">
-  <nav class="nav nav-pills nav-justified nav-categories nav-items">
-    <%= render 'nav', categories: @owned_categories, filter: @filter %>
-  </nav>
+<div class="wrapper">
+  <div class="container user-items-container">
+    <nav class="filter-category" id="filter-by-category">
+      <%= render 'filter_by_category',
+        categories: @owned_categories,
+        filtered_by_category: @filtered_by_category,
+        category_selected: @category_selected
+      %>
+    </nav>
+    <div class="item-results" id="results">
+      <%= render 'results',
+        categories: @owned_categories,
+        owned_references: @owned_references,
+        filtered_by_category: @filtered_by_category,
+        category_selected: @category_selected
+      %>
+    </div>
+  </div>
 
-  <div class="item-results">
-    <%= render 'results', categories_displayed: @owned_categories_displayed %>
+  <div class="container bag-items-container">
+    <div class="packed-items" id="packed-items">
+      <%= render 'bag'
+      %>
+    </div>
   </div>
 </div>

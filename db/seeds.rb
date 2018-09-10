@@ -1,10 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'csv'
 
 # CLEAN DATABASE
 
@@ -22,48 +16,93 @@ User.destroy_all
 
 # USERS
 
-user = User.create!(email: 'user@mail.com', password: 'aaaaaa')
+user1 = User.create!(email: 'user@mail.com', password: 'aaaaaa')
 user2 = User.create!(email: 'user2@mail.com', password: 'aaaaaa')
-user3 = User.create!(email: 'user3@mail.com', password: 'aaaaaa')
 
-# ITEMS
+# ITEM_REFS
 
-clothes = ItemCategory.create!(name: 'clothes')
-10.times do |i|
+tools         = ItemCategory.create!(name: 'tools', picture: 'tools')
+food          = ItemCategory.create!(name: 'food', picture: 'food')
+clothes       = ItemCategory.create!(name: 'clothes', picture: 'clothes')
+bedtime       = ItemCategory.create!(name: 'bedtime', picture: 'bedtime')
+sport         = ItemCategory.create!(name: 'sport', picture: 'sport')
+hobbies       = ItemCategory.create!(name: 'hobbies', picture: 'hobbies')
+miscellaneous = ItemCategory.create!(name: 'miscellaneous', picture: 'miscellaneous')
+
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'items.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
   ItemRef.create!(
-    name: Faker::Zelda.item,
-    category_id: clothes.id,
-    size: 1,
-    weight: 1,
-    picture: "item_#{i + 1}"
+    name:        row['name'],
+    size:        row['size'],
+    weight:      row['weight'],
+    picture:     row['picture'],
+    category_id: ItemCategory.where(name: row['category']).first.id
   )
 end
-# img / 21
 
-hygiene = ItemCategory.create!(name: 'hygiene')
-8.times do |i|
-  ItemRef.create!(
-    name: Faker::Dessert.topping,
-    category_id: hygiene.id,
-    size: 1,
-    weight: 1,
-    picture: "item_#{i + 1 + 10}"
+# BAG_REFS
+
+BagCategory.create(name: 'hiking')
+
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'bags.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  BagRef.create!(
+    category_id: BagCategory.first.id,
+    name:        row['name'],
+    capacity:    row['capacity'],
+    size:        row['size'],
+    weight:      row['weight'],
+    picture:     row['picture']
   )
 end
-# img / 13
 
-hobbies = ItemCategory.create!(name: 'hobbies')
-13.times do |i|
-  ItemRef.create!(
-    name: Faker::Food.vegetables,
-    category_id: hobbies.id,
-    size: 1,
-    weight: 1,
-    picture: "item_#{i + 1 + 10 + 8}"
-  )
-end
-# img / 0
+bag1 = Bag.create!(
+  user_id:      user1.id,
+  reference_id: BagRef.where(name: "backpack 60'").first.id
+)
 
-ItemCategory.create!(name: 'bedding')
-ItemCategory.create!(name: 'papers')
-ItemCategory.create!(name: 'tools')
+bag2 = Bag.create!(
+  user_id:      user1.id,
+  reference_id: BagRef.where(name: "basket 30'").first.id
+)
+
+# PACKED_BAGS
+
+packed_bag1 = PackedBag.create!(
+  name:   'Best packed bag',
+  bag_id: bag1.id
+)
+
+# PACKED_ITEMS
+
+sunglasses = Item.create!(
+  user_id:      user1.id,
+  reference_id: ItemRef.where(name: 'sunglasses').first.id
+)
+
+preserve1 = Item.create!(
+  user_id:      user1.id,
+  reference_id: ItemRef.where(name: 'preserve').first.id
+)
+
+preserve2 = Item.create!(
+  user_id:      user1.id,
+  reference_id: ItemRef.where(name: 'preserve').first.id
+)
+
+PackedItem.create!(
+  packed_bag_id: packed_bag1.id,
+  item_id: sunglasses.id,
+)
+
+PackedItem.create!(
+  packed_bag_id: packed_bag1.id,
+  item_id: preserve1.id,
+)
+
+PackedItem.create!(
+  packed_bag_id: packed_bag1.id,
+  item_id: preserve2.id,
+)

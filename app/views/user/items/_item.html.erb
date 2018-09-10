@@ -4,11 +4,6 @@
   <%= image_tag "items/#{reference.picture}", class: "picture" %>
   <p class="name"><%= reference.name.capitalize %></p>
   <div class="qty-buttons">
-    <%= render 'shared/remove_item', reference: reference %>
-    <p class="count"><%= count %></p>
-    <%= render 'shared/add_item', reference: reference %>
+    <%= render 'shared/pack_item', reference: reference %>
   </div>
-<!--   <div class="more-buttons">
-    <div class="options-button">...</div>
-  </div> -->
 </div>

@@ -8,15 +8,15 @@
     border-radius: $border-radius-large;
     text-align: center;
     .picture {
-      width: $p96;
-      height: $p96;
-      opacity: 0.5;
+      width: $p80;
+      height: $p80;
+      opacity: 0.25;
       margin-bottom: $p8;
     }
     .name {
       margin: 0 auto;
       font-weight: bolder;
-      color: lighten($gray, 20%);
+      color: lighten($gray, 40%);
       width: $p128;
       padding: $p4;
       word-wrap: break-word;
@@ -29,15 +29,16 @@
       align-items: center;
       margin-top: $p8;
       height: $p40;
-      .add, .remove-enable, .remove-disable, .count {
+      .add,
+      .remove-enable,
+      .remove-disable, .count {
         flex: 1;
         color: $green;
       }
-      .add, .remove-enable, .remove-disable, i {
+      .add,
+      .remove-enable,
+      .remove-disable, i {
         font-size: $p32;
-      }
-      .add, .remove-enable i:hover {
-        font-size: $p32 + $p1;
       }
       .remove-disable {
         color: lighten($green, 40%);
@@ -58,7 +59,10 @@
   .item-owned {
     border: solid $p4 lighten($green, 20%);
     .picture {
-      opacity: 1;
+      opacity: 0.8;
+    }
+    .name {
+      color: lighten($gray, 20%);
     }
     .qty-buttons .count {
       color: $green;

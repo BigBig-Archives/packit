@@ -1,0 +1,13 @@
+<h1>My journeys</h1>
+
+<div id="journeys-container">
+  <% @journeys.each do |journey| %>
+    <%= render 'user/journeys/journey',
+      journey: journey
+    %>
+  <% end %>
+</div>
+
+<%= render 'user/journeys/form',
+  journey: @new_journey
+%>
