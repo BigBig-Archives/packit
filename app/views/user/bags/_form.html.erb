@@ -1,9 +1,8 @@
-<p><%= bag_ref.name %></p>
-<%= simple_form_for [current_user, new_bag], remote: :true do |f| %>
+<%= simple_form_for [:user, new_bag], remote: :true do |f| %>
   <%= f.input :reference_id, as: :hidden, input_html: { value: bag_ref.id } %>
   <%= f.input :name, input_html: { value: bag_ref.name } %>
-  <%= f.input :size, input_html: { value: bag_ref.size } %>
-  <%= f.input :weight, input_html: { value: bag_ref.weight } %>
-  <%= f.input :capacity, input_html: { value: bag_ref.capacity } %>
+  <%= f.input :custom_size, input_html: { value: bag_ref.size } %>
+  <%= f.input :custom_weight, input_html: { value: bag_ref.weight } %>
+  <%= f.input :custom_capacity, input_html: { value: bag_ref.capacity } %>
   <%= f.button :submit, class: "button" %>
 <% end %>

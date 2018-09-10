@@ -2,8 +2,7 @@ class User::JourneysController < ApplicationController
   before_action :set_journey, only: %i[show update destroy]
 
   def index
-    @journeys = current_user.journeys
-    @new_journey = Journey.new
+    render_index
   end
 
   def show
@@ -16,14 +15,34 @@ class User::JourneysController < ApplicationController
   def create
     @journey = Journey.new(journey_params)
     @journey.user = current_user
-    @journey.save
+    if @journey.save
+      respond_to do |format|
+        format.html { redirect_to user_journeys_path }
+        format.js { render 'user/journeys/create' }
+      end
+    else
+      respond_to do |format|
+        format.html { render_index }
+        format.js { render 'user/journeys/create' }
+      end
+    end
   end
 
   def update
   end
 
   def destroy
-    @journey.destroy
+    if @journey.destroy
+      respond_to do |format|
+        format.html { redirect_to user_journeys_path }
+        format.js { render 'user/journeys/destroy' }
+      end
+    else
+      respond_to do |format|
+        format.html { render_index }
+        format.js { render 'user/journeys/destroy' }
+      end
+    end
   end
 
   def set_journey
@@ -40,5 +59,10 @@ class User::JourneysController < ApplicationController
       :city,
       :photo
     )
+  end
+
+  def render_index
+    @journeys = current_user.journeys
+    @new_journey = Journey.new
   end
 end

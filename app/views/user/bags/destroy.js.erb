@@ -1,9 +1,5 @@
-<% @bag.errors.full_messages.each do |message| %>
-  console.log("<%= message %>");
-<% end %>
-
 <% if @bag.errors.any? %>
-  console.log("errors");
+  console.log("errors: <%= j @bag.errors.full_messages.join('; ') %>")
 <% else %>
   content = document.querySelector("[data-bag=\"<%= @bag.id %>\"]");
   content.parentNode.removeChild(content);

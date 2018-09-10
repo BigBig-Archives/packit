@@ -24,7 +24,6 @@ module Packit
           generate.helper false
           generate.test_framework  :test_unit, fixture: false
     end
-    config.action_view.embed_authenticity_token_in_remote_forms = true
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
@@ -35,5 +34,6 @@ module Packit
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end

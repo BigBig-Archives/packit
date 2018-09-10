@@ -1,3 +1,10 @@
-container = document.querySelector("#journeys-container");
-content = `<%= j render 'journey', journey: @journey %>`;
-container.insertAdjacentHTML('afterbegin', content);
+<% if @journey.errors.any? %>
+  console.log("errors: <%= j @journey.errors.full_messages.join('; ') %>")
+<% else %>
+  container = document.querySelector("#journeys-container");
+  content = `<%= j render 'journey', journey: @journey %>`;
+  container.insertAdjacentHTML('afterbegin', content);
+<% end %>
+
+
+

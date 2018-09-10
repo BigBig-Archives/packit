@@ -9,19 +9,32 @@ class User::BagsController < ApplicationController
   def create
     @bag = Bag.new(bag_params)
     @bag.user = current_user
-    @bag.custom_size = @bag_ref.size if @bag.custom_size.nil?
-    @bag.custom_capacity = @bag_ref.capacity if @bag.custom_capacity.nil?
-    @bag.custom_weight = @bag_ref.weight if @bag.custom_weight.nil?
-    @bag.save
+    @bag.custom_size = @reference.size if @bag.custom_size.nil?
+    @bag.custom_capacity = @reference.capacity if @bag.custom_capacity.nil?
+    @bag.custom_weight = @reference.weight if @bag.custom_weight.nil?
+    if @bag.save
+      respond_to do |format|
+        format.html { redirect_to 'journeys/show', notice: 'Bag created.' }
+        format.js { render 'user/bags/create' }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to 'journeys/show', notice: 'Bag not created.' }
+        format.js { render 'user/bags/create' }
+      end
+    end
   end
 
   def destroy
-    respond_to do |format|
-      if @bag.destroy
-        format.html { redirect_to 'journeys/show', notice: 'Bag was successfully destroyed.' }
-        format.js
-      else
-        format.js { render :error }
+    if @bag.destroy
+      respond_to do |format|
+        format.html { redirect_to 'journeys/show', notice: 'Bag destroyed.' }
+        format.js { render 'user/bags/destroy' }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to 'journeys/show', notice: 'Bag not destroyed.' }
+        format.js { render 'user/bags/destroy' }
       end
     end
   end
@@ -33,7 +46,7 @@ class User::BagsController < ApplicationController
   end
 
   def set_reference
-    @bag_ref = BagRef.find(params[:bag][:reference_id])
+    @reference = BagRef.find(params[:bag][:reference_id])
   end
 
   def bag_params
