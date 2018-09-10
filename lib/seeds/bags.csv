@@ -1,4 +1,4 @@
-name,capacity,size,weight,picture
-backpack 60',60,1,1,backpack_60
-backpack 40',40,1,1,backpack_40
-basket 30',30,1,1,basket_30
+name,capacity,picture
+backpack 60',60,backpack_60
+backpack 40',40,backpack_40
+basket 30',30,basket_30

@@ -1,6 +1,9 @@
 <%= simple_form_for [:user, journey], remote: :true do |f| %>
   <%= f.input :name %>
+  <p data-error="name"></p>
   <%= f.input :start_date, as: :date %>
+  <p data-error="start_date"></p>
   <%= f.input :end_date, as: :date %>
+  <p data-error="end_date"></p>
   <%= f.button :submit, class: "button" %>
 <% end %>

@@ -1,7 +1,15 @@
 <% if @bag.errors.any? %>
-  console.log("errors: <%= j @bag.errors.full_messages.join('; ') %>")
+  <% @bag.errors.messages.each do |key, value| %>
+    container = document.querySelectorAll("[data-error=\"<%= j key.to_s %>\"]");
+    content = `<%= j value.first.to_s %>`;
+    for(let i = 0; i < container.length; i++){
+      container[i].innerHTML = content;
+    }
+  <% end %>
 <% else %>
-  container = document.querySelector("#owned-bags");
+  container = document.querySelector("#bags-container > .row");
   content = `<%= j render 'bag_to_pack', bag: @bag %>`;
-  container.insertAdjacentHTML('beforeend', content);
+  container.insertAdjacentHTML('afterbegin', content);
 <% end %>
+
+

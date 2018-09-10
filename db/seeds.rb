@@ -2,7 +2,6 @@ require 'csv'
 
 # CLEAN DATABASE
 
-JourneyBag.destroy_all
 Journey.destroy_all
 PackedItem.destroy_all
 PackedBag.destroy_all
@@ -13,11 +12,6 @@ Bag.destroy_all
 BagRef.destroy_all
 BagCategory.destroy_all
 User.destroy_all
-
-# USERS
-
-user1 = User.create!(email: 'user@mail.com', password: 'aaaaaa')
-user2 = User.create!(email: 'user2@mail.com', password: 'aaaaaa')
 
 # ITEM_REFS
 
@@ -52,11 +46,48 @@ csv.each do |row|
     category_id: BagCategory.first.id,
     name:        row['name'],
     capacity:    row['capacity'],
-    size:        row['size'],
-    weight:      row['weight'],
     picture:     row['picture']
   )
 end
+
+# USERS
+
+user1 = User.create!(email: 'user@mail.com', password: 'aaaaaa')
+user2 = User.create!(email: 'user2@mail.com', password: 'aaaaaa')
+
+# JOURNEYS
+
+journey1 = Journey.create!(
+  user_id: user1.id,
+  name: 'Hikking is my life',
+  start_date: Date.today,
+  end_date: Date.today,
+  country: 'Portugal',
+  city: 'Porto',
+  photo: "https://picsum.photos/200/300?image=#{(1043..1057).to_a.sample}"
+)
+
+journey2 = Journey.create!(
+  user_id: user1.id,
+  name: 'Roadtripping',
+  start_date: Date.today,
+  end_date: Date.today,
+  country: 'Spain',
+  city: 'Santander',
+  photo: "https://picsum.photos/200/300?image=#{(1043..1057).to_a.sample}"
+)
+
+journey3 = Journey.create!(
+  user_id: user1.id,
+  name: 'Holidays',
+  start_date: Date.today,
+  end_date: Date.today,
+  country: 'Germany',
+  city: 'Berlin',
+  photo: "https://picsum.photos/200/300?image=#{(1043..1057).to_a.sample}"
+)
+
+# BAGS
 
 bag1 = Bag.create!(
   user_id:      user1.id,
@@ -72,37 +103,12 @@ bag2 = Bag.create!(
 
 packed_bag1 = PackedBag.create!(
   name:   'Best packed bag',
-  bag_id: bag1.id
+  bag_id:     bag1.id,
+  journey_id: journey1.id
 )
 
-# PACKED_ITEMS
-
-sunglasses = Item.create!(
-  user_id:      user1.id,
-  reference_id: ItemRef.where(name: 'sunglasses').first.id
-)
-
-preserve1 = Item.create!(
-  user_id:      user1.id,
-  reference_id: ItemRef.where(name: 'preserve').first.id
-)
-
-preserve2 = Item.create!(
-  user_id:      user1.id,
-  reference_id: ItemRef.where(name: 'preserve').first.id
-)
-
-PackedItem.create!(
-  packed_bag_id: packed_bag1.id,
-  item_id: sunglasses.id,
-)
-
-PackedItem.create!(
-  packed_bag_id: packed_bag1.id,
-  item_id: preserve1.id,
-)
-
-PackedItem.create!(
-  packed_bag_id: packed_bag1.id,
-  item_id: preserve2.id,
+packed_bag2 = PackedBag.create!(
+  name:   'Little bag for the road',
+  bag_id:     bag2.id,
+  journey_id: journey2.id
 )

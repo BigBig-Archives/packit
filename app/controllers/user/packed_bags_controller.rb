@@ -2,48 +2,53 @@ class User::PackedBagsController < ApplicationController
   before_action :set_packed_bag, only: %i[show update destroy]
 
   def show
-    # @owned_items = current_user.items
-    # @owned_references = @owned_items.map { |item| item.reference }.uniq
-    # @owned_references.sort!
-    # @owned_categories = @owned_references.map { |reference| reference.category }.uniq
-    # @owned_categories.sort!
-    # @new_item = Item.new
+    @categories = ItemCategory.all
+    @items = ItemRef.all
+    @packed_item = PackedItem.new
 
-    # # Filters
-    # @filtered_by_category = false
-    # @category_selected = nil
-
-    # # Params filters
-    # if params.key?(:category)
-    #   if params[:filtered_by_category].to_s == "true"
-    #     @filtered_by_category = true
-    #     @category_selected_id = params[:category].to_i # integer
-    #     @category_selected = ItemCategory.find(@category_selected_id)
-    #   else
-    #     @filtered_by_category = false# instance
-    #   end
-    # end
-    # if params.key?(:category)
-    #   render :sort
-    # else
-    #   render :index
-    # end
+    # Filters
+    if params.key?("category") && params[:category].to_i > 0
+      @items = @items.where(category_id: params[:category])
+    end
+    if params.key?("owned") && params[:owned] == "true"
+      @items = @items.select { |item| item.count_owned(current_user) > 0 }
+    end
+    respond_to do |format|
+      format.html { render 'user/packed_bags/show' }
+      format.js { render 'user/packed_bags/sort' }
+    end
   end
 
   def create
     @packed_bag = PackedBag.new
     @packed_bag.bag = Bag.find(params[:bag])
-    @packed_bag.save
-    raise
+    @packed_bag.journey = Journey.find(params[:journey])
     if @packed_bag.save
       respond_to do |format|
-        format.html { redirect_to 'journeys/show', notice: 'Packed Bag created.' }
+        format.html { redirect_to user_packed_bag_path(@packed_bag), notice: 'Packed Bag created.' }
         format.js { render 'user/packed_bags/create' }
       end
     else
+      @references = BagRef.all
       respond_to do |format|
-        format.html { redirect_to 'journeys/show', notice: 'Packed Bag not created.' }
+        format.html { redirect_to journeys_show_path(@journey), notice: 'Packed Bag not created.' }
         format.js { render 'user/packed_bags/create' }
+      end
+    end
+  end
+
+  def destroy
+    if @packed_bag.destroy
+      respond_to do |format|
+        format.html { redirect_to journeys_show_path(@journey), notice: 'Packed Bag destroyed.' }
+        format.js { render 'user/packed_bags/destroy' }
+      end
+    else
+      @references = BagRef.all
+      @bag = Bag.new
+      respond_to do |format|
+        format.html { redirect_to journeys_show_path(@journey), notice: 'Packed Bag not destroyed.' }
+        format.js { render 'user/packed_bags/destroy' }
       end
     end
   end
@@ -53,14 +58,6 @@ class User::PackedBagsController < ApplicationController
   end
 
   def packed_bag_params
-    params.require(:packed_bag).permit(
-      :name,
-      :start_date,
-      :end_date,
-      :category,
-      :country,
-      :city,
-      :photo
-    )
+    params.require(:packed_bag).permit.(:name)
   end
 end

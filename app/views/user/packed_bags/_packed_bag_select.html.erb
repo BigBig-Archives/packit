@@ -1,0 +1,10 @@
+<div class="col-3" data-bag=<%= packed_bag.id %>>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= packed_bag.name %></h5>
+        <p><%= packed_bag.journey.name %></p>
+        <p><%= packed_bag.journey.country %></p>
+        <%= button_to 'copy this packed bag', user_packed_bags_path(params: { packed_bag: packed_bag.id }), method: :post, class: 'btn btn-primary btn-sm' %>
+    </div>
+  </div>
+</div>

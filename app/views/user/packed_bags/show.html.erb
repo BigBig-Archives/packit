@@ -1,0 +1,17 @@
+<h1><%= @packed_bag.name %></h1>
+
+<%= render 'user/packed_bags/packed_items' %>
+
+<hr>
+
+<%= render 'item_refs/filter_by_category',
+  categories: @categories
+%>
+
+<%= render 'item_refs/filter_by_owned' %>
+
+<%= render 'item_refs/items_filtered' %>
+
+</div>
+
+

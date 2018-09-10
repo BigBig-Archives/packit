@@ -2,14 +2,12 @@ class User::JourneysController < ApplicationController
   before_action :set_journey, only: %i[show update destroy]
 
   def index
-    render_index
+    @journey = Journey.new
   end
 
   def show
-    @bags = current_user.bags
-    @packed_bags = current_user.packed_bags
-    @bag_refs = BagRef.all
-    @new_bag = Bag.new
+    @references = BagRef.all
+    @bag = Bag.new
   end
 
   def create
@@ -22,7 +20,7 @@ class User::JourneysController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { render_index }
+        format.html { render :index }
         format.js { render 'user/journeys/create' }
       end
     end
@@ -38,8 +36,9 @@ class User::JourneysController < ApplicationController
         format.js { render 'user/journeys/destroy' }
       end
     else
+      @journey = Journey.new
       respond_to do |format|
-        format.html { render_index }
+        format.html { render :index }
         format.js { render 'user/journeys/destroy' }
       end
     end
@@ -59,10 +58,5 @@ class User::JourneysController < ApplicationController
       :city,
       :photo
     )
-  end
-
-  def render_index
-    @journeys = current_user.journeys
-    @new_journey = Journey.new
   end
 end

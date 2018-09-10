@@ -1,19 +1,11 @@
-<%= link_to item_refs_path(params: {
-  filtered_by_category: false, category: 0, filtered_by_owned: filtered_by_owned, owned: owned_selected
-}), class: "
-#{'active' unless filtered_by_category}", remote: :true do %>
-  <%= image_tag "categories/all" %>
+<<%= link_to user_packed_bag_path(@packed_bag, params: { category: 0, owned: params[:owned] }), class: "", remote: :true do %>
+  <%#= image_tag "categories/all" %>
   <small><strong>ALL</strong></small>
 <% end %>
+
 <% categories.each do |category| %>
-  <%= link_to item_refs_path(params:
-  {filtered_by_category: true, category: category, filtered_by_owned: filtered_by_owned, owned:owned_selected
-  }), class: "#{'active' if category_selected == category}", remote: :true do %>
-  <% count = 0 %>
-  <% category.references.each do |reference| %>
-    <% count += reference.items.select { |item| item.user == current_user }.count %>
-  <% end %>
-  <%= image_tag "categories/#{category.picture}" %>
-  <small><%= category.name.upcase %> (<%= count %>)</small>
+  <%= link_to user_packed_bag_path(@packed_bag, params: { category: category.id, owned: params[:owned] }), class: "", remote: :true do %>
+    <%#= image_tag "categories/#{category.picture}" %>
+    <small><%= category.name.upcase %></small>
   <% end %>
 <% end %>
