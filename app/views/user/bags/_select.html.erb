@@ -6,8 +6,7 @@
   <div class="row">
     <% current_user.bags.each do |bag| %>
       <%= render 'user/bags/bag_to_pack',
-        bag: bag,
-        journey: journey
+        bag: bag
       %>
     <% end %>
   </div>
@@ -22,8 +21,7 @@
     <% references.each do |reference| %>
       <%= render 'user/bags/form',
         reference: reference,
-        new_bag: new_bag,
-        journey: journey
+        new_bag: new_bag
       %>
     <% end %>
   </div>

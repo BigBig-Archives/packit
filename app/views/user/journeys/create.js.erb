@@ -1,7 +1,13 @@
 <% if @journey.errors.any? %>
-  console.log("errors: <%= j @journey.errors.full_messages.join('; ') %>")
+  <% @journey.errors.messages.each do |key, value| %>
+    container = document.querySelector("[data-error=\"<%= j key.to_s %>\"]");
+    content = `<%= j value.first.to_s %>`;
+    container.innerHTML = content;
+  <% end %>
 <% else %>
   container = document.querySelector("#journeys-container > .row");
   content = `<%= j render 'journey', journey: @journey %>`;
   container.insertAdjacentHTML('afterbegin', content);
 <% end %>
+
+

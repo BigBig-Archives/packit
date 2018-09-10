@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_09_204116) do
+ActiveRecord::Schema.define(version: 2018_09_10_120822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,9 +23,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_204116) do
 
   create_table "bag_refs", force: :cascade do |t|
     t.string "name"
-    t.integer "size"
     t.integer "capacity"
-    t.integer "weight"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
@@ -36,9 +34,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_204116) do
   create_table "bags", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "reference_id"
-    t.integer "custom_size"
     t.integer "custom_capacity"
-    t.integer "custom_weight"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"

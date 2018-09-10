@@ -52,8 +52,6 @@ csv.each do |row|
     category_id: BagCategory.first.id,
     name:        row['name'],
     capacity:    row['capacity'],
-    size:        row['size'],
-    weight:      row['weight'],
     picture:     row['picture']
   )
 end

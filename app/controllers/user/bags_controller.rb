@@ -7,9 +7,7 @@ class User::BagsController < ApplicationController
     @bag = Bag.new(bag_params)
     @bag.reference = @reference
     @bag.user = current_user
-    @bag.custom_size = @reference.size if @bag.custom_size.nil?
     @bag.custom_capacity = @reference.capacity if @bag.custom_capacity.nil?
-    @bag.custom_weight = @reference.weight if @bag.custom_weight.nil?
     if @bag.save
       respond_to do |format|
         format.html { redirect_to user_journey_path(@journey), notice: 'Bag created.' }
@@ -59,11 +57,6 @@ class User::BagsController < ApplicationController
   end
 
   def bag_params
-    params.require(:bag).permit(
-      :name,
-      :custom_size,
-      :custom_capacity,
-      :custom_weight
-    )
+    params.require(:bag).permit(:name, :custom_capacity)
   end
 end

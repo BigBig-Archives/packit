@@ -8,8 +8,7 @@
 <h4>Start with an empty bag</h4>
 <%= render 'user/bags/select',
   references: @references,
-  new_bag: @bag,
-  journey: @journey
+  new_bag: @bag
 %>
 
 <hr>
@@ -18,8 +17,7 @@
 <div class="container" id="bags-container">
   <div class="row">
     <%= render 'user/packed_bags/select',
-      packed_bags: current_user.packed_bags,
-      journey: @journey
+      packed_bags: current_user.packed_bags
     %>
   </div>
 </div>
