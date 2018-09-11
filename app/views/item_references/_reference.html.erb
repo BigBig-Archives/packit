@@ -1,4 +1,4 @@
-<div class="col-3">
+<div class='col-3'>
   <p><%= reference.name %></p>
   <%= simple_form_for [:user, item], remote: :true do |f| %>
     <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
@@ -6,9 +6,11 @@
     <%= f.input :packed_bag, as: :hidden, input_html: { value: packed_bag.id } %>
     <%= f.input :reference, as: :hidden, input_html: { value: reference.id } %>
     <%= f.input :size, input_html: { value: reference.size } %>
-    <p data-error="size"></p>
+    <p data-error='size'></p>
     <%= f.input :weight, input_html: { value: reference.weight } %>
-    <p data-error="weight"></p>
-    <%= f.button :submit, class: "button" %>
+    <p data-error='weight'></p>
+    <%= f.input :quantity, input_html: { value: 1, type: 'number', min: '0', setp: '1', max: '1', required: true } %>
+    <p data-error='quantity'></p>
+    <%= f.button :submit, class: 'button' %>
   <% end %>
 </div>
