@@ -1,13 +1,13 @@
 class User::BagsController < ApplicationController
   before_action :set_bag, only: %i[update destroy]
-  before_action :set_reference, only: %i[create]
+  before_action :set_reference, only: :create
   before_action :set_journey, only: %i[create update destroy]
 
   def create
     @bag = Bag.new(bag_params)
-    @bag.name = @template.name if @bag.name.nil?
-    @bag.capacity = @template.capacity if @bag.capacity.nil?
-    @bag.picture = @template.picture if @bag.picture.nil?
+    @bag.name = @template.name if @bag.name.nil? # use template value
+    @bag.capacity = @template.capacity if @bag.capacity.nil? # use template value
+    @bag.picture = @template.picture if @bag.picture.nil? # use template value
     @bag.user = current_user
     if @bag.save
       respond_to do |format|
@@ -51,9 +51,9 @@ class User::BagsController < ApplicationController
 
   def set_journey
     if params.key?(:bag)
-      @journey = Journey.find(params[:bag][:journey])
+      @journey = Journey.find(params[:bag][:journey]) # from form
     else
-      @journey = Journey.find(params[:journey])
+      @journey = Journey.find(params[:journey]) # from button_to
     end
   end
 

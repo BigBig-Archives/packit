@@ -1,17 +1,13 @@
 Rails.application.routes.draw do
   devise_for :user
-  root to: 'pages#home'
-  resources :bag_refs, only: %i[index]
-  resources :item_refs, only: %i[index]
+  root to: 'user/journeys#index'
 
   namespace :user do
-    get 'dashboard', to: 'dashboard#show'
     resources :bags, only: %i[create update destroy]
-    resources :items, only: %i[create update destroy]
-    resources :packed_items
-    resources :packed_bags
+    resources :items, only: %i[index create update destroy]
+    resources :packed_items, only: %i[create destroy]
+    resources :packed_bags, only: %i[index show create update destroy]
     resources :journeys, only: %i[index show create update destroy]
-    resources :journey_bags
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

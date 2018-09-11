@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BagCategoryTest < ActiveSupport::TestCase
+class ItemReferenceTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

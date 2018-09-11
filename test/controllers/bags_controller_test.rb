@@ -1,13 +1,13 @@
 require 'test_helper'
 
-class BagsControllerTest < ActionDispatch::IntegrationTest
+class BagTemplatesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get bags_index_url
+    get bag_templates_index_url
     assert_response :success
   end
 
   test "should get show" do
-    get bags_show_url
+    get bag_templates_show_url
     assert_response :success
   end
 
