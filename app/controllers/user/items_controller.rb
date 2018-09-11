@@ -7,12 +7,22 @@ class User::ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.reference = @reference
     @item.user = current_user
-    if @item.save
+    if params[:item][:quantity].to_i <= 9 && @item.save # max quantity: 9
+      # if first item saved, so create the others without checking for errors
+      params[:item][:quantity].to_i.-(1).times do
+        @item = Item.new(item_params)
+        @item.reference = @reference
+        @item.user = current_user
+        @item.save
+      end
       respond_to do |format|
         format.html { redirect_to user_packed_bag_path(@packed_bag, category: params[:item][:category_filter], display: params[:item][:display_filter]), notice: 'Item created.' }
         format.js { }
       end
     else
+      if params[:item][:quantity].to_i > 9
+        @item.errors.add(:quantity, "You can create maximum 9 items in a row")
+      end
       @packed_item  = PackedItem.new
       set_filters
       respond_to do |format|
@@ -75,15 +85,15 @@ class User::ItemsController < ApplicationController
   end
 
   def set_filters
-  @categories   = ItemCategory.all
+    @categories   = ItemCategory.all
     @references   = ItemReference.all
     @owned_items  = current_user.items
     @packed_items = @packed_bag.packed_items
     if params.key?("category")
       if params[:category].to_i > 0
         @references   = @references.where(category_id: params[:category])
-        @owned_items  = @owned_items.joins(:reference).where(item_references: { category_id: params[:category] })
-        @packed_items = @packed_items.joins(item: [:reference]).where(item_references: { category_id: params[:category] })
+        @owned_items  = Item.category(params[:category])
+        @packed_items = PackedItem.packed(params[:category], @packed_bag)
       end
     end
   end

@@ -8,8 +8,10 @@
   <hr>
 
   <h4>Start with an empty bag</h4>
-  <%= render 'user/bags/select',
+  <%= render 'user/packed_bags/form',
     templates: @templates,
+    packed_bag: @packed_bag,
+    journey: @journey,
     new_bag: @bag
   %>
 
@@ -19,8 +21,9 @@
   <div class="container" id="bags-container">
     <div class="row">
       <% current_user.packed_bags.each do |packed_bag| %>
-        <%= render 'user/packed_bags/packed_bag_select',
-          packed_bag: packed_bag
+        <%= render 'user/packed_bags/packed_bags_select',
+          packed_bag: packed_bag,
+          journey: @journey
         %>
       <% end %>
     </div>
@@ -28,7 +31,7 @@
 
 <% else %>
 
-  <h2>You packed bags!</h2>
+  <h2>Your packed bags!</h2>
 
   <% @journey.packed_bags.each do |packed_bag| %>
     <%= render 'user/packed_bags/packed_bag',

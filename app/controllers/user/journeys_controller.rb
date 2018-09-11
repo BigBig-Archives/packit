@@ -8,6 +8,7 @@ class User::JourneysController < ApplicationController
   def show
     @templates = BagTemplate.all
     @bag = Bag.new
+    @packed_bag = PackedBag.new
   end
 
   def create

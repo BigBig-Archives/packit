@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <%= link_to 'logout', destroy_user_session_path, class: 'nav-link', method: :delete %>
+  <%= button_to 'logout', destroy_user_session_path, class: 'nav-link', method: :delete %>
 <% else %>
-  <%= link_to 'login', new_user_session_path, class: 'nav-link' %>
+  <%= button_to 'login', new_user_session_path, class: 'nav-link' %>
 <% end %>

@@ -3,7 +3,7 @@
 <% end %>
 <small> - </small>
 <%= link_to user_packed_bag_path(@packed_bag, params: { display: 'owned',  category: params[:category] }), class: "", remote: :true do %>
-  <small>MY ITEMS</small>
+  <small>MY REMAINING ITEMS</small>
 <% end %>
 <small> - </small>
 <%= link_to user_packed_bag_path(@packed_bag, params: { display: 'packed',  category: params[:category] }), class: "", remote: :true do %>
