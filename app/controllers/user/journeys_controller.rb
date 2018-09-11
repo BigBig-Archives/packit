@@ -6,7 +6,7 @@ class User::JourneysController < ApplicationController
   end
 
   def show
-    @references = BagRef.all
+    @templates = BagTemplate.all
     @bag = Bag.new
   end
 

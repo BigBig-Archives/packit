@@ -5,7 +5,9 @@ class User::BagsController < ApplicationController
 
   def create
     @bag = Bag.new(bag_params)
-    @bag.reference = @reference
+    @bag.name = @template.name if @bag.name.nil?
+    @bag.capacity = @template.capacity if @bag.capacity.nil?
+    @bag.picture = @template.picture if @bag.picture.nil?
     @bag.user = current_user
     if @bag.save
       respond_to do |format|
@@ -13,7 +15,7 @@ class User::BagsController < ApplicationController
         format.js { render 'user/bags/create' }
       end
     else
-      @references = BagRef.all
+      @templates = BagTemplate.all
       respond_to do |format|
         format.html { render 'user/journeys/show', notice: 'Bag not created.' }
         format.js { render 'user/bags/create' }
@@ -28,7 +30,7 @@ class User::BagsController < ApplicationController
         format.js { render 'user/bags/destroy' }
       end
     else
-      @references = BagRef.all
+      @templates = BagTemplate.all
       @bag = Bag.new
       respond_to do |format|
         format.html { render 'user/journeys/show', notice: 'Bag not destroyed.' }
@@ -44,7 +46,7 @@ class User::BagsController < ApplicationController
   end
 
   def set_reference
-    @reference = BagRef.find(params[:bag][:reference])
+    @template = BagTemplate.find(params[:bag][:template])
   end
 
   def set_journey
@@ -56,6 +58,6 @@ class User::BagsController < ApplicationController
   end
 
   def bag_params
-    params.require(:bag).permit(:name, :custom_capacity)
+    params.require(:bag).permit(:name, :capacity, :picture)
   end
 end

@@ -10,35 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_10_193933) do
+ActiveRecord::Schema.define(version: 2018_09_11_073706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "bag_categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "bag_refs", force: :cascade do |t|
+  create_table "bag_templates", force: :cascade do |t|
     t.string "name"
     t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "category_id"
     t.string "picture"
-    t.index ["category_id"], name: "index_bag_refs_on_category_id"
   end
 
   create_table "bags", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "reference_id"
-    t.integer "custom_capacity"
+    t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
-    t.index ["reference_id"], name: "index_bags_on_reference_id"
+    t.string "picture"
     t.index ["user_id"], name: "index_bags_on_user_id"
   end
 
@@ -49,7 +40,7 @@ ActiveRecord::Schema.define(version: 2018_09_10_193933) do
     t.string "picture"
   end
 
-  create_table "item_refs", force: :cascade do |t|
+  create_table "item_references", force: :cascade do |t|
     t.string "name"
     t.integer "size"
     t.integer "weight"
@@ -57,16 +48,16 @@ ActiveRecord::Schema.define(version: 2018_09_10_193933) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
-    t.index ["category_id"], name: "index_item_refs_on_category_id"
+    t.index ["category_id"], name: "index_item_references_on_category_id"
   end
 
   create_table "items", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "reference_id"
     t.string "commentary"
-    t.integer "custom_size"
-    t.integer "custom_weight"
-    t.string "photo"
+    t.integer "size"
+    t.integer "weight"
+    t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["reference_id"], name: "index_items_on_reference_id"
@@ -79,11 +70,10 @@ ActiveRecord::Schema.define(version: 2018_09_10_193933) do
     t.date "start_date"
     t.date "end_date"
     t.integer "category"
-    t.string "country"
-    t.string "city"
     t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "location"
     t.index ["user_id"], name: "index_journeys_on_user_id"
   end
 
@@ -104,8 +94,8 @@ ActiveRecord::Schema.define(version: 2018_09_10_193933) do
     t.integer "priority"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "item_ref_id"
-    t.index ["item_ref_id"], name: "index_packed_items_on_item_ref_id"
+    t.bigint "item_id"
+    t.index ["item_id"], name: "index_packed_items_on_item_id"
     t.index ["packed_bag_id"], name: "index_packed_items_on_packed_bag_id"
   end
 
@@ -127,14 +117,13 @@ ActiveRecord::Schema.define(version: 2018_09_10_193933) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "bag_refs", "bag_categories", column: "category_id"
-  add_foreign_key "bags", "bag_refs", column: "reference_id"
   add_foreign_key "bags", "users"
-  add_foreign_key "item_refs", "item_categories", column: "category_id"
-  add_foreign_key "items", "item_refs", column: "reference_id"
+  add_foreign_key "item_references", "item_categories", column: "category_id"
+  add_foreign_key "items", "item_references", column: "reference_id"
   add_foreign_key "items", "users"
   add_foreign_key "journeys", "users"
   add_foreign_key "packed_bags", "bags"
-  add_foreign_key "packed_items", "item_refs"
+  add_foreign_key "packed_bags", "journeys"
+  add_foreign_key "packed_items", "items"
   add_foreign_key "packed_items", "packed_bags"
 end

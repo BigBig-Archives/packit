@@ -1,9 +1,0 @@
-<% count = reference.items.select { |item| item.user == current_user }.count %>
-
-<div class="item-card <%= 'item-owned' unless count.zero? %>">
-  <%= image_tag "items/#{reference.picture}", class: "picture" %>
-  <p class="name"><%= reference.name.capitalize %></p>
-  <div class="qty-buttons">
-    <%= render 'shared/pack_item', reference: reference %>
-  </div>
-</div>

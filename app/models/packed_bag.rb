@@ -2,10 +2,9 @@ class PackedBag < ApplicationRecord
   belongs_to :bag
   belongs_to :journey
   has_many :packed_items, dependent: :destroy
-  has_many :item_refs, through: :packed_items
 
   def name
-    "#{self.bag.name} - #{self.journey.name}"
+    "#{self.bag.name} - #{self.journey.name} (#{self.journey.location})"
   end
 
   def user
