@@ -12,17 +12,35 @@ Bag.destroy_all
 BagTemplate.destroy_all
 User.destroy_all
 
-# ITEM_REFS
+# USERS
 
-tools         = ItemCategory.create!(name: 'tools', picture: 'tools')
-food          = ItemCategory.create!(name: 'food', picture: 'food')
-clothes       = ItemCategory.create!(name: 'clothes', picture: 'clothes')
-bedtime       = ItemCategory.create!(name: 'bedtime', picture: 'bedtime')
-sport         = ItemCategory.create!(name: 'sport', picture: 'sport')
-hobbies       = ItemCategory.create!(name: 'hobbies', picture: 'hobbies')
-miscellaneous = ItemCategory.create!(name: 'miscellaneous', picture: 'miscellaneous')
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'users.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  User.create!(
+    email:      row['email'],
+    password:   row['password'],
+    username:   row['username'],
+    first_name: row['first_name'],
+    last_name:  row['last_name'],
+    photo:      row['photo']
+  )
+end
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'items.csv'))
+# ITEM CATEGORIES
+
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'item_categories.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  ItemCategory.create!(
+    name:    row['name'],
+    picture: row['picture'],
+  )
+end
+
+# ITEM REFERENCES
+
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'item_references.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   ItemReference.create!(
@@ -34,64 +52,79 @@ csv.each do |row|
   )
 end
 
-# BAG_REFS
+# ITEMS
+
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'items.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  Item.create!(
+    user_id:      User.where(username: row['user']).first.id,
+    reference_id: ItemReference.where(name: row['reference']).first.id,
+    size:         row['size'],
+    weight:       row['weight'],
+    picture:      row['picture'],
+    commentary:      row['commentary'],
+  )
+end
+
+# BAG TEMPLATES
+
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'bag_templates.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  BagTemplate.create!(
+    name:     row['name'],
+    capacity: row['capacity'],
+    picture:  row['picture']
+  )
+end
+
+# BAGS
 
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'bags.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
-  BagTemplate.create!(
-    name:        row['name'],
-    capacity:    row['capacity'],
-    picture:     row['picture']
+  Bag.create!(
+    user_id:  User.where(username: row['user']).first.id,
+    name:     row['name'],
+    capacity: row['capacity'],
+    picture:  row['picture']
   )
 end
 
-# USERS
-
-user1 = User.create!(email: 'user@mail.com', password: 'aaaaaa')
-user2 = User.create!(email: 'user2@mail.com', password: 'aaaaaa')
-
 # JOURNEYS
 
-journey1 = Journey.create!(
-  user_id: user1.id,
-  name: 'Hikking is my life',
-  start_date: Date.today,
-  end_date: Date.today,
-  location: 'Portugal',
-  photo: "https://picsum.photos/200/300?image=#{(1043..1057).to_a.sample}"
-)
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'journeys.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  Journey.create!(
+    user_id:    User.where(username: row['user']).first.id,
+    name:       row['name'],
+    start_date: Date.today,
+    end_date:   Date.today,
+    photo:      row['photo'],
+    location:   row['location']
+  )
+end
 
-journey2 = Journey.create!(
-  user_id: user1.id,
-  name: 'Roadtripping',
-  start_date: Date.today,
-  end_date: Date.today,
-  location: 'Spain',
-  photo: "https://picsum.photos/200/300?image=#{(1043..1057).to_a.sample}"
-)
+# PACKED BAGS
 
-journey3 = Journey.create!(
-  user_id: user1.id,
-  name: 'Holidays',
-  start_date: Date.today,
-  end_date: Date.today,
-  location: 'Germany',
-  photo: "https://picsum.photos/200/300?image=#{(1043..1057).to_a.sample}"
-)
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'packed_bags.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  PackedBag.create!(
+    bag_id:     Bag.where(name: row['bag']).first.id,
+    journey_id: Journey.where(name: row['journey']).first.id
+  )
+end
 
-# BAGS
+# PACKED ITEMS
 
-bag1 = Bag.create!(
-  user_id:      user1.id,
-  name: 'Lafuma',
-  capacity: 50,
-  picture: ''
-)
-
-bag2 = Bag.create!(
-  user_id: user1.id,
-  name: 'Eider',
-  capacity: 70,
-  picture: ''
-)
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'packed_items.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  PackedItem.create!(
+    packed_bag_id: PackedBag.joins(:bag).where(bags: { name: row['packed_bag'] }).first.id,
+    item_id:       Item.where(commentary: row['item']).first.id
+  )
+end

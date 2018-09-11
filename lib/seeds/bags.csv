@@ -1,4 +1,5 @@
-name,capacity,picture
-backpack 60',60,backpack_60
-backpack 40',40,backpack_40
-basket 30',30,basket_30
+user,capacity,name,picture
+john,10,totebag,totebag
+john,50,rucksack,rucksack
+jane,30,basket,basket
+jane,70,backpack,backpack

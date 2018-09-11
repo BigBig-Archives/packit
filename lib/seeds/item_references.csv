@@ -1,0 +1,32 @@
+name,size,weight,picture,category
+apple,7456.23,3700.81,apple,food
+axe,3787.26,1772.80,axe,tools
+badminton birdie,5898.26,310.99,badminton_birdie,sport
+beach ball,9421.60,10798.75,beach_ball$,sport
+bread,4923.17,3305.94,bread,food
+brioche,4075.50,7985.18,brioche,food
+camera,5854.19,10228.62,camera,miscellaneous
+compass,7374.98,19605.24,compass,tools
+cookies,4571.14,17243.43,cookies,food
+firelighter,3389.09,4575.29,firelighter,tools
+flask,2602.54,8571.86,flask,food
+flip-flops,3042.85,4089.14,flip-flops,clothes
+lantern,4125.75,16091.70,lantern,tools
+lifebelt,9416.58,15765.48,lifebelt,miscellaneous
+map,6789.33,11378.21,map,tools
+matches,1956.10,2760.74,matches,tools
+orange,4008.16,7094.54,orange,food
+parasol,8635.83,11991.17,parasol,miscellaneous
+preserve,5180.35,2392.78,preserve,food
+roll,2197.03,12424.01,roll,food
+rugby ball,8136.91,7865.72,rugby_ball,sport
+shovel,7725.69,14339.46,shovel,tools
+soccer ball,5058.25,9593.33,soccer_ball,sport
+straw hat,4040.09,13531.25,straw_hat,clothes
+sunglasses,9078.51,18957.15,sunglasses,clothes
+swimming trunks,625.26,605.07,swimming_trunks,clothes
+swimsuit,3847.28,5149.16,swimsuit,clothes
+swiss army knife,5181.70,4850.64,swiss_army_knife,tools
+tent,2429.52,681.20,tent,bedtime
+toilet paper,4248.66,4604.48,toilet_paper,miscellaneous
+volley ball,5098.55,6704.47,volley_ball,sport

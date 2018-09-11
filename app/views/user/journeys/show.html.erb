@@ -20,7 +20,8 @@
     <div class="row">
       <% current_user.packed_bags.each do |packed_bag| %>
         <%= render 'user/packed_bags/packed_bag_select',
-          packed_bag: packed_bag
+          packed_bag: packed_bag,
+          journey: @journey
         %>
       <% end %>
     </div>
@@ -28,7 +29,7 @@
 
 <% else %>
 
-  <h2>You packed bags!</h2>
+  <h2>Your packed bags!</h2>
 
   <% @journey.packed_bags.each do |packed_bag| %>
     <%= render 'user/packed_bags/packed_bag',
