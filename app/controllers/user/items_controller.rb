@@ -9,11 +9,23 @@ class User::ItemsController < ApplicationController
     @item.user = current_user
     if params[:item][:quantity].to_i <= 9 && @item.save # max quantity: 9
       # if first item saved, so create the others without checking for errors
+      if params.key?(:create_and_pack) # if pack directly?
+        @packed_item = PackedItem.new
+        @packed_item.packed_bag = @packed_bag
+        @packed_item.item = @item
+        @packed_item.save
+      end
       params[:item][:quantity].to_i.-(1).times do
         @item = Item.new(item_params)
         @item.reference = @reference
         @item.user = current_user
         @item.save
+        if params.key?(:create_and_pack) # if pack directly?
+          @packed_item = PackedItem.new
+          @packed_item.packed_bag = @packed_bag
+          @packed_item.item = @item
+          @packed_item.save
+        end
       end
       respond_to do |format|
         format.html { redirect_to user_packed_bag_path(@packed_bag, category: params[:item][:category_filter], display: params[:item][:display_filter]), notice: 'Item created.' }
