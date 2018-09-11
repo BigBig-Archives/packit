@@ -1,4 +1,4 @@
-<%= simple_form_for [:user, packed_bag], remote: :true do |f| %>
+<%= simple_form_for [:user, packed_bag] do |f| %>
   <%= f.input :journey, as: :hidden, input_html: { value: journey.id } %>
   <%= f.input :name %>
   <p data-error="name"></p>

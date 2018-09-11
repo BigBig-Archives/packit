@@ -37,8 +37,9 @@ class User::ItemsController < ApplicationController
       end
       @packed_item  = PackedItem.new
       set_filters
+      flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
       respond_to do |format|
-        format.html { render 'user/packed_bags/show', notice: 'Item not created.' }
+        format.html { render 'user/packed_bags/show' }
         format.js { }
       end
     end
@@ -53,8 +54,9 @@ class User::ItemsController < ApplicationController
     else
       @packed_item  = PackedItem.new
       set_filters
+      flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
       respond_to do |format|
-        format.html { render 'user/packed_bags/show', notice: 'Item not updated.' }
+        format.html { render 'user/packed_bags/show' }
         format.js { }
       end
     end
@@ -67,8 +69,9 @@ class User::ItemsController < ApplicationController
         format.js { }
       end
     else
+      flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
       respond_to do |format|
-        format.html { render 'user/packed_bag/show', notice: 'Item not destroyed.' }
+        format.html { render 'user/packed_bag/show' }
         format.js { }
       end
     end

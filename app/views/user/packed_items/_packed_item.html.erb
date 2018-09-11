@@ -1,6 +1,6 @@
 <div class="col-3">
   <p><%= packed_item.name %></p>
-  <%= simple_form_for [:user, packed_item.item], remote: :true do |f| %>
+  <%= simple_form_for [:user, packed_item.item] do |f| %>
     <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
     <%= f.input :display_filter, as: :hidden, input_html: { value: params[:display] } %>
     <%= f.input :packed_bag, as: :hidden, input_html: { value: packed_bag.id } %>
@@ -10,5 +10,5 @@
     <p data-error="weight"></p>
     <%= f.button :submit, class: "button" %>
   <% end %>
-  <%= button_to 'unpack', user_packed_item_path(packed_item, params: { category: params[:category], display: params[:display] }), method: :delete, remote: :true %>
+  <%= button_to 'unpack', user_packed_item_path(packed_item, params: { category: params[:category], display: params[:display] }), method: :delete %>
 </div>

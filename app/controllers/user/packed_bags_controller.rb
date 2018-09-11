@@ -15,17 +15,17 @@ class User::PackedBagsController < ApplicationController
     @packed_bag = PackedBag.new(packed_bag_params)
     @journey = Journey.find(params[:packed_bag][:journey])
     @packed_bag.journey = @journey
-    @packed_bag.bag = Bag.find(params[:packed_bag][:bag_id])
     if @packed_bag.save
       respond_to do |format|
-        format.html { redirect_to user_packed_bag_path(@packed_bag), notice: 'Packed Bag created.' }
+        format.html { redirect_to user_packed_bag_path(@packed_bag), notice: 'Packed Bag created' }
         format.js { render 'user/packed_bags/create' }
       end
     else
       @bag = Bag.new
       @templates = BagTemplate.all
+      flash[:alert] = 'Error: ' << @packed_bag.errors.full_messages.join(' - ')
       respond_to do |format|
-        format.html { redirect_to user_journey_path(@journey), notice: 'Packed Bag not created.' }
+        format.html { render 'user/journeys/show' }
         format.js { render 'user/packed_bags/create' }
       end
     end
@@ -51,8 +51,9 @@ class User::PackedBagsController < ApplicationController
         @templates = BagTemplate.all
         @bag = Bag.new
         @packed_bag = PackedBag.new
+        flash[:alert] = 'Error: ' << @copy.errors.full_messages.join(' - ')
         respond_to do |format|
-          format.html { redirect_to user_journey_path(@journey), notice: 'Packed Bag not copied' }
+          format.html { redirect_to user_journey_path(@journey) }
         end
       end
     else
@@ -76,8 +77,9 @@ class User::PackedBagsController < ApplicationController
       @templates = BagTemplate.all
       @bag = Bag.new
       @packed_bag = PackedBag.new
+      flash[:alert] = 'Error: ' << @packed_bag.errors.full_messages.join(' - ')
       respond_to do |format|
-        format.html { redirect_to user_journey_path(@journey), notice: 'Packed Bag not destroyed.' }
+        format.html { redirect_to user_journey_path(@journey) }
         format.js { render 'user/packed_bags/destroy' }
       end
     end
@@ -90,7 +92,7 @@ class User::PackedBagsController < ApplicationController
   end
 
   def packed_bag_params
-    params.require(:packed_bag).permit(:name)
+    params.require(:packed_bag).permit(:name, :bag_id)
   end
 
   def set_filters
