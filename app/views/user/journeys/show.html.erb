@@ -8,8 +8,10 @@
   <hr>
 
   <h4>Start with an empty bag</h4>
-  <%= render 'user/bags/select',
+  <%= render 'user/packed_bags/form',
     templates: @templates,
+    packed_bag: @packed_bag,
+    journey: @journey,
     new_bag: @bag
   %>
 

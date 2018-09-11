@@ -114,7 +114,8 @@ csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   PackedBag.create!(
     bag_id:     Bag.where(name: row['bag']).first.id,
-    journey_id: Journey.where(name: row['journey']).first.id
+    journey_id: Journey.where(name: row['journey']).first.id,
+    name:       row['name']
   )
 end
 

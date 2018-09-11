@@ -6,15 +6,7 @@ class PackedBag < ApplicationRecord
   belongs_to :journey
   has_many :packed_items, dependent: :destroy
 
-  # SCOPES
-
-  # ...
-
   # METHODS
-
-  def name
-    "#{self.bag.name} - #{self.journey.name} (#{self.journey.location})" if self.name.nil?
-  end
 
   def user
     self.bag.user

@@ -1,0 +1,7 @@
+<%= simple_form_for [:user, packed_bag], remote: :true do |f| %>
+  <%= f.input :journey, as: :hidden, input_html: { value: journey.id } %>
+  <%= f.input :name %>
+  <p data-error="name"></p>
+  <%= f.association :bag, collection: current_user.bags, as: :radio_buttons %>
+  <%= f.button :submit, class: "button" %>
+<% end %>
