@@ -5,7 +5,7 @@
 <div class="container" id="bags-container">
   <div class="row">
     <% current_user.bags.each do |bag| %>
-      <%= render 'user/bags/bag_to_pack',
+      <%= render 'user/bags/bag',
         bag: bag
       %>
     <% end %>
@@ -18,9 +18,9 @@
 
 <div class="container" id="bags-container">
   <div class="row">
-    <% references.each do |reference| %>
+    <% templates.each do |template| %>
       <%= render 'user/bags/form',
-        reference: reference,
+        template: template,
         new_bag: new_bag
       %>
     <% end %>

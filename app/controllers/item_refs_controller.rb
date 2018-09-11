@@ -1,8 +1,8 @@
-class ItemRefsController < ApplicationController
+class ItemReferencesController < ApplicationController
 
   def index
     @categories = ItemCategory.all
-    @references = ItemRef.all
+    @references = ItemReference.all
     @owned_items = current_user.items
     @owned_references = @owned_items.map { |item| item.reference }.uniq
     @owned_references.sort!

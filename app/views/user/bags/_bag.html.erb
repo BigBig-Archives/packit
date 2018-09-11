@@ -2,6 +2,7 @@
   <div class="card">
     <div class="card-body">
       <h5 class="card-title"><%= bag.name %></h5>
+      <p><%= bag.capacity %></p>
         <%= button_to 'take this bag', user_packed_bags_path(params: { bag: bag.id, journey: @journey.id }), method: :post, class: 'btn btn-primary btn-sm' %>
         <%= button_to 'delete', user_bag_path(bag, params: { journey: @journey.id }), remote: :true, method: :delete, type: 'button', class: 'btn btn-danger btn-sm' %>
     </div>

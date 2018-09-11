@@ -4,14 +4,26 @@
 
 <hr>
 
-<%= render 'item_refs/filter_by_category',
+<%= render 'user/packed_bags/filter_by_category',
   categories: @categories
 %>
 
-<%= render 'item_refs/filter_by_owned' %>
+<hr>
 
-<%= render 'item_refs/items_filtered' %>
+<%= render 'user/packed_bags/display_toggle' %>
 
+<hr>
+
+<div id="displayed-items">
+  <%= render 'user/packed_bags/displayed_items',
+    packed_bag:   @packed_bag,
+    references:   @references,
+    owned_items:  @owned_items,
+    packed_items: @packed_items,
+    display:      params[:display],
+    item:         @item,
+    packed_item:  @packed_item
+  %>
 </div>
 
 

@@ -1,5 +1,3 @@
-<% @packed_bag.packed_items.each do |packed_item| %>
-  <%= render 'user/packed_items/packed_item',
-    packed_item: packed_item
-  %>
-<% end %>
+<p>Weight: <%= @packed_bag.weight %></p>
+<p>Load: <%= @packed_bag.load %></p>
+<p>Loaded: <%= @packed_bag.loaded %></p>

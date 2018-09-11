@@ -1,18 +1,10 @@
 class User::PackedBagsController < ApplicationController
   before_action :set_packed_bag, only: %i[show update destroy]
+  before_action :set_filters, only: %i[show]
 
   def show
-    @categories = ItemCategory.all
-    @items = ItemRef.all
-    @packed_item = PackedItem.new
-
-    # Filters
-    if params.key?("category") && params[:category].to_i > 0
-      @items = @items.where(category_id: params[:category])
-    end
-    if params.key?("owned") && params[:owned] == "true"
-      @items = @items.select { |item| item.count_owned(current_user) > 0 }
-    end
+    @packed_item  = PackedItem.new
+    @item         = Item.new
     respond_to do |format|
       format.html { render 'user/packed_bags/show' }
       format.js { render 'user/packed_bags/sort' }
@@ -29,7 +21,7 @@ class User::PackedBagsController < ApplicationController
         format.js { render 'user/packed_bags/create' }
       end
     else
-      @references = BagRef.all
+      @templates = BagTemplate.all
       respond_to do |format|
         format.html { redirect_to journeys_show_path(@journey), notice: 'Packed Bag not created.' }
         format.js { render 'user/packed_bags/create' }
@@ -44,7 +36,7 @@ class User::PackedBagsController < ApplicationController
         format.js { render 'user/packed_bags/destroy' }
       end
     else
-      @references = BagRef.all
+      @templates = BagTemplate.all
       @bag = Bag.new
       respond_to do |format|
         format.html { redirect_to journeys_show_path(@journey), notice: 'Packed Bag not destroyed.' }
@@ -53,11 +45,27 @@ class User::PackedBagsController < ApplicationController
     end
   end
 
+  private
+
   def set_packed_bag
     @packed_bag = PackedBag.find(params[:id])
   end
 
   def packed_bag_params
     params.require(:packed_bag).permit.(:name)
+  end
+
+  def set_filters
+    @categories   = ItemCategory.all
+    @references   = ItemReference.all
+    @owned_items  = current_user.items
+    @packed_items = @packed_bag.packed_items
+    if params.key?("category")
+      if params[:category].to_i > 0
+        @references   = @references.where(category_id: params[:category])
+        @owned_items  = @owned_items.joins(:reference).where(item_references: { category_id: params[:category] })
+        @packed_items = @packed_items.joins(item: [:reference]).where(item_references: { category_id: params[:category] })
+      end
+    end
   end
 end
