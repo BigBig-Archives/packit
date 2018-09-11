@@ -5,7 +5,7 @@
 
       <% owned_items.each do |owned_item| %>
         <% unless owned_item.packed?(packed_bag) %>
-          <%= render 'user/items/owned_item',
+          <%= render 'user/items/item',
             packed_bag: packed_bag,
             owned_item:  owned_item,
             packed_item: packed_item

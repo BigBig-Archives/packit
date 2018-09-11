@@ -21,7 +21,7 @@
   <div class="container" id="bags-container">
     <div class="row">
       <% current_user.packed_bags.each do |packed_bag| %>
-        <%= render 'user/packed_bags/packed_bag_select',
+        <%= render 'user/packed_bags/packed_bags_select',
           packed_bag: packed_bag,
           journey: @journey
         %>

@@ -85,15 +85,15 @@ class User::ItemsController < ApplicationController
   end
 
   def set_filters
-  @categories   = ItemCategory.all
+    @categories   = ItemCategory.all
     @references   = ItemReference.all
     @owned_items  = current_user.items
     @packed_items = @packed_bag.packed_items
     if params.key?("category")
       if params[:category].to_i > 0
         @references   = @references.where(category_id: params[:category])
-        @owned_items  = @owned_items.joins(:reference).where(item_references: { category_id: params[:category] })
-        @packed_items = @packed_items.joins(item: [:reference]).where(item_references: { category_id: params[:category] })
+        @owned_items  = Item.category(params[:category])
+        @packed_items = PackedItem.packed(params[:category], @packed_bag)
       end
     end
   end
