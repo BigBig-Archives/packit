@@ -1,6 +1,6 @@
 <div class='col-3'>
   <p><%= reference.name %></p>
-  <%= simple_form_for [:user, item], remote: :true do |f| %>
+  <%= simple_form_for [:user, item] do |f| %>
     <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
     <%= f.input :display_filter, as: :hidden, input_html: { value: params[:display] } %>
     <%= f.input :packed_bag, as: :hidden, input_html: { value: packed_bag.id } %>

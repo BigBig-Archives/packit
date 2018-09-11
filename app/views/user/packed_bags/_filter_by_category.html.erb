@@ -1,9 +1,9 @@
-<%= link_to user_packed_bag_path(@packed_bag, params: { category: 0, display: params[:display] }), class: "", remote: :true do %>
+<%= link_to user_packed_bag_path(@packed_bag, params: { category: 0, display: params[:display] }), class: "" do %>
   <small><strong>ALL</strong></small>
 <% end %>
 <small> - </small>
 <% categories.each do |category| %>
-  <%= link_to user_packed_bag_path(@packed_bag, params: { category: category.id, display: params[:display] }), class: "", remote: :true do %>
+  <%= link_to user_packed_bag_path(@packed_bag, params: { category: category.id, display: params[:display] }), class: "" do %>
     <small><%= category.name.upcase %></small>
   <% end %>
   <small> - </small>

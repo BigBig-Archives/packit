@@ -1,4 +1,5 @@
 <h1><%= @journey.name %></h1>
+
 <hr>
 
 <% if @journey.packed_bags.count.zero? %>
@@ -7,18 +8,41 @@
 
   <hr>
 
+  <h4>Your bags</h4>
+  <div class="row">
+    <% current_user.bags.each do |bag| %>
+      <%= render 'user/bags/bag',
+        bag: bag,
+        journey: @journey
+      %>
+    <% end %>
+  </div>
+
+  <h4>Add a new bag</h4>
+  <div class="row">
+    <% @templates.each do |template| %>
+      <%= render 'user/bags/form',
+        template: template,
+        packed_bag: @packed_bag,
+        journey: @journey,
+        bag: @bag
+      %>
+    <% end %>
+  </div>
+
+  <hr>
+
   <h4>Start with an empty bag</h4>
   <%= render 'user/packed_bags/form',
     templates: @templates,
     packed_bag: @packed_bag,
-    journey: @journey,
-    new_bag: @bag
+    journey: @journey
   %>
 
   <hr>
 
   <h4>Start with a previous packed bag</h4>
-  <div class="container" id="bags-container">
+  <div id="bags-container">
     <div class="row">
       <% current_user.packed_bags.each do |packed_bag| %>
         <%= render 'user/packed_bags/packed_bags_select',

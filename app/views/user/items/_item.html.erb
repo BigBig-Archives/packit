@@ -1,6 +1,6 @@
 <div class="col-3">
   <p><%= owned_item.name %></p>
-  <%= simple_form_for [:user, owned_item], remote: :true do |f| %>
+  <%= simple_form_for [:user, owned_item] do |f| %>
     <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
     <%= f.input :display_filter, as: :hidden, input_html: { value: params[:display] } %>
     <%= f.input :packed_bag, as: :hidden, input_html: { value: packed_bag.id } %>
@@ -10,6 +10,6 @@
     <p data-error="weight"></p>
     <%= f.button :submit, class: "button" %>
   <% end %>
-  <%= button_to 'pack', user_packed_items_path(params: { item: owned_item.id, packed_bag: packed_bag.id, category: params[:category], display: params[:display] }), method: :post, remote: :true %>
-  <%= button_to 'delete', user_item_path(owned_item, params: { packed_bag: packed_bag.id, category: params[:category], display: params[:display] }), method: :delete, remote: :true %>
+  <%= button_to 'pack', user_packed_items_path(params: { item: owned_item.id, packed_bag: packed_bag.id, category: params[:category], display: params[:display] }), method: :post %>
+  <%= button_to 'delete', user_item_path(owned_item, params: { packed_bag: packed_bag.id, category: params[:category], display: params[:display] }), method: :delete %>
 </div>

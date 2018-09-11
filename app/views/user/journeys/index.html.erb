@@ -1,6 +1,6 @@
 <h2>My journeys</h2>
 
-<div class="container" id="journeys-container">
+<div id="journeys-container">
   <div class="row">
     <% current_user.journeys.each do |journey| %>
         <%= render 'user/journeys/journey',
@@ -14,6 +14,8 @@
 
 <h2>Add a new journey</h2>
 
-<%= render 'user/journeys/form',
-  journey: @journey
-%>
+<div class="row">
+  <%= render 'user/journeys/form',
+    journey: @journey
+  %>
+</div>

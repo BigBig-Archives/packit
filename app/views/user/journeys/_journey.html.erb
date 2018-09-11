@@ -3,7 +3,7 @@
     <div class="card-body">
       <h5 class="card-title"><%= journey.name %></h5>
       <%= button_to 'select', user_journey_path(journey), method: :get, type: 'button', class: 'btn btn-primary btn-sm' %>
-      <%= button_to 'delete', user_journey_path(journey), method: :delete, remote: :true, type: 'button', class: 'btn btn-danger btn-sm' %>
+      <%= button_to 'delete', user_journey_path(journey), method: :delete, type: 'button', class: 'btn btn-danger btn-sm' %>
     </div>
   </div>
 </div>

@@ -6,6 +6,10 @@ class PackedBag < ApplicationRecord
   belongs_to :journey
   has_many :packed_items, dependent: :destroy
 
+  # VALIDATIONS
+
+  validates :name, presence: :true
+
   # METHODS
 
   def user

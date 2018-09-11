@@ -15,8 +15,9 @@ class User::PackedItemsController < ApplicationController
     else
       @categories = ItemCategory.all
       @references = ItemReference.all
+      flash[:alert] = 'Error: ' << @journey.errors.full_messages.join(' - ')
       respond_to do |format|
-        format.html { render 'user/packed_bags/show', notice: 'Packed item not created.' }
+        format.html { render 'user/packed_bags/show' }
         format.js { render '' }
       end
     end
@@ -33,8 +34,9 @@ class User::PackedItemsController < ApplicationController
       @categories = ItemCategory.all
       @references = ItemReference.all
       @packed_item = PackedItem.new
+      flash[:alert] = 'Error: ' << @journey.errors.full_messages.join(' - ')
       respond_to do |format|
-        format.html { render 'user/packed_bags/show', notice: 'Packed item not destroyed.' }
+        format.html { render 'user/packed_bags/show' }
         format.js { render '' }
       end
     end

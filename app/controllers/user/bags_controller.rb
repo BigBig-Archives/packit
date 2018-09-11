@@ -16,9 +16,27 @@ class User::BagsController < ApplicationController
       end
     else
       @templates = BagTemplate.all
+      flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
       respond_to do |format|
-        format.html { render 'user/journeys/show', notice: 'Bag not created.' }
+        format.html { render 'user/journeys/show' }
         format.js { render 'user/bags/create' }
+      end
+    end
+  end
+
+  def update
+    if @bag.update(bag_params)
+      respond_to do |format|
+        format.html { redirect_to user_journey_path(@journey), notice: 'bag updated.' }
+        format.js { }
+      end
+    else
+      @templates = BagTemplate.all
+      @packed_bag = PackedBag.new
+      flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
+      respond_to do |format|
+        format.html { render 'user/journeys/show' }
+        format.js { }
       end
     end
   end
@@ -32,8 +50,9 @@ class User::BagsController < ApplicationController
     else
       @templates = BagTemplate.all
       @bag = Bag.new
+      flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
       respond_to do |format|
-        format.html { render 'user/journeys/show', notice: 'Bag not destroyed.' }
+        format.html { render 'user/journeys/show' }
         format.js { render 'user/bags/destroy' }
       end
     end

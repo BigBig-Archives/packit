@@ -20,6 +20,7 @@ class User::JourneysController < ApplicationController
         format.js { render 'user/journeys/create' }
       end
     else
+      flash[:alert] = 'Error: ' << @journey.errors.full_messages.join(' - ')
       respond_to do |format|
         format.html { render :index }
         format.js { render 'user/journeys/create' }
@@ -38,6 +39,7 @@ class User::JourneysController < ApplicationController
       end
     else
       @journey = Journey.new
+      flash[:alert] = 'Error: ' << @journey.errors.full_messages.join(' - ')
       respond_to do |format|
         format.html { render :index }
         format.js { render 'user/journeys/destroy' }

@@ -1,5 +1,0 @@
-<% unless reference.items.count >= 99 %>
-  <%= link_to user_items_path(params: {reference: reference}), class: 'add', method: :post, remote: :true do %>
-    <i class="fas fa-plus-circle"></i>
-  <% end %>
-<% end %>
