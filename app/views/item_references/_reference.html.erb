@@ -1,17 +1,23 @@
-<div class='col-3'>
-  <p><%= reference.name %></p>
-  <%= simple_form_for [:user, item] do |f| %>
-    <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
-    <%= f.input :display_filter, as: :hidden, input_html: { value: params[:display] } %>
-    <%= f.input :packed_bag, as: :hidden, input_html: { value: packed_bag.id } %>
-    <%= f.input :reference, as: :hidden, input_html: { value: reference.id } %>
-    <%= f.input :size, input_html: { value: reference.size } %>
-    <p data-error='size'></p>
-    <%= f.input :weight, input_html: { value: reference.weight } %>
-    <p data-error='weight'></p>
-    <%= f.input :quantity, input_html: { value: 1, type: 'number', min: '0', setp: '1', required: true } %>
-    <p data-error='quantity'></p>
-    <%= f.button :submit, 'create', class: 'button' %>
-    <%= f.button :submit, 'create and pack', class: 'button', name: 'create_and_pack' %>
-  <% end %>
+<div class='col-3' data-reference=<%= reference.id %>>
+
+  <div class="reference-container">
+
+    <%= image_tag image_path("items/#{reference.picture}"), class: 'reference-picture' %>
+    <p class='reference-name'><%= reference.name %></p>
+
+    <%= simple_form_for [:user, item] do |f| %>
+      <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
+      <%= f.input :display_filter, as: :hidden, input_html: { value: params[:display] } %>
+      <%= f.input :packed_bag, as: :hidden, input_html: { value: packed_bag.id } %>
+      <%= f.input :reference, as: :hidden, input_html: { value: reference.id } %>
+      <%= f.input :size, input_html: { value: reference.size } %>
+      <p data-error='size'></p>
+      <%= f.input :weight, input_html: { value: reference.weight } %>
+      <p data-error='weight'></p>
+      <%= f.input :quantity, input_html: { value: 1, type: 'number', min: '0', setp: '1', required: true } %>
+      <p data-error='quantity'></p>
+      <%= f.button :submit, 'create', class: 'button' %>
+      <%= f.button :submit, 'create and pack', class: 'button', name: 'create_and_pack' %>
+    <% end %>
+
 </div>

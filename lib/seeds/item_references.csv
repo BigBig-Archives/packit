@@ -1,32 +1,64 @@
 name,size,weight,picture,category
-apple,7456.23,3700.81,apple,food
-axe,3787.26,1772.80,axe,tools
-badminton birdie,5898.26,310.99,badminton_birdie,sport
-beach ball,9421.60,10798.75,beach_ball$,sport
-bread,4923.17,3305.94,bread,food
-brioche,4075.50,7985.18,brioche,food
-camera,5854.19,10228.62,camera,miscellaneous
-compass,7374.98,19605.24,compass,tools
-cookies,4571.14,17243.43,cookies,food
-firelighter,3389.09,4575.29,firelighter,tools
-flask,2602.54,8571.86,flask,food
-flip-flops,3042.85,4089.14,flip-flops,clothes
-lantern,4125.75,16091.70,lantern,tools
-lifebelt,9416.58,15765.48,lifebelt,miscellaneous
-map,6789.33,11378.21,map,tools
-matches,1956.10,2760.74,matches,tools
-orange,4008.16,7094.54,orange,food
-parasol,8635.83,11991.17,parasol,miscellaneous
-preserve,5180.35,2392.78,preserve,food
-roll,2197.03,12424.01,roll,food
-rugby ball,8136.91,7865.72,rugby_ball,sport
-shovel,7725.69,14339.46,shovel,tools
-soccer ball,5058.25,9593.33,soccer_ball,sport
-straw hat,4040.09,13531.25,straw_hat,clothes
-sunglasses,9078.51,18957.15,sunglasses,clothes
-swimming trunks,625.26,605.07,swimming_trunks,clothes
-swimsuit,3847.28,5149.16,swimsuit,clothes
-swiss army knife,5181.70,4850.64,swiss_army_knife,tools
-tent,2429.52,681.20,tent,bedtime
-toilet paper,4248.66,4604.48,toilet_paper,miscellaneous
-volley ball,5098.55,6704.47,volley_ball,sport
+arrow,4488.16,16770.14,arrow,food
+axe,8877.09,13980.34,axe,tools
+badminton racket,7995.12,16924.84,badminton_racket,sport
+band aid,4694.76,10532.34,band_aid,aid
+basket,4431.88,1929.92,basket,sport
+beach ball,3621.40,5546.62,beach_ball,sport
+binoculars,4891.84,6981.00,binoculars,tools
+canteen,9848.58,19143.12,canteen,food
+cap,9442.17,15786.44,cap,clothes
+compass,4061.92,10189.87,compass,tools
+cutlery,806.71,8317.88,cutlery,food
+electronic compass,3543.62,7734.92,electronic_compass,tools
+firt aid kit,7346.82,16653.99,firt_aid_kit,aid
+fishing rod,4597.36,12664.32,fishing_rod,food
+flashlight,312.30,314.07,flashlight,lightning
+flask,5914.23,12302.37,flask,food
+gas,1586.28,4272.02,gas,food
+gps,3322.45,8499.51,gps,tools
+grill,7718.70,13873.52,grill,food
+guitar,7191.69,1121.03,guitar,hobbies
+hikking shoes,8457.53,1578.31,hikking_shoes,clothes
+indian tent,5595.04,7788.54,indian_tent,bedtime
+inflatable boat,7973.71,19857.12,inflatable_boat,sport
+karabiner,8916.80,9566.93,karabiner,tools
+kayak,6272.51,13142.63,kayak,sport
+kayak paddle,4183.21,11150.00,kayak_paddle,sport
+kite,3018.61,18380.08,kite,hobbies
+knife,4076.42,17645.54,knife,tools
+lantern,3393.74,6569.51,lantern,lightning
+large tent,3522.22,534.95,large_tent,bedtime
+life vest,1621.88,11455.56,life_vest,sport
+lifebuoi,5882.83,914.40,lifebuoi,sport
+lifejacket,7812.84,15294.67,lifejacket,sport
+light tent,4957.36,12653.55,light_tent,bedtime
+lighter,2234.62,4721.78,lighter,tools
+magnifying glass,4266.07,11318.00,magnifying_glass,tools
+map,1262.46,2729.75,map,tools
+marshmallow pick,6494.02,12627.46,marshmallow_pick,food
+matches,9843.59,9550.12,matches,tools
+mobile,4031.98,18951.47,mobile,devices
+novel,3842.27,5556.09,novel,hobbies
+oil lamp,3983.84,12988.56,oil_lamp,lightning
+passport,4467.65,15265.25,passport,papers
+picnic table,8754.39,14044.69,picnic_table,miscellaneous
+pill,6137.11,3102.08,pill,aid
+portable compass,6387.46,4221.06,portable_compass,tools
+pyjamas,8591.09,8786.83,pyjamas,bedtime
+rifle,3193.92,19340.99,rifle,food
+rope,3850.27,13049.81,rope,tools
+shovel,4890.48,2590.12,shovel,tools
+small tent,1464.50,17613.81,small_tent,bedtime
+smartphone,3741.20,19174.16,smartphone,devices
+stool,5286.55,12209.84,stool,miscellaneous
+survival book,920.50,10846.51,survival_book,hobbies
+swiss army knife,1611.65,13774.43,swiss_army_knife,tools
+tablet,2156.51,1817.54,tablet,devices
+tent,5541.80,3303.91,tent,bedtime
+thermo,3418.56,11974.33,thermo,food
+toilet paper,2449.43,6466.75,toilet_paper,miscellaneous
+torch,1669.30,6207.82,torch,lightning
+walkie-talkie,1047.34,12481.93,walkie-talkie,devices
+woolly hat,1544.63,13323.77,woolly hat,clothes
+wristwatch,8442.01,17064.12,wristwatch,clothes
