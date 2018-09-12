@@ -1,0 +1,16 @@
+<div class='col-4' data-item=<%= owned_reference.id %>>
+
+  <div class="owned-item-container item-container">
+
+    <%= image_tag "items/#{owned_reference.picture}", class: 'picture' %>
+    <p class='name'><%= owned_reference.name %></p>
+
+    <p>
+      <span><%= current_user.reference_count(owned_reference) - packed_bag.packed_reference_count(owned_reference) %></span>
+      <span> / </span>
+      <span><%= current_user.reference_count(owned_reference) %></span>
+    </p>
+
+  </div>
+
+</div>

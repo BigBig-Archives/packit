@@ -1,5 +1,7 @@
+<!-- LEFT PART: REFERENCES OR OWNED ITEMS -->
 <% if side == 'left' %>
 
+  <!-- REFERENCES -->
   <% if display == 'references_to_items' || display.nil? %>
     <p>Here are all the items you can create</p>
     <div class="container">
@@ -14,29 +16,52 @@
       </div>
     </div>
 
+  <!-- OWNED ITEMS -->
   <% elsif display == 'items_to_packed_items' %>
     <p>Here are all you owned items not already packed</p>
     <div class="container">
       <div class="row items-displayed">
-        <% owned_items.each do |owned_item| %>
-          <%= render 'user/items/item',
-            packed_bag:  packed_bag,
-            owned_item:  owned_item,
-            packed_item: packed_item
-          %>
+        <% if group %>
+          <% owned_references.each do |owned_reference| %>
+            <%= render 'user/items/items_group',
+              packed_bag:      packed_bag,
+              owned_reference: owned_reference,
+              packed_item:     packed_item
+            %>
+          <% end %>
+        <% else %>
+          <% owned_items.each do |owned_item| %>
+            <% unless owned_item.packed?(packed_bag) %>
+              <%= render 'user/items/item',
+                packed_bag:  packed_bag,
+                owned_item:  owned_item,
+                packed_item: packed_item
+              %>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
     </div>
   <% end %>
 
+<!-- RIGHT PART: OWNED ITEMS OR PACKED ITEMS -->
 <% elsif side == 'right' %>
 
+  <!-- OWNED ITEMS -->
   <% if display == 'references_to_items' || display.nil? %>
     <p>Here are all you owned items</p>
     <div class="container">
       <div class="row items-displayed">
-        <% owned_items.each do |owned_item| %>
-          <% unless owned_item.packed?(packed_bag) %>
+        <% if group %>
+          <% owned_references.each do |owned_reference| %>
+            <%= render 'user/items/items_group',
+              packed_bag:      packed_bag,
+              owned_reference: owned_reference,
+              packed_item:     packed_item
+            %>
+          <% end %>
+        <% else %>
+          <% owned_items.each do |owned_item| %>
             <%= render 'user/items/item',
               packed_bag:  packed_bag,
               owned_item:  owned_item,
@@ -47,15 +72,25 @@
       </div>
     </div>
 
+  <!-- PACKED ITEMS -->
   <% elsif display == 'items_to_packed_items' %>
     <p>Here are all your items packed into the bag</p>
     <div class="container">
       <div class="row items-displayed">
-        <% packed_items.each do |packed_item| %>
-          <%= render 'user/packed_items/packed_item',
-            packed_bag:  packed_bag,
-            packed_item: packed_item
-          %>
+        <% if group %>
+          <% packed_references.each do |packed_reference| %>
+            <%= render 'user/packed_items/packed_items_group',
+              packed_bag:       packed_bag,
+              packed_reference: packed_reference
+            %>
+          <% end %>
+        <% else %>
+          <% packed_items.each do |packed_item| %>
+            <%= render 'user/packed_items/packed_item',
+              packed_bag:  packed_bag,
+              packed_item: packed_item
+            %>
+          <% end %>
         <% end %>
       </div>
     </div>

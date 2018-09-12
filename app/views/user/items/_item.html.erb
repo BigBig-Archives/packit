@@ -30,8 +30,7 @@
 
     <% end %>
 
-    <%= button_to user_item_path(owned_item, params: { packed_bag: packed_bag.id, category: params[:category], display: params[:display] }), method: :delete, class: 'delete-item' do %><% end %>
-    <div class="delete-item-icon">+</div>
+    <%= button_to user_item_path(owned_item, params: { packed_bag: packed_bag.id, category: params[:category], display: params[:display] }), method: :delete, class: 'delete-item' do %><div class="delete-item-icon">+</div><% end %>
 
     <%= button_to 'pack', user_packed_items_path(params: { item: owned_item.id, packed_bag: packed_bag.id, category: params[:category], display: params[:display] }), method: :post, class: 'pack-item' %>
   </div>

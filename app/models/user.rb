@@ -10,4 +10,9 @@ class User < ApplicationRecord
   has_many :packed_items, through: :items
   has_many :journeys, dependent: :destroy
 
+  # METHODS
+
+  def reference_count(reference_to_count)
+    self.references.select { |reference| reference == reference_to_count }.count
+  end
 end

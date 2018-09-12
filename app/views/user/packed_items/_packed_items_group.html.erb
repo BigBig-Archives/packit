@@ -1,0 +1,12 @@
+<div class='col-4' data-item=<%= packed_reference.id %>>
+
+  <div class="packed-item-container item-container">
+
+    <%= image_tag "items/#{packed_reference.picture}", class: 'picture' %>
+    <p class='name'><%= packed_reference.name %></p>
+
+    <p><%= packed_bag.packed_reference_count(packed_reference) %></p>
+
+  </div>
+
+</div>

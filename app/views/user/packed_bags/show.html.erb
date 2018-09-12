@@ -26,15 +26,17 @@
 
   <div id="displayed-items-left">
     <%= render 'user/packed_bags/displayed_items',
-      side:         'left',
-      display:          params[:display],
-      packed_bag:       @packed_bag,
-      references:       @references,
-      owned_items:      @owned_items,
-      owned_references: @owned_references
-      packed_items:     @packed_items,
-      item:             @item,
-      packed_item:      @packed_item
+      side:             'left',
+      display:           params[:display],
+      group:             @group,
+      packed_bag:        @packed_bag,
+      references:        @references,
+      owned_items:       @owned_items,
+      owned_references:  @owned_references,
+      packed_items:      @packed_items,
+      packed_references: @packed_references,
+      item:              @item,
+      packed_item:       @packed_item
     %>
   </div>
 
@@ -42,14 +44,17 @@
 
   <div id="displayed-items-right">
     <%= render 'user/packed_bags/displayed_items',
-      side:         'right',
-      display:      params[:display],
-      packed_bag:   @packed_bag,
-      references:   @references,
-      owned_items:  @owned_items,
-      packed_items: @packed_items,
-      item:         @item,
-      packed_item:  @packed_item
+      side:             'right',
+      display:           params[:display],
+      group:             @group,
+      packed_bag:        @packed_bag,
+      references:        @references,
+      owned_items:       @owned_items,
+      owned_references:  @owned_references,
+      packed_items:      @packed_items,
+      packed_references: @packed_references,
+      item:              @item,
+      packed_item:       @packed_item
     %>
   </div>
 
