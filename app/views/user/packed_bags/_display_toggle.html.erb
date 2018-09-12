@@ -1,11 +1,7 @@
-<%= link_to user_packed_bag_path(@packed_bag, params: { display: 'references',  category: params[:category] }), class: "" do %>
-  <small>ALL ITEMS REFERENCES</small>
+<%= link_to user_packed_bag_path(@packed_bag, params: { display: 'references_to_items',  category: params[:category] }), class: "" do %>
+  <small>CREATE NEW ITEMS</small>
 <% end %>
 <small> - </small>
-<%= link_to user_packed_bag_path(@packed_bag, params: { display: 'owned',  category: params[:category] }), class: "" do %>
-  <small>MY REMAINING ITEMS</small>
-<% end %>
-<small> - </small>
-<%= link_to user_packed_bag_path(@packed_bag, params: { display: 'packed',  category: params[:category] }), class: "" do %>
-  <small>PACKED ITEMS</small>
+<%= link_to user_packed_bag_path(@packed_bag, params: { display: 'items_to_packed_items',  category: params[:category] }), class: "" do %>
+  <small>PACK YOU ITEMS</small>
 <% end %>

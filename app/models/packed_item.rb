@@ -12,6 +12,7 @@ class PackedItem < ApplicationRecord
     .joins(:packed_bag)
     .where(item_references: { category_id: category })
     .where(packed_bag: packed_bag)
+    .order(created_at: :desc)
   }
 
   # METHODS

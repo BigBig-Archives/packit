@@ -1,35 +1,55 @@
 <div class="container">
   <div class="row">
 
-    <% if display == 'owned' %>
+    <% if side == 'left' %>
 
-      <% owned_items.each do |owned_item| %>
-        <% unless owned_item.packed?(packed_bag) %>
-          <%= render 'user/items/item',
+      <% if display == 'references_to_items' || display.nil? %>
+
+        <% references.each do |reference| %>
+          <%= render 'item_references/reference',
             packed_bag: packed_bag,
-            owned_item:  owned_item,
+            reference: reference,
+            item:      item
+          %>
+        <% end %>
+
+      <% elsif display == 'items_to_packed_items' %>
+
+        <% owned_items.each do |owned_item| %>
+          <% unless owned_item.packed?(packed_bag) %>
+            <%= render 'user/items/item',
+              packed_bag: packed_bag,
+              owned_item:  owned_item,
+              packed_item: packed_item
+            %>
+          <% end %>
+        <% end %>
+
+      <% end %>
+
+    <% elsif side == 'right' %>
+
+      <% if display == 'references_to_items' || display.nil? %>
+
+        <% owned_items.each do |owned_item| %>
+          <% unless owned_item.packed?(packed_bag) %>
+            <%= render 'user/items/item',
+              packed_bag: packed_bag,
+              owned_item:  owned_item,
+              packed_item: packed_item
+            %>
+          <% end %>
+        <% end %>
+
+      <% elsif display == 'items_to_packed_items' %>
+
+        <% packed_items.each do |packed_item| %>
+          <%= render 'user/packed_items/packed_item',
+            packed_bag: packed_bag,
             packed_item: packed_item
           %>
         <% end %>
-      <% end %>
 
-    <% elsif display == 'packed' %>
-
-      <% packed_items.each do |packed_item| %>
-        <%= render 'user/packed_items/packed_item',
-          packed_bag: packed_bag,
-          packed_item: packed_item
-        %>
-      <% end %>
-
-    <% else %>
-
-      <% references.each do |reference| %>
-        <%= render 'item_references/reference',
-          packed_bag: packed_bag,
-          reference: reference,
-          item:      item
-        %>
       <% end %>
 
     <% end %>

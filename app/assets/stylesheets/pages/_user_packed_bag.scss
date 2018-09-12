@@ -1,0 +1,12 @@
+#packed-bag-wrapper {
+  display: flex;
+  #displayed-items-left,
+  #displayed-items-right {
+    flex: 1;
+  }
+  .wrapper-separator {
+    width: $p1;
+    background-color: lighten($gray, 70%);
+    margin: 0 $p24;
+  }
+}

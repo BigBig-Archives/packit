@@ -18,16 +18,38 @@
 
 <hr>
 
-<div id="displayed-items">
-  <%= render 'user/packed_bags/displayed_items',
-    packed_bag:   @packed_bag,
-    references:   @references,
-    owned_items:  @owned_items,
-    packed_items: @packed_items,
-    display:      params[:display],
-    item:         @item,
-    packed_item:  @packed_item
-  %>
+<div id="packed-bag-wrapper">
+
+  <div id="displayed-items-left">
+    <%= render 'user/packed_bags/displayed_items',
+      side:         'left',
+      display:      params[:display],
+      packed_bag:   @packed_bag,
+      references:   @references,
+      owned_items:  @owned_items,
+      packed_items: @packed_items,
+      item:         @item,
+      packed_item:  @packed_item
+    %>
+  </div>
+
+  <div class="wrapper-separator"></div>
+
+  <div id="displayed-items-right">
+    <%= render 'user/packed_bags/displayed_items',
+      side:         'right',
+      display:      params[:display],
+      packed_bag:   @packed_bag,
+      references:   @references,
+      owned_items:  @owned_items,
+      packed_items: @packed_items,
+      item:         @item,
+      packed_item:  @packed_item
+    %>
+  </div>
+
 </div>
+
+
 
 

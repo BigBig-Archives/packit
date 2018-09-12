@@ -8,9 +8,12 @@ class Item < ApplicationRecord
 
   # SCOPES
 
-  scope :category, -> (category) {
+  scope :category, -> (category, user) {
     joins(:reference)
     .where(item_references: { category_id: category })
+    .joins(:user)
+    .where(users: { id: user })
+    .order(created_at: :desc)
   }
   scope :packed, -> (packed_bag) {
     joins(:packed_items)
