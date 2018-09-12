@@ -18,18 +18,23 @@
 
 <hr>
 
+<%= render 'user/packed_bags/group_toggle' %>
+
+<hr>
+
 <div id="packed-bag-wrapper">
 
   <div id="displayed-items-left">
     <%= render 'user/packed_bags/displayed_items',
       side:         'left',
-      display:      params[:display],
-      packed_bag:   @packed_bag,
-      references:   @references,
-      owned_items:  @owned_items,
-      packed_items: @packed_items,
-      item:         @item,
-      packed_item:  @packed_item
+      display:          params[:display],
+      packed_bag:       @packed_bag,
+      references:       @references,
+      owned_items:      @owned_items,
+      owned_references: @owned_references
+      packed_items:     @packed_items,
+      item:             @item,
+      packed_item:      @packed_item
     %>
   </div>
 

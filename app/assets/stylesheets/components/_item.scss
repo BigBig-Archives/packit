@@ -1,6 +1,7 @@
 .item-container {
 
-  // height: $p312;
+  height: $p312;
+  position: relative;
   border: solid $p1 lighten($gray, 60%);
   margin: $p16 0;
   text-align: center;
@@ -84,8 +85,6 @@
     text-overflow: ellipsis;
   }
 
-  .update-item,
-  .delete-item,
   .pack-item,
   .unpack-item {
     width: 50%;
@@ -94,17 +93,8 @@
     text-align: center;
     color: white;
     border-radius: $p4;
-    margin-bottom: $p4;
+    margin-bottom: $p16;
     cursor: pointer;
-  }
-
-  .update-item,
-  .unpack-item {
-    background-color: $yellow;
-  }
-
-  .delete-item {
-    background-color: $red;
   }
 
   .pack-item {
@@ -115,8 +105,25 @@
     background-color: $orange;
   }
 
-  .pack-item,
-  .unpack-item {
-    margin-bottom: $p16;
+  .delete-item,
+  .delete-item-icon {
+    position: absolute;
+    right: -($p8 + $p4);
+    top: $p8 + $p4;
+    width: $p24;
+    height: $p24;
+  }
+
+  .delete-item {
+    background-color: white;
+    border: none;
+    border: solid $p1 lighten($gray, 60%);
+  }
+
+  .delete-item-icon {
+    transform: rotate(45deg);
+    text-align: center;
+    color: lighten($gray, 60%);
+    cursor: pointer;
   }
 }

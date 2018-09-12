@@ -9,4 +9,10 @@
     background-color: lighten($gray, 70%);
     margin: 0 $p24;
   }
+  .displayed-items-left,
+  .displayed-items-left {
+    p {
+      margin: 0 auto;
+    }
+  }
 }

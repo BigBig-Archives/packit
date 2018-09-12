@@ -96,16 +96,21 @@ class User::PackedBagsController < ApplicationController
   end
 
   def set_filters
-    @categories   = ItemCategory.all
-    @references   = ItemReference.all
-    @owned_items  = current_user.items.order(created_at: :desc)
-    @packed_items = @packed_bag.packed_items.order(created_at: :desc)
+    @categories       = ItemCategory.all
+    @references       = ItemReference.all
+    @owned_items      = current_user.items.order(created_at: :desc)
+    @packed_items     = @packed_bag.packed_items.order(created_at: :desc)
     if params.key?("category")
       if params[:category].to_i > 0
         @references   = @references.where(category_id: params[:category])
         @owned_items  = Item.category(params[:category], current_user)
+        @owned_references = current_user.references.where(category_id: params[:category]).uniq
         @packed_items = PackedItem.packed(params[:category], @packed_bag)
       end
+    end
+    @group = false
+    if params.key?("group") && params[:group] == 'true'
+      @group = true
     end
   end
 end

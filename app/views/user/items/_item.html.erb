@@ -26,13 +26,12 @@
       </div>
       <p data-error='weight' class='input-error'></p>
 
-      <input class="update-item" type="submit" name="commit" value="update" data-disable-with="update">
+      <!-- <input class="update-item" type="submit" name="commit" value="U" data-disable-with="U"> -->
 
     <% end %>
 
-    <%= button_to user_item_path(owned_item, params: { packed_bag: packed_bag.id, category: params[:category], display: params[:display] }), method: :delete, class: 'delete-item' do %>
-      delete
-    <% end %>
+    <%= button_to user_item_path(owned_item, params: { packed_bag: packed_bag.id, category: params[:category], display: params[:display] }), method: :delete, class: 'delete-item' do %><% end %>
+    <div class="delete-item-icon">+</div>
 
     <%= button_to 'pack', user_packed_items_path(params: { item: owned_item.id, packed_bag: packed_bag.id, category: params[:category], display: params[:display] }), method: :post, class: 'pack-item' %>
   </div>
