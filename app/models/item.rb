@@ -36,6 +36,10 @@ class Item < ApplicationRecord
     self.reference.category
   end
 
+  def picture
+    self.reference.picture
+  end
+
   def packed?(packed_bag)
     self.packed_items.where(packed_bag: packed_bag).any?
   end

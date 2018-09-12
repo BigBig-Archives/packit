@@ -1,23 +1,42 @@
-<div class='col-3' data-reference=<%= reference.id %>>
+<div class='col-2' data-reference=<%= reference.id %>>
 
-  <div class="reference-container">
+  <div class="reference-container item-container">
 
-    <%= image_tag image_path("items/#{reference.picture}"), class: 'reference-picture' %>
-    <p class='reference-name'><%= reference.name %></p>
+    <%= image_tag "items/#{reference.picture}", class: 'picture' %>
+    <p class='name'><%= reference.name %></p>
+
+    <div class="line"></div>
 
     <%= simple_form_for [:user, item] do |f| %>
       <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
       <%= f.input :display_filter, as: :hidden, input_html: { value: params[:display] } %>
       <%= f.input :packed_bag, as: :hidden, input_html: { value: packed_bag.id } %>
       <%= f.input :reference, as: :hidden, input_html: { value: reference.id } %>
-      <%= f.input :size, input_html: { value: reference.size } %>
-      <p data-error='size'></p>
-      <%= f.input :weight, input_html: { value: reference.weight } %>
-      <p data-error='weight'></p>
-      <%= f.input :quantity, input_html: { value: 1, type: 'number', min: '0', setp: '1', required: true } %>
-      <p data-error='quantity'></p>
-      <%= f.button :submit, 'create', class: 'button' %>
-      <%= f.button :submit, 'create and pack', class: 'button', name: 'create_and_pack' %>
+
+      <div class="input-with-unit">
+        <input class="numeric integer required" value="<%= reference.size %>", name="item[size]" id="item_size" type="number" step="1" min="0" max="10000" >
+        <div>
+          <span>ml</span>
+        </div>
+      </div>
+      <p data-error='size' class='input-error'></p>
+
+      <div class="input-with-unit">
+        <input class="numeric integer required" value="<%= reference.weight %>", name="item[weight]" id="item_weight" type="number" step="1" min="0" max="20000" >
+        <div>
+          <span>g</span>
+        </div>
+      </div>
+      <p data-error='weight' class='input-error'></p>
+
+      <div class="submit-with-quantity">
+        <input class="numeric integer required" value="1" name="item[quantity]" id="item_quantity" type="number" step="1" min="0" max="9">
+        <input type="submit" name="commit" value="add" data-disable-with="add">
+      </div>
+      <p data-error='quantity' class='input-error'></p>
+
     <% end %>
+
+  </div>
 
 </div>

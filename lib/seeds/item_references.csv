@@ -11,7 +11,7 @@ cap,9442.17,15786.44,cap,clothes
 compass,4061.92,10189.87,compass,tools
 cutlery,806.71,8317.88,cutlery,food
 electronic compass,3543.62,7734.92,electronic_compass,tools
-firt aid kit,7346.82,16653.99,firt_aid_kit,aid
+first aid kit,7346.82,16653.99,first_aid_kit,aid
 fishing rod,4597.36,12664.32,fishing_rod,food
 flashlight,312.30,314.07,flashlight,lightning
 flask,5914.23,12302.37,flask,food
@@ -30,7 +30,7 @@ knife,4076.42,17645.54,knife,tools
 lantern,3393.74,6569.51,lantern,lightning
 large tent,3522.22,534.95,large_tent,bedtime
 life vest,1621.88,11455.56,life_vest,sport
-lifebuoi,5882.83,914.40,lifebuoi,sport
+lifebuoy,5882.83,914.40,lifebuoy,sport
 lifejacket,7812.84,15294.67,lifejacket,sport
 light tent,4957.36,12653.55,light_tent,bedtime
 lighter,2234.62,4721.78,lighter,tools
@@ -38,7 +38,7 @@ magnifying glass,4266.07,11318.00,magnifying_glass,tools
 map,1262.46,2729.75,map,tools
 marshmallow pick,6494.02,12627.46,marshmallow_pick,food
 matches,9843.59,9550.12,matches,tools
-mobile,4031.98,18951.47,mobile,devices
+mobile phone,4031.98,18951.47,mobile_phone,devices
 novel,3842.27,5556.09,novel,hobbies
 oil lamp,3983.84,12988.56,oil_lamp,lightning
 passport,4467.65,15265.25,passport,papers
@@ -60,5 +60,5 @@ thermo,3418.56,11974.33,thermo,food
 toilet paper,2449.43,6466.75,toilet_paper,miscellaneous
 torch,1669.30,6207.82,torch,lightning
 walkie-talkie,1047.34,12481.93,walkie-talkie,devices
-woolly hat,1544.63,13323.77,woolly hat,clothes
+woolly hat,1544.63,13323.77,woolly_hat,clothes
 wristwatch,8442.01,17064.12,wristwatch,clothes

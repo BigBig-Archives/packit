@@ -31,4 +31,8 @@ class PackedItem < ApplicationRecord
   def catefory
     self.item.category
   end
+
+  def picture
+    self.item.picture
+  end
 end
