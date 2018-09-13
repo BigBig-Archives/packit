@@ -20,7 +20,7 @@
             <%= f.input :item, as: :hidden, input_html: { value: remaining_items.first.id } %>
             <%= f.input :reference, as: :hidden, input_html: { value: reference.id } %>
             <div class="submit-with-quantity">
-              <input class="numeric integer required" value="1" name="packed_item[quantity]" id="packed_item_quantity" type="number" step="1" min="0" max="<%= current_user.reference_count(reference) - packed_bag.packed_reference_count(reference) %>">
+              <input class="numeric integer required" value="1" name="packed_item[quantity]" id="packed_item_quantity" type="number" step="1" min="1" max="<%= current_user.reference_count(reference) - packed_bag.packed_reference_count(reference) %>">
               <input type="submit" name="commit" value="pack" data-disable-with="pack">
             </div>
             <p data-error='quantity' class='input-error'></p>
@@ -41,7 +41,7 @@
           <%= f.input :group_filter, as: :hidden, input_html: { value: params[:group] } %>
           <%= f.input :packed_bag, as: :hidden, input_html: { value: packed_bag.id } %>
           <div class="submit-with-quantity">
-            <input class="numeric integer required" value="1" name="packed_item[quantity]" id="packed_item_quantity" type="number" step="1" min="0" max="<%= packed_bag.packed_reference_count(reference) %>">
+            <input class="numeric integer required" value="1" name="packed_item[quantity]" id="packed_item_quantity" type="number" step="1" min="1" max="<%= packed_bag.packed_reference_count(reference) %>">
             <input type="submit" name="commit" value="unpack" data-disable-with="unpack">
           </div>
           <p data-error='quantity' class='input-error'></p>

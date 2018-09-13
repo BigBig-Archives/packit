@@ -63,9 +63,15 @@
     <% if card == 'item' %>
       <%= button_to user_item_path(item, params: { packed_bag: packed_bag.id, category: params[:category], display: params[:display] }), method: :delete, class: 'delete-item' do %><div class="delete-item-icon">+</div><% end %>
       <%= button_to 'pack', user_packed_items_path(params: { item: item.id, packed_bag: packed_bag.id, category: params[:category], display: params[:display] }), method: :post, class: 'pack-item' %>
-
-    <% elsif card == 'packed_item' %>
-      <%= button_to 'unpack', user_packed_item_path(item, params: { category: params[:category], display: params[:display] }), method: :delete, class: 'unpack-item' %>
+    <% else %>
+      <%= simple_form_for [:user, item] do |f| %>
+        <%= f.input :pack_all, as: :hidden, input_html: { value: false } %>
+        <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
+        <%= f.input :display_filter, as: :hidden, input_html: { value: params[:display] } %>
+        <%= f.input :group_filter, as: :hidden, input_html: { value: params[:group] } %>
+        <%= f.input :packed_bag, as: :hidden, input_html: { value: packed_bag.id } %>
+        <input type="submit" name="commit" value="unpack" data-disable-with="unpack">
+      <% end %>
     <% end %>
   </div>
 </div>
