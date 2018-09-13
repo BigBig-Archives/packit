@@ -1,14 +1,50 @@
-.item-container {
+.items-to-bottom {
+    align-self: flex-end;
+}
 
-  position: relative;
-  background-color: white;
+.item-container,
+.item-container-behind {
+  width: $p152;
   border: solid $p1 lighten($gray, 70%);
+}
+
+.item-container {
+  background-color: white;
+  position: relative;
   padding: $p16;
   text-align: center;
   margin: ($p16 - $p2) 0;
 
+  .item-container-behind {
+    height: $p208 - $p2;
+    background-color: $light-gray;
+    position: absolute;
+    background-color: white;
+    border: solid $p1 lighten($gray, 70%);
+    &:nth-of-type(1) {
+      transform: rotate(1deg);
+      z-index: -1;
+      top: $p1;
+      left: $p2;
+    }
+    &:nth-of-type(2) {
+      transform: rotate(2deg);
+      z-index: -2;
+      top: $p2;
+      left: $p4;
+    }
+  }
+
   .space {
     height: $p16;
+  }
+
+  .half-space {
+    height: $p8;
+  }
+
+  .large-space {
+    height: $p48;
   }
 
   .picture {
@@ -29,6 +65,21 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .reference-count,
+  .reference-count-small {
+    font-size: $p16;
+    color: lighten($gray, 40%);
+  }
+
+  .reference-count {
+    margin: ($p4 + $p2) auto;
+  }
+
+  .reference-count-small {
+    margin-top: ($p4 + $p2);
+    margin-bottom: -($p8 + $p2)
   }
 
   .more {
@@ -88,13 +139,12 @@
 
   .submit-with-quantity {
     display: flex;
-    input {
-      flex: 1;
-    }
     input:first-child {
+      flex: 2;
       margin-right: $p1;
     }
     input:last-child {
+      flex: 3;
       margin-left: $p1;
     }
   }
@@ -119,4 +169,8 @@
     background-color: $orange;
   }
 
+}
+
+.empty-reference {
+  background-color: darken($light-gray, 2%);
 }

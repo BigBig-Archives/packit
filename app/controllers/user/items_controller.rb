@@ -1,5 +1,5 @@
 class User::ItemsController < ApplicationController
-  before_action :set_item, only: %i[show update destroy]
+  before_action :set_item, only: %i[update destroy]
   before_action :set_reference, only: %i[create]
   before_action :set_packed_bag, only: %i[create update destroy]
   before_action :set_filters
@@ -68,6 +68,14 @@ class User::ItemsController < ApplicationController
   end
 
   def destroy
+    if params.key?(:destroy_all) && params[:destroy_all] == 'true'
+      destroy_all
+    else
+      destroy_one
+    end
+  end
+
+  def destroy_one
     if @item.destroy
       respond_to do |format|
         format.html { redirect_to user_packed_bag_path(@packed_bag,
@@ -77,6 +85,25 @@ class User::ItemsController < ApplicationController
       end
     else
       flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
+      respond_to do |format|
+        format.html { render 'user/packed_bag/show' }
+        format.js { }
+      end
+    end
+  end
+
+  def destroy_all
+    @reference = @item.reference
+    @count     = @reference.items.select { |item| item.user == current_user }.count
+    if Item.where(reference: @reference, user: current_user).destroy_all
+      respond_to do |format|
+        format.html { redirect_to user_packed_bag_path(@packed_bag,
+          category: @filter_on_category, direction: @filter_on_direction, group: @filter_on_group),
+          notice:   "#{@count} #{@count > 1 ? @reference.name.pluralize : @reference.name} have been destroyed." }
+        format.js { }
+      end
+    else
+      flash[:alert] = 'Error: ' << 'Something went wrong'
       respond_to do |format|
         format.html { render 'user/packed_bag/show' }
         format.js { }

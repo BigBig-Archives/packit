@@ -62,16 +62,7 @@
       <% end %>
       <div class="container">
         <div class="row items-displayed">
-          <% if params.key?(:group) && params[:group] == 'true' %>
-            <% @owned_references.each do |owned_reference| %>
-              <%= render 'user/packed_bags/cards/items_group',
-                direction:   'pack',
-                packed_bag:  @packed_bag,
-                reference:   owned_reference,
-                packed_item: @packed_item
-              %>
-            <% end %>
-          <% else %>
+          <% if params.key?(:group) && params[:group] == 'false' %>
             <% @owned_items.each do |owned_item| %>
               <% unless owned_item.packed?(@packed_bag) %>
                 <%= render 'user/packed_bags/cards/item',
@@ -81,6 +72,15 @@
                   item:       owned_item
                 %>
               <% end %>
+            <% end %>
+          <% else %>
+            <% @owned_references.each do |owned_reference| %>
+              <%= render 'user/packed_bags/cards/items_group',
+                direction:   'pack',
+                packed_bag:  @packed_bag,
+                reference:   owned_reference,
+                packed_item: @packed_item
+              %>
             <% end %>
           <% end %>
         </div>
@@ -98,22 +98,22 @@
       <% end %>
       <div class="container">
         <div class="row items-displayed">
-          <% if params.key?(:group) && params[:group] == 'true' %>
-            <% @owned_references.each do |owned_reference| %>
-              <%= render 'user/packed_bags/cards/items_group',
-                direction:   'create',
-                packed_bag:  @packed_bag,
-                reference:   owned_reference,
-                packed_item: @packed_item
-              %>
-            <% end %>
-          <% else %>
+          <% if params.key?(:group) && params[:group] == 'false' %>
             <% @owned_items.each do |owned_item| %>
               <%= render 'user/packed_bags/cards/item',
                 direction:  'create',
                 card:       'item',
                 packed_bag: @packed_bag,
                 item:       owned_item
+              %>
+            <% end %>
+          <% else %>
+            <% @owned_references.each do |owned_reference| %>
+              <%= render 'user/packed_bags/cards/items_group',
+                direction:   'create',
+                packed_bag:  @packed_bag,
+                reference:   owned_reference,
+                packed_item: @packed_item
               %>
             <% end %>
           <% end %>
@@ -137,19 +137,19 @@
       <% end %>
       <div class="container">
         <div class="row items-displayed">
-          <% if params.key?(:group) && params[:group] == 'true' %>
-            <% @packed_references.each do |packed_reference| %>
-              <%= render 'user/packed_bags/cards/packed_items_group',
-                packed_bag:  @packed_bag,
-                reference:   packed_reference
-              %>
-            <% end %>
-          <% else %>
+          <% if params.key?(:group) && params[:group] == 'false' %>
             <% @packed_items.each do |packed_item| %>
               <%= render 'user/packed_bags/cards/item',
                 card:       'packed_item',
                 packed_bag: @packed_bag,
                 item:       packed_item
+              %>
+            <% end %>
+          <% else %>
+            <% @packed_references.each do |packed_reference| %>
+              <%= render 'user/packed_bags/cards/packed_items_group',
+                packed_bag:  @packed_bag,
+                reference:   packed_reference
               %>
             <% end %>
           <% end %>
