@@ -31,7 +31,7 @@ class PackedBag < ApplicationRecord
   end
 
   def loaded
-    (self.load / self.capacity.to_f).round(2)
+    (self.load / self.capacity).round(2)
   end
 
   def packed_reference_count(reference_to_count)

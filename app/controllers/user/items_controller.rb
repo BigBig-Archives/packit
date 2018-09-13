@@ -28,12 +28,16 @@ class User::ItemsController < ApplicationController
         end
       end
       respond_to do |format|
-        format.html { redirect_to user_packed_bag_path(@packed_bag, category: params[:item][:category_filter], display: params[:item][:display_filter]), notice: 'Item created.' }
+        format.html { redirect_to user_packed_bag_path(@packed_bag,
+          category: params[:item][:category_filter],
+          display: params[:item][:display_filter],
+          group: params[:item][:group_filter]),
+          notice: 'Item created.' }
         format.js { }
       end
     else
-      if params[:item][:quantity].to_i > 9
-        @item.errors.add(:quantity, "You can create maximum 9 items in a row")
+      if params[:item][:quantity].to_i > 30
+        @item.errors.add(:quantity, "You can create maximum 30 items in a row")
       end
       @packed_item  = PackedItem.new
       set_filters
@@ -48,7 +52,11 @@ class User::ItemsController < ApplicationController
   def update
     if @item.update(item_params)
       respond_to do |format|
-        format.html { redirect_to user_packed_bag_path(@packed_bag, category: params[:item][:category_filter], display: params[:item][:display_filter]), notice: 'Item updated.' }
+        format.html { redirect_to user_packed_bag_path(@packed_bag,
+          category: params[:item][:category_filter],
+          display:  params[:item][:display_filter],
+          group:    params[:item][:group_filter]),
+          notice:   'Item updated.'}
         format.js { }
       end
     else
@@ -65,7 +73,11 @@ class User::ItemsController < ApplicationController
   def destroy
     if @item.destroy
       respond_to do |format|
-        format.html { redirect_to user_packed_bag_path(@packed_bag, category: params[:category], display: params[:display]), notice: 'Item destroyed.' }
+        format.html { redirect_to user_packed_bag_path(@packed_bag,
+          category: params[:category],
+          display:  params[:display],
+          group:    params[:group]),
+          notice:   'Item destroyed.' }
         format.js { }
       end
     else

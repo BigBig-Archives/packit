@@ -7,7 +7,8 @@
     <div class="container">
       <div class="row items-displayed">
         <% references.each do |reference| %>
-          <%= render 'item_references/reference',
+          <%= render 'shared/item',
+            card:       'reference',
             packed_bag: packed_bag,
             reference:  reference,
             item:       item
@@ -23,19 +24,20 @@
       <div class="row items-displayed">
         <% if group %>
           <% owned_references.each do |owned_reference| %>
-            <%= render 'user/items/items_group',
-              packed_bag:      packed_bag,
-              owned_reference: owned_reference,
-              packed_item:     packed_item
+            <%= render 'shared/items_group',
+              card:        'item',
+              packed_bag:  packed_bag,
+              reference:   owned_reference,
+              packed_item: packed_item
             %>
           <% end %>
         <% else %>
           <% owned_items.each do |owned_item| %>
             <% unless owned_item.packed?(packed_bag) %>
-              <%= render 'user/items/item',
-                packed_bag:  packed_bag,
-                owned_item:  owned_item,
-                packed_item: packed_item
+              <%= render 'shared/item',
+                card:       'item',
+                packed_bag: packed_bag,
+                item:       owned_item
               %>
             <% end %>
           <% end %>
@@ -54,18 +56,19 @@
       <div class="row items-displayed">
         <% if group %>
           <% owned_references.each do |owned_reference| %>
-            <%= render 'user/items/items_group',
-              packed_bag:      packed_bag,
-              owned_reference: owned_reference,
-              packed_item:     packed_item
+            <%= render 'shared/items_group',
+              card:        'packed_item',
+              packed_bag:  packed_bag,
+              reference:   owned_reference,
+              packed_item: packed_item
             %>
           <% end %>
         <% else %>
           <% owned_items.each do |owned_item| %>
-            <%= render 'user/items/item',
-              packed_bag:  packed_bag,
-              owned_item:  owned_item,
-              packed_item: packed_item
+            <%= render 'shared/item',
+              card:       'item',
+              packed_bag: packed_bag,
+              item:       owned_item
             %>
           <% end %>
         <% end %>
@@ -79,16 +82,19 @@
       <div class="row items-displayed">
         <% if group %>
           <% packed_references.each do |packed_reference| %>
-            <%= render 'user/packed_items/packed_items_group',
-              packed_bag:       packed_bag,
-              packed_reference: packed_reference
+            <%= render 'shared/items_group',
+              card:        'packed_item',
+              packed_bag:  packed_bag,
+              reference:   packed_reference,
+              item:        packed_item
             %>
           <% end %>
         <% else %>
           <% packed_items.each do |packed_item| %>
-            <%= render 'user/packed_items/packed_item',
-              packed_bag:  packed_bag,
-              packed_item: packed_item
+            <%= render 'shared/item',
+              card:       'packed_item',
+              packed_bag: packed_bag,
+              item:       packed_item
             %>
           <% end %>
         <% end %>

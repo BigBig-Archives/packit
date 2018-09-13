@@ -1,0 +1,53 @@
+<div class='col-4' data-item=<%= reference.id %>>
+  <div class="item-container">
+    <%= image_tag "items/#{reference.picture}", class: 'picture' %>
+    <p class='name'><%= reference.name %></p>
+    <p>
+
+      <% if card == 'item' %>
+        <span><%= current_user.reference_count(reference) - packed_bag.packed_reference_count(reference) %></span>
+        <span> / </span>
+        <span><%= current_user.reference_count(reference) %></span>
+
+        <% remaining_items = reference.unpacked_items(current_user, packed_bag) %>
+        <% unless remaining_items.empty? %>
+          <%= simple_form_for [:user, packed_item] do |f| %>
+            <%= f.input :pack_all, as: :hidden, input_html: { value: true } %>
+            <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
+            <%= f.input :display_filter, as: :hidden, input_html: { value: params[:display] } %>
+            <%= f.input :group_filter, as: :hidden, input_html: { value: params[:group] } %>
+            <%= f.input :packed_bag, as: :hidden, input_html: { value: packed_bag.id } %>
+            <%= f.input :item, as: :hidden, input_html: { value: remaining_items.first.id } %>
+            <%= f.input :reference, as: :hidden, input_html: { value: reference.id } %>
+            <div class="submit-with-quantity">
+              <input class="numeric integer required" value="1" name="packed_item[quantity]" id="packed_item_quantity" type="number" step="1" min="0" max="<%= current_user.reference_count(reference) - packed_bag.packed_reference_count(reference) %>">
+              <input type="submit" name="commit" value="pack" data-disable-with="pack">
+            </div>
+            <p data-error='quantity' class='input-error'></p>
+          <% end %>
+        <% end %>
+
+      <% elsif card == 'packed_item' %>
+        <span><%= packed_bag.packed_reference_count(reference) %></span>
+        <span> / </span>
+        <span><%= current_user.reference_count(reference) %></span>
+
+        <% packed_item = reference.packed_items.select { |packed_item| packed_item.packed_bag == packed_bag }.first %>
+
+        <%= simple_form_for [:user, packed_item] do |f| %>
+          <%= f.input :pack_all, as: :hidden, input_html: { value: true } %>
+          <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
+          <%= f.input :display_filter, as: :hidden, input_html: { value: params[:display] } %>
+          <%= f.input :group_filter, as: :hidden, input_html: { value: params[:group] } %>
+          <%= f.input :packed_bag, as: :hidden, input_html: { value: packed_bag.id } %>
+          <div class="submit-with-quantity">
+            <input class="numeric integer required" value="1" name="packed_item[quantity]" id="packed_item_quantity" type="number" step="1" min="0" max="<%= packed_bag.packed_reference_count(reference) %>">
+            <input type="submit" name="commit" value="unpack" data-disable-with="unpack">
+          </div>
+          <p data-error='quantity' class='input-error'></p>
+        <% end %>
+
+      <% end %>
+    </p>
+  </div>
+</div>

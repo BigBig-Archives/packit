@@ -4,7 +4,7 @@
     <%= f.input :journey, as: :hidden, input_html: { value: journey.id } %>
     <%= f.input :name, input_html: { value: template.name } %>
     <p data-error="name"></p>
-    <%= f.input :capacity, input_html: { value: template.capacity } %>
+    <%= f.input :capacity, input_html: { value: template.capacity.round, min: '0',  max: '99', step: '1' } %>
     <p data-error="capacity"></p>
     <%= f.button :submit, class: "button" %>
   <% end %>

@@ -22,8 +22,8 @@ class Item < ApplicationRecord
 
   # VALIDATIONS
 
-  validates :size, presence: true, inclusion: { in: (0..10_000).to_a, message: "should be between 0 and 10 000ml" }, allow_nil: true
-  validates :weight, presence: true, inclusion: { in: (0..20_000).to_a, message: "should be between 0 and 20 000g" }, allow_nil: true
+  validates :size, numericality: { greater_than: 0, less_than_or_equal_to: 99.99 }
+  validates :weight, numericality: { greater_than: 0, less_than_or_equal_to: 99.99 }
 
   # CALLBACKS
 

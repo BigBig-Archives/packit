@@ -15,6 +15,10 @@ class PackedItem < ApplicationRecord
     .order(created_at: :desc)
   }
 
+  # VALIDATIONS
+
+  validates :item, uniqueness: { scope: :packed_bag, message: "should not be already packed" }
+
   # METHODS
 
   def name

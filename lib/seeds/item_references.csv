@@ -1,64 +1,64 @@
 name,size,weight,picture,category
-arrow,4488.16,16770.14,arrow,food
-axe,8877.09,13980.34,axe,tools
-badminton racket,7995.12,16924.84,badminton_racket,sport
-band aid,4694.76,10532.34,band_aid,aid
-basket,4431.88,1929.92,basket,sport
-beach ball,3621.40,5546.62,beach_ball,sport
-binoculars,4891.84,6981.00,binoculars,tools
-canteen,9848.58,19143.12,canteen,food
-cap,9442.17,15786.44,cap,clothes
-compass,4061.92,10189.87,compass,tools
-cutlery,806.71,8317.88,cutlery,food
-electronic compass,3543.62,7734.92,electronic_compass,tools
-first aid kit,7346.82,16653.99,first_aid_kit,aid
-fishing rod,4597.36,12664.32,fishing_rod,food
-flashlight,312.30,314.07,flashlight,lightning
-flask,5914.23,12302.37,flask,food
-gas,1586.28,4272.02,gas,food
-gps,3322.45,8499.51,gps,tools
-grill,7718.70,13873.52,grill,food
-guitar,7191.69,1121.03,guitar,hobbies
-hikking shoes,8457.53,1578.31,hikking_shoes,clothes
-indian tent,5595.04,7788.54,indian_tent,bedtime
-inflatable boat,7973.71,19857.12,inflatable_boat,sport
-karabiner,8916.80,9566.93,karabiner,tools
-kayak,6272.51,13142.63,kayak,sport
-kayak paddle,4183.21,11150.00,kayak_paddle,sport
-kite,3018.61,18380.08,kite,hobbies
-knife,4076.42,17645.54,knife,tools
-lantern,3393.74,6569.51,lantern,lightning
-large tent,3522.22,534.95,large_tent,bedtime
-life vest,1621.88,11455.56,life_vest,sport
-lifebuoy,5882.83,914.40,lifebuoy,sport
-lifejacket,7812.84,15294.67,lifejacket,sport
-light tent,4957.36,12653.55,light_tent,bedtime
-lighter,2234.62,4721.78,lighter,tools
-magnifying glass,4266.07,11318.00,magnifying_glass,tools
-map,1262.46,2729.75,map,tools
-marshmallow pick,6494.02,12627.46,marshmallow_pick,food
-matches,9843.59,9550.12,matches,tools
-mobile phone,4031.98,18951.47,mobile_phone,devices
-novel,3842.27,5556.09,novel,hobbies
-oil lamp,3983.84,12988.56,oil_lamp,lightning
-passport,4467.65,15265.25,passport,papers
-picnic table,8754.39,14044.69,picnic_table,miscellaneous
-pill,6137.11,3102.08,pill,aid
-portable compass,6387.46,4221.06,portable_compass,tools
-pyjamas,8591.09,8786.83,pyjamas,bedtime
-rifle,3193.92,19340.99,rifle,food
-rope,3850.27,13049.81,rope,tools
-shovel,4890.48,2590.12,shovel,tools
-small tent,1464.50,17613.81,small_tent,bedtime
-smartphone,3741.20,19174.16,smartphone,devices
-stool,5286.55,12209.84,stool,miscellaneous
-survival book,920.50,10846.51,survival_book,hobbies
-swiss army knife,1611.65,13774.43,swiss_army_knife,tools
-tablet,2156.51,1817.54,tablet,devices
-tent,5541.80,3303.91,tent,bedtime
-thermo,3418.56,11974.33,thermo,food
-toilet paper,2449.43,6466.75,toilet_paper,miscellaneous
-torch,1669.30,6207.82,torch,lightning
-walkie-talkie,1047.34,12481.93,walkie-talkie,devices
-woolly hat,1544.63,13323.77,woolly_hat,clothes
-wristwatch,8442.01,17064.12,wristwatch,clothes
+arrow,03.01,75.45,arrow,food
+axe,87.14,76.84,axe,tools
+badminton racket,78.93,26.67,badminton_racket,sport
+band aid,50.53,81.60,band_aid,aid
+basket,30.85,82.34,basket,sport
+beach ball,62.97,86.18,beach_ball,sport
+binoculars,63.54,71.87,binoculars,tools
+canteen,18.29,30.26,canteen,food
+cap,87.41,57.03,cap,clothes
+compass,73.01,42.83,compass,tools
+cutlery,09.07,45.24,cutlery,food
+electronic compass,25.30,42.06,electronic_compass,tools
+first aid kit,48.51,33.30,first_aid_kit,aid
+fishing rod,94.53,52.16,fishing_rod,food
+flashlight,80.06,0.42,flashlight,lightning
+flask,64.02,69.92,flask,food
+gas,53.73,57.06,gas,food
+gps,89.40,66.12,gps,tools
+grill,31.72,37.58,grill,food
+guitar,47.02,12.60,guitar,hobbies
+hikking shoes,54.47,52.09,hikking_shoes,clothes
+indian tent,49.12,50.39,indian_tent,bedtime
+inflatable boat,0.30,75.96,inflatable_boat,sport
+karabiner,13.56,77.07,karabiner,tools
+kayak,1.17,27.68,kayak,sport
+kayak paddle,53.49,94.24,kayak_paddle,sport
+kite,51.88,87.44,kite,hobbies
+knife,6.47,92.25,knife,tools
+lantern,33.08,80.69,lantern,lightning
+large tent,9.29,70.63,large_tent,bedtime
+life vest,43.13,58.33,life_vest,sport
+lifebuoy,90.32,67.03,lifebuoy,sport
+lifejacket,58.09,65.82,lifejacket,sport
+light tent,46.86,62.82,light_tent,bedtime
+lighter,85.20,60.40,lighter,tools
+magnifying glass,15.91,53.21,magnifying_glass,tools
+map,16.39,20.25,map,tools
+marshmallow pick,3.43,26.41,marshmallow_pick,food
+matches,45.72,44.65,matches,tools
+mobile phone,41.54,71.65,mobile_phone,devices
+novel,67.20,77.71,novel,hobbies
+oil lamp,10.71,51.63,oil_lamp,lightning
+passport,13.57,85.33,passport,papers
+picnic table,89.71,92.69,picnic_table,miscellaneous
+pill,61.74,17.77,pill,aid
+portable compass,70.88,41.25,portable_compass,tools
+pyjamas,12.88,44.45,pyjamas,bedtime
+rifle,86.00,86.93,rifle,food
+rope,66.10,6.92,rope,tools
+shovel,94.23,20.41,shovel,tools
+small tent,49.54,27.54,small_tent,bedtime
+smartphone,94.51,87.62,smartphone,devices
+stool,59.74,53.78,stool,miscellaneous
+survival book,14.94,42.33,survival_book,hobbies
+swiss army knife,13.99,56.39,swiss_army_knife,tools
+tablet,76.98,33.35,tablet,devices
+tent,28.88,81.28,tent,bedtime
+thermo,22.69,64.68,thermo,food
+toilet paper,78.19,82.35,toilet_paper,miscellaneous
+torch,18.44,74.94,torch,lightning
+walkie-talkie,15.85,68.91,walkie-talkie,devices
+woolly hat,81.35,96.98,woolly_hat,clothes
+wristwatch,71.07,3.00,wristwatch,clothes
