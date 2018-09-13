@@ -22,7 +22,7 @@
     <div class="line"></div>
 
     <%= simple_form_for [:user, item_form] do |f| %>
-      <%= f.input :pack_all, as: :hidden, input_html: { value: false } %>
+      <%= f.input :pack_many, as: :hidden, input_html: { value: false } %>
       <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
       <%= f.input :direction_filter, as: :hidden, input_html: { value: params[:direction] } %>
       <%= f.input :group_filter, as: :hidden, input_html: { value: params[:group] } %>
@@ -79,7 +79,7 @@
 
     <% if card == 'packed_item' %>
       <%= simple_form_for [:user, item] do |f| %>
-        <%= f.input :pack_all, as: :hidden, input_html: { value: false } %>
+        <%= f.input :pack_many, as: :hidden, input_html: { value: false } %>
         <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
         <%= f.input :direction_filter, as: :hidden, input_html: { value: params[:direction] } %>
         <%= f.input :group_filter, as: :hidden, input_html: { value: params[:group] } %>

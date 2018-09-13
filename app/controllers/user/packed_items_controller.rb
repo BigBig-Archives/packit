@@ -2,11 +2,39 @@ class User::PackedItemsController < ApplicationController
   before_action :set_filters
 
   def create
-    params.key?(:packed_item) && params[:packed_item][:pack_all] == 'true' ? pack_many : pack_one
+    if params.key?(:pack_all) && params[:pack_all] == 'true'
+      pack_all
+    elsif params.key?(:packed_item) && params[:packed_item][:pack_many] == 'true'
+      pack_many
+    else
+      pack_one
+    end
   end
 
   def update
-    params.key?(:packed_item) && params[:packed_item][:pack_all] == 'true' ? unpack_many : unpack_one
+    params.key?(:packed_item) && params[:packed_item][:pack_many] == 'true' ? unpack_many : unpack_one
+  end
+
+  def destroy
+    set_packed_bag # @packed_bag
+    count = @packed_bag.packed_items.count
+    if @packed_bag.packed_items.destroy_all
+      respond_to do |format|
+        format.html { redirect_to user_packed_bag_path(@packed_bag,
+          category: @filter_on_category, direction: @filter_on_direction, group: @filter_on_group),
+          notice: "All the #{count} items have been unpacked from the bag" }
+        format.js {  }
+      end
+    else
+      flash[:alert] = 'Error: ' << 'Something went wrong'
+      @packed_item  = PackedItem.new
+      @item         = Item.new
+      filter
+      respond_to do |format|
+        format.html { render 'user/packed_bags/show' }
+        format.js {  }
+      end
+    end
   end
 
   private
@@ -72,6 +100,36 @@ class User::PackedItemsController < ApplicationController
     end
   end
 
+  def pack_all
+    set_packed_bag # @packed_bag
+    current_user.items.each do |item|
+      unless item.packed?(@packed_bag)
+        @packed_item = PackedItem.new(
+          item:       item,
+          packed_bag: @packed_bag
+        )
+        @packed_item.save
+      end
+    end
+    if current_user.items.count == @packed_bag.packed_items.count
+      respond_to do |format|
+        format.html { redirect_to user_packed_bag_path(@packed_bag,
+          category: @filter_on_category, direction: @filter_on_direction, group: @filter_on_group),
+          notice: "#{current_user.items.count} items have been packed" }
+        format.js { }
+      end
+    else
+      flash[:alert] = 'Error: ' << 'Something went wrong'
+      @packed_item  = PackedItem.new
+      @item         = Item.new
+      filter
+      respond_to do |format|
+        format.html { render 'user/packed_bags/show' }
+        format.js { }
+      end
+    end
+  end
+
   def unpack_one
     set_packed_item # @packed_item
     @packed_bag = @packed_item.packed_bag
@@ -113,7 +171,7 @@ class User::PackedItemsController < ApplicationController
         format.html { redirect_to user_packed_bag_path(@packed_bag,
           category: @filter_on_category, direction: @filter_on_direction, group: @filter_on_group),
           notice: "#{@quantity} #{@quantity > 1 ? @packed_item.name.pluralize : @packed_item.name} have been unpacked from the bag" }
-        format.js { render '' }
+        format.js {  }
       end
     else
       flash[:alert] = 'Error: ' << "You can't unpack more #{@packed_item.name.pluralize} than you have packed (#{packed_items.count})"
@@ -122,7 +180,7 @@ class User::PackedItemsController < ApplicationController
       filter
       respond_to do |format|
         format.html { render 'user/packed_bags/show' }
-        format.js { render '' }
+        format.js {  }
       end
     end
   end
@@ -132,7 +190,11 @@ class User::PackedItemsController < ApplicationController
   end
 
   def set_packed_bag
-    @packed_bag = PackedBag.find(params[:packed_item][:packed_bag])
+    if params.key?(:packed_item)
+      @packed_bag = PackedBag.find(params[:packed_item][:packed_bag])
+    else
+      @packed_bag = PackedBag.find(params[:packed_bag])
+    end
   end
 
   def set_quantity

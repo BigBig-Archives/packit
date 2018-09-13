@@ -16,7 +16,7 @@
     <% remaining_items = reference.unpacked_items(current_user, packed_bag) %>
     <% unless remaining_items.empty? %>
       <%= simple_form_for [:user, packed_item] do |f| %>
-        <%= f.input :pack_all, as: :hidden, input_html: { value: true } %>
+        <%= f.input :pack_many, as: :hidden, input_html: { value: true } %>
         <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
         <%= f.input :display_filter, as: :hidden, input_html: { value: params[:display] } %>
         <%= f.input :group_filter, as: :hidden, input_html: { value: params[:group] } %>

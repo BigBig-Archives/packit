@@ -56,6 +56,13 @@
       </div>
     <% elsif params[:direction] == 'pack' %>
       <p>Here are all you owned items not already packed</p>
+      <%= button_to 'pack all', user_packed_items_path(params: {
+        pack_all:   'true',
+        packed_bag: @packed_bag,
+        category:   params[:category],
+        direction:  params[:direction],
+        group:      params[:group]
+      }), method: :post, class: 'pack-all-items' %>
       <div class="container">
         <div class="row items-displayed">
           <% if params.key?(:group) && params[:group] == 'true' %>
@@ -110,6 +117,13 @@
       </div>
     <% elsif params[:direction] == 'pack' %>
       <p>Here are all your items packed into the bag</p>
+      <%= button_to 'unpack all', user_packed_item_path(params: {
+        unpack_all: 'true',
+        packed_bag: @packed_bag,
+        category:   params[:category],
+        direction:  params[:direction],
+        group:      params[:group]
+      }), method: :delete, class: 'pack-all-items' %>
         <div class="container">
           <div class="row items-displayed">
             <% if params.key?(:group) && params[:group] == 'true' %>

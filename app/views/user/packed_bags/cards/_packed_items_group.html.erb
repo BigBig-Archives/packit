@@ -12,7 +12,7 @@
     <% unless reference.packed_items.empty? %>
       <% packed_item = reference.packed_items.select { |packed_item| packed_item.packed_bag == packed_bag }.first %>
       <%= simple_form_for [:user, packed_item] do |f| %>
-        <%= f.input :pack_all, as: :hidden, input_html: { value: true } %>
+        <%= f.input :unpack_many, as: :hidden, input_html: { value: true } %>
         <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
         <%= f.input :display_filter, as: :hidden, input_html: { value: params[:display] } %>
         <%= f.input :group_filter, as: :hidden, input_html: { value: params[:group] } %>
