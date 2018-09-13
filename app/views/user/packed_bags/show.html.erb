@@ -8,26 +8,142 @@
 
 <hr>
 
-<%= render 'user/packed_bags/filter_by_category',
+<%= render 'user/packed_bags/filters/category',
   categories: @categories
 %>
 
 <hr>
 
-<%= render 'user/packed_bags/display_toggle' %>
+<%= render 'user/packed_bags/filters/direction' %>
 
 <hr>
 
-<div id="displayed-items">
-  <%= render 'user/packed_bags/displayed_items',
-    packed_bag:   @packed_bag,
-    references:   @references,
-    owned_items:  @owned_items,
-    packed_items: @packed_items,
-    display:      params[:display],
-    item:         @item,
-    packed_item:  @packed_item
-  %>
+<%= render 'user/packed_bags/filters/group' %>
+
+<hr>
+
+<!-- REFERENCES TO ITEMS -->
+
+ <!-- +----------------+----------------+
+      |                |                |
+      |   references   |      items     |
+      |                |                |
+      +----------------+----------------+ -->
+
+<!-- ITEMS TO PACKED ITEMS -->
+
+ <!-- +----------------+----------------+
+      |                |                |
+      |      items     |  packed_items  |
+      |                |                |
+      +----------------+----------------+ -->
+
+<div id="packed-bag-wrapper">
+  <div id="displayed-items-left">
+    <% if params.key?(:direction) == false || params[:direction].blank? || params[:direction] == 'create' %>
+      <p>Here are all the items you can create</p>
+      <div class="container">
+        <div class="row items-displayed">
+          <% @references.each do |reference| %>
+            <%= render 'user/packed_bags/cards/item',
+              card:       'reference',
+              packed_bag: @packed_bag,
+              reference:  reference,
+              item:       @item
+            %>
+          <% end %>
+        </div>
+      </div>
+    <% elsif params[:direction] == 'pack' %>
+      <p>Here are all you owned items not already packed</p>
+      <%= button_to 'pack all', user_packed_items_path(params: {
+        pack_all:   'true',
+        packed_bag: @packed_bag,
+        category:   params[:category],
+        direction:  params[:direction],
+        group:      params[:group]
+      }), method: :post, class: 'pack-all-items' %>
+      <div class="container">
+        <div class="row items-displayed">
+          <% if params.key?(:group) && params[:group] == 'true' %>
+            <% @owned_references.each do |owned_reference| %>
+              <%= render 'user/packed_bags/cards/items_group',
+                direction:   'items_to_packed_items',
+                packed_bag:  @packed_bag,
+                reference:   owned_reference,
+                packed_item: @packed_item
+              %>
+            <% end %>
+          <% else %>
+            <% @owned_items.each do |owned_item| %>
+              <% unless owned_item.packed?(@packed_bag) %>
+                <%= render 'user/packed_bags/cards/item',
+                  card:       'item',
+                  packed_bag: @packed_bag,
+                  item:       owned_item
+                %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="wrapper-separator"></div>
+  <div id="displayed-items-right">
+    <% if params.key?(:direction) == false || params[:direction].blank? || params[:direction] == 'create' %>
+      <p>Here are all you owned items</p>
+      <div class="container">
+        <div class="row items-displayed">
+          <% if params.key?(:group) && params[:group] == 'true' %>
+            <% @owned_references.each do |owned_reference| %>
+              <%= render 'user/packed_bags/cards/items_group',
+                direction:   'references_to_items',
+                packed_bag:  @packed_bag,
+                reference:   owned_reference,
+                packed_item: @packed_item
+              %>
+            <% end %>
+          <% else %>
+            <% @owned_items.each do |owned_item| %>
+              <%= render 'user/packed_bags/cards/item',
+                card:       'item',
+                packed_bag: @packed_bag,
+                item:       owned_item
+              %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% elsif params[:direction] == 'pack' %>
+      <p>Here are all your items packed into the bag</p>
+      <%= button_to 'unpack all', user_packed_item_path(params: {
+        unpack_all: 'true',
+        packed_bag: @packed_bag,
+        category:   params[:category],
+        direction:  params[:direction],
+        group:      params[:group]
+      }), method: :delete, class: 'pack-all-items' %>
+        <div class="container">
+          <div class="row items-displayed">
+            <% if params.key?(:group) && params[:group] == 'true' %>
+              <% @packed_references.each do |packed_reference| %>
+                <%= render 'user/packed_bags/cards/packed_items_group',
+                  packed_bag:  @packed_bag,
+                  reference:   packed_reference
+                %>
+              <% end %>
+            <% else %>
+              <% @packed_items.each do |packed_item| %>
+                <%= render 'user/packed_bags/cards/item',
+                  card:       'packed_item',
+                  packed_bag: @packed_bag,
+                  item:       packed_item
+                %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+  </div>
 </div>
-
-

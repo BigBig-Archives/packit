@@ -8,9 +8,12 @@ class Item < ApplicationRecord
 
   # SCOPES
 
-  scope :category, -> (category) {
+  scope :category, -> (category, user) {
     joins(:reference)
     .where(item_references: { category_id: category })
+    .joins(:user)
+    .where(users: { id: user })
+    .order(created_at: :desc)
   }
   scope :packed, -> (packed_bag) {
     joins(:packed_items)
@@ -19,8 +22,8 @@ class Item < ApplicationRecord
 
   # VALIDATIONS
 
-  validates :size, presence: true, inclusion: { in: (0..10_000).to_a, message: "should be between 0 and 10 000ml" }, allow_nil: true
-  validates :weight, presence: true, inclusion: { in: (0..20_000).to_a, message: "should be between 0 and 20 000g" }, allow_nil: true
+  validates :size, numericality: { greater_than: 0, less_than_or_equal_to: 99.99 }
+  validates :weight, numericality: { greater_than: 0, less_than_or_equal_to: 99.99 }
 
   # CALLBACKS
 
@@ -34,6 +37,10 @@ class Item < ApplicationRecord
 
   def category
     self.reference.category
+  end
+
+  def picture
+    self.reference.picture
   end
 
   def packed?(packed_bag)

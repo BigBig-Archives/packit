@@ -1,71 +1,127 @@
-.item-ref {
-  display: inline-block;
-  .item-card {
-    width: $p176;
-    margin: $p8;
-    padding: $p16;
-    border: solid $p4 lighten($green, 40%);
-    border-radius: $border-radius-large;
+.item-container {
+
+  height: $p312;
+  position: relative;
+  border: solid $p1 lighten($gray, 60%);
+  margin: $p16 0;
+  text-align: center;
+
+  .picture {
+    display: block;
+    margin: 0 auto;
+    margin-top: $p16;
+    width: $p88;
+    height: $p88;
+  }
+
+  .name {
+    margin: $p16 $p16 0 $p16;
+    height: $p32;
+    line-height: $p32;
     text-align: center;
-    .picture {
-      width: $p80;
-      height: $p80;
-      opacity: 0.25;
-      margin-bottom: $p8;
+    font-weight: bolder;
+    color: lighten($gray, 40%);
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .line {
+    margin: $p8;
+    border-bottom: dashed $p1 $green;
+  }
+
+  .input-with-unit {
+    display: flex;
+    margin: 0 $p24;
+    border-bottom: solid $p1 lighten($gray, 70%);
+    input {
+      flex: 3;
+      border: none;
+      border-left-color: transparent;
+      text-align: right;
+      color: lighten($gray, 60%);
     }
-    .name {
-      margin: 0 auto;
-      font-weight: bolder;
-      color: lighten($gray, 40%);
-      width: $p128;
-      padding: $p4;
-      word-wrap: break-word;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .qty-buttons{
-      display: flex;
-      align-items: center;
-      margin-top: $p8;
-      height: $p40;
-      .add,
-      .remove-enable,
-      .remove-disable, .count {
-        flex: 1;
-        color: $green;
+    div {
+      flex: 1;
+      span {
+        color: lighten($gray, 30%);
       }
-      .add,
-      .remove-enable,
-      .remove-disable, i {
-        font-size: $p32;
-      }
-      .remove-disable {
-        color: lighten($green, 40%);
-      }
-      .count {
-        font-size: $p16 + $p4;
-        line-height: $p40;
-        font-weight: bolder;
-        color: lighten($green, 40%);
-      }
-    }
-    .more-buttons .options-button {
-      font-weight: bolder;
-      color: lighten($gray, 50%);
     }
   }
 
-  .item-owned {
-    border: solid $p4 lighten($green, 20%);
-    .picture {
-      opacity: 0.8;
+  .submit-with-quantity {
+    display: flex;
+    margin: 0 $p24;
+    height: $p32;
+    input {
+      flex: 1;
+      border: none;
+      text-align: center;
+      background-color: $green;
+      color: white;
     }
-    .name {
-      color: lighten($gray, 20%);
+    input:first-child {
+      border-radius: $p8 0 0 $p8;
+      margin-right: $p1;
     }
-    .qty-buttons .count {
-      color: $green;
+    input:last-child {
+      border-radius: 0 $p8 $p8 0;
+      margin-left: $p1;
+      cursor: pointer;
+    }
+  }
+
+  .input-error {
+    margin: 0 auto;
+    height: $p16;
+    text-align: center;
+    font-size: $p8 + $p4;
+    color: $red;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pack-item,
+  .unpack-item {
+    width: 50%;
+    height: $p32;
+    border: none;
+    text-align: center;
+    color: white;
+    border-radius: $p4;
+    margin-bottom: $p16;
+    cursor: pointer;
+  }
+
+  .pack-item {
+    background-color: $blue;
+  }
+
+  .unpack-item {
+    background-color: $orange;
+  }
+
+  .delete-item {
+    position: absolute;
+    right: -($p8 + $p4);
+    top: $p8 + $p4;
+    width: $p24;
+    height: $p24;
+  }
+
+  .delete-item {
+    background-color: white;
+    border: none;
+    border: solid $p1 lighten($gray, 60%);
+    .delete-item-icon {
+      transform: rotate(45deg);
+      text-align: center;
+      color: lighten($gray, 60%);
+      cursor: pointer;
     }
   }
 }

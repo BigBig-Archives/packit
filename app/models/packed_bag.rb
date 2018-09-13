@@ -5,6 +5,8 @@ class PackedBag < ApplicationRecord
   belongs_to :bag
   belongs_to :journey
   has_many :packed_items, dependent: :destroy
+  has_many :items, through: :packed_items
+  has_many :references, through: :items
 
   # VALIDATIONS
 
@@ -29,6 +31,10 @@ class PackedBag < ApplicationRecord
   end
 
   def loaded
-    (self.load / self.capacity.to_f).round(2)
+    (self.load / self.capacity).round(2)
+  end
+
+  def packed_reference_count(reference_to_count)
+    self.references.select { |reference| reference == reference_to_count }.count
   end
 end

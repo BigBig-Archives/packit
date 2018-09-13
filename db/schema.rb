@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_11_073706) do
+ActiveRecord::Schema.define(version: 2018_09_13_080342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bag_templates", force: :cascade do |t|
     t.string "name"
-    t.integer "capacity"
+    t.float "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2018_09_11_073706) do
 
   create_table "bags", force: :cascade do |t|
     t.bigint "user_id"
-    t.integer "capacity"
+    t.float "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 2018_09_11_073706) do
 
   create_table "item_references", force: :cascade do |t|
     t.string "name"
-    t.integer "size"
-    t.integer "weight"
+    t.float "size"
+    t.float "weight"
     t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 2018_09_11_073706) do
     t.bigint "user_id"
     t.bigint "reference_id"
     t.string "commentary"
-    t.integer "size"
-    t.integer "weight"
+    t.float "size"
+    t.float "weight"
     t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 2018_09_11_073706) do
 
   create_table "packed_bags", force: :cascade do |t|
     t.bigint "bag_id"
-    t.integer "custom_load"
-    t.integer "custom_weight"
+    t.float "custom_load"
+    t.float "custom_weight"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"

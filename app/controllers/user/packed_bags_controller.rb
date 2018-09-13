@@ -1,10 +1,10 @@
 class User::PackedBagsController < ApplicationController
   before_action :set_packed_bag, only: %i[show update destroy copy]
-  before_action :set_filters, only: %i[show]
 
   def show
-    @packed_item  = PackedItem.new
-    @item         = Item.new
+    @packed_item = PackedItem.new
+    @item        = Item.new
+    filter
     respond_to do |format|
       format.html { render 'user/packed_bags/show' }
       format.js { render 'user/packed_bags/sort' }
@@ -21,9 +21,9 @@ class User::PackedBagsController < ApplicationController
         format.js { render 'user/packed_bags/create' }
       end
     else
+      flash[:alert] = 'Error: ' << @packed_bag.errors.full_messages.join(' - ')
       @bag = Bag.new
       @templates = BagTemplate.all
-      flash[:alert] = 'Error: ' << @packed_bag.errors.full_messages.join(' - ')
       respond_to do |format|
         format.html { render 'user/journeys/show' }
         format.js { render 'user/packed_bags/create' }
@@ -48,20 +48,21 @@ class User::PackedBagsController < ApplicationController
           format.html { redirect_to user_packed_bag_path(@copy), notice: 'Packed Bag copied' }
         end
       else
+        flash[:alert] = 'Error: ' << @copy.errors.full_messages.join(' - ')
         @templates = BagTemplate.all
         @bag = Bag.new
         @packed_bag = PackedBag.new
-        flash[:alert] = 'Error: ' << @copy.errors.full_messages.join(' - ')
         respond_to do |format|
           format.html { redirect_to user_journey_path(@journey) }
         end
       end
     else
+      flash[:alert] = 'Error: ' << @packed_bag.errors.full_messages.join(' - ')
       @templates = BagTemplate.all
       @bag = Bag.new
       @packed_bag = PackedBag.new
       respond_to do |format|
-        format.html { redirect_to user_journey_path(@journey), notice: 'Packed Bag not copied' }
+        format.html { redirect_to user_journey_path(@journey) }
       end
     end
   end
@@ -74,10 +75,10 @@ class User::PackedBagsController < ApplicationController
         format.js { render 'user/packed_bags/destroy' }
       end
     else
+      flash[:alert] = 'Error: ' << @packed_bag.errors.full_messages.join(' - ')
       @templates = BagTemplate.all
       @bag = Bag.new
       @packed_bag = PackedBag.new
-      flash[:alert] = 'Error: ' << @packed_bag.errors.full_messages.join(' - ')
       respond_to do |format|
         format.html { redirect_to user_journey_path(@journey) }
         format.js { render 'user/packed_bags/destroy' }
@@ -93,19 +94,5 @@ class User::PackedBagsController < ApplicationController
 
   def packed_bag_params
     params.require(:packed_bag).permit(:name, :bag_id)
-  end
-
-  def set_filters
-    @categories   = ItemCategory.all
-    @references   = ItemReference.all
-    @owned_items  = current_user.items
-    @packed_items = @packed_bag.packed_items
-    if params.key?("category")
-      if params[:category].to_i > 0
-        @references   = @references.where(category_id: params[:category])
-        @owned_items  = Item.category(params[:category])
-        @packed_items = PackedItem.packed(params[:category], @packed_bag)
-      end
-    end
   end
 end

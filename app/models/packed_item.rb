@@ -12,7 +12,12 @@ class PackedItem < ApplicationRecord
     .joins(:packed_bag)
     .where(item_references: { category_id: category })
     .where(packed_bag: packed_bag)
+    .order(created_at: :desc)
   }
+
+  # VALIDATIONS
+
+  validates :item, uniqueness: { scope: :packed_bag, message: "should not be already packed" }
 
   # METHODS
 
@@ -30,5 +35,9 @@ class PackedItem < ApplicationRecord
 
   def catefory
     self.item.category
+  end
+
+  def picture
+    self.item.picture
   end
 end

@@ -1,5 +1,10 @@
 require 'csv'
 
+# CONFIG
+
+references_only = true
+
+
 # CLEAN DATABASE
 
 Journey.destroy_all
@@ -54,17 +59,19 @@ end
 
 # ITEMS
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'items.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-csv.each do |row|
-  Item.create!(
-    user_id:      User.where(username: row['user']).first.id,
-    reference_id: ItemReference.where(name: row['reference']).first.id,
-    size:         row['size'],
-    weight:       row['weight'],
-    picture:      row['picture'],
-    commentary:      row['commentary'],
-  )
+unless references_only
+  csv_text = File.read(Rails.root.join('lib', 'seeds', 'items.csv'))
+  csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+  csv.each do |row|
+    Item.create!(
+      user_id:      User.where(username: row['user']).first.id,
+      reference_id: ItemReference.where(name: row['reference']).first.id,
+      size:         row['size'],
+      weight:       row['weight'],
+      picture:      row['picture'],
+      commentary:      row['commentary'],
+    )
+  end
 end
 
 # BAG TEMPLATES
@@ -81,51 +88,59 @@ end
 
 # BAGS
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'bags.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-csv.each do |row|
-  Bag.create!(
-    user_id:  User.where(username: row['user']).first.id,
-    name:     row['name'],
-    capacity: row['capacity'],
-    picture:  row['picture']
-  )
+unless references_only
+  csv_text = File.read(Rails.root.join('lib', 'seeds', 'bags.csv'))
+  csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+  csv.each do |row|
+    Bag.create!(
+      user_id:  User.where(username: row['user']).first.id,
+      name:     row['name'],
+      capacity: row['capacity'],
+      picture:  row['picture']
+    )
+  end
 end
 
 # JOURNEYS
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'journeys.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-csv.each do |row|
-  Journey.create!(
-    user_id:    User.where(username: row['user']).first.id,
-    name:       row['name'],
-    start_date: Date.today,
-    end_date:   Date.today,
-    photo:      row['photo'],
-    location:   row['location']
-  )
+unless references_only
+  csv_text = File.read(Rails.root.join('lib', 'seeds', 'journeys.csv'))
+  csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+  csv.each do |row|
+    Journey.create!(
+      user_id:    User.where(username: row['user']).first.id,
+      name:       row['name'],
+      start_date: Date.today,
+      end_date:   Date.today,
+      photo:      row['photo'],
+      location:   row['location']
+    )
+  end
 end
 
 # PACKED BAGS
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'packed_bags.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-csv.each do |row|
-  PackedBag.create!(
-    bag_id:     Bag.where(name: row['bag']).first.id,
-    journey_id: Journey.where(name: row['journey']).first.id,
-    name:       row['name']
-  )
+unless references_only
+  csv_text = File.read(Rails.root.join('lib', 'seeds', 'packed_bags.csv'))
+  csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+  csv.each do |row|
+    PackedBag.create!(
+      bag_id:     Bag.where(name: row['bag']).first.id,
+      journey_id: Journey.where(name: row['journey']).first.id,
+      name:       row['name']
+    )
+  end
 end
 
 # PACKED ITEMS
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'packed_items.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-csv.each do |row|
-  PackedItem.create!(
-    packed_bag_id: PackedBag.joins(:bag).where(bags: { name: row['packed_bag'] }).first.id,
-    item_id:       Item.where(commentary: row['item']).first.id
-  )
+unless references_only
+  csv_text = File.read(Rails.root.join('lib', 'seeds', 'packed_items.csv'))
+  csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+  csv.each do |row|
+    PackedItem.create!(
+      packed_bag_id: PackedBag.joins(:bag).where(bags: { name: row['packed_bag'] }).first.id,
+      item_id:       Item.where(commentary: row['item']).first.id
+    )
+  end
 end
