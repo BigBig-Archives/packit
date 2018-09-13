@@ -24,7 +24,7 @@
     <%= simple_form_for [:user, item_form] do |f| %>
       <%= f.input :pack_all, as: :hidden, input_html: { value: false } %>
       <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
-      <%= f.input :display_filter, as: :hidden, input_html: { value: params[:display] } %>
+      <%= f.input :direction_filter, as: :hidden, input_html: { value: params[:direction] } %>
       <%= f.input :group_filter, as: :hidden, input_html: { value: params[:group] } %>
       <%= f.input :packed_bag, as: :hidden, input_html: { value: packed_bag.id } %>
       <% if card == 'reference' %>
@@ -61,13 +61,27 @@
     <% end %>
 
     <% if card == 'item' %>
-      <%= button_to user_item_path(item, params: { packed_bag: packed_bag.id, category: params[:category], display: params[:display] }), method: :delete, class: 'delete-item' do %><div class="delete-item-icon">+</div><% end %>
-      <%= button_to 'pack', user_packed_items_path(params: { item: item.id, packed_bag: packed_bag.id, category: params[:category], display: params[:display] }), method: :post, class: 'pack-item' %>
-    <% else %>
+      <%= button_to user_item_path(item, params: {
+        packed_bag: packed_bag.id,
+        category:   params[:category],
+        direction:  params[:direction],
+        group:      params[:group]
+      }),
+      method: :delete, class: 'delete-item' do %><div class="delete-item-icon">+</div><% end %>
+      <%= button_to 'pack', user_packed_items_path(params: {
+        item: item.id,
+        packed_bag: packed_bag.id,
+        category:   params[:category],
+        direction:  params[:direction],
+        group:      params[:group]
+      }), method: :post, class: 'pack-item' %>
+    <% end %>
+
+    <% if card == 'packed_item' %>
       <%= simple_form_for [:user, item] do |f| %>
         <%= f.input :pack_all, as: :hidden, input_html: { value: false } %>
         <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
-        <%= f.input :display_filter, as: :hidden, input_html: { value: params[:display] } %>
+        <%= f.input :direction_filter, as: :hidden, input_html: { value: params[:direction] } %>
         <%= f.input :group_filter, as: :hidden, input_html: { value: params[:group] } %>
         <%= f.input :packed_bag, as: :hidden, input_html: { value: packed_bag.id } %>
         <input type="submit" name="commit" value="unpack" data-disable-with="unpack">

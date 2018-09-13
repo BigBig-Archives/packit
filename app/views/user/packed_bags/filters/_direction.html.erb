@@ -1,0 +1,17 @@
+<%= link_to user_packed_bag_path(@packed_bag, params: {
+  direction: 'create',
+  category:  params[:category],
+  group:     params[:group] }),
+  class: "" do %>
+  <small>CREATE NEW ITEMS</small>
+<% end %>
+
+<small> - </small>
+
+<%= link_to user_packed_bag_path(@packed_bag, params: {
+  direction: 'pack',
+  category:  params[:category],
+  group:     params[:group] }),
+  class: "" do %>
+  <small>PACK YOU ITEMS</small>
+<% end %>

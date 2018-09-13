@@ -2,6 +2,7 @@ class User::ItemsController < ApplicationController
   before_action :set_item, only: %i[show update destroy]
   before_action :set_reference, only: %i[create]
   before_action :set_packed_bag, only: %i[create update destroy]
+  before_action :set_filters
 
   def create
     @item = Item.new(item_params)
@@ -29,9 +30,7 @@ class User::ItemsController < ApplicationController
       end
       respond_to do |format|
         format.html { redirect_to user_packed_bag_path(@packed_bag,
-          category: params[:item][:category_filter],
-          display: params[:item][:display_filter],
-          group: params[:item][:group_filter]),
+          category: @filter_on_category, direction: @filter_on_direction, group: @filter_on_group),
           notice: 'Item created.' }
         format.js { }
       end
@@ -40,7 +39,7 @@ class User::ItemsController < ApplicationController
         @item.errors.add(:quantity, "You can create maximum 30 items in a row")
       end
       @packed_item  = PackedItem.new
-      set_filters
+      filter
       flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
       respond_to do |format|
         format.html { render 'user/packed_bags/show' }
@@ -53,15 +52,13 @@ class User::ItemsController < ApplicationController
     if @item.update(item_params)
       respond_to do |format|
         format.html { redirect_to user_packed_bag_path(@packed_bag,
-          category: params[:item][:category_filter],
-          display:  params[:item][:display_filter],
-          group:    params[:item][:group_filter]),
+          category: @filter_on_category, direction: @filter_on_direction, group: @filter_on_group),
           notice:   'Item updated.'}
         format.js { }
       end
     else
       @packed_item  = PackedItem.new
-      set_filters
+      filter
       flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
       respond_to do |format|
         format.html { render 'user/packed_bags/show' }
@@ -74,9 +71,7 @@ class User::ItemsController < ApplicationController
     if @item.destroy
       respond_to do |format|
         format.html { redirect_to user_packed_bag_path(@packed_bag,
-          category: params[:category],
-          display:  params[:display],
-          group:    params[:group]),
+          category: @filter_on_category, direction: @filter_on_direction, group: @filter_on_group),
           notice:   'Item destroyed.' }
         format.js { }
       end
@@ -107,21 +102,19 @@ class User::ItemsController < ApplicationController
     end
   end
 
-  def item_params
-    params.require(:item).permit(:size, :weight)
+  def set_filters
+    if params.key?(:item)
+      @filter_on_category = params[:item][:category_filter]
+      @filter_on_direction  = params[:item][:direction_filter]
+      @filter_on_group    = params[:item][:group_filter]
+    else
+      @filter_on_category = params[:category]
+      @filter_on_direction  = params[:direction]
+      @filter_on_group    = params[:group]
+    end
   end
 
-  def set_filters
-    @categories   = ItemCategory.all
-    @references   = ItemReference.all
-    @owned_items  = current_user.items
-    @packed_items = @packed_bag.packed_items
-    if params.key?("category")
-      if params[:category].to_i > 0
-        @references   = @references.where(category_id: params[:category])
-        @owned_items  = Item.category(params[:category])
-        @packed_items = PackedItem.packed(params[:category], @packed_bag)
-      end
-    end
+  def item_params
+    params.require(:item).permit(:size, :weight)
   end
 end

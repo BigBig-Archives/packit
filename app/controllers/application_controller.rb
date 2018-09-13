@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
 
-  def set_filters
+  def filter
     @categories        = ItemCategory.all
     @references        = ItemReference.all
     @owned_items       = current_user.items.order(created_at: :desc)
@@ -16,10 +16,6 @@ class ApplicationController < ActionController::Base
       @owned_references  = @owned_references.select { |reference| reference.category == category }
       @packed_items      = @packed_items.select { |packed_item| packed_item.item.reference.category == category }
       @packed_references = @packed_references.select { |reference| reference.category == category }
-    end
-    @group = false
-    if params.key?("group") && params[:group] == 'true'
-      @group = true
     end
   end
 end

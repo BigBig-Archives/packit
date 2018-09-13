@@ -1,7 +1,0 @@
-<%= link_to user_packed_bag_path(@packed_bag, params: { group: 'true', display: params[:display],  category: params[:category] }), class: "" do %>
-  <small>GROUP</small>
-<% end %>
-<small> - </small>
-<%= link_to user_packed_bag_path(@packed_bag, params: { group: 'false', display: params[:display],  category: params[:category] }), class: "" do %>
-  <small>UNGROUP</small>
-<% end %>
