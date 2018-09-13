@@ -1,7 +1,8 @@
 .item-container {
 
+  position: relative;
   background-color: white;
-  border: solid $p1 lighten($gray, 40%);
+  border: solid $p1 lighten($gray, 70%);
   padding: $p16;
   text-align: center;
   margin: ($p16 - $p2) 0;
@@ -32,14 +33,36 @@
 
   .more {
     margin: 0 auto;
-    margin-bottom: -$p16;
+    margin-bottom: -$p12;
     width: 0;
     height: 0;
-    border: solid $p12;
+    border: solid $p8;
     border-top-color: lighten($gray, 70%);
     border-bottom-color: transparent;
     border-right-color: transparent;
     border-left-color: transparent;
+    cursor: pointer;
+  }
+
+  .open {
+    margin-top: -$p8;
+    border-top-color: transparent;
+    border-bottom-color: lighten($gray, 70%);
+  }
+
+  .item-action,
+  .item-action-qty {
+    width: 100%;
+    height: $p32;
+    padding: 0;
+    border: none;
+    color: white;
+    font-size: $p16;
+    text-align: center;
+  }
+
+  .item-action {
+    cursor: pointer;
   }
 
   .input-with-unit {
@@ -65,22 +88,35 @@
 
   .submit-with-quantity {
     display: flex;
-    height: $p24;
     input {
       flex: 1;
-      border: none;
-      text-align: center;
-      background-color: $green;
-      color: white;
-      font-size: $p12;
     }
     input:first-child {
       margin-right: $p1;
     }
     input:last-child {
       margin-left: $p1;
-      cursor: pointer;
     }
+  }
+
+  .create-item {
+    background-color: $green;
+  }
+
+  .update-item {
+    background-color: $yellow;
+  }
+
+  .delete-item {
+    background-color: $red;
+  }
+
+  .pack-item {
+    background-color: $blue;
+  }
+
+  .unpack-item {
+    background-color: $orange;
   }
 
 }

@@ -15,13 +15,13 @@
 <% item_form = item if card == 'reference' || card == 'item' %>
 <% item_form = item.item if card == 'packed_item' %>
 
-<div class='col-4' data-id=<%= data %>>
-  <div class='item-container'>
-    <%= image_tag "items/#{picture}", class: 'picture' %>
-    <div class='space'></div>
-    <p class='name'><%= name %></p>
+<div class="col-4" data-id=<%= data %>>
+  <div class="item-container">
+    <%= image_tag "items/#{picture}", class: "picture" %>
     <div class="space"></div>
-    <p class='more'></p> <!-- rotate -->
+    <p class="name"><%= name %></p>
+    <div class="space"></div>
+    <p class="more"></p> <!-- rotate -->
 
     <%= simple_form_for [:user, item_form] do |f| %>
       <%= f.input :pack_many, as: :hidden, input_html: { value: false } %>
@@ -33,15 +33,15 @@
         <%= f.input :reference, as: :hidden, input_html: { value: reference.id } %>
       <% end %>
 
-      <div class='more-displayed'> <!-- display if more -->
+      <div class="more-displayed"> <!-- display if more -->
 
-        <div class='input-with-unit'>
-          <input class='numeric integer required' value="<%= size %>", name="item[size]" id="item_size" type="number" step="0.1" min="0" max="99" >
+        <div class="input-with-unit">
+          <input class="numeric integer required" value="<%= size %>", name="item[size]" id="item_size" type="number" step="0.1" min="0" max="99" >
           <div>
             <span>L</span>
           </div>
         </div>
-        <p data-error='size' class='input-error'></p>
+        <p data-error="size" class="input-error"></p>
 
         <div class="input-with-unit">
           <input class="numeric integer required" value="<%= weight %>", name="item[weight]" id="item_weight" type="number" step="0.1" min="0" max="99" >
@@ -49,32 +49,36 @@
               <span>K</span>
             </div>
           </div>
-        <p data-error='weight' class='input-error'></p>
+        <p data-error="weight" class="input-error"></p>
         <div class="space"></div>
       </div>
 
       <% if card == 'reference' %>
       <!-- CREATE ITEM(S) -->
         <div class="submit-with-quantity">
-          <input class="numeric integer required" value="1" name="item[quantity]" id="item_quantity" type="number" step="1" min="0" max="9">
-          <input type="submit" name="commit" value="add" data-disable-with="add">
+          <input class="numeric integer required item-action-qty create-item" value="1" name="item[quantity]" id="item_quantity" type="number" step="1" min="0" max="9">
+          <input class="item-action create-item" type="submit" name="commit" value="add" data-disable-with="add">
         </div>
-        <p data-error='quantity' class='input-error'></p>
+        <p data-error="quantity" class="input-error"></p>
       <% else %>
-      <!-- UPDATE ITEM OR PACKED ITEM -->
-        <!-- <input class="update-item" type="submit" name="commit" value="U" data-disable-with="U"> -->
+        <div class="more-displayed">
+          <input class="item-action update-item" type="submit" name="commit" value="update" data-disable-with="update">
+          <% if card == 'item' %>
+            <div class="space"></div>
+          <% end %>
+        </div>
       <% end %>
     <% end %>
 
     <% if card == 'item' %>
       <% unless direction == 'pack' %>
-        <%= button_to user_item_path(item, params: {
+        <%= button_to 'delete', user_item_path(item, params: {
           packed_bag: packed_bag.id,
           category:   params[:category],
           direction:  params[:direction],
           group:      params[:group]
         }),
-        method: :delete, class: 'delete-item' do %><div class="delete-item-icon">+</div><% end %>
+        method: :delete, class: "item-action delete-item" %>
       <% end %>
       <% unless direction == 'create' %>
         <%= button_to 'pack', user_packed_items_path(params: {
@@ -83,7 +87,7 @@
           category:   params[:category],
           direction:  params[:direction],
           group:      params[:group]
-        }), method: :post, class: 'pack-item' %>
+        }), method: :post, class: "item-action pack-item" %>
       <% end %>
     <% end %>
 
@@ -94,7 +98,7 @@
         <%= f.input :direction_filter, as: :hidden, input_html: { value: params[:direction] } %>
         <%= f.input :group_filter, as: :hidden, input_html: { value: params[:group] } %>
         <%= f.input :packed_bag, as: :hidden, input_html: { value: packed_bag.id } %>
-        <input type="submit" name="commit" value="unpack" data-disable-with="unpack">
+        <input class="item-action unpack-item" type="submit" name="commit" value="unpack" data-disable-with="unpack">
       <% end %>
     <% end %>
   </div>
