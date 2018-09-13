@@ -61,20 +61,24 @@
     <% end %>
 
     <% if card == 'item' %>
-      <%= button_to user_item_path(item, params: {
-        packed_bag: packed_bag.id,
-        category:   params[:category],
-        direction:  params[:direction],
-        group:      params[:group]
-      }),
-      method: :delete, class: 'delete-item' do %><div class="delete-item-icon">+</div><% end %>
-      <%= button_to 'pack', user_packed_items_path(params: {
-        item: item.id,
-        packed_bag: packed_bag.id,
-        category:   params[:category],
-        direction:  params[:direction],
-        group:      params[:group]
-      }), method: :post, class: 'pack-item' %>
+      <% unless direction == 'pack' %>
+        <%= button_to user_item_path(item, params: {
+          packed_bag: packed_bag.id,
+          category:   params[:category],
+          direction:  params[:direction],
+          group:      params[:group]
+        }),
+        method: :delete, class: 'delete-item' do %><div class="delete-item-icon">+</div><% end %>
+      <% end %>
+      <% unless direction == 'create' %>
+        <%= button_to 'pack', user_packed_items_path(params: {
+          item: item.id,
+          packed_bag: packed_bag.id,
+          category:   params[:category],
+          direction:  params[:direction],
+          group:      params[:group]
+        }), method: :post, class: 'pack-item' %>
+      <% end %>
     <% end %>
 
     <% if card == 'packed_item' %>

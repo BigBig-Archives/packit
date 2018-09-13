@@ -65,7 +65,7 @@
           <% if params.key?(:group) && params[:group] == 'true' %>
             <% @owned_references.each do |owned_reference| %>
               <%= render 'user/packed_bags/cards/items_group',
-                direction:   'items_to_packed_items',
+                direction:   'pack',
                 packed_bag:  @packed_bag,
                 reference:   owned_reference,
                 packed_item: @packed_item
@@ -75,6 +75,7 @@
             <% @owned_items.each do |owned_item| %>
               <% unless owned_item.packed?(@packed_bag) %>
                 <%= render 'user/packed_bags/cards/item',
+                  direction:  'pack',
                   card:       'item',
                   packed_bag: @packed_bag,
                   item:       owned_item
@@ -100,7 +101,7 @@
           <% if params.key?(:group) && params[:group] == 'true' %>
             <% @owned_references.each do |owned_reference| %>
               <%= render 'user/packed_bags/cards/items_group',
-                direction:   'references_to_items',
+                direction:   'create',
                 packed_bag:  @packed_bag,
                 reference:   owned_reference,
                 packed_item: @packed_item
@@ -109,6 +110,7 @@
           <% else %>
             <% @owned_items.each do |owned_item| %>
               <%= render 'user/packed_bags/cards/item',
+                direction:  'create',
                 card:       'item',
                 packed_bag: @packed_bag,
                 item:       owned_item

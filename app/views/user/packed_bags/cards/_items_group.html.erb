@@ -5,7 +5,7 @@
 
     <%= image_tag "items/#{reference.picture}", class: 'picture' %>
     <p class='name'><%= reference.name %></p>
-    <% if direction == 'references_to_items' %>
+    <% if direction == 'create' %>
       <span><%= current_user.reference_count(reference) %></span>
     <% else %>
       <span><%= current_user.reference_count(reference) - packed_bag.packed_reference_count(reference) %></span>
@@ -14,7 +14,7 @@
     <% end %>
 
     <% remaining_items = reference.unpacked_items(current_user, packed_bag) %>
-    <% unless remaining_items.empty? %>
+    <% unless remaining_items.empty? || direction == 'create' %>
       <%= simple_form_for [:user, packed_item] do |f| %>
         <%= f.input :pack_many, as: :hidden, input_html: { value: true } %>
         <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
