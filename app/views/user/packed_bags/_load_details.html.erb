@@ -1,3 +1,7 @@
-<p>Weight: <%= @packed_bag.weight %></p>
-<p>Load: <%= @packed_bag.load %></p>
-<p>Loaded: <%= @packed_bag.loaded %></p>
+<p>
+  <span>Weight: <%= @packed_bag.weight %> K</span>
+  <span> | </span>
+  <span>Load: <%= @packed_bag.load %> / <%= @packed_bag.capacity.round %> L</span>
+  <span> | </span>
+  <span>Loaded: <%= (@packed_bag.loaded * 100).round %> %</span>
+</p>

@@ -12,7 +12,7 @@ class User::PackedItemsController < ApplicationController
   end
 
   def update
-    params.key?(:packed_item) && params[:packed_item][:pack_many] == 'true' ? unpack_many : unpack_one
+    params.key?(:packed_item) && params[:packed_item][:unpack_many] == 'true' ? unpack_many : unpack_one
   end
 
   def destroy

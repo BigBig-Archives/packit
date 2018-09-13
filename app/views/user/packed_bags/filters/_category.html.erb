@@ -3,7 +3,11 @@
   direction: params[:direction],
   group:     params[:group] }),
   class: "" do %>
-  <small><strong>ALL</strong></small>
+  <% if params[:category].to_i.zero? %>
+    <small class="category-selected">ALL</small>
+  <% else %>
+    <small>ALL</small>
+  <% end %>
 <% end %>
 
 <small> - </small>
@@ -14,7 +18,11 @@
     direction: params[:direction],
     group:     params[:group] }),
     class: "" do %>
-    <small><%= category.name.upcase %></small>
+    <% if params[:category].to_i == category.id %>
+      <small class="category-selected"><%= category.name.upcase %></small>
+    <% else %>
+      <small><%= category.name.upcase %></small>
+    <% end %>
   <% end %>
   <small> - </small>
 <% end %>

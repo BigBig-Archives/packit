@@ -18,7 +18,7 @@
       <%= simple_form_for [:user, packed_item] do |f| %>
         <%= f.input :pack_many, as: :hidden, input_html: { value: true } %>
         <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
-        <%= f.input :display_filter, as: :hidden, input_html: { value: params[:display] } %>
+        <%= f.input :direction_filter, as: :hidden, input_html: { value: params[:direction] } %>
         <%= f.input :group_filter, as: :hidden, input_html: { value: params[:group] } %>
         <%= f.input :packed_bag, as: :hidden, input_html: { value: packed_bag.id } %>
         <%= f.input :item, as: :hidden, input_html: { value: remaining_items.first.id } %>
