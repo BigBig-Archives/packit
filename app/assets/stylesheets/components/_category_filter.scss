@@ -1,0 +1,30 @@
+.category_filters {
+  display: flex;
+  .category {
+    flex: 1;
+    padding: $p8;
+    border-bottom: solid $p2 transparent;
+    text-align: center;
+    opacity: 0.7;
+    .picture {
+      width: $p48;
+      margin-bottom: $p4;
+    }
+    p {
+      width: $p64;
+      color: lighten($gray, 20%);
+      font-size: $p12;
+      word-wrap: break-word;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+  .category-selected {
+    border-bottom-color: $green;
+    opacity: 1;
+  }
+}

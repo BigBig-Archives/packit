@@ -1,10 +1,16 @@
-.items-to-bottom {
+.items-container {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: $p16;
+  .items-to-bottom {
     align-self: flex-end;
+  }
 }
 
 .item-container,
 .item-container-behind {
-  width: $p152;
+  width: $p160;
   border: solid $p1 lighten($gray, 70%);
 }
 
@@ -13,7 +19,16 @@
   position: relative;
   padding: $p16;
   text-align: center;
-  margin: ($p16 - $p2) 0;
+  &:hover {
+    .item-container-behind {
+      &:nth-of-type(1) {
+        transform: rotate(2deg);
+      }
+      &:nth-of-type(2) {
+        transform: rotate(4deg);
+      }
+    }
+  }
 
   .item-container-behind {
     height: $p208 - $p2;
@@ -161,7 +176,13 @@
 
 .item-action-all {
   display: block;
-  margin: $p16;
+  margin: $p12 0;
+}
+
+.button-substitute {
+  height: $p32;
+  display: block;
+  margin: $p12 0;
 }
 
 .create-item {

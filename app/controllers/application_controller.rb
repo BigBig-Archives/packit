@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     @categories        = ItemCategory.all
     @references        = ItemReference.all
     @owned_items       = current_user.items.order(created_at: :desc)
-    @owned_references  = current_user.references.order(created_at: :desc).uniq
+    @owned_references  = @owned_items.map { |item| item.reference }.uniq
     @packed_items      = @packed_bag.packed_items.order(created_at: :desc)
     @packed_references = @packed_items.map { |packed_item| packed_item.item.reference }.uniq
     if params.key?("category") &&  params[:category].to_i > 0

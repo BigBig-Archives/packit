@@ -1,9 +1,9 @@
 <% loaded = (@packed_bag.loaded * 100).round %>
 <% case loaded
     when 0..50 then loaded_color = '#6FCF97';
-    when 51..65 then loaded_color = '#FDB631';
-    when 66..80 then loaded_color = '#E67E22';
-    when 80..100 then loaded_color = '#EE5F5B';
+    when 51..71 then loaded_color = '#FDB631';
+    when 72..90 then loaded_color = '#E67E22';
+    when 91..100 then loaded_color = '#EE5F5B';
     else loaded_color = '#EE5F5B';
    end %>
 
@@ -13,7 +13,7 @@
       <div class="load-progress-bar" style="width:<%= loaded > 100 ? 100 : loaded %>%; background-color: <%= loaded_color %>">
         <% if loaded > 10 && loaded <= 100 %>
           <p class="load-percent"><%= loaded %> %</p>
-        <% else %>
+        <% elsif loaded > 100 %>
           <p class="load-percent"><%= loaded %> % overload!</p>
         <% end %>
       </div>
@@ -30,7 +30,7 @@
     </div>
   </div>
   <div class="load-weight">
-    <p><%= @packed_bag.weight %> K</p>
+    <p><%= @packed_bag.weight.round(2) %> K</p>
   </div>
 </div>
 

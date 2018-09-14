@@ -1,28 +1,26 @@
-<%= link_to user_packed_bag_path(@packed_bag, params: {
+ <div class="category_filters">
+  <%= link_to user_packed_bag_path(@packed_bag, params: {
   category:  0,
   direction: params[:direction],
   group:     params[:group] }),
   class: "" do %>
-  <% if params[:category].to_i.zero? %>
-    <small class="category-selected">ALL</small>
-  <% else %>
-    <small>ALL</small>
+    <div class="category <%= 'category-selected' if params[:category].to_i.zero? %>">
+      <%= image_tag "categories/all", class: "picture" %>
+      <p>ALL</p>
+    </div>
   <% end %>
-<% end %>
-
-<small> - </small>
-
-<% categories.each do |category| %>
-  <%= link_to user_packed_bag_path(@packed_bag, params: {
-    category:  category.id,
-    direction: params[:direction],
-    group:     params[:group] }),
-    class: "" do %>
-    <% if params[:category].to_i == category.id %>
-      <small class="category-selected"><%= category.name.upcase %></small>
-    <% else %>
-      <small><%= category.name.upcase %></small>
+  <% categories.each do |category| %>
+    <% unless category.references.empty? %>
+      <%= link_to user_packed_bag_path(@packed_bag, params: {
+      category:  category.id,
+      direction: params[:direction],
+      group:     params[:group] }),
+      class: "" do %>
+        <div class="category <%= 'category-selected' if params[:category].to_i == category.id %>">
+          <%= image_tag "categories/#{category.picture}", class: "picture" %>
+          <p><%= category.name.upcase %></p>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
-  <small> - </small>
-<% end %>
+</div>

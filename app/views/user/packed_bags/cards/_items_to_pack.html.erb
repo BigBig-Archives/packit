@@ -1,0 +1,32 @@
+<p>Here are all you owned items not already packed</p>
+<% if current_user.items.empty? %>
+  <hr>
+  <p>Oh! It looks like you don't have any item to pack!</p>
+  <p>Select "Create more items" and start you own collection...</p>
+<% end %>
+
+<% if current_user.items.empty? || current_user.items.count == @packed_bag.packed_items.count %>
+  <div class="button-substitute"></div>
+<% else %>
+  <%= button_to 'pack all', user_packed_items_path(params: {
+    pack_all:   'true',
+    packed_bag: @packed_bag,
+    category:   params[:category],
+    direction:  params[:direction],
+    group:      params[:group]
+  }), method: :post, class: 'item-action item-action-all pack-item' %>
+<% end %>
+
+<div class="items-container" id="items_to_pack">
+  <% if params.key?(:group) && params[:group] == 'false' %>
+    <% @owned_items.each do |item| %>
+      <% unless item.packed?(@packed_bag) %>
+        <%= render 'user/packed_bags/cards/item', direction: 'pack', item: item %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% @owned_references.sort_by { |reference| reference.name }.each do |reference| %>
+      <%= render 'user/packed_bags/cards/items_group', direction: 'pack', reference: reference %>
+    <% end %>
+  <% end %>
+</div>

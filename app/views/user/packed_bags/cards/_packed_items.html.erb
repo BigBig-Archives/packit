@@ -1,0 +1,26 @@
+<p>Here are all your items packed into the bag</p>
+<% if @packed_bag.packed_items.empty? %>
+  <hr>
+  <p>Oh! It looks like you don't have any item packed!</p>
+  <p>Select items on the left to pack them...</p>
+<% end %>
+<% unless @packed_bag.packed_items.empty? %>
+  <%= button_to 'unpack all', user_packed_item_path(params: {
+    unpack_all: 'true',
+    packed_bag: @packed_bag,
+    category:   params[:category],
+    direction:  params[:direction],
+    group:      params[:group]
+  }), method: :delete, class: 'item-action item-action-all unpack-item' %>
+<% end %>
+<div class="items-container">
+  <% if params.key?(:group) && params[:group] == 'false' %>
+    <% @packed_items.each do |packed_item| %>
+      <%= render 'user/packed_bags/cards/packed_item', packed_item: packed_item %>
+    <% end %>
+  <% else %>
+    <% @packed_references.sort_by { |reference| reference.name }.each do |packed_reference| %>
+      <%= render 'user/packed_bags/cards/packed_items_group', reference: packed_reference %>
+    <% end %>
+  <% end %>
+</div>

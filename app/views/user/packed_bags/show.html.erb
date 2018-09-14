@@ -10,7 +10,6 @@
 <%= render 'user/packed_bags/filters/group' %>
 <hr>
 
-
 <!-- REFERENCES TO ITEMS -->
 
  <!-- +----------------+----------------+
@@ -31,130 +30,21 @@
   <div id="displayed-items-left">
     <% if params.key?(:direction) == false || params[:direction].blank? || params[:direction] == 'create' %>
       <p>Here are all the items you can create</p>
-      <div class="container">
-        <div class="row items-displayed">
-          <% @references.each do |reference| %>
-            <%= render 'user/packed_bags/cards/item',
-              card:       'reference',
-              packed_bag: @packed_bag,
-              reference:  reference,
-              item:       @item
-            %>
-          <% end %>
-        </div>
+      <div class="items-container">
+        <% @references.each do |reference| %>
+          <%= render 'user/packed_bags/cards/reference', reference: reference %>
+        <% end %>
       </div>
     <% elsif params[:direction] == 'pack' %>
-      <p>Here are all you owned items not already packed</p>
-
-      <% if current_user.items.empty? %>
-        <hr>
-        <p>Oh! It looks like you don't have any item to pack!</p>
-        <p>Select "Create more items" and start you own collection...</p>
-      <% end %>
-      <% unless current_user.items.empty? || current_user.items.count == @packed_bag.packed_items.count %>
-        <%= button_to 'pack all', user_packed_items_path(params: {
-          pack_all:   'true',
-          packed_bag: @packed_bag,
-          category:   params[:category],
-          direction:  params[:direction],
-          group:      params[:group]
-        }), method: :post, class: 'item-action item-action-all pack-item' %>
-      <% end %>
-      <div class="container">
-        <div class="row items-displayed">
-          <% if params.key?(:group) && params[:group] == 'false' %>
-            <% @owned_items.each do |owned_item| %>
-              <% unless owned_item.packed?(@packed_bag) %>
-                <%= render 'user/packed_bags/cards/item',
-                  direction:  'pack',
-                  card:       'item',
-                  packed_bag: @packed_bag,
-                  item:       owned_item
-                %>
-              <% end %>
-            <% end %>
-          <% else %>
-            <% @owned_references.each do |owned_reference| %>
-              <%= render 'user/packed_bags/cards/items_group',
-                direction:   'pack',
-                packed_bag:  @packed_bag,
-                reference:   owned_reference,
-                packed_item: @packed_item
-              %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+      <%= render 'user/packed_bags/cards/items_to_pack' %>
     <% end %>
   </div>
   <div class="wrapper-separator"></div>
   <div id="displayed-items-right">
     <% if params.key?(:direction) == false || params[:direction].blank? || params[:direction] == 'create' %>
-      <p>Here are all you owned items</p>
-      <% if current_user.items.empty? %>
-        <hr>
-        <p>Oh! It looks like you don't have any item packed!</p>
-        <p>Select "Create more items" and start you own collection...</p>
-      <% end %>
-      <div class="container">
-        <div class="row items-displayed">
-          <% if params.key?(:group) && params[:group] == 'false' %>
-            <% @owned_items.each do |owned_item| %>
-              <%= render 'user/packed_bags/cards/item',
-                direction:  'create',
-                card:       'item',
-                packed_bag: @packed_bag,
-                item:       owned_item
-              %>
-            <% end %>
-          <% else %>
-            <% @owned_references.each do |owned_reference| %>
-              <%= render 'user/packed_bags/cards/items_group',
-                direction:   'create',
-                packed_bag:  @packed_bag,
-                reference:   owned_reference,
-                packed_item: @packed_item
-              %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+      <%= render 'user/packed_bags/cards/items_created' %>
     <% elsif params[:direction] == 'pack' %>
-      <p>Here are all your items packed into the bag</p>
-      <% if @packed_bag.packed_items.empty? %>
-        <hr>
-        <p>Oh! It looks like you don't have any item packed!</p>
-        <p>Select items on the left to pack them...</p>
-      <% end %>
-      <% unless @packed_bag.packed_items.empty? %>
-        <%= button_to 'unpack all', user_packed_item_path(params: {
-          unpack_all: 'true',
-          packed_bag: @packed_bag,
-          category:   params[:category],
-          direction:  params[:direction],
-          group:      params[:group]
-        }), method: :delete, class: 'item-action item-action-all unpack-item' %>
-      <% end %>
-      <div class="container">
-        <div class="row items-displayed">
-          <% if params.key?(:group) && params[:group] == 'false' %>
-            <% @packed_items.each do |packed_item| %>
-              <%= render 'user/packed_bags/cards/item',
-                card:       'packed_item',
-                packed_bag: @packed_bag,
-                item:       packed_item
-              %>
-            <% end %>
-          <% else %>
-            <% @packed_references.each do |packed_reference| %>
-              <%= render 'user/packed_bags/cards/packed_items_group',
-                packed_bag:  @packed_bag,
-                reference:   packed_reference
-              %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+      <%= render 'user/packed_bags/cards/packed_items' %>
     <% end %>
   </div>
 </div>
