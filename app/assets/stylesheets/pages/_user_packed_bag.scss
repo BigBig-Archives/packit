@@ -1,13 +1,17 @@
 #packed-bag-wrapper {
-  display: flex;
-  #displayed-items-left,
-  #displayed-items-right {
-    flex: 1;
+  margin-bottom: $p64;
+  border-top: solid $p2 darken($light-gray, 4%);
+  #displayed-items {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    float: left;
+    width: 49%;
+    height: 100vh;
   }
   .wrapper-separator {
-    width: $p1;
-    background-color: lighten($gray, 70%);
-    margin: 0 $p24;
+    height: 100vh;
+    float: left;
+    width: 2%;
   }
   .displayed-items-left,
   .displayed-items-left {
@@ -15,4 +19,55 @@
       margin: 0 auto;
     }
   }
+}
+
+.direction {
+  width: 40%;
+  margin: auto;
+  padding: $p16;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.switch-to-create,
+.switch-to-pack {
+  flex: 1;
+  padding: $p16;
+  text-align: center;
+  color: white;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.switch-to-create {
+  background-color: $green;
+}
+
+.switch-to-pack {
+  background-color: $blue;
+}
+
+.cards-indication {
+  text-align: center;
+  color: lighten($gray, 30%);
+}
+
+::-webkit-scrollbar {
+    width: $p8;
+}
+
+::-webkit-scrollbar-track {
+    background: darken($light-gray, 4%);
+}
+
+::-webkit-scrollbar-thumb {
+    background: darken($light-gray, 12%);
+    border-radius: 0 0 $p4 $p4;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: darken($light-gray, 15%);
 }

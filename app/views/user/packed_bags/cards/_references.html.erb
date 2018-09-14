@@ -1,0 +1,10 @@
+<div id="references">
+  <hr>
+  <p class="cards-indication">Here are all the items you can create</p>
+  <hr>
+  <div class="items-container">
+    <% @references.each do |reference| %>
+      <%= render 'user/packed_bags/cards/reference', reference: reference %>
+    <% end %>
+  </div>
+</div>

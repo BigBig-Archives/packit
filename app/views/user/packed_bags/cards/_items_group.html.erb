@@ -23,7 +23,7 @@
       </p>
     <% end %>
 
-    <% unless remaining_items.empty? || direction == 'create' %>
+    <% if remaining_items.any? && direction == 'pack' %>
       <%= simple_form_for [:user, @packed_item] do |f| %>
         <%= f.input :pack_many, as: :hidden, input_html: { value: true } %>
         <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
@@ -33,8 +33,8 @@
         <%= f.input :item, as: :hidden, input_html: { value: remaining_items.first.id } %>
         <%= f.input :reference, as: :hidden, input_html: { value: reference.id } %>
         <div class="submit-with-quantity">
-          <input class="numeric integer required item-action-qty create-item" value="1" name="packed_item[quantity]" id="packed_item_quantity" type="number" step="1" min="1" max="<%= current_user.reference_count(reference) - @packed_bag.packed_reference_count(reference) %>">
-          <input class="item-action create-item" type="submit" name="commit" value="pack" data-disable-with="pack">
+          <input class="numeric integer required item-action-qty pack-item" value="1" name="packed_item[quantity]" id="packed_item_quantity" type="number" step="1" min="1" max="<%= current_user.reference_count(reference) - @packed_bag.packed_reference_count(reference) %>">
+          <input class="item-action pack-item" type="submit" name="commit" value="pack" data-disable-with="pack">
         </div>
         <p data-error='quantity' class='input-error'></p>
       <% end %>
@@ -44,7 +44,7 @@
       <div class="large-space"></div>
     <% end %>
 
-    <% unless direction == 'pack' %>
+    <% if direction == 'create' %>
       <%= button_to 'delete all', user_item_path(reference.items.first, params: {
         destroy_all: 'true',
         packed_bag:  @packed_bag,

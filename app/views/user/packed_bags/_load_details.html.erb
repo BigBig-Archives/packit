@@ -8,6 +8,9 @@
    end %>
 
 <div class="load-container">
+  <div class="name">
+    <p><%= @packed_bag.name %></p>
+  </div>
   <div class="load-progress">
     <div class="load-below">
       <div class="load-progress-bar" style="width:<%= loaded > 100 ? 100 : loaded %>%; background-color: <%= loaded_color %>">

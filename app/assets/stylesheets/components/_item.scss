@@ -1,8 +1,9 @@
 .items-container {
   flex: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat( auto-fit, minmax($p160, 1fr) );
   grid-gap: $p16;
+  margin-right: $p16;
   .items-to-bottom {
     align-self: flex-end;
   }
@@ -13,6 +14,10 @@
   width: $p160;
   border: solid $p1 lighten($gray, 70%);
 }
+.item-container-behind {
+  height: $p208 - $p2;
+}
+
 
 .item-container {
   background-color: white;
@@ -118,6 +123,8 @@
 
   .item-action,
   .item-action-qty {
+    display: inline-block;
+    min-width: 0;
     width: 100%;
   }
 

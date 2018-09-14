@@ -1,14 +1,6 @@
-<%#= link_to 'back to journey', user_journey_path(@packed_bag.journey) %>
-<h1><%= @packed_bag.name %></h1>
-
 <%= render 'user/packed_bags/load_details' %>
-<hr>
 <%= render 'user/packed_bags/filters/category', categories: @categories %>
-<hr>
 <%= render 'user/packed_bags/filters/direction' %>
-<hr>
-<%= render 'user/packed_bags/filters/group' %>
-<hr>
 
 <!-- REFERENCES TO ITEMS -->
 
@@ -27,20 +19,15 @@
       +----------------+----------------+ -->
 
 <div id="packed-bag-wrapper">
-  <div id="displayed-items-left">
+  <div id="displayed-items">
     <% if params.key?(:direction) == false || params[:direction].blank? || params[:direction] == 'create' %>
-      <p>Here are all the items you can create</p>
-      <div class="items-container">
-        <% @references.each do |reference| %>
-          <%= render 'user/packed_bags/cards/reference', reference: reference %>
-        <% end %>
-      </div>
+      <%= render 'user/packed_bags/cards/references' %>
     <% elsif params[:direction] == 'pack' %>
       <%= render 'user/packed_bags/cards/items_to_pack' %>
     <% end %>
   </div>
   <div class="wrapper-separator"></div>
-  <div id="displayed-items-right">
+  <div id="displayed-items">
     <% if params.key?(:direction) == false || params[:direction].blank? || params[:direction] == 'create' %>
       <%= render 'user/packed_bags/cards/items_created' %>
     <% elsif params[:direction] == 'pack' %>
