@@ -104,16 +104,6 @@
   .item-action,
   .item-action-qty {
     width: 100%;
-    height: $p32;
-    padding: 0;
-    border: none;
-    color: white;
-    font-size: $p16;
-    text-align: center;
-  }
-
-  .item-action {
-    cursor: pointer;
   }
 
   .input-with-unit {
@@ -148,29 +138,48 @@
       margin-left: $p1;
     }
   }
-
-  .create-item {
-    background-color: $green;
-  }
-
-  .update-item {
-    background-color: $yellow;
-  }
-
-  .delete-item {
-    background-color: $red;
-  }
-
-  .pack-item {
-    background-color: $blue;
-  }
-
-  .unpack-item {
-    background-color: $orange;
-  }
-
 }
 
 .empty-reference {
   background-color: darken($light-gray, 2%);
+}
+
+.item-action,
+.item-action-qty {
+  width: $p112;
+  height: $p32;
+  padding: 0;
+  border: none;
+  color: white;
+  font-size: $p16;
+  text-align: center;
+}
+
+.item-action {
+  cursor: pointer;
+}
+
+.item-action-all {
+  display: block;
+  margin: $p16;
+}
+
+.create-item {
+  background-color: $green;
+}
+
+.update-item {
+  background-color: $yellow;
+}
+
+.delete-item {
+  background-color: $red;
+}
+
+.pack-item {
+  background-color: $blue;
+}
+
+.unpack-item {
+  background-color: $orange;
 }

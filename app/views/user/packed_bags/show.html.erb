@@ -58,7 +58,7 @@
           category:   params[:category],
           direction:  params[:direction],
           group:      params[:group]
-        }), method: :post, class: 'pack-all-items' %>
+        }), method: :post, class: 'item-action item-action-all pack-item' %>
       <% end %>
       <div class="container">
         <div class="row items-displayed">
@@ -133,7 +133,7 @@
           category:   params[:category],
           direction:  params[:direction],
           group:      params[:group]
-        }), method: :delete, class: 'pack-all-items' %>
+        }), method: :delete, class: 'item-action item-action-all unpack-item' %>
       <% end %>
       <div class="container">
         <div class="row items-displayed">

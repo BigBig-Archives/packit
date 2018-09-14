@@ -1,7 +1,37 @@
-<p>
-  <span>Weight: <%= @packed_bag.weight %> K</span>
-  <span> | </span>
-  <span>Load: <%= @packed_bag.load %> / <%= @packed_bag.capacity.round %> L</span>
-  <span> | </span>
-  <span>Loaded: <%= (@packed_bag.loaded * 100).round %> %</span>
-</p>
+<% loaded = (@packed_bag.loaded * 100).round %>
+<% case loaded
+    when 0..50 then loaded_color = '#6FCF97';
+    when 51..65 then loaded_color = '#FDB631';
+    when 66..80 then loaded_color = '#E67E22';
+    when 80..100 then loaded_color = '#EE5F5B';
+    else loaded_color = '#EE5F5B';
+   end %>
+
+<div class="load-container">
+  <div class="load-progress">
+    <div class="load-below">
+      <div class="load-progress-bar" style="width:<%= loaded > 100 ? 100 : loaded %>%; background-color: <%= loaded_color %>">
+        <% if loaded > 10 && loaded <= 100 %>
+          <p class="load-percent"><%= loaded %> %</p>
+        <% else %>
+          <p class="load-percent"><%= loaded %> % overload!</p>
+        <% end %>
+      </div>
+    </div>
+    <div class="load-above">
+      <%
+      if loaded > 100
+        loaded < 125 ? loaded_over = (loaded - 100) * 4 : loaded_over = 100
+      else
+        loaded_over = 0
+      end
+      %>
+      <div class="load-progress-bar" style="width:<%= loaded_over %>%;"></div>
+    </div>
+  </div>
+  <div class="load-weight">
+    <p><%= @packed_bag.weight %> K</p>
+  </div>
+</div>
+
+<hr>
