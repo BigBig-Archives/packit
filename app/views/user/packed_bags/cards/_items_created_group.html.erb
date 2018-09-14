@@ -1,0 +1,15 @@
+<div class="cards-indication">
+  <hr>
+  <p>Here are all you owned items</p>
+  <hr>
+  <% if current_user.items.empty? %>
+    <p>Oh! It looks like you don't have any item packed!</p>
+    <p>Select "Create more items" and start you own collection...</p>
+  <% end %>
+</div>
+
+<div class="items-container">
+  <% @owned_references.each do |reference| %>
+    <%= render 'user/packed_bags/cards/items_group', direction: 'create', reference: reference %>
+  <% end %>
+</div>

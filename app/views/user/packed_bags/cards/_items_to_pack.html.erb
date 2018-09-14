@@ -18,7 +18,7 @@
       category:   params[:category],
       direction:  params[:direction],
       group:      params[:group]
-    }), method: :post, class: 'item-action item-action-all pack-item' %>
+    }), method: :post, remote: :true, class: 'item-action item-action-all pack-item' %>
   <% end %>
 
   <div class="items-container" id="items_to_pack">

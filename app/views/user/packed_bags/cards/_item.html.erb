@@ -1,18 +1,18 @@
-<div class="items-to-bottom" data-id=<%= item.id %>>
+<div class="items-to-bottom" data-item=<%= item.id %>>
   <div class="item-container">
     <%= image_tag "items/#{item.picture}", class: "picture" %>
     <div class="space"></div>
     <p class="name"><%= item.name %></p>
     <div class="space"></div>
-    <p class="more"></p> <!-- rotate -->
+    <p class="details details-refresh"></p>
 
-    <%= simple_form_for [:user, item] do |f| %>
+    <%= simple_form_for [:user, item], remote: :true do |f| %>
       <%= f.input :pack_many, as: :hidden, input_html: { value: false } %>
       <%= f.input :category_filter, as: :hidden, input_html: { value: params[:category] } %>
       <%= f.input :direction_filter, as: :hidden, input_html: { value: params[:direction] } %>
       <%= f.input :group_filter, as: :hidden, input_html: { value: params[:group] } %>
       <%= f.input :packed_bag, as: :hidden, input_html: { value: @packed_bag.id } %>
-      <div class="more-displayed"> <!-- display if more -->
+      <div class="details-displayed"> <!-- display if details -->
         <div class="half-space"></div>
         <div class="input-with-unit">
           <input class="numeric integer required" value="<%= item.size %>", name="item[size]" id="item_size" type="number" step="0.1" min="0" max="99" >
@@ -31,7 +31,7 @@
         <p data-error="weight" class="input-error"></p>
         <div class="space"></div>
       </div>
-      <div class="more-displayed">
+      <div class="details-displayed">
         <input class="item-action update-item" type="submit" name="commit" value="update" data-disable-with="update">
         <div class="space"></div>
       </div>
@@ -44,7 +44,8 @@
         direction:  params[:direction],
         group:      params[:group]
       }),
-      method: :delete, class: "item-action delete-item" %>
+      method: :delete, remote: :true, class: "item-action delete-item" %>
+      <p data-error="delete" class="input-error"></p>
     <% elsif direction == 'pack' %>
       <%= button_to 'pack', user_packed_items_path(params: {
         item:       item,
@@ -52,7 +53,7 @@
         category:   params[:category],
         direction:  params[:direction],
         group:      params[:group]
-      }), method: :post, class: "item-action pack-item" %>
+      }), method: :post, remote: :true, class: "item-action pack-item" %>
     <% end %>
   </div>
 </div>

@@ -29,7 +29,9 @@
   <div class="wrapper-separator"></div>
   <div id="displayed-items">
     <% if params.key?(:direction) == false || params[:direction].blank? || params[:direction] == 'create' %>
-      <%= render 'user/packed_bags/cards/items_created' %>
+      <div id="items-created">
+        <%= render 'user/packed_bags/cards/items_created' %>
+      </div>
     <% elsif params[:direction] == 'pack' %>
       <%= render 'user/packed_bags/cards/packed_items' %>
     <% end %>

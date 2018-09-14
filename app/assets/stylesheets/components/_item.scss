@@ -1,7 +1,7 @@
 .items-container {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat( auto-fit, minmax($p160, 1fr) );
+  grid-template-columns: repeat( auto-fit, minmax($p160, $p160) );
   grid-gap: $p16;
   margin-right: $p16;
   .items-to-bottom {
@@ -102,7 +102,7 @@
     margin-bottom: -($p8 + $p2)
   }
 
-  .more {
+  .details {
     margin: 0 auto;
     margin-bottom: -$p12;
     width: 0;
@@ -210,4 +210,9 @@
 
 .unpack-item {
   background-color: $orange;
+}
+
+.input-error {
+  font-size: $p12;
+  color: $red;
 }

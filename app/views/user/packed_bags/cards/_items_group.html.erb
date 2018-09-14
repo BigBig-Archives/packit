@@ -52,7 +52,7 @@
         direction:   params[:direction],
         group:       params[:group]
       }),
-      method: :delete, class: "item-action delete-item" %>
+      method: :delete, remote: :true, class: "item-action delete-item" %>
     <% end %>
 
   </div>
