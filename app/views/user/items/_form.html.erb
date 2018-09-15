@@ -1,0 +1,38 @@
+<%= simple_form_for [:user, item], remote: :true do |f| %>
+  <!-- CREATE -->
+  <% if item.id.nil? %>
+    <%= f.input :reference, as: :hidden, input_html: { value: reference.id } %>
+  <% end %>
+  <%= f.input :packed_bag, as: :hidden, input_html: { value: @packed_bag.id } %>
+  <%= f.input :cat,        as: :hidden, input_html: { value: @cat } %>
+  <%= f.input :ope,        as: :hidden, input_html: { value: @ope } %>
+  <%= f.input :dis,        as: :hidden, input_html: { value: @dis } %>
+
+  <div class="input-with-unit">
+    <% if item.id.nil? %> <!-- CREATE -->
+      <%= f.input :size, label: 'L', input_html: { value: reference.size, step: 0.1, min: 0.1, max: 99 } %>
+    <% else %> <!-- UPDATE -->
+      <%= f.input :size, label: 'L', input_html: { step: 0.1, min: 0.1, max: 99 } %>
+    <% end %>
+  </div>
+  <p data-error="size" class="input-error"></p>
+  <div class="input-with-unit">
+    <% if item.id.nil? %> <!-- CREATE -->
+      <%= f.input :weight, label: 'K', input_html: { value: reference.weight, step: 0.1, min: 0.1, max: 99 } %>
+    <% else %> <!-- UPDATE -->
+      <%= f.input :weight, label: 'K', input_html: { step: 0.1, min: 0.1, max: 99 } %>
+    <% end %>
+    </div>
+  <p data-error="weight" class="input-error"></p>
+  <div class="space"></div>
+  <% if item.id.nil? %> <!-- CREATE -->
+    <div class="submit-with-quantity">
+      <%= f.input :quantity, as: :integer, label: false, input_html: { value: 1, step: 1, min: 1, max: 30, class: "item-action-qty create-qty" } %>
+      <%= f.button :submit, 'add', class: "item-action create-item" %>
+    </div>
+    <p data-error='quantity' class='input-error'></p>
+  <% else %> <!-- UPDATE -->
+    <%= f.button :submit, 'update', class: "item-action update-item" %>
+    <div class="small-space"></div>
+  <% end %>
+<% end %>

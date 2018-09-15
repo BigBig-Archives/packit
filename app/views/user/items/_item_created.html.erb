@@ -1,0 +1,24 @@
+<div class="items-to-bottom" data-item=<%= item.id %>>
+  <div class="item-container">
+    <%= image_tag "items/#{item.picture}", class: "picture" %>
+    <div class="space"></div>
+    <p class="name"><%= item.name %></p>
+    <div class="space"></div>
+    <p class="details details-refresh"></p>
+
+    <!-- EDIT ITEM -->
+
+    <%= render 'user/items/form', item: item %>
+
+    <!-- DELETE ITEM -->
+
+    <%= button_to 'delete', user_item_path(item, params: {
+      packed_bag: @packed_bag,
+      cat:        @cat,
+      ope:        @ope,
+      dis:        @dis
+    }),
+    method: :delete, remote: :true, class: "item-action delete-item" %>
+    <p data-error="delete" class="input-error"></p>
+  </div>
+</div>

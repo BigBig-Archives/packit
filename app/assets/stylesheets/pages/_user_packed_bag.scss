@@ -1,17 +1,16 @@
 #packed-bag-wrapper {
-  margin-bottom: $p64;
-  border-top: solid $p2 darken($light-gray, 4%);
   #displayed-items {
+    padding: 0 $p40 $p40 $p40;
+    background-color: yellow;
     overflow-y: scroll;
     overflow-x: hidden;
     float: left;
-    width: 49%;
-    height: 100vh;
+    width: 50%;
+    height: 60vh;
   }
   .wrapper-separator {
-    height: 100vh;
-    float: left;
-    width: 2%;
+    // height: 100vh;
+    // float: left;
   }
   .displayed-items-left,
   .displayed-items-left {
@@ -21,7 +20,7 @@
   }
 }
 
-.direction {
+.operation {
   width: 40%;
   margin: auto;
   padding: $p16;
@@ -51,6 +50,7 @@
 }
 
 .cards-indication {
+  margin-top: $p16;
   text-align: center;
   color: lighten($gray, 30%);
 }

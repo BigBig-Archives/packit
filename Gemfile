@@ -19,7 +19,6 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
-# gem 'bootstrap-sass', '~> 3.3'
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 

@@ -1,6 +1,5 @@
 <div id="items-to-pack">
   <div class="cards-indication">
-    <hr>
     <p class="cards-indication">Here are all you owned items not already packed</p>
     <hr>
     <% if current_user.items.empty? %>
@@ -13,24 +12,24 @@
     <div class="button-substitute"></div>
   <% else %>
     <%= button_to 'pack all', user_packed_items_path(params: {
-      pack_all:   'true',
+      pack:       'all',
       packed_bag: @packed_bag,
-      category:   params[:category],
-      direction:  params[:direction],
-      group:      params[:group]
+      cat: @cat,
+      ope: @ope,
+      dis: @dis
     }), method: :post, remote: :true, class: 'item-action item-action-all pack-item' %>
   <% end %>
 
   <div class="items-container" id="items_to_pack">
-    <% if params.key?(:group) && params[:group] == 'false' %>
-      <% @owned_items.each do |item| %>
-        <% unless item.packed?(@packed_bag) %>
-          <%= render 'user/packed_bags/cards/item', direction: 'pack', item: item %>
-        <% end %>
+    <% if @dis == 'group' || @dis.nil? %>
+      <% @owned_references.sort_by { |reference| reference.name }.each do |reference| %>
+        <%= render 'user/items/item_to_pack_by_reference', reference: reference %>
       <% end %>
     <% else %>
-      <% @owned_references.sort_by { |reference| reference.name }.each do |reference| %>
-        <%= render 'user/packed_bags/cards/items_group', direction: 'pack', reference: reference %>
+      <% @owned_items.each do |item| %>
+        <% unless item.packed?(@packed_bag) %>
+          <%= render 'user/items/item_to_pack', item: item %>
+        <% end %>
       <% end %>
     <% end %>
   </div>

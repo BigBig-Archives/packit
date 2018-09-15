@@ -1,60 +1,60 @@
 name,size,weight,picture,category
-arrow,02.01,"1,74",arrow,food
-axe,01.01,"1,66",axe,tools
-badminton racket,01.01,"0,78",badminton_racket,sport
-band aid,03.01,"2,98",band_aid,aid
-basic tent,30.12,"2,38",basic_tent,bedtime
-basket,01.01,"2,78",basket,sport
-beach ball,31.12,"0,26",beach_ball,sport
-binoculars,03.01,"2,24",binoculars,tools
-canteen,03.01,"0,11",canteen,food
-cap,03.01,"0,68",cap,clothes
-compass,30.12,"0,60",compass,tools
-cutlery,30.12,"2,96",cutlery,food
-first aid kit,30.12,"0,86",first_aid_kit,aid
-fishing rod,31.12,"2,82",fishing_rod,food
-flashlight,02.01,"0,93",flashlight,light
-flask,01.01,"0,28",flask,food
-gas,02.01,"1,61",gas,food
-gps,31.12,"1,88",gps,tools
-grill,30.12,"2,29",grill,food
-guitar,01.01,"1,36",guitar,hobbies
-hikking shoes,02.01,"1,19",hikking_shoes,clothes
-indian tent,02.01,"2,15",indian_tent,bedtime
-inflatable boat,31.12,"0,33",inflatable_boat,sport
-karabiner,31.12,"2,51",karabiner,tools
-kayak,01.01,"1,98",kayak,sport
-kayak paddle,30.12,"2,26",kayak_paddle,sport
-kite,02.01,"1,23",kite,hobbies
-knife,31.12,"2,91",knife,tools
-lantern,02.01,"2,48",lantern,light
-large tent,31.12,"2,73",large_tent,bedtime
-life vest,03.01,"0,03",life_vest,sport
-lifebuoy,30.12,"2,27",lifebuoy,sport
-light tent,01.01,"2,38",light_tent,bedtime
-lighter,01.01,"2,45",lighter,tools
-magnifying glass,01.01,"1,65",magnifying_glass,tools
-map,30.12,"2,34",map,tools
-marshmallow pick,02.01,"0,67",marshmallow_pick,food
-matches,01.01,"2,99",matches,tools
-mobile phone,01.01,"1,13",mobile_phone,devices
-novel,03.01,"0,19",novel,hobbies
-oil lamp,30.12,"1,04",oil_lamp,light
-passport,03.01,"1,45",passport,papers
-pill,30.12,"2,07",pill,aid
-portable compass,01.01,"0,73",portable_compass,tools
-pyjamas,31.12,"0,35",pyjamas,bedtime
-rifle,31.12,"1,18",rifle,food
-rope,03.01,"0,24",rope,tools
-shovel,01.01,"1,68",shovel,tools
-smartphone,01.01,"0,16",smartphone,devices
-stool,02.01,"1,54",stool,food
-survival book,31.12,"0,75",survival_book,hobbies
-swiss army knife,02.01,"1,11",swiss_army_knife,tools
-tablet,03.01,"0,55",tablet,devices
-thermo,01.01,"0,66",thermo,food
-toilet paper,31.12,"0,37",toilet_paper,papers
-torch,02.01,"0,31",torch,light
-walkie-talkie,31.12,"2,54",walkie-talkie,devices
-woolly hat,03.01,"0,82",woolly_hat,clothes
-wristwatch,01.01,"1,82",wristwatch,clothes
+arrow,1.3,2.5,arrow,food
+axe,3.8,3.9,axe,tools
+badminton racket,1.2,3.9,badminton_racket,sport
+band aid,4.2,2.7,band_aid,aid
+basic tent,3.8,3.1,basic_tent,bedtime
+basket,1.8,5.0,basket,sport
+beach ball,0.7,2.9,beach_ball,sport
+binoculars,1.4,2.0,binoculars,tools
+canteen,5.0,2.7,canteen,food
+cap,0.2,0.9,cap,clothes
+compass,1.0,1.1,compass,tools
+cutlery,2.1,4.0,cutlery,food
+first aid kit,0.8,0.6,first_aid_kit,aid
+fishing rod,5.0,0.2,fishing_rod,food
+flashlight,4.3,2.7,flashlight,light
+flask,1.6,2.9,flask,food
+gas,4.5,1.6,gas,food
+gps,2.6,1.1,gps,tools
+grill,3.7,2.3,grill,food
+guitar,1.0,3.1,guitar,hobbies
+hikking shoes,0.6,1.2,hikking_shoes,clothes
+indian tent,4.4,0.8,indian_tent,bedtime
+inflatable boat,4.9,1.8,inflatable_boat,sport
+karabiner,1.7,2.4,karabiner,tools
+kayak,3.2,3.0,kayak,sport
+kayak paddle,4.8,2.2,kayak_paddle,sport
+kite,4.7,4.2,kite,hobbies
+knife,3.6,3.3,knife,tools
+lantern,3.6,0.1,lantern,light
+large tent,2.2,0.7,large_tent,bedtime
+life vest,1.3,3.9,life_vest,sport
+lifebuoy,3.0,4.4,lifebuoy,sport
+light tent,0.7,2.3,light_tent,bedtime
+lighter,4.9,3.2,lighter,tools
+magnifying glass,1.2,3.3,magnifying_glass,tools
+map,0.9,2.9,map,tools
+marshmallow pick,1.2,1.1,marshmallow_pick,food
+matches,3.1,1.7,matches,tools
+mobile phone,3.7,2.8,mobile_phone,devices
+novel,0.3,1.7,novel,hobbies
+oil lamp,3.8,4.6,oil_lamp,light
+passport,1.7,0.2,passport,papers
+pill,1.2,1.1,pill,aid
+portable compass,2.3,4.3,portable_compass,tools
+pyjamas,5.0,1.3,pyjamas,bedtime
+rifle,2.2,4.6,rifle,food
+rope,3.3,0.2,rope,tools
+shovel,4.1,0.5,shovel,tools
+smartphone,1.1,0.4,smartphone,devices
+stool,1.3,2.4,stool,food
+survival book,0.9,1.3,survival_book,hobbies
+swiss army knife,3.5,1.2,swiss_army_knife,tools
+tablet,1.3,2.2,tablet,devices
+thermo,2.3,3.2,thermo,food
+toilet paper,0.6,0.8,toilet_paper,papers
+torch,1.1,4.4,torch,light
+walkie-talkie,0.8,3.3,walkie-talkie,devices
+woolly hat,3.6,1.2,woolly_hat,clothes
+wristwatch,2.4,1.8,wristwatch,clothes

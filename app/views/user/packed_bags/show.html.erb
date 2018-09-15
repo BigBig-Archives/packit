@@ -1,6 +1,4 @@
-<%= render 'user/packed_bags/load_details' %>
-<%= render 'user/packed_bags/filters/category', categories: @categories %>
-<%= render 'user/packed_bags/filters/direction' %>
+<%= render 'user/packed_bags/navbar', categories: @categories %>
 
 <!-- REFERENCES TO ITEMS -->
 
@@ -20,20 +18,26 @@
 
 <div id="packed-bag-wrapper">
   <div id="displayed-items">
-    <% if params.key?(:direction) == false || params[:direction].blank? || params[:direction] == 'create' %>
-      <%= render 'user/packed_bags/cards/references' %>
-    <% elsif params[:direction] == 'pack' %>
-      <%= render 'user/packed_bags/cards/items_to_pack' %>
+    <% if @ope == 'create' || @ope.nil? %>
+      <div id="references">
+        <%= render 'user/packed_bags/cards/display_references' %>
+      </div>
+    <% else %>
+      <div id="items_to_pack">
+        <%= render 'user/packed_bags/cards/display_items_to_pack' %>
+      </div>
     <% end %>
   </div>
   <div class="wrapper-separator"></div>
   <div id="displayed-items">
-    <% if params.key?(:direction) == false || params[:direction].blank? || params[:direction] == 'create' %>
+    <% if @ope == 'create' || @ope.nil? %>
       <div id="items-created">
-        <%= render 'user/packed_bags/cards/items_created' %>
+        <%= render 'user/packed_bags/cards/display_items_created' %>
       </div>
-    <% elsif params[:direction] == 'pack' %>
-      <%= render 'user/packed_bags/cards/packed_items' %>
+    <% else %>
+      <div id="packed-items">
+        <%= render 'user/packed_bags/cards/display_packed_items' %>
+      </div>
     <% end %>
   </div>
 </div>

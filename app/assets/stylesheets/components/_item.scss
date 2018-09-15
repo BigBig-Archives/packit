@@ -35,42 +35,47 @@
     }
   }
 
+  .form-group input,
+  input {
+    border-radius: 0;
+  }
+
   .item-container-behind {
-    height: $p208 - $p2;
+    height: 100%;
     background-color: $light-gray;
     position: absolute;
-    background-color: white;
+    background-color: darken(white, 2%);
     border: solid $p1 lighten($gray, 70%);
     &:nth-of-type(1) {
       transform: rotate(1deg);
       z-index: -1;
-      top: $p1;
+      top: $p4;
       left: $p2;
     }
     &:nth-of-type(2) {
       transform: rotate(2deg);
       z-index: -2;
-      top: $p2;
+      top: $p4 + $p2;
       left: $p4;
     }
   }
 
   .space {
-    height: $p16;
+    height: $space;
   }
 
-  .half-space {
-    height: $p8;
+  .small-space {
+    height: $small-space;
   }
 
   .large-space {
-    height: $p48;
+    height: $large-space;
   }
 
   .picture {
     display: block;
-    width:  $p72;
-    height: $p72;
+    width:  $p56;
+    height: $p56;
     margin: 0 auto;
     opacity: 0.8;
   }
@@ -80,7 +85,7 @@
     height:      $p16;
     line-height: $p16;
     color: lighten($gray, 20%);
-    font-size: $p16;
+    font-size: $font-size-normal;
     word-wrap: break-word;
     white-space: nowrap;
     overflow: hidden;
@@ -89,7 +94,7 @@
 
   .reference-count,
   .reference-count-small {
-    font-size: $p16;
+    font-size: $font-size-normal;
     color: lighten($gray, 40%);
   }
 
@@ -102,7 +107,7 @@
     margin-bottom: -($p8 + $p2)
   }
 
-  .details {
+  .toggle-details {
     margin: 0 auto;
     margin-bottom: -$p12;
     width: 0;
@@ -128,34 +133,42 @@
     width: 100%;
   }
 
-  .input-with-unit {
+  .input-with-unit .form-group {
     display: flex;
-    margin: 0 $p24;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 0 $p12;
     border-bottom: solid $p1 lighten($gray, 70%);
+    input, label {
+      height: $p32;
+      line-height: $p32;
+      display: block;
+      font-size: $font-size-normal;
+      margin: 0;
+      padding: 0;
+    }
     input {
       flex: 3;
       border: none;
       border-left-color: transparent;
-      text-align: center;
-      font-size: $p16 - $p2;
+      font-size: $font-size-normal;
       color: lighten($gray, 60%);
     }
-    div {
+    label {
       flex: 1;
-      span {
-        font-size: $p16 - $p2;
-        color: lighten($gray, 30%);
-      }
+      font-size: $font-size-normal;
+      color: lighten($gray, 30%);
     }
   }
 
   .submit-with-quantity {
     display: flex;
-    input:first-child {
+    .form-group {
       flex: 2;
       margin-right: $p1;
     }
-    input:last-child {
+    .item-action {
       flex: 3;
       margin-left: $p1;
     }
@@ -173,8 +186,13 @@
   padding: 0;
   border: none;
   color: white;
-  font-size: $p16;
+  font-size: $font-size-normal;
   text-align: center;
+}
+
+.submit-with-quantity .form-group .item-action-qty-disabled,
+.submit-with-quantity .item-action-disabled {
+  opacity: 0.25;
 }
 
 .item-action {
@@ -196,6 +214,10 @@
   background-color: $green;
 }
 
+.create-qty {
+  background-color: $green;
+}
+
 .update-item {
   background-color: $yellow;
 }
@@ -204,7 +226,23 @@
   background-color: $red;
 }
 
+.delete-qty {
+  background-color: $red;
+}
+
 .pack-item {
+  background-color: $blue;
+}
+
+.submit-with-quantity .pack-item-disables {
+  background-color: $blue;
+}
+
+.pack-qty {
+  background-color: $blue;
+}
+
+.submit-with-quantity .form-group .pack-qty-disabled {
   background-color: $blue;
 }
 
@@ -212,7 +250,11 @@
   background-color: $orange;
 }
 
+.unpack-qty {
+  background-color: $orange;
+}
+
 .input-error {
-  font-size: $p12;
+  font-size: $font-size-normal - $p2;
   color: $red;
 }

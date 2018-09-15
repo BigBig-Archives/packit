@@ -1,0 +1,47 @@
+<div class="navbar">
+
+  <div class="operations">
+    <% if @ope == 'create' || @ope.nil? %>
+      <%= link_to user_packed_bag_path(@packed_bag, params: { ope: 'pack', dis: @dis, cat: @cat }),
+      class: "operation switch-to-pack" do %>
+        <p>Let's pack my bag</p>
+      <% end %>
+    <% else %>
+      <%= link_to user_packed_bag_path(@packed_bag, params: { ope: 'create', dis: @dis, cat: @cat }),
+      class: "operation switch-to-create" do %>
+        <p>Let's create more items</p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="categories">
+    <%= link_to user_packed_bag_path(@packed_bag, params: { cat:  0, ope: @ope, dis: @dis }),
+    class: "category #{'category-selected' if @cat.to_i.zero? || @cat.nil?}" do %>
+      <%= image_tag "categories/all", class: "picture" %>
+      <p>ALL</p>
+    <% end %>
+    <% categories.each do |category| %>
+      <% unless category.references.empty? %>
+        <%= link_to user_packed_bag_path(@packed_bag, params: { cat: category.id, ope: @ope, dis: @dis }),
+        class: "category #{'selected' if @cat.to_i == category.id}" do %>
+          <%= image_tag "categories/#{category.picture}", class: "picture" %>
+          <p><%= category.name.upcase %></p>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+
+  <div class="displays">
+    <%= link_to user_packed_bag_path(@packed_bag, params: { dis: 'group', ope: @ope, cat: @cat }),
+    class: "display #{'selected' if @dis == 'group' || @dis.nil? }" do %>
+      <%= image_tag "interface/group_items", class: "picture" %>
+      <p>GROUPED</p>
+    <% end %>
+    <%= link_to user_packed_bag_path(@packed_bag,params: { dis: 'ungroup', ope: @ope, cat: @cat }),
+    class: "display #{'selected' if @dis == 'ungroup'}" do %>
+      <%= image_tag "interface/ungroup_items", class: "picture" %>
+      <p>DETAILED</p>
+    <% end %>
+  </div>
+</div>

@@ -1,24 +1,23 @@
-console.log("update item(s)");
+function updateItem() {
+  console.log("update item");
 
-<% if @item.errors.any? %>
-  reference_id = "<%= j @item.reference.id.to_s %>";
-  reference = document.querySelector(`[data-reference=\"${reference_id}\"]`);
-  reference.querySelector(".details-displayed").style.display = "";
-  reference.querySelector(".details-displayed").classList.add("open");
-  <% @item.errors.messages.each do |key, value| %>
-    container = reference.querySelector("[data-error=\"<%= j key.to_s %>\"]");
-    content = `<%= j key.to_s %> <%= j value.first.to_s %>` ;
+  let item;
+  let container;
+  let content;
+
+  <% if @item.errors.any? %>
+    console.log("error(s)");
+    item = document.querySelector(`[data-item=\"<%= j @item.id.to_s %>\"]`);
+    <% @item.errors.messages.each do |key, value| %>
+      container = item.querySelector("[data-error=\"<%= j key.to_s %>\"]");
+      content = `<%= j key.to_s %> <%= j value.first.to_s %>` ;
+      container.innerHTML = content;
+    <% end %>
+  <% else %>
+    container = document.querySelector("#items-created");
+    content = `<%= j render 'user/packed_bags/cards/display_items_created' %>`;
     container.innerHTML = content;
   <% end %>
-<% else %>
-  container = document.querySelector("#items-created");
-  if ("<%= j @filter_on_group.to_s %>" === "false") {
-    console.log("ungroup");
-    content = `<%= j render 'user/packed_bags/cards/items_created_ungroup' %>`;
-  } else {
-    console.log("group");
-    content = `<%= j render 'user/packed_bags/cards/items_created_group' %>`;
-  }
-  container.innerHTML = content;
-<% end %>
+}
 
+updateItem();

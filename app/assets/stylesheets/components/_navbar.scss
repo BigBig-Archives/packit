@@ -1,0 +1,91 @@
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  display: flex;
+  background-color: darken($light-gray, 5%);
+  border-bottom: solid $p2 darken($light-gray, 10%);
+  padding-left: $p80;
+  padding-right: $p80;
+  padding-bottom: $p16;
+  height: 25vh;
+
+  .operations {
+    align-self: flex-end;
+    flex: 1;
+    display: flex;
+    background-color: red;
+  }
+
+  .categories {
+    align-self: flex-end;
+    flex: 8;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: blue;
+    margin: 0 $p24;
+    .category {
+      flex: 1;
+      padding: $p8;
+      border-bottom: solid $p4 transparent;
+      text-align: center;
+      opacity: 0.7;
+      .picture {
+        width: $p48;
+        margin-bottom: $p4;
+      }
+      p {
+        width: $p56;
+        color: lighten($gray, 20%);
+        font-size: $p12;
+        word-wrap: break-word;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+    .selected {
+      border-bottom-color: $green;
+      opacity: 1;
+    }
+  }
+
+  .displays {
+    align-self: flex-end;
+    flex: 1;
+    display: flex;
+    background-color: blue;
+    .display {
+      flex: 1;
+      padding: $p8;
+      border-bottom: solid $p4 transparent;
+      text-align: center;
+      opacity: 0.7;
+      .picture {
+        width: $p48;
+        margin-bottom: $p4;
+      }
+      p {
+        width: $p56;
+        color: lighten($gray, 20%);
+        font-size: $p12;
+        word-wrap: break-word;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+    .selected {
+      border-bottom-color: $blue;
+      opacity: 1;
+    }
+  }
+}

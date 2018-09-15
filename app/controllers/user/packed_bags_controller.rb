@@ -1,14 +1,11 @@
 class User::PackedBagsController < ApplicationController
+  before_action :set_url_params
   before_action :set_packed_bag, only: %i[show update destroy copy]
 
   def show
     @packed_item = PackedItem.new
     @item        = Item.new
     filter
-    respond_to do |format|
-      format.html { render 'user/packed_bags/show' }
-      format.js { render 'user/packed_bags/sort' }
-    end
   end
 
   def create

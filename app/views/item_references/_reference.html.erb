@@ -1,0 +1,14 @@
+<div class="items-to-bottom" data-reference=<%= reference.id %>>
+  <div class="item-container">
+    <%= image_tag "items/#{reference.picture}", class: "picture" %>
+    <div class="space"></div>
+    <p class="name"><%= reference.name %></p>
+    <div class="space"></div>
+    <p class="details"></p> <!-- rotate -->
+
+    <!-- CREATE ITEM -->
+
+    <%= render 'user/items/form', item: @item, reference: reference %>
+
+  </div>
+</div>

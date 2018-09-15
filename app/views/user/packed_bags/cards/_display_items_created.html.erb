@@ -1,5 +1,4 @@
 <div class="cards-indication">
-  <hr>
   <p>Here are all you owned items</p>
   <hr>
   <% if current_user.items.empty? %>
@@ -9,13 +8,13 @@
 </div>
 
 <div class="items-container">
-  <% if params[:group] == "false" %>
-    <% @owned_items.each do |item| %>
-      <%= render 'user/packed_bags/cards/item', direction: 'create', item: item %>
+  <% if @dis == 'group' || @dis.nil? %>
+    <% @owned_references.each do |reference| %>
+      <%= render 'user/items/item_created_by_reference', reference: reference %>
     <% end %>
   <% else %>
-    <% @owned_references.each do |reference| %>
-      <%= render 'user/packed_bags/cards/items_group', direction: 'create', reference: reference %>
+    <% @owned_items.each do |item| %>
+      <%= render 'user/items/item_created', item: item %>
     <% end %>
   <% end %>
 </div>

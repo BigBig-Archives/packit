@@ -1,0 +1,32 @@
+function unpackItem() {
+  console.log("unpack item(s)");
+
+  let reference;
+  let packed_item;
+  let items_container;
+  let items_content;
+  let packed_items_container;
+  let packed_items_content;
+
+  // errors
+  let container;
+  let content;
+
+  <% if @packed_item.errors.any? %>
+    reference = document.querySelector(`[data-packed-item-reference=\"<%= j @reference.id.to_s %>\"]`);
+    <% @packed_item.errors.messages.each do |key, value| %>
+      container = reference.querySelector("[data-error=\"<%= j key.to_s %>\"]");
+      content = `<%= j key.to_s %> <%= j value.first.to_s %>` ;
+      container.innerHTML = content;
+    <% end %>
+  <% else %>
+    items_container = document.querySelector("#items-to-pack");
+    items_content = `<%= j render 'user/packed_bags/cards/display_items_to_pack' %>`;
+    packed_items_container = document.querySelector("#packed-items");
+    packed_items_content = `<%= j render 'user/packed_bags/cards/display_packed_items' %>`;
+    items_container.innerHTML = items_content;
+    packed_items_container.innerHTML = packed_items_content;
+  <% end %>
+}
+
+unpackItem();
