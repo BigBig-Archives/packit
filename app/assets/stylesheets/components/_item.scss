@@ -1,260 +1,228 @@
 .items-container {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat( auto-fit, minmax($p160, $p160) );
-  grid-gap: $p16;
-  margin-right: $p16;
-  .items-to-bottom {
+  grid-template-columns: repeat( auto-fit, minmax($p120, 1fr) );
+  grid-gap: $p8;
+
+  .item-container {
     align-self: flex-end;
-  }
-}
-
-.item-container,
-.item-container-behind {
-  width: $p160;
-  border: solid $p1 lighten($gray, 70%);
-}
-.item-container-behind {
-  height: $p208 - $p2;
-}
-
-
-.item-container {
-  background-color: white;
-  position: relative;
-  padding: $p16;
-  text-align: center;
-  &:hover {
-    .item-container-behind {
-      &:nth-of-type(1) {
-        transform: rotate(2deg);
-      }
-      &:nth-of-type(2) {
-        transform: rotate(4deg);
-      }
-    }
-  }
-
-  .form-group input,
-  input {
-    border-radius: 0;
-  }
-
-  .item-container-behind {
-    height: 100%;
-    background-color: $light-gray;
-    position: absolute;
-    background-color: darken(white, 2%);
+    width: 100%;
+    padding: $p16;
     border: solid $p1 lighten($gray, 70%);
-    &:nth-of-type(1) {
-      transform: rotate(1deg);
-      z-index: -1;
-      top: $p4;
-      left: $p2;
+    background-color: white;
+    text-align: center;
+
+    .picture {
+      display: block;
+      width: $p56;
+      height: $p56;
+      margin: 0 auto;
+      margin-bottom: $p8;
+      opacity: 0.8;
     }
-    &:nth-of-type(2) {
-      transform: rotate(2deg);
-      z-index: -2;
-      top: $p4 + $p2;
-      left: $p4;
+
+    .name {
+      margin: 0;
+      margin-bottom: -$p12;
+      height: $p16;
+      line-height: $p16;
+      color: lighten($gray, 20%);
+      font-size: $font-size-normal;
+      word-wrap: break-word;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
+
+    input {
+      border-radius: 0;
+    }
+
+    // LITERS AND KILOS FORMS
+    .input-with-unit {
+      margin-bottom: $p8;
+      .form-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 $p12;
+        border-bottom: solid $p1 lighten($gray, 70%);
+        input, label {
+          height: $p24;
+          line-height: $p24;
+          display: block;
+          font-size: $font-size-normal;
+          margin: 0;
+          padding: 0;
+        }
+        input {
+          flex: 2;
+          border: none;
+          font-size: $font-size-normal;
+          color: lighten($gray, 60%);
+        }
+        label {
+          flex: 1;
+          font-size: $font-size-normal;
+          color: lighten($gray, 30%);
+        }
+      }
+    }
+
+    // CREATE, PACK OR UNPACK WITH QUANTITY
+    .submit-with-quantity {
+      display: flex;
+      .form-group {
+        flex: 2;
+        margin-right: $p1;
+      }
+      .item-action {
+        flex: 3;
+        margin-left: $p1;
+      }
+    }
+
+    // DISPLAY: GROUPED
+
+    .reference-count,
+    .reference-count-small {
+      font-size: $font-size-normal;
+      color: lighten($gray, 40%);
+    }
+
+    .reference-count {
+      margin: ($p4 + $p2) auto;
+    }
+
+    .reference-count-small {
+      margin-top: ($p4 + $p2);
+      margin-bottom: -($p8 + $p2);
+    }
+
+    .item-action,
+    .item-action-qty {
+      display: inline-block;
+      min-width: 0;
+      width: 100%;
+    }
+
+
+
+
   }
 
-  .space {
-    height: $space;
-  }
-
-  .small-space {
-    height: $small-space;
-  }
-
-  .large-space {
-    height: $large-space;
-  }
-
-  .picture {
-    display: block;
-    width:  $p56;
-    height: $p56;
-    margin: 0 auto;
-    opacity: 0.8;
-  }
-
-  .name {
-    margin: 0;
-    height:      $p16;
-    line-height: $p16;
-    color: lighten($gray, 20%);
-    font-size: $font-size-normal;
-    word-wrap: break-word;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .reference-count,
-  .reference-count-small {
-    font-size: $font-size-normal;
-    color: lighten($gray, 40%);
-  }
-
-  .reference-count {
-    margin: ($p4 + $p2) auto;
-  }
-
-  .reference-count-small {
-    margin-top: ($p4 + $p2);
-    margin-bottom: -($p8 + $p2)
-  }
-
-  .toggle-details {
-    margin: 0 auto;
-    margin-bottom: -$p12;
-    width: 0;
-    height: 0;
-    border: solid $p8;
-    border-top-color: lighten($gray, 70%);
-    border-bottom-color: transparent;
-    border-right-color: transparent;
-    border-left-color: transparent;
-    cursor: pointer;
-  }
-
-  .open {
-    margin-top: -$p8;
-    border-top-color: transparent;
-    border-bottom-color: lighten($gray, 70%);
+  .empty-reference {
+    background-color: darken($light-gray, 2%);
   }
 
   .item-action,
   .item-action-qty {
-    display: inline-block;
-    min-width: 0;
-    width: 100%;
+    width: $p112;
+    height: $p32;
+    padding: 0;
+    border: none;
+    color: white;
+    font-size: $font-size-normal;
+    text-align: center;
   }
 
-  .input-with-unit .form-group {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    margin: 0 $p12;
-    border-bottom: solid $p1 lighten($gray, 70%);
-    input, label {
-      height: $p32;
-      line-height: $p32;
-      display: block;
-      font-size: $font-size-normal;
-      margin: 0;
-      padding: 0;
-    }
-    input {
-      flex: 3;
-      border: none;
-      border-left-color: transparent;
-      font-size: $font-size-normal;
-      color: lighten($gray, 60%);
-    }
-    label {
-      flex: 1;
-      font-size: $font-size-normal;
-      color: lighten($gray, 30%);
-    }
+  .submit-with-quantity .form-group .item-action-qty-disabled,
+  .submit-with-quantity .item-action-disabled {
+    opacity: 0.25;
   }
 
-  .submit-with-quantity {
-    display: flex;
-    .form-group {
-      flex: 2;
-      margin-right: $p1;
-    }
-    .item-action {
-      flex: 3;
-      margin-left: $p1;
-    }
+  .item-action {
+    cursor: pointer;
+  }
+
+  .item-action-all {
+    display: block;
+    margin: $p12 0;
+  }
+
+  .button-substitute {
+    height: $p32;
+    display: block;
+    margin: $p12 0;
+  }
+
+  .create-item {
+    background-color: $green;
+  }
+
+  .create-qty {
+    background-color: $green;
+  }
+
+  .update-item {
+    background-color: $yellow;
+  }
+
+  .delete-item {
+    background-color: $red;
+  }
+
+  .delete-qty {
+    background-color: $red;
+  }
+
+  .pack-item {
+    background-color: $blue;
+  }
+
+  .submit-with-quantity .pack-item-disables {
+    background-color: $blue;
+  }
+
+  .pack-qty {
+    background-color: $blue;
+  }
+
+  .submit-with-quantity .form-group .pack-qty-disabled {
+    background-color: $blue;
+  }
+
+  .unpack-item {
+    background-color: $orange;
+  }
+
+  .unpack-qty {
+    background-color: $orange;
+  }
+
+  .input-error {
+    font-size: $font-size-normal - $p2;
+    color: $red;
   }
 }
 
-.empty-reference {
-  background-color: darken($light-gray, 2%);
-}
+.item-container-behind {
+      height: 100%;
+      background-color: $light-gray;
+      position: absolute;
+      background-color: darken(white, 2%);
+      border: solid $p1 lighten($gray, 70%);
+      &:nth-of-type(1) {
+        transform: rotate(1deg);
+        z-index: -1;
+        top: $p4;
+        left: $p2;
+      }
+      &:nth-of-type(2) {
+        transform: rotate(2deg);
+        z-index: -2;
+        top: $p4 + $p2;
+        left: $p4;
+      }
+    }
 
-.item-action,
-.item-action-qty {
-  width: $p112;
-  height: $p32;
-  padding: 0;
-  border: none;
-  color: white;
-  font-size: $font-size-normal;
-  text-align: center;
-}
-
-.submit-with-quantity .form-group .item-action-qty-disabled,
-.submit-with-quantity .item-action-disabled {
-  opacity: 0.25;
-}
-
-.item-action {
-  cursor: pointer;
-}
-
-.item-action-all {
-  display: block;
-  margin: $p12 0;
-}
-
-.button-substitute {
-  height: $p32;
-  display: block;
-  margin: $p12 0;
-}
-
-.create-item {
-  background-color: $green;
-}
-
-.create-qty {
-  background-color: $green;
-}
-
-.update-item {
-  background-color: $yellow;
-}
-
-.delete-item {
-  background-color: $red;
-}
-
-.delete-qty {
-  background-color: $red;
-}
-
-.pack-item {
-  background-color: $blue;
-}
-
-.submit-with-quantity .pack-item-disables {
-  background-color: $blue;
-}
-
-.pack-qty {
-  background-color: $blue;
-}
-
-.submit-with-quantity .form-group .pack-qty-disabled {
-  background-color: $blue;
-}
-
-.unpack-item {
-  background-color: $orange;
-}
-
-.unpack-qty {
-  background-color: $orange;
-}
-
-.input-error {
-  font-size: $font-size-normal - $p2;
-  color: $red;
+.items-container:hover {
+  .item-container-behind {
+    &:nth-of-type(1) {
+      transform: rotate(2deg);
+    }
+    &:nth-of-type(2) {
+      transform: rotate(4deg);
+    }
+  }
 }

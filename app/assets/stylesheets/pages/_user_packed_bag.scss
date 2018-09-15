@@ -1,16 +1,11 @@
 #packed-bag-wrapper {
+  margin-top: $p136;
   #displayed-items {
-    padding: 0 $p40 $p40 $p40;
-    background-color: yellow;
+    padding: 0 $p72 $p72 $p72;
     overflow-y: scroll;
     overflow-x: hidden;
     float: left;
     width: 50%;
-    height: 60vh;
-  }
-  .wrapper-separator {
-    // height: 100vh;
-    // float: left;
   }
   .displayed-items-left,
   .displayed-items-left {
