@@ -1,0 +1,9 @@
+function sortItems() {
+  let categories_container = document.querySelector("#navbar #categories");
+  let categories = `<%= j render 'user/packed_bags/navbar/categories' %>`;
+  categories_container.innerHTML = categories;
+  let items_displayed_container = document.querySelector("#packed-bag-wrapper");
+  let items_displayed = `<%= j render 'user/packed_bags/displayer' %>`;
+  items_displayed_container.innerHTML = items_displayed;
+}
+sortItems();

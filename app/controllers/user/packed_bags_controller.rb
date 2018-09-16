@@ -6,6 +6,17 @@ class User::PackedBagsController < ApplicationController
     @packed_item = PackedItem.new
     @item        = Item.new
     filter
+    respond_to do |format|
+      format.html {
+        if @cat.nil? || @ope.nil? || @dis.nil?
+          @cat = '0'
+          @ope = 'create'
+          @dis = 'group'
+          redirect_to user_packed_bag_path(@packed_bag, cat: @cat, ope: @ope, dis: @dis)
+        end
+      }
+      format.js { render 'user/packed_bags/show' }
+    end
   end
 
   def create
@@ -14,7 +25,9 @@ class User::PackedBagsController < ApplicationController
     @packed_bag.journey = @journey
     if @packed_bag.save
       respond_to do |format|
-        format.html { redirect_to user_packed_bag_path(@packed_bag), notice: 'Packed Bag created' }
+        format.html { redirect_to user_packed_bag_path(@packed_bag,
+          cat: @cat, ope: @ope, dis: @dis),
+          notice: 'Packed Bag created' }
         format.js { render 'user/packed_bags/create' }
       end
     else
@@ -42,7 +55,9 @@ class User::PackedBagsController < ApplicationController
       end
       if @packed_bag.packed_items.count == @copy.packed_items.count
         respond_to do |format|
-          format.html { redirect_to user_packed_bag_path(@copy), notice: 'Packed Bag copied' }
+          format.html { redirect_to user_packed_bag_path(@copy,
+            cat: @cat, ope: @ope, dis: @dis),
+            notice: 'Packed Bag copied' }
         end
       else
         flash[:alert] = 'Error: ' << @copy.errors.full_messages.join(' - ')

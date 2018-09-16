@@ -2,7 +2,12 @@
   <div class="card">
     <div class="card-body">
       <h5 class="card-title"><%= packed_bag.name %></h5>
-        <%= button_to 'open', user_packed_bag_path(packed_bag), method: :get, type: 'button', class: 'btn btn-primary btn-sm' %>
+        <%= button_to 'open', user_packed_bag_path(packed_bag, params: {cat: '0'}),
+        cat: '0',
+        ope: 'create',
+        dis: 'group',
+        method: :get,
+        type: 'button', class: 'btn btn-primary btn-sm' %>
         <%= button_to 'delete', user_packed_bag_path(packed_bag), method: :delete, type: 'button', class: 'btn btn-danger btn-sm' %>
     </div>
   </div>

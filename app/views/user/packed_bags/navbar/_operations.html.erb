@@ -1,0 +1,11 @@
+<% if @ope == 'create' || @ope.nil? %>
+  <%= link_to user_packed_bag_path(@packed_bag, params: { ope: 'pack', dis: @dis, cat: @cat }),
+  class: "operation switch-to-pack" do %>
+    <p>Let's pack my bag</p>
+  <% end %>
+<% else %>
+  <%= link_to user_packed_bag_path(@packed_bag, params: { ope: 'create', dis: @dis, cat: @cat }),
+  class: "operation switch-to-create" do %>
+    <p>Let's create more items</p>
+  <% end %>
+<% end %>

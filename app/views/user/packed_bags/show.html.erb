@@ -1,4 +1,4 @@
-<%= render 'user/packed_bags/navbar', categories: @categories %>
+<%= render 'user/packed_bags/navbar/navbar' %>
 
 <!-- REFERENCES TO ITEMS -->
 
@@ -17,27 +17,5 @@
       +----------------+----------------+ -->
 
 <div id="packed-bag-wrapper">
-  <div id="displayed-items">
-    <% if @ope == 'create' || @ope.nil? %>
-      <div id="references">
-        <%= render 'user/packed_bags/cards/display_references' %>
-      </div>
-    <% else %>
-      <div id="items_to_pack">
-        <%= render 'user/packed_bags/cards/display_items_to_pack' %>
-      </div>
-    <% end %>
-  </div>
-  <div class="wrapper-separator"></div>
-  <div id="displayed-items">
-    <% if @ope == 'create' || @ope.nil? %>
-      <div id="items-created">
-        <%= render 'user/packed_bags/cards/display_items_created' %>
-      </div>
-    <% else %>
-      <div id="packed-items">
-        <%= render 'user/packed_bags/cards/display_packed_items' %>
-      </div>
-    <% end %>
-  </div>
+  <%= render 'user/packed_bags/displayer' %>
 </div>
