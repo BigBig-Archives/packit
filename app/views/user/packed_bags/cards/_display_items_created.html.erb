@@ -12,9 +12,11 @@
     <% @owned_references.each do |reference| %>
       <%= render 'user/items/item_created_by_reference', reference: reference %>
     <% end %>
+    <%= render 'user/packed_bags/cards/shadow_cards' %>
   <% else %>
     <% @owned_items.each do |item| %>
       <%= render 'user/items/item_created', item: item %>
     <% end %>
+    <%= render 'user/packed_bags/cards/shadow_cards' %>
   <% end %>
 </div>

@@ -1,26 +1,23 @@
-<div class="items-to-bottom" data-item=<%= reference.id %>>
-  <div class="item-container">
+<div class="item-container" data-item=<%= reference.id %>>
 
-    <% if current_user.reference_count(reference) == 2 %>
-      <div class="item-container-behind"></div>
-    <% elsif current_user.reference_count(reference) > 2 %>
-      <div class="item-container-behind"></div>
-      <div class="item-container-behind"></div>
-    <% end %>
+  <% if current_user.reference_count(reference) == 2 %>
+    <div class="item-container-behind"></div>
+  <% elsif current_user.reference_count(reference) > 2 %>
+    <div class="item-container-behind"></div>
+    <div class="item-container-behind"></div>
+  <% end %>
 
-    <%= image_tag "items/#{reference.picture}", class: 'picture' %>
-    <div class="space"></div>
-    <p class="name"><%= reference.name %></p>
-    <p class="reference-count"><%= current_user.reference_count(reference) %></p>
+  <%= image_tag "items/#{reference.picture}", class: 'picture' %>
+  <p class="name"><%= reference.name %></p>
+  <p class="reference-count"><%= current_user.reference_count(reference) %></p>
 
-    <%= button_to 'delete all', user_item_path(reference.items.first, params: {
-      destroy_all: 'true',
-      packed_bag:  @packed_bag,
-      cat: @cat,
-      ope: @ope,
-      dis: @dis
-    }),
-    method: :delete, remote: :true, class: "item-action delete-item" %>
+  <%= button_to 'delete all', user_item_path(reference.items.first, params: {
+    destroy_all: 'true',
+    packed_bag:  @packed_bag,
+    cat: @cat,
+    ope: @ope,
+    dis: @dis
+  }),
+  method: :delete, remote: :true, class: "item-action delete-item" %>
 
-  </div>
 </div>

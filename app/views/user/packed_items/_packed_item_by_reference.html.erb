@@ -1,40 +1,36 @@
-<!-- reference, packed_bag -->
+<div class="item-container" data-packed-item-reference=<%= reference.id %>>
 
-<div class="items-to-bottom" data-packed-item-reference=<%= reference.id %>>
-  <div class="item-container">
+  <% if @packed_bag.packed_reference_count(reference) == 2 %>
+    <div class="item-container-behind"></div>
+  <% elsif @packed_bag.packed_reference_count(reference) > 2 %>
+    <div class="item-container-behind"></div>
+    <div class="item-container-behind"></div>
+  <% end %>
 
-    <% if @packed_bag.packed_reference_count(reference) == 2 %>
-      <div class="item-container-behind"></div>
-    <% elsif @packed_bag.packed_reference_count(reference) > 2 %>
-      <div class="item-container-behind"></div>
-      <div class="item-container-behind"></div>
-    <% end %>
+  <%= image_tag "items/#{reference.picture}", class: 'picture' %>
+  <div class="space"></div>
+  <p class='name'><%= reference.name %></p>
+  <p class="reference-count">
+    <span><%= @packed_bag.packed_reference_count(reference) %></span>
+    <span> / </span>
+    <span><%= current_user.reference_count(reference) %></span>
+  </p>
 
-    <%= image_tag "items/#{reference.picture}", class: 'picture' %>
-    <div class="space"></div>
-    <p class='name'><%= reference.name %></p>
-    <p class="reference-count-small">
-      <span><%= @packed_bag.packed_reference_count(reference) %></span>
-      <span> / </span>
-      <span><%= current_user.reference_count(reference) %></span>
-    </p>
+  <% packed_item = @packed_bag.packed_items.select { |packed_item| packed_item.item.reference == reference }.last %>
 
-    <% packed_item = @packed_bag.packed_items.select { |packed_item| packed_item.item.reference == reference }.last %>
+  <%= simple_form_for [:user, packed_item], remote: :true do |f| %>
+    <%= f.input :unpack, as: :hidden, input_html: { value: 'many' } %>
+    <%= f.input :cat, as: :hidden, input_html: { value: @cat } %>
+    <%= f.input :ope, as: :hidden, input_html: { value: @ope } %>
+    <%= f.input :dis, as: :hidden, input_html: { value: @dis } %>
+    <%= f.input :reference, as: :hidden, input_html: { value: reference.id } %>
+    <%= f.input :packed_bag, as: :hidden, input_html: { value: @packed_bag.id } %>
 
-    <%= simple_form_for [:user, packed_item], remote: :true do |f| %>
-      <%= f.input :unpack, as: :hidden, input_html: { value: 'many' } %>
-      <%= f.input :cat, as: :hidden, input_html: { value: @cat } %>
-      <%= f.input :ope, as: :hidden, input_html: { value: @ope } %>
-      <%= f.input :dis, as: :hidden, input_html: { value: @dis } %>
-      <%= f.input :reference, as: :hidden, input_html: { value: reference.id } %>
-      <%= f.input :packed_bag, as: :hidden, input_html: { value: @packed_bag.id } %>
+    <div class="submit-with-quantity">
+      <%= f.input :quantity, as: :integer, label: false, input_html: { value: 1, step: 1, min: 1, max: @packed_bag.packed_reference_count(reference), class: "item-action-qty unpack-qty" } %>
+      <%= f.button :submit, 'unpack', class: "item-action unpack-item" %>
+    </div>
+    <p data-error='quantity' class='input-error'></p>
+  <% end %>
 
-      <div class="submit-with-quantity">
-        <%= f.input :quantity, as: :integer, label: false, input_html: { value: 1, step: 1, min: 1, max: @packed_bag.packed_reference_count(reference), class: "item-action-qty unpack-qty" } %>
-        <%= f.button :submit, 'unpack', class: "item-action unpack-item" %>
-      </div>
-      <p data-error='quantity' class='input-error'></p>
-    <% end %>
-
-  </div>
 </div>

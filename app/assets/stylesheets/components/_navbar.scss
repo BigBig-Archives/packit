@@ -1,31 +1,66 @@
 .navbar {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 99;
   display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: darken($light-gray, 5%);
   border-bottom: solid $p2 darken($light-gray, 10%);
+  padding-top: $p16;
   padding-left: $p80;
   padding-right: $p80;
   padding-bottom: $p16;
-  height: $p136;
 
   .operations {
-    align-self: flex-end;
-    flex: 1;
+    flex: 2;
     display: flex;
+    .operation {
+      //
+    }
+    .switch-to-create {
+      color: $green;
+    }
+    .switch-to-pack {
+      color: $blue;
+    }
+  }
+
+  .load {
+    flex: 2;
+    height: $p64;
+    .load-progress {
+      position: relative;
+      height: $p24;
+     .load-progress-bar {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+      }
+      .load-background {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: lighten($gray, 50%);
+      }
+    }
+    .load-weight p {
+      margin-top: $p8;
+      color: lighten($gray, 50%);
+    }
   }
 
   .categories {
-    align-self: flex-end;
+    display: grid;
     flex: 8;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 $p24;
+    grid-template-columns: repeat( 6, minmax($p72, 1fr) );
     .category {
-      flex: 1;
       padding: $p8;
       border-bottom: solid $p4 transparent;
       text-align: center;
@@ -35,6 +70,8 @@
         width: $p48;
         margin: 0 auto;
         margin-bottom: $p4;
+        border: solid $p2 transparent;
+        border-radius: 50%;
       }
       p {
         margin: 0 auto;
@@ -51,14 +88,16 @@
       }
     }
     .selected {
+      .picture {
+        border: solid $p4 $green;
+      }
       border-bottom-color: $green;
       opacity: 1;
     }
   }
 
   .displays {
-    align-self: flex-end;
-    flex: 1;
+    flex: 2;
     display: flex;
     .display {
       flex: 1;
@@ -69,10 +108,11 @@
       .picture {
         width: $p48;
         margin-bottom: $p4;
+        opacity: 0.5;
       }
       p {
         width: $p56;
-        color: lighten($gray, 20%);
+        color: $blue;
         font-size: $p12;
         word-wrap: break-word;
         white-space: nowrap;
@@ -88,8 +128,17 @@
       opacity: 1;
     }
   }
-}
-
-.navbar-space {
-  height: $p136;
+  .vertical-line {
+    flex: 1;
+    flex-shrink: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div {
+      margin: $p4;
+      background-color: lighten($gray, 50%);
+      width: $p1;
+      height: $p144;
+    }
+  }
 }

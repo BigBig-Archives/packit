@@ -15,7 +15,7 @@
       cat: @cat,
       ope: @ope,
       dis: @dis
-    }), method: :delete, remote: :true, class: 'item-action item-action-all unpack-item' %>
+    }), method: :delete, remote: :true, class: 'item-action item-action-all unpack-all-item' %>
   <% else %>
     <div class="button-substitute"></div>
   <% end %>
@@ -24,10 +24,12 @@
       <% @packed_references.sort_by { |reference| reference.name }.each do |packed_reference| %>
         <%= render 'user/packed_items/packed_item_by_reference', reference: packed_reference %>
       <% end %>
+      <%= render 'user/packed_bags/cards/shadow_cards' %>
     <% else %>
       <% @packed_items.each do |packed_item| %>
         <%= render 'user/packed_items/packed_item', packed_item: packed_item %>
       <% end %>
+      <%= render 'user/packed_bags/cards/shadow_cards' %>
     <% end %>
   </div>
 </div>

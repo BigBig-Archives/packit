@@ -14,9 +14,21 @@
     <% end %>
   </div>
 
+  <div class="vertical-line">
+    <div></div>
+  </div>
+
+  <div class="load">
+    <%= render 'user/packed_bags/load' %>
+  </div>
+
+  <div class="vertical-line">
+    <div></div>
+  </div>
+
   <div class="categories">
     <%= link_to user_packed_bag_path(@packed_bag, params: { cat:  0, ope: @ope, dis: @dis }),
-    class: "category #{'category-selected' if @cat.to_i.zero? || @cat.nil?}" do %>
+    class: "category #{'selected' if @cat.to_i.zero? || @cat.nil?}" do %>
       <%= image_tag "categories/all", class: "picture" %>
       <p>ALL</p>
     <% end %>
@@ -31,6 +43,9 @@
     <% end %>
   </div>
 
+  <div class="vertical-line">
+    <div></div>
+  </div>
 
   <div class="displays">
     <%= link_to user_packed_bag_path(@packed_bag, params: { dis: 'group', ope: @ope, cat: @cat }),

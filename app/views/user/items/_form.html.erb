@@ -24,7 +24,6 @@
     <% end %>
     </div>
   <p data-error="weight" class="input-error"></p>
-  <div class="space"></div>
   <% if item.id.nil? %> <!-- CREATE -->
     <div class="submit-with-quantity">
       <%= f.input :quantity, as: :integer, label: false, input_html: { value: 1, step: 1, min: 1, max: 30, class: "item-action-qty create-qty" } %>
@@ -33,6 +32,5 @@
     <p data-error='quantity' class='input-error'></p>
   <% else %> <!-- UPDATE -->
     <%= f.button :submit, 'update', class: "item-action update-item" %>
-    <div class="small-space"></div>
   <% end %>
 <% end %>
