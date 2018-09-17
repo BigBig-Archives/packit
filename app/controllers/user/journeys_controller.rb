@@ -3,6 +3,7 @@ class User::JourneysController < ApplicationController
 
   def index
     @journey = Journey.new
+    session[:category] = 0
   end
 
   def show

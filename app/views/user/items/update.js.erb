@@ -14,9 +14,17 @@ function updateItem() {
       container.innerHTML = content;
     <% end %>
   <% else %>
-    container = document.querySelector("#items-created");
+    let container_items_created = document.querySelector("#items-created");
+    let container_items_to_pack = document.querySelector("#items-to_pack");
+    if (container_items_created)
     content = `<%= j render 'user/packed_bags/cards/display_items_created' %>`;
     container.innerHTML = content;
+    console.log('a');
+    // Refresh load
+    let load_container = document.querySelector("#navbar #load");
+    console.log(load_container);
+    let load = `<%= j render 'user/packed_bags/navbar/load' %>`;
+    // load_container.innerHTML = load;
   <% end %>
 }
 
