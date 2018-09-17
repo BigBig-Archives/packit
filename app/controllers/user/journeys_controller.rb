@@ -4,6 +4,8 @@ class User::JourneysController < ApplicationController
   def index
     @journey = Journey.new
     session[:category] = 0
+    session[:operation] = 'create'
+    session[:display] = 'group'
   end
 
   def show

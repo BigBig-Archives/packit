@@ -14,17 +14,19 @@ function updateItem() {
       container.innerHTML = content;
     <% end %>
   <% else %>
-    let container_items_created = document.querySelector("#items-created");
-    let container_items_to_pack = document.querySelector("#items-to_pack");
-    if (container_items_created)
-    content = `<%= j render 'user/packed_bags/cards/display_items_created' %>`;
-    container.innerHTML = content;
-    console.log('a');
+    <% if session[:operation] == 'create' %>
+      container = document.querySelector("#items-created");
+      content = `<%= j render 'user/packed_bags/cards/display_items_created' %>`;
+      container.innerHTML = content;
+    <% else %>
+      container = document.querySelector("#items_to_pack");
+      content = `<%= j render 'user/packed_bags/cards/display_items_to_pack' %>`;
+      container.innerHTML = content;
+    <% end %>
     // Refresh load
-    let load_container = document.querySelector("#navbar #load");
-    console.log(load_container);
-    let load = `<%= j render 'user/packed_bags/navbar/load' %>`;
-    // load_container.innerHTML = load;
+    container = document.querySelector("#navbar #load");
+    content = `<%= j render 'user/packed_bags/navbar/load' %>`;
+    container.innerHTML = content;
   <% end %>
 }
 
