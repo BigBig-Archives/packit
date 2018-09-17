@@ -105,7 +105,6 @@ class User::PackedBagsController < ApplicationController
     session[:operation]  = params[:operation] if params[:operation]
     session[:operation]  = 'create' if session[:operation].nil?
 
-
     session[:category_name] = ItemCategory.find(session[:category].to_i).name unless session[:category].to_i.zero?
   end
 end

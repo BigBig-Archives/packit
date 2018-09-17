@@ -3,16 +3,16 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 0 15% 0 15%;
-  border-top: solid $p1 $blue;
+  height: $p40;
   .category {
-    padding: $p12;
+    padding: 0 $p8 0 $p8;
     color: lighten($gray, 40%);
     font-size: $font-size-normal;
     word-wrap: break-word;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-bottom: solid $p2 transparent;
     &:hover {
       color: $blue;
     }
@@ -23,6 +23,7 @@
     margin-right: $p8;
   }
   .selected {
+    border-bottom-color: $blue;
     color: $blue;
   }
 }

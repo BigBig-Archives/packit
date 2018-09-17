@@ -7,8 +7,11 @@
   </p>
     <hr>
     <% if @packed_bag.packed_items.empty? %>
-      <p>Oh! It looks like you don't have any item packed!</p>
-      <p>Select items on the left to pack them...</p>
+      <div class="no-items-alert" role="alert">
+        <p>Oh! It looks like you don't have any item packed...</p>
+        <p>Select items on the left to pack them!</p>
+        <p>Select <em>Let's create more items</em> if you need to add items of yours!</p>
+      </div>
     <% end %>
   </div>
 

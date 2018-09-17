@@ -13,13 +13,22 @@
   border-bottom: solid $p2 darken($light-gray, 10%);
   min-width: $p336;
 
-  .navbar-top {
+  .navbar-top,
+  .navbar-bottom {
     display: flex;
     min-width: $p248;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-around;
-    padding: $p8;
-    margin-bottom: $p16;
+    padding: $p8 8% 0 8%;
+  }
+
+  .navbar-top {
+    margin-bottom: $p24;
+    justify-content: flex-start;
+  }
+
+  .navbar-bottom {
+    border-top: solid $p1 $blue;
+    justify-content: space-between;
   }
 }
