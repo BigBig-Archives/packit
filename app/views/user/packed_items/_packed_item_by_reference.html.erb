@@ -20,9 +20,6 @@
 
   <%= simple_form_for [:user, packed_item], remote: :true do |f| %>
     <%= f.input :unpack, as: :hidden, input_html: { value: 'many' } %>
-    <%= f.input :cat, as: :hidden, input_html: { value: @cat } %>
-    <%= f.input :ope, as: :hidden, input_html: { value: @ope } %>
-    <%= f.input :dis, as: :hidden, input_html: { value: @dis } %>
     <%= f.input :reference, as: :hidden, input_html: { value: reference.id } %>
     <%= f.input :packed_bag, as: :hidden, input_html: { value: @packed_bag.id } %>
 

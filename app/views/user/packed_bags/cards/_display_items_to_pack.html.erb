@@ -19,7 +19,7 @@
   <% end %>
 
   <div class="items-container" id="items_to_pack">
-    <% if session[:operation] == 'group' %>
+    <% if session[:display] == 'group' %>
       <% @owned_references.sort_by { |reference| reference.name }.each do |reference| %>
         <%= render 'user/items/item_to_pack_by_reference', reference: reference %>
       <% end %>

@@ -22,16 +22,20 @@ class PackedBag < ApplicationRecord
     self.bag.capacity
   end
 
-  def weight
-    self.packed_items.map(&:weight).sum
+  def picture
+    self.bag.picture
   end
 
-  def load
-    self.packed_items.map(&:size).sum
+  def load_in_kilos
+    self.packed_items.map(&:weight).sum.round(2)
+  end
+
+  def load_in_liters
+    self.packed_items.map(&:size).sum.round(2)
   end
 
   def loaded
-    (self.load / self.capacity).round(2)
+    (self.load_in_liters / self.capacity).round(2)
   end
 
   def packed_reference_count(reference_to_count)

@@ -1,0 +1,13 @@
+#operations {
+  flex: 2;
+  display: flex;
+  .operation {
+    //
+  }
+  .switch-to-create {
+    color: $green;
+  }
+  .switch-to-pack {
+    color: $blue;
+  }
+}

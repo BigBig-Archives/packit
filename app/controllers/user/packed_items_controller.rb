@@ -166,6 +166,7 @@ class User::PackedItemsController < ApplicationController
     if params[:unpack] == 'all'
       @count = @packed_bag.packed_items.count
       if @packed_bag.packed_items.destroy_all
+        @packed_item  = PackedItem.new
         filter
         respond_to do |format|
           format.html { redirect_to user_packed_bag_path(@packed_bag), notice: "All the #{@count} items have been unpacked from the bag" }

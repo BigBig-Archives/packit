@@ -1,21 +1,38 @@
 <% loaded = (@packed_bag.loaded * 100).round %>
 <% case loaded
-    when 0..50 then loaded_color = '#6FCF97';
-    when 51..71 then loaded_color = '#FDB631';
-    when 72..90 then loaded_color = '#E67E22';
-    when 91..100 then loaded_color = '#EE5F5B';
-    else loaded_color = '#EE5F5B';
+    when 0
+      load_color = 'load-gray';
+      load_bg_color = 'load-bg-gray';
+      load_arrow = 'load-arrow-gray';
+    when 1..50
+      load_color = 'load-green';
+      load_bg_color = 'load-bg-green';
+      load_arrow = 'load-arrow-green';
+    when 51..71
+      load_color = 'load-yellow';
+      load_bg_color = 'load-bg-yellow';
+      load_arrow = 'load-arrow-yellow';
+    when 72..90
+      load_color = 'load-orange';
+      load_bg_color = 'load-bg-orange';
+      load_arrow = 'load-arrow-orange';
+    else
+      load_color = 'load-red';
+      load_bg_color = 'load-bg-red';
+      load_arrow = 'load-arrow-red';
    end %>
-<div class="load-progress">
-  <div class="load-progress-bar" style="width:<%= loaded > 100 ? 100 : loaded %>%; background-color: <%= loaded_color %>">
-    <% if loaded > 10 && loaded <= 100 %>
-      <p class="load-percent"><%= loaded %> %</p>
-    <% elsif loaded > 100 %>
-      <p class="load-percent"><%= loaded %> % overload!</p>
-    <% end %>
+
+<%= image_tag "bags/#{@packed_bag.picture}", class: "picture" %>
+<div class="load-container">
+  <div class="load-progress-container">
+    <div class="load-progress<%= ' ' << load_bg_color %>" style="height:<%= loaded < 100 ? loaded : 100 %>%;"></div>
+    <div class="load-arrow-lead" style="bottom:<%= loaded < 100 ? loaded : 100 %>% ">
+      <div class="load-arrow<%= ' ' << load_arrow %>"></div>
+      <div class="load-details">
+        <p class="#<%= ' ' << load_color %>"><%= loaded %> %</p>
+        <p class="liters"><%= @packed_bag.load_in_liters %> L</p>
+        <p class="kilos"><%= @packed_bag.load_in_kilos %> K</p>
+      </div>
+    </div>
   </div>
-  <div class="load-background"></div>
-</div>
-<div class="load-weight">
-  <p><%= @packed_bag.weight.round(2) %> K</p>
 </div>

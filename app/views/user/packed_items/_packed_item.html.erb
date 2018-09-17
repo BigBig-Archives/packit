@@ -10,13 +10,6 @@
 
   <!-- UNPACK ITEM -->
 
-  <%= button_to 'unpack', user_packed_item_path(packed_item, params: {
-    unpack:      'one',
-    packed_item: packed_item,
-    packed_bag:  @packed_bag,
-    cat:         @cat,
-    ope:         @ope,
-    dis:         @dis
-  }), method: :delete, remote: :true, class: "item-action pack-item" %>
+  <%= button_to 'unpack', user_packed_item_path(packed_item, params: { unpack: 'one', packed_item: packed_item, packed_bag: @packed_bag }), method: :delete, remote: :true, class: "item-action pack-item" %>
 
 </div>

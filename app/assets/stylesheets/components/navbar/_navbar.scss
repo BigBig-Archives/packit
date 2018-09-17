@@ -1,0 +1,41 @@
+@import "categories";
+@import "operations";
+@import "load";
+@import "displays";
+
+#navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background-color: darken($light-gray, 5%);
+  border-bottom: solid $p2 darken($light-gray, 10%);
+  padding: $p16 $p80;
+  padding-bottom: 0;
+
+  .up {
+    // width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: solid $p1 darken($light-gray, 10%);
+
+    .vertical-line {
+      flex: 1;
+      flex-shrink: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      div {
+        margin: $p4;
+        background-color: lighten($gray, 50%);
+        width: $p1;
+        height: $p80;
+      }
+    }
+  }
+  .down {
+    // width: 100%;
+  }
+}
