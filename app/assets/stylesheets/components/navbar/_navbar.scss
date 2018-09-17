@@ -9,33 +9,17 @@
   left: 0;
   right: 0;
   z-index: 99;
-  background-color: darken($light-gray, 5%);
+  background-color: white;
   border-bottom: solid $p2 darken($light-gray, 10%);
-  padding: $p16 $p80;
-  padding-bottom: 0;
+  min-width: $p336;
 
-  .up {
-    // width: 100%;
+  .navbar-top {
     display: flex;
+    min-width: $p248;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
-    border-bottom: solid $p1 darken($light-gray, 10%);
-
-    .vertical-line {
-      flex: 1;
-      flex-shrink: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      div {
-        margin: $p4;
-        background-color: lighten($gray, 50%);
-        width: $p1;
-        height: $p80;
-      }
-    }
-  }
-  .down {
-    // width: 100%;
+    justify-content: space-around;
+    padding: $p8;
+    margin-bottom: $p16;
   }
 }

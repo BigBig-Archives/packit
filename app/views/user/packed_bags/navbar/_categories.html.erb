@@ -1,14 +1,8 @@
-<%= link_to user_packed_bag_path(@packed_bag, params: { category: 0 }),
-remote: :true, class: "category #{'selected' if session[:category].to_i.zero?}" do %>
-  <%= image_tag "categories/all", class: "picture" %>
-  <p>ALL</p>
-<% end %>
+<%= link_to 'ALL CATEGORIES', user_packed_bag_path(@packed_bag, params: { category: 0 }),
+remote: :true, class: "category all-categories #{'selected' if session[:category].to_i.zero?}" %>
 <% @categories.each do |category| %>
   <% unless category.references.empty? %>
-    <%= link_to user_packed_bag_path(@packed_bag, params: { category: category.id }),
-    remote: :true, class: "category #{'selected' if session[:category].to_i == category.id}" do %>
-      <%= image_tag "categories/#{category.picture}", class: "picture" %>
-      <p><%= category.name.upcase %></p>
-    <% end %>
+    <%= link_to category.name.upcase, user_packed_bag_path(@packed_bag, params: { category: category.id }),
+    remote: :true, class: "category #{'selected' if session[:category].to_i == category.id}" %>
   <% end %>
 <% end %>

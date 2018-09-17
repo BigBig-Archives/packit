@@ -1,39 +1,28 @@
 #categories {
-  display: grid;
-  flex: 8;
-  grid-template-columns: repeat( auto-fit, minmax($p72, 1fr) );
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15% 0 15%;
+  border-top: solid $p1 $blue;
   .category {
-    padding: $p8;
-    border-bottom: solid $p4 transparent;
-    text-align: center;
-    opacity: 0.7;
-    .picture {
-      display: block;
-      width: $p48;
-      margin: 0 auto;
-      margin-bottom: $p4;
-      border: solid $p2 transparent;
-      border-radius: 50%;
-    }
-    p {
-      margin: 0 auto;
-      width: $p56;
-      color: lighten($gray, 20%);
-      font-size: $p12;
-      word-wrap: break-word;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    padding: $p12;
+    color: lighten($gray, 40%);
+    font-size: $font-size-normal;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     &:hover {
-      opacity: 0.9;
+      color: $blue;
     }
   }
+  .all-categories {
+    font-weight: bold;
+    color: lighten($gray, 20%);
+    margin-right: $p8;
+  }
   .selected {
-    .picture {
-      border: solid $p4 $green;
-    }
-    border-bottom-color: $green;
-    opacity: 1;
+    color: $blue;
   }
 }

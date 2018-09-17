@@ -30,7 +30,7 @@
         <%= f.button :submit, 'pack', class: "item-action pack-item" %>
       <% else %>
         <%= f.input :quantity, as: :integer, disabled: true, readonly: true, label: false, input_html: { value: 0, step: 1, min: 0, max: 0 , class: "item-action-qty pack-qty item-action-qty-disabled pack-qty pack-qty-disabled" } %>
-        <%= f.button :submit, 'pack', class: "item-action pack-item item-action-disabled pack-item-disables" %>
+        <%= f.button :submit, 'pack', disabled: true, class: "item-action pack-item item-action-disabled pack-item-disables" %>
       <% end %>
     </div>
     <p data-error='quantity' class='input-error'></p>

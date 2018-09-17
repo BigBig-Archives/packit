@@ -200,14 +200,14 @@
 
 .pack-all-item,
 .unpack-all-item {
-  display: flex;
+  width: 100%;
+  text-align: center;
   border-radius: 0;
-  margin-bottom: $p8;
+  margin-bottom: $p12;
   padding: $p8;
   border: none;
   color: white;
   font-size: $font-size-normal;
-  text-align: center;
   cursor: pointer;
 }
 

@@ -1,13 +1,13 @@
 #load {
+  margin-top: $p24;
   display: flex;
-  border: solid $p1 red;
+  justify-content: center;
   .picture {
-    flex: 1;
     height: $p104;
   }
   .load-container {
     flex: 1;
-    min-width: $p120;
+    min-width: $p200;
     margin-left: $p16;
     .load-progress-container {
       position: relative;
@@ -38,19 +38,13 @@
       }
       .load-details {
         position: absolute;
-        width: $p64;
-        height: $p48;
-        top: -$p24;
+        width: $p160;
+        height: $p16;
+        top: -$p8;
         left: $p24;
         p {
           font-size: $font-size-normal;
           height: $p16;
-        }
-        p:first-child {
-          font-weight: bolder;
-        }
-        p:not(:first-child) {
-          color: lighten($gray, 30%);
         }
       }
     }
