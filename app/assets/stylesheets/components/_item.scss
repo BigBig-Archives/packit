@@ -1,213 +1,230 @@
+$card-radius: $p8;
+
 .items-container {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat( auto-fit, minmax($p160, 1fr) );
-  grid-gap: $p16;
-  margin-right: $p16;
-  .items-to-bottom {
+  grid-template-columns: repeat( auto-fit, minmax($p152, 1fr) );
+  grid-gap: $p12;
+  .item-container {
+    position: relative;
     align-self: flex-end;
-  }
-}
+    padding: $p16;
+    border: solid $p1 lighten($gray, 70%);
+    border-radius: $card-radius;
+    background-color: white;
+    text-align: center;
+    box-shadow: 0 0 $p1 0 rgba(0, 0, 0, 0.1);
 
-.item-container,
-.item-container-behind {
-  width: $p160;
-  border: solid $p1 lighten($gray, 70%);
-}
-.item-container-behind {
-  height: $p208 - $p2;
-}
+    .picture {
+      display: block;
+      width: $p56;
+      height: $p56;
+      margin: 0 auto;
+      margin-bottom: $p8;
+      opacity: 0.8;
+    }
 
+    .name {
+      margin: 0;
+      height: $p16;
+      line-height: $p16;
+      color: lighten($gray, 20%);
+      font-size: $font-size-normal;
+      word-wrap: break-word;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: $p4;
+    }
 
-.item-container {
-  background-color: white;
-  position: relative;
-  padding: $p16;
-  text-align: center;
-  &:hover {
+    .simple_form .hidden {
+      display: none;
+    }
+
+    .form-group {
+      margin: 0;
+      height: $p24;
+    }
+
+    input {
+      border-radius: 0;
+      height: $p24;
+    }
+
+    // LITERS AND KILOS FORMS
+    .input-with-unit {
+      margin-bottom: $p8;
+      margin-left: $p16;
+      margin-right: $p16;
+      border-bottom: solid $p1 lighten($gray, 70%);
+      .form-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        input, label {
+          height: $p24;
+          line-height: $p24;
+          display: block;
+          font-size: $font-size-normal;
+          margin: 0;
+          padding: 0;
+        }
+        input {
+          max-width: 100%;
+          flex: 3;
+          border: none;
+          font-size: $font-size-normal;
+          color: lighten($gray, 60%);
+        }
+        label {
+          min-width: $p24;
+          flex: 1;
+          font-size: $font-size-normal;
+          color: lighten($gray, 30%);
+        }
+      }
+    }
+
+    // CREATE, PACK OR UNPACK WITH QUANTITY
+    .submit-with-quantity {
+      display: flex;
+      .form-group {
+        flex: 2;
+        margin-right: $p1;
+      }
+      .item-action {
+        flex: 3;
+        margin-left: $p1;
+      }
+    }
+
+    // DISPLAY: GROUPED
+
+    .reference-count,
+    .reference-count-small {
+      font-size: $font-size-normal;
+      color: lighten($gray, 40%);
+    }
+
+    .reference-count {
+      margin: ($p4 + $p2) auto;
+    }
+
+    .reference-count-small {
+      margin-top: ($p4 + $p2);
+      margin-bottom: -($p8 + $p2);
+    }
+
+    // BUTTONS
+
+    .item-action,
+    .item-action-qty {
+      min-width: 0;
+      width: 100%;
+      padding: 0;
+      border: none;
+      color: white;
+      font-size: $font-size-normal;
+      text-align: center;
+    }
+
+    .item-action {
+      cursor: pointer;
+    }
+
+    // COLORS
+
+    .create-item,
+    .create-qty {
+      background-color: $green;
+    }
+
+    .update-item {
+      background-color: $yellow;
+    }
+
+    .delete-item,
+    .delete-qty {
+      background-color: $red;
+    }
+
+    .pack-item,
+    .pack-item-disables,
+    .pack-qty,
+    .pack-qty-disabled {
+      background-color: $blue;
+    }
+
+    .unpack-item,
+    .unpack-qty {
+      background-color: $orange;
+    }
+
+    // COUNT WHEN GROUPED
+
+    .reference-count {
+      color: lighten($gray, 30%);
+    }
+
+    // ERRORS
+
+    .input-error {
+      font-size: $font-size-normal - $p2;
+      color: $red;
+    }
     .item-container-behind {
+      position: absolute;
+      bottom: 0;
+      margin: 0 auto;
+      width: 100%;
+      height: 100%;
+      white-space: nowrap;
+      background-color: white;
+      border: solid $p1 lighten($gray, 70%);
+      border-radius: $card-radius;
+      box-shadow: 0 0 $p1 0 rgba(0, 0, 0, 0.1);
       &:nth-of-type(1) {
-        transform: rotate(2deg);
+        z-index: -1;
+        top: $p4 + $p1;
+        left: $p4 + $p1;
       }
       &:nth-of-type(2) {
-        transform: rotate(4deg);
+        z-index: -2;
+        top: $p8;
+        left: $p8;
       }
     }
   }
-
-  .item-container-behind {
-    height: $p208 - $p2;
-    background-color: $light-gray;
-    position: absolute;
-    background-color: white;
-    border: solid $p1 lighten($gray, 70%);
-    &:nth-of-type(1) {
-      transform: rotate(1deg);
-      z-index: -1;
-      top: $p1;
-      left: $p2;
-    }
-    &:nth-of-type(2) {
-      transform: rotate(2deg);
-      z-index: -2;
-      top: $p2;
-      left: $p4;
-    }
-  }
-
-  .space {
-    height: $p16;
-  }
-
-  .half-space {
-    height: $p8;
-  }
-
-  .large-space {
-    height: $p48;
-  }
-
-  .picture {
-    display: block;
-    width:  $p72;
-    height: $p72;
-    margin: 0 auto;
-    opacity: 0.8;
-  }
-
-  .name {
-    margin: 0;
-    height:      $p16;
-    line-height: $p16;
-    color: lighten($gray, 20%);
-    font-size: $p16;
-    word-wrap: break-word;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .reference-count,
-  .reference-count-small {
-    font-size: $p16;
-    color: lighten($gray, 40%);
-  }
-
-  .reference-count {
-    margin: ($p4 + $p2) auto;
-  }
-
-  .reference-count-small {
-    margin-top: ($p4 + $p2);
-    margin-bottom: -($p8 + $p2)
-  }
-
-  .more {
-    margin: 0 auto;
-    margin-bottom: -$p12;
-    width: 0;
-    height: 0;
-    border: solid $p8;
-    border-top-color: lighten($gray, 70%);
-    border-bottom-color: transparent;
-    border-right-color: transparent;
-    border-left-color: transparent;
-    cursor: pointer;
-  }
-
-  .open {
-    margin-top: -$p8;
-    border-top-color: transparent;
-    border-bottom-color: lighten($gray, 70%);
-  }
-
-  .item-action,
-  .item-action-qty {
-    display: inline-block;
-    min-width: 0;
-    width: 100%;
-  }
-
-  .input-with-unit {
-    display: flex;
-    margin: 0 $p24;
-    border-bottom: solid $p1 lighten($gray, 70%);
-    input {
-      flex: 3;
-      border: none;
-      border-left-color: transparent;
-      text-align: center;
-      font-size: $p16 - $p2;
-      color: lighten($gray, 60%);
-    }
-    div {
-      flex: 1;
-      span {
-        font-size: $p16 - $p2;
-        color: lighten($gray, 30%);
-      }
-    }
-  }
-
-  .submit-with-quantity {
-    display: flex;
-    input:first-child {
-      flex: 2;
-      margin-right: $p1;
-    }
-    input:last-child {
-      flex: 3;
-      margin-left: $p1;
+  .empty-reference {
+    background-color: darken($light-gray, 2%);
+    .item-action-qty-disabled,
+    .item-action-disabled {
+      opacity: 0.25;
     }
   }
 }
 
-.empty-reference {
-  background-color: darken($light-gray, 2%);
-}
-
-.item-action,
-.item-action-qty {
-  width: $p112;
-  height: $p32;
-  padding: 0;
+.pack-all-item,
+.unpack-all-item {
+  width: 100%;
+  text-align: center;
+  border-radius: 0;
+  margin-bottom: $p12;
+  padding: $p8;
   border: none;
   color: white;
-  font-size: $p16;
-  text-align: center;
-}
-
-.item-action {
+  font-size: $font-size-normal;
   cursor: pointer;
 }
 
-.item-action-all {
-  display: block;
-  margin: $p12 0;
-}
-
-.button-substitute {
-  height: $p32;
-  display: block;
-  margin: $p12 0;
-}
-
-.create-item {
-  background-color: $green;
-}
-
-.update-item {
-  background-color: $yellow;
-}
-
-.delete-item {
-  background-color: $red;
-}
-
-.pack-item {
+.pack-all-item {
   background-color: $blue;
 }
 
-.unpack-item {
+.unpack-all-item {
   background-color: $orange;
+}
+
+.shadow-card {
+  height: $p40;
 }

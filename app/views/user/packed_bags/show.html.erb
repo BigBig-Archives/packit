@@ -1,6 +1,4 @@
-<%= render 'user/packed_bags/load_details' %>
-<%= render 'user/packed_bags/filters/category', categories: @categories %>
-<%= render 'user/packed_bags/filters/direction' %>
+<%= render 'user/packed_bags/navbar/navbar' %>
 
 <!-- REFERENCES TO ITEMS -->
 
@@ -19,19 +17,5 @@
       +----------------+----------------+ -->
 
 <div id="packed-bag-wrapper">
-  <div id="displayed-items">
-    <% if params.key?(:direction) == false || params[:direction].blank? || params[:direction] == 'create' %>
-      <%= render 'user/packed_bags/cards/references' %>
-    <% elsif params[:direction] == 'pack' %>
-      <%= render 'user/packed_bags/cards/items_to_pack' %>
-    <% end %>
-  </div>
-  <div class="wrapper-separator"></div>
-  <div id="displayed-items">
-    <% if params.key?(:direction) == false || params[:direction].blank? || params[:direction] == 'create' %>
-      <%= render 'user/packed_bags/cards/items_created' %>
-    <% elsif params[:direction] == 'pack' %>
-      <%= render 'user/packed_bags/cards/packed_items' %>
-    <% end %>
-  </div>
+  <%= render 'user/packed_bags/displayer' %>
 </div>

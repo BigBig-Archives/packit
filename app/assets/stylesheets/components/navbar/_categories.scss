@@ -1,0 +1,29 @@
+#categories {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: $p40;
+  .category {
+    padding: 0 $p8 0 $p8;
+    color: lighten($gray, 40%);
+    font-size: $font-size-normal;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: solid $p2 transparent;
+    &:hover {
+      color: $blue;
+    }
+  }
+  .all-categories {
+    font-weight: bold;
+    color: lighten($gray, 20%);
+    margin-right: $p8;
+  }
+  .selected {
+    border-bottom-color: $blue;
+    color: $blue;
+  }
+}

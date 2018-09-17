@@ -1,0 +1,28 @@
+<div class="cards-indication">
+  <p>
+    Here are all you owned items
+    <%= " in category" unless session[:category].to_i.zero? %>
+    <strong><%= session[:category_name] unless session[:category].to_i.zero? %></strong>
+    </p>
+  <hr>
+  <% if current_user.items.empty? %>
+    <div class="no-items-alert" role="alert">
+      <p>Oh! It looks like you don't have any item...</p>
+      <p>User item references on the left to create new items!</p>
+    </div>
+  <% end %>
+</div>
+
+<div class="items-container">
+  <% if session[:display] == 'group' %>
+    <% @owned_references.each do |reference| %>
+      <%= render 'user/items/item_created_by_reference', reference: reference %>
+    <% end %>
+    <%= render 'user/packed_bags/cards/shadow_cards' %>
+  <% else %>
+    <% @owned_items.each do |item| %>
+      <%= render 'user/items/item_created', item: item %>
+    <% end %>
+    <%= render 'user/packed_bags/cards/shadow_cards' %>
+  <% end %>
+</div>

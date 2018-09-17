@@ -2,59 +2,44 @@ class User::ItemsController < ApplicationController
   before_action :set_item, only: %i[update destroy]
   before_action :set_reference, only: %i[create]
   before_action :set_packed_bag, only: %i[create update destroy]
-  before_action :set_filters
 
   def create
     @item = Item.new(item_params)
     @item.reference = @reference
     @item.user = current_user
-    if params[:item][:quantity].to_i <= 9 && @item.save # max quantity: 9
-      # if first item saved, so create the others without checking for errors
-      if params.key?(:create_and_pack) # if pack directly?
-        @packed_item = PackedItem.new
-        @packed_item.packed_bag = @packed_bag
-        @packed_item.item = @item
-        @packed_item.save
-      end
+    if params[:item][:quantity].to_i > 0 && params[:item][:quantity].to_i <= 30 && @item.save
       params[:item][:quantity].to_i.-(1).times do
         @item = Item.new(item_params)
         @item.reference = @reference
         @item.user = current_user
         @item.save
-        if params.key?(:create_and_pack) # if pack directly?
-          @packed_item = PackedItem.new
-          @packed_item.packed_bag = @packed_bag
-          @packed_item.item = @item
-          @packed_item.save
-        end
+        # how to check for errors here?
+        # we guess that if first item of the list is saved, next items should too
       end
+      filter
       respond_to do |format|
-        format.html { redirect_to user_packed_bag_path(@packed_bag,
-          category: @filter_on_category, direction: @filter_on_direction, group: @filter_on_group),
-          notice: 'Item created.' }
-        format.js { }
+        format.html { redirect_to user_packed_bag_path(@packed_bag), notice: 'Item created.' }
+        format.js { render 'user/items/create' }
       end
     else
-      if params[:item][:quantity].to_i > 30
-        @item.errors.add(:quantity, "You can create maximum 30 items in a row")
-      end
+      @item.errors.add(:quantity, "should be greater than or equal to 1") if params[:item][:quantity].to_i < 1
+      @item.errors.add(:quantity, "should be less than or equal to 30")   if params[:item][:quantity].to_i > 30
       @packed_item  = PackedItem.new
       filter
       flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
       respond_to do |format|
         format.html { render 'user/packed_bags/show' }
-        format.js { }
+        format.js { 'user/items/create' }
       end
     end
   end
 
   def update
     if @item.update(item_params)
+      filter
       respond_to do |format|
-        format.html { redirect_to user_packed_bag_path(@packed_bag,
-          category: @filter_on_category, direction: @filter_on_direction, group: @filter_on_group),
-          notice:   'Item updated.'}
-        format.js { }
+        format.html { redirect_to user_packed_bag_path(@packed_bag), notice: 'Item updated.'}
+        format.js { render 'user/items/update' }
       end
     else
       @packed_item  = PackedItem.new
@@ -62,55 +47,50 @@ class User::ItemsController < ApplicationController
       flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
       respond_to do |format|
         format.html { render 'user/packed_bags/show' }
-        format.js { }
+        format.js { render 'user/items/update' }
       end
     end
   end
 
   def destroy
     if params.key?(:destroy_all) && params[:destroy_all] == 'true'
-      destroy_all
-    else
-      destroy_one
-    end
-  end
-
-  def destroy_one
-    if @item.destroy
-      respond_to do |format|
-        format.html { redirect_to user_packed_bag_path(@packed_bag,
-          category: @filter_on_category, direction: @filter_on_direction, group: @filter_on_group),
-          notice:   'Item destroyed.' }
-        format.js { }
+      # DESTROY ALL ITEMS FOR THIS REFERENCE
+      @reference = @item.reference
+      @count     = @reference.items.select { |item| item.user == current_user }.count
+      if Item.where(reference: @reference, user: current_user).destroy_all
+        filter
+        respond_to do |format|
+          format.html { redirect_to user_packed_bag_path(@packed_bag),
+            notice:   "#{@count} #{@count > 1 ? @reference.name.pluralize : @reference.name} have been destroyed." }
+          format.js { render 'user/items/destroy' }
+        end
+      else
+        flash[:alert] = 'Error: ' << 'Something went wrong'
+        filter
+        respond_to do |format|
+          format.html { render 'user/packed_bag/show' }
+          format.js { render 'user/items/destroy' }
+        end
       end
     else
-      flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
-      respond_to do |format|
-        format.html { render 'user/packed_bag/show' }
-        format.js { }
-      end
-    end
-  end
-
-  def destroy_all
-    @reference = @item.reference
-    @count     = @reference.items.select { |item| item.user == current_user }.count
-    if Item.where(reference: @reference, user: current_user).destroy_all
-      respond_to do |format|
-        format.html { redirect_to user_packed_bag_path(@packed_bag,
-          category: @filter_on_category, direction: @filter_on_direction, group: @filter_on_group),
-          notice:   "#{@count} #{@count > 1 ? @reference.name.pluralize : @reference.name} have been destroyed." }
-        format.js { }
-      end
-    else
-      flash[:alert] = 'Error: ' << 'Something went wrong'
-      respond_to do |format|
-        format.html { render 'user/packed_bag/show' }
-        format.js { }
+      # DESTROY ONE ITEM
+      item_name = @item.name
+      if @item.destroy
+        filter
+        respond_to do |format|
+          format.html { redirect_to user_packed_bag_path(@packed_bag), notice:   "1 #{item_name} destroyed." }
+          format.js { render 'user/items/destroy' }
+        end
+      else
+        filter
+        flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
+        respond_to do |format|
+          format.html { render 'user/packed_bag/show' }
+          format.js { render 'user/items/destroy' }
+        end
       end
     end
   end
-
   private
 
   def set_item
@@ -126,18 +106,6 @@ class User::ItemsController < ApplicationController
       @packed_bag = PackedBag.find(params[:item][:packed_bag])
     else
       @packed_bag = PackedBag.find(params[:packed_bag])
-    end
-  end
-
-  def set_filters
-    if params.key?(:item)
-      @filter_on_category = params[:item][:category_filter]
-      @filter_on_direction  = params[:item][:direction_filter]
-      @filter_on_group    = params[:item][:group_filter]
-    else
-      @filter_on_category = params[:category]
-      @filter_on_direction  = params[:direction]
-      @filter_on_group    = params[:group]
     end
   end
 

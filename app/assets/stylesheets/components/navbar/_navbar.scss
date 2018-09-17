@@ -1,0 +1,34 @@
+@import "categories";
+@import "operations";
+@import "load";
+@import "displays";
+
+#navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background-color: white;
+  border-bottom: solid $p2 darken($light-gray, 10%);
+  min-width: $p336;
+
+  .navbar-top,
+  .navbar-bottom {
+    display: flex;
+    min-width: $p248;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: $p8 8% 0 8%;
+  }
+
+  .navbar-top {
+    margin-bottom: $p24;
+    justify-content: flex-start;
+  }
+
+  .navbar-bottom {
+    border-top: solid $p1 $blue;
+    justify-content: space-between;
+  }
+}

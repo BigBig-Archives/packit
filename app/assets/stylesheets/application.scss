@@ -18,7 +18,8 @@
 
 body {
   background-color: $light-gray;
-  min-height: 100vh;
+  overflow: hidden;
+  min-width: $p440;
 }
 
 a {

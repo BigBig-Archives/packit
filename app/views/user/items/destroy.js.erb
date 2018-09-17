@@ -1,3 +1,25 @@
-container = document.querySelector("[data-reference=\"<%= @item.reference.id %>\"]");
-content = `<%= j render 'item_refs/item', reference: @item.reference %>`;
-container.innerHTML = content;
+function destroyItem() {
+  console.log("destroy item(s)");
+
+  let item_id;
+  let item;
+  let container;
+  let content;
+
+  <% if @item.errors.any? %>
+    item_id = "<%= j @item.id.to_s %>";
+    item = document.querySelector(`[data-item=\"${item_id}\"]`);
+    <% @item.errors.messages.each do |key, value| %>
+      container = item.querySelector("[data-error=\"delete\"");
+      content = "Something went wrong, item not deleted..." ;
+      container.innerHTML = content;
+    <% end %>
+  <% else %>
+    container = document.querySelector("#items-created");
+    console.log("<%= j @filter_on_group.to_s %>");
+    content = `<%= j render 'user/packed_bags/cards/display_items_created' %>`;
+    container.innerHTML = content;
+  <% end %>
+}
+
+destroyItem();

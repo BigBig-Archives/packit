@@ -1,17 +1,11 @@
 #packed-bag-wrapper {
-  margin-bottom: $p64;
-  border-top: solid $p2 darken($light-gray, 4%);
   #displayed-items {
+    padding: 0 5% $p72 5%;
     overflow-y: scroll;
     overflow-x: hidden;
     float: left;
-    width: 49%;
+    width: 50%;
     height: 100vh;
-  }
-  .wrapper-separator {
-    height: 100vh;
-    float: left;
-    width: 2%;
   }
   .displayed-items-left,
   .displayed-items-left {
@@ -21,38 +15,18 @@
   }
 }
 
-.direction {
-  width: 40%;
-  margin: auto;
-  padding: $p16;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.switch-to-create,
-.switch-to-pack {
-  flex: 1;
-  padding: $p16;
-  text-align: center;
-  color: white;
-  &:hover {
-    color: white;
-    text-decoration: none;
-  }
-}
-
-.switch-to-create {
-  background-color: $green;
-}
-
-.switch-to-pack {
-  background-color: $blue;
-}
-
 .cards-indication {
+  margin-top: $p16;
   text-align: center;
   color: lighten($gray, 30%);
+  .no-items-alert {
+    opacity: 0.6;
+    padding: $p16;
+    background: lighten($yellow, 30%);
+    color: darken($yellow, 20%);
+    border: solid $p1 lighten($yellow, 10%);;
+    border-radius: $p8;
+  }
 }
 
 ::-webkit-scrollbar {

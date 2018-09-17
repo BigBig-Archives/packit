@@ -1,0 +1,38 @@
+<div id="items-to-pack">
+  <div class="cards-indication">
+    <p class="cards-indication">
+    Here are all you owned items not already packed
+    <%= " in category" unless session[:category].to_i.zero? %>
+    <strong><%= session[:category_name] unless session[:category].to_i.zero? %></strong>
+  </p>
+    <hr>
+    <% if current_user.items.empty? %>
+      <div class="no-items-alert" role="alert">
+        <p>Oh! It looks like you don't have any item to pack...</p>
+        <p>Select <em>Let's create more items</em> and start you own collection!</p>
+      </div>
+    <% end %>
+  </div>
+
+  <% if current_user.items.empty? || current_user.items.count == @packed_bag.packed_items.count || session[:category].to_i > 0 %>
+    <div class="button-substitute"></div>
+  <% else %>
+    <%= button_to 'pack all', user_packed_items_path(params: { pack: 'all', packed_bag: @packed_bag }), method: :post, remote: :true, class: 'item-action item-action-all pack-all-item' %>
+  <% end %>
+
+  <div class="items-container" id="items_to_pack">
+    <% if session[:display] == 'group' %>
+      <% @owned_references.sort_by { |reference| reference.name }.each do |reference| %>
+        <%= render 'user/items/item_to_pack_by_reference', reference: reference %>
+      <% end %>
+      <%= render 'user/packed_bags/cards/shadow_cards' %>
+    <% else %>
+      <% @owned_items.each do |item| %>
+        <% unless item.packed?(@packed_bag) %>
+          <%= render 'user/items/item_to_pack', item: item %>
+        <% end %>
+      <% end %>
+      <%= render 'user/packed_bags/cards/shadow_cards' %>
+    <% end %>
+  </div>
+</div>

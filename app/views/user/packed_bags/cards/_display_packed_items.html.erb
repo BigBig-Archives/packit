@@ -1,0 +1,36 @@
+<div id="packed-items">
+  <div class="cards-indication">
+    <p class="cards-indication">
+    Here are all your items packed into the bag
+    <%= " in category" unless session[:category].to_i.zero? %>
+    <strong><%= session[:category_name] unless session[:category].to_i.zero? %></strong>
+  </p>
+    <hr>
+    <% if @packed_bag.packed_items.empty? %>
+      <div class="no-items-alert" role="alert">
+        <p>Oh! It looks like you don't have any item packed...</p>
+        <p>Select items on the left to pack them!</p>
+        <p>Select <em>Let's create more items</em> if you need to add items of yours!</p>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @packed_bag.packed_items.any? && session[:category].to_i.zero? %>
+    <%= button_to 'unpack all', user_packed_item_path(@packed_bag.packed_items.first, params: { unpack: 'all', packed_bag: @packed_bag }), method: :delete, remote: :true, class: 'item-action item-action-all unpack-all-item' %>
+  <% else %>
+    <div class="button-substitute"></div>
+  <% end %>
+  <div class="items-container">
+    <% if session[:display] == "group" %>
+      <% @packed_references.sort_by { |reference| reference.name }.each do |packed_reference| %>
+        <%= render 'user/packed_items/packed_item_by_reference', reference: packed_reference %>
+      <% end %>
+      <%= render 'user/packed_bags/cards/shadow_cards' %>
+    <% else %>
+      <% @packed_items.each do |packed_item| %>
+        <%= render 'user/packed_items/packed_item', packed_item: packed_item %>
+      <% end %>
+      <%= render 'user/packed_bags/cards/shadow_cards' %>
+    <% end %>
+  </div>
+</div>

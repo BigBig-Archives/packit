@@ -1,3 +1,7 @@
 import 'bootstrap';
 import './variables';
-import './item_more';
+
+
+import { hideDetails } from './items_details';
+import { addEventOnDetailsButton } from './items_details';
+

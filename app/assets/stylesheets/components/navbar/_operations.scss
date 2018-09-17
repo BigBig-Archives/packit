@@ -1,0 +1,25 @@
+#operations {
+  margin-top: $p24;
+  width: 50%;
+  margin-right: -$p64;
+  .operation {
+    display: flex;
+    align-items: center;
+    .picture {
+      height: $p48;
+      width: $p48;
+      margin-right: $p16;
+    }
+    p {
+      height: $p48;
+      padding: $p12;
+      color: white;
+    }
+  }
+  .switch-to-create p {
+    background-color: $green;
+  }
+  .switch-to-pack p {
+    background-color: $blue;
+  }
+}

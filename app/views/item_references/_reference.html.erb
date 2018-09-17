@@ -1,0 +1,9 @@
+<div class="item-container"  data-reference=<%= reference.id %>>
+  <%= image_tag "items/#{reference.picture}", class: "picture" %>
+  <p class="name"><%= reference.name %></p>
+
+  <!-- CREATE ITEM -->
+
+  <%= render 'user/items/form', item: @item, reference: reference %>
+
+</div>

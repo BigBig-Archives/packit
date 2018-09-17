@@ -1,0 +1,14 @@
+<div class="item-container" data-item=<%= item.id %>>
+  <%= image_tag "items/#{item.picture}", class: "picture" %>
+  <p class="name"><%= item.name %></p>
+  <p class="details details-refresh"></p>
+
+  <!-- EDIT ITEM -->
+
+  <%= render 'user/items/form', item: item %>
+
+  <!-- PACK ITEM(S) -->
+
+  <%= button_to 'pack', user_packed_items_path(params: { pack: 'one', item: item, packed_bag: @packed_bag }), method: :post, remote: :true, class: "item-action pack-item" %>
+
+</div>

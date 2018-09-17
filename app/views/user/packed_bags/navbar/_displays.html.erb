@@ -1,0 +1,10 @@
+<%= link_to user_packed_bag_path(@packed_bag, params: { display: 'group' }),
+remote: :true, class: "display #{'selected' if session[:display] == 'group'}" do %>
+  <%= image_tag (session[:display] == 'group' ? "interface/group_selected" : "interface/group"), class: "picture" %>
+  <p>GROUP</p>
+<% end %>
+<%= link_to user_packed_bag_path(@packed_bag, params: { display: 'edit' }),
+remote: :true, class: "display #{'selected' if session[:display] == 'edit'}" do %>
+  <%= image_tag (session[:display] == 'edit' ? "interface/edit_selected" : "interface/edit"), class: "picture" %>
+  <p>EDIT</p>
+<% end %>

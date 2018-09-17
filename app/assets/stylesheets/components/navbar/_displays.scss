@@ -1,0 +1,37 @@
+#displays {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .display {
+    height: $p40;
+    padding-left: $p8;
+    padding-bottom: $p4;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    .picture {
+      height: $p24;
+      width: $p24;
+    }
+    p {
+      margin-left: $p8;
+      display: inline-block;
+      width: $p56;
+      color: lighten($gray, 40%);
+      font-size: $p12;
+      word-wrap: break-word;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      &:hover {
+        color: $blue;
+      }
+    }
+  }
+  .selected {
+    p {
+      color: $blue;
+    }
+  }
+}

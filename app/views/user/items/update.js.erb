@@ -1,0 +1,33 @@
+function updateItem() {
+  console.log("update item");
+
+  let item;
+  let container;
+  let content;
+
+  <% if @item.errors.any? %>
+    console.log("error(s)");
+    item = document.querySelector(`[data-item=\"<%= j @item.id.to_s %>\"]`);
+    <% @item.errors.messages.each do |key, value| %>
+      container = item.querySelector("[data-error=\"<%= j key.to_s %>\"]");
+      content = `<%= j key.to_s %> <%= j value.first.to_s %>` ;
+      container.innerHTML = content;
+    <% end %>
+  <% else %>
+    <% if session[:operation] == 'create' %>
+      container = document.querySelector("#items-created");
+      content = `<%= j render 'user/packed_bags/cards/display_items_created' %>`;
+      container.innerHTML = content;
+    <% else %>
+      container = document.querySelector("#items_to_pack");
+      content = `<%= j render 'user/packed_bags/cards/display_items_to_pack' %>`;
+      container.innerHTML = content;
+    <% end %>
+    // Refresh load
+    container = document.querySelector("#navbar #load");
+    content = `<%= j render 'user/packed_bags/navbar/load' %>`;
+    container.innerHTML = content;
+  <% end %>
+}
+
+updateItem();

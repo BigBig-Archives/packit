@@ -1,3 +1,23 @@
-container = document.querySelector("[data-reference=\"<%= @item.reference.id %>\"]");
-content = `<%= j render 'item_refs/item', reference: @item.reference %>`;
-container.innerHTML = content;
+function createItem() {
+  console.log("create item(s)");
+
+  let reference;
+  let container;
+  let content;
+
+  <% if @item.errors.any? %>
+    console.log("error(s)");
+    reference = document.querySelector(`[data-reference=\"<%= j @item.reference.id.to_s %>\"]`);
+    <% @item.errors.messages.each do |key, value| %>
+      container = reference.querySelector("[data-error=\"<%= j key.to_s %>\"]");
+      content = `<%= j key.to_s %> <%= j value.first.to_s %>` ;
+      container.innerHTML = content;
+    <% end %>
+  <% else %>
+    container = document.querySelector("#items-created");
+    content = `<%= j render 'user/packed_bags/cards/display_items_created' %>`;
+    container.innerHTML = content;
+  <% end %>
+}
+
+createItem();
