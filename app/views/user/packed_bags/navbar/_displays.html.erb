@@ -1,10 +1,10 @@
-<%= link_to user_packed_bag_path(@packed_bag, params: { dis: 'group', ope: @ope, cat: @cat }),
-class: "display #{'selected' if @dis == 'group' || @dis.nil? }" do %>
+<%= link_to user_packed_bag_path(@packed_bag, params: { display: 'group' }),
+remote: :true, class: "display #{'selected' if session[:display] == 'group'}" do %>
   <%= image_tag "interface/group_items", class: "picture" %>
   <p>GROUPED</p>
 <% end %>
-<%= link_to user_packed_bag_path(@packed_bag,params: { dis: 'ungroup', ope: @ope, cat: @cat }),
-class: "display #{'selected' if @dis == 'ungroup'}" do %>
+<%= link_to user_packed_bag_path(@packed_bag, params: { display: 'ungroup' }),
+remote: :true, class: "display #{'selected' if session[:display] == 'ungroup'}" do %>
   <%= image_tag "interface/ungroup_items", class: "picture" %>
   <p>DETAILED</p>
 <% end %>

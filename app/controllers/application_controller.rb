@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
-  before_action :set_url_params
 
   def filter
     @categories        = ItemCategory.all
@@ -10,8 +9,8 @@ class ApplicationController < ActionController::Base
     @owned_references  = @owned_items.map { |item| item.reference }.uniq
     @packed_items      = @packed_bag.packed_items.order(created_at: :desc)
     @packed_references = @packed_items.map { |packed_item| packed_item.item.reference }.uniq
-    if params.key?(:cat) &&  params[:cat].to_i > 0
-      category           = ItemCategory.find(@cat)
+    if session[:category].to_i > 0
+      category           = ItemCategory.find(session[:category].to_i)
       @references        = @references.select { |reference| reference.category == category }
       @owned_items       = @owned_items.select { |item| item.reference.category == category }
       @owned_references  = @owned_references.select { |reference| reference.category == category }
@@ -20,22 +19,22 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_url_params
+  # def set_url_params
 
-    @cat = params[:cat]
-    @ope = params[:ope]
-    @dis = params[:dis]
+  #   @cat = params[:cat]
+  #   @ope = params[:ope]
+  #   @dis = params[:dis]
 
-    if @cat.nil? && params.key?(:item)
-      @cat = params[:item][:cat]
-      @ope = params[:item][:ope]
-      @dis = params[:item][:dis]
-    end
+  #   if @cat.nil? && params.key?(:item)
+  #     @cat = params[:item][:cat]
+  #     @ope = params[:item][:ope]
+  #     @dis = params[:item][:dis]
+  #   end
 
-    if @cat.nil? && params.key?(:packed_item)
-      @cat = params[:packed_item][:cat]
-      @ope = params[:packed_item][:ope]
-      @dis = params[:packed_item][:dis]
-    end
-  end
+  #   if @cat.nil? && params.key?(:packed_item)
+  #     @cat = params[:packed_item][:cat]
+  #     @ope = params[:packed_item][:ope]
+  #     @dis = params[:packed_item][:dis]
+  #   end
+  # end
 end

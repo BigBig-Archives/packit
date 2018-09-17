@@ -1,5 +1,4 @@
 class User::PackedItemsController < ApplicationController
-  before_action :set_url_params
 
   def create
     set_packed_bag # @packed_bag
@@ -13,8 +12,7 @@ class User::PackedItemsController < ApplicationController
       if @packed_item.save
         filter
         respond_to do |format|
-          format.html { redirect_to user_packed_bag_path(PackedBag.find(params[:packed_bag]),
-          cat: @cat, ope: @ope, dis: @dis),
+          format.html { redirect_to user_packed_bag_path(PackedBag.find(params[:packed_bag])),
           notice: "1 #{@packed_item.name} have been packed" }
           format.js { render 'user/packed_items/create' }
         end
@@ -50,8 +48,7 @@ class User::PackedItemsController < ApplicationController
         filter
         @packed_item = PackedItem.new
         respond_to do |format|
-          format.html { redirect_to user_packed_bag_path(@packed_bag,
-            cat: @cat, ope: @ope, dis: @dis),
+          format.html { redirect_to user_packed_bag_path(@packed_bag),
             notice: "#{@quantity} #{@quantity > 1 ? @item.reference.name.pluralize : @item.reference.name} have been packed" }
           format.js { render 'user/packed_items/create' }
         end
@@ -83,9 +80,7 @@ class User::PackedItemsController < ApplicationController
       if current_user.items.count == @packed_bag.packed_items.count
         filter
         respond_to do |format|
-          format.html { redirect_to user_packed_bag_path(@packed_bag,
-            cat: @cat, ope: @ope, dis: @dis),
-            notice: "#{@count} items have been packed" }
+          format.html { redirect_to user_packed_bag_path(@packed_bag), notice: "#{@count} items have been packed" }
           format.js { render 'user/packed_items/create' }
         end
       else
@@ -125,8 +120,7 @@ class User::PackedItemsController < ApplicationController
       end
       filter
       respond_to do |format|
-        format.html { redirect_to user_packed_bag_path(@packed_bag,
-          cat: @cat, ope: @ope, dis: @dis),
+        format.html { redirect_to user_packed_bag_path(@packed_bag),
           notice: "#{@quantity} #{@quantity > 1 ? @reference.name.pluralize : @reference.name} have been unpacked from the bag" }
         format.js { render 'user/packed_items/destroy' }
       end
@@ -153,9 +147,7 @@ class User::PackedItemsController < ApplicationController
       if @packed_item.destroy
         filter
         respond_to do |format|
-          format.html { redirect_to user_packed_bag_path(@packed_bag,
-            cat: @cat, ope: @ope, dis: @dis),
-            notice: "1 #{@packed_item_name} have been unpacked from the bag" }
+          format.html { redirect_to user_packed_bag_path(@packed_bag), notice: "1 #{@packed_item_name} have been unpacked from the bag" }
           format.js { }
         end
       else
@@ -176,9 +168,7 @@ class User::PackedItemsController < ApplicationController
       if @packed_bag.packed_items.destroy_all
         filter
         respond_to do |format|
-          format.html { redirect_to user_packed_bag_path(@packed_bag,
-            cat: @cat, ope: @ope, dis: @dis),
-            notice: "All the #{@count} items have been unpacked from the bag" }
+          format.html { redirect_to user_packed_bag_path(@packed_bag), notice: "All the #{@count} items have been unpacked from the bag" }
           format.js {  }
         end
       else

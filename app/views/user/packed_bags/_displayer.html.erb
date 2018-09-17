@@ -1,5 +1,5 @@
 <div id="displayed-items">
-  <% if @ope == 'create' || @ope.nil? %>
+  <% if session[:operation] == 'create' %>
     <div id="references">
       <%= render 'user/packed_bags/cards/display_references' %>
     </div>
@@ -11,7 +11,7 @@
 </div>
 <div class="wrapper-separator"></div>
 <div id="displayed-items">
-  <% if @ope == 'create' || @ope.nil? %>
+  <% if session[:operation] == 'create' %>
     <div id="items-created">
       <%= render 'user/packed_bags/cards/display_items_created' %>
     </div>

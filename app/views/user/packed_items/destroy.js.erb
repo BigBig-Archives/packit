@@ -26,6 +26,10 @@ function unpackItem() {
     packed_items_content = `<%= j render 'user/packed_bags/cards/display_packed_items' %>`;
     items_container.innerHTML = items_content;
     packed_items_container.innerHTML = packed_items_content;
+    // Refresh load
+    let load_container = document.querySelector("#navbar #load");
+    let load = `<%= j render 'user/packed_bags/navbar/load' %>`;
+    load_container.innerHTML = load;
   <% end %>
 }
 

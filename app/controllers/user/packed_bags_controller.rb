@@ -1,20 +1,13 @@
 class User::PackedBagsController < ApplicationController
-  before_action :set_url_params
   before_action :set_packed_bag, only: %i[show update destroy copy]
+  before_action :set_filters, only: :show
 
   def show
     @packed_item = PackedItem.new
     @item        = Item.new
     filter
     respond_to do |format|
-      format.html {
-        if @cat.nil? || @ope.nil? || @dis.nil?
-          @cat = '0'
-          @ope = 'create'
-          @dis = 'group'
-          redirect_to user_packed_bag_path(@packed_bag, cat: @cat, ope: @ope, dis: @dis)
-        end
-      }
+      format.html { render 'show' }
       format.js { render 'user/packed_bags/show' }
     end
   end
@@ -25,9 +18,7 @@ class User::PackedBagsController < ApplicationController
     @packed_bag.journey = @journey
     if @packed_bag.save
       respond_to do |format|
-        format.html { redirect_to user_packed_bag_path(@packed_bag,
-          cat: @cat, ope: @ope, dis: @dis),
-          notice: 'Packed Bag created' }
+        format.html { redirect_to user_packed_bag_path(@packed_bag), notice: 'Packed Bag created' }
         format.js { render 'user/packed_bags/create' }
       end
     else
@@ -55,9 +46,7 @@ class User::PackedBagsController < ApplicationController
       end
       if @packed_bag.packed_items.count == @copy.packed_items.count
         respond_to do |format|
-          format.html { redirect_to user_packed_bag_path(@copy,
-            cat: @cat, ope: @ope, dis: @dis),
-            notice: 'Packed Bag copied' }
+          format.html { redirect_to user_packed_bag_path(@copy), notice: 'Packed Bag copied' }
         end
       else
         flash[:alert] = 'Error: ' << @copy.errors.full_messages.join(' - ')
@@ -106,5 +95,17 @@ class User::PackedBagsController < ApplicationController
 
   def packed_bag_params
     params.require(:packed_bag).permit(:name, :bag_id)
+  end
+
+  def set_filters
+    session[:category]   = params[:category] if params[:category]
+    session[:category]   = '0' if session[:category].nil?
+    session[:display]    = params[:display] if params[:display]
+    session[:display]    = 'group' if session[:display].nil?
+    session[:operation]  = params[:operation] if params[:operation]
+    session[:operation]  = 'create' if session[:operation].nil?
+
+
+    session[:category_name] = ItemCategory.find(session[:category].to_i).name unless session[:category].to_i.zero?
   end
 end

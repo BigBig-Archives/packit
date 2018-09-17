@@ -1,5 +1,9 @@
 <div class="cards-indication">
-  <p>Here are all you owned items</p>
+  <p>
+    Here are all you owned items
+    <%= " in category" unless session[:category].to_i.zero? %>
+    <strong><%= session[:category_name] unless session[:category].to_i.zero? %></strong>
+    </p>
   <hr>
   <% if current_user.items.empty? %>
     <p>Oh! It looks like you don't have any item packed!</p>
@@ -8,7 +12,7 @@
 </div>
 
 <div class="items-container">
-  <% if @dis == 'group' || @dis.nil? %>
+  <% if session[:display] == 'group' %>
     <% @owned_references.each do |reference| %>
       <%= render 'user/items/item_created_by_reference', reference: reference %>
     <% end %>

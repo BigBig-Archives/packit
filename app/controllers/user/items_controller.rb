@@ -1,5 +1,4 @@
 class User::ItemsController < ApplicationController
-  before_action :set_url_params
   before_action :set_item, only: %i[update destroy]
   before_action :set_reference, only: %i[create]
   before_action :set_packed_bag, only: %i[create update destroy]
@@ -19,9 +18,7 @@ class User::ItemsController < ApplicationController
       end
       filter
       respond_to do |format|
-        format.html { redirect_to user_packed_bag_path(@packed_bag,
-          cat: @cat, ope: @ope, dis: @dis),
-          notice: 'Item created.' }
+        format.html { redirect_to user_packed_bag_path(@packed_bag), notice: 'Item created.' }
         format.js { render 'user/items/create' }
       end
     else
@@ -41,9 +38,7 @@ class User::ItemsController < ApplicationController
     if @item.update(item_params)
       filter
       respond_to do |format|
-        format.html { redirect_to user_packed_bag_path(@packed_bag,
-          cat: @cat, ope: @ope, dis: @dis),
-          notice:   'Item updated.'}
+        format.html { redirect_to user_packed_bag_path(@packed_bag), notice: 'Item updated.'}
         format.js { render 'user/items/update' }
       end
     else
@@ -65,8 +60,7 @@ class User::ItemsController < ApplicationController
       if Item.where(reference: @reference, user: current_user).destroy_all
         filter
         respond_to do |format|
-          format.html { redirect_to user_packed_bag_path(@packed_bag,
-            cat: @cat, ope: @ope, dis: @dis),
+          format.html { redirect_to user_packed_bag_path(@packed_bag),
             notice:   "#{@count} #{@count > 1 ? @reference.name.pluralize : @reference.name} have been destroyed." }
           format.js { render 'user/items/destroy' }
         end
@@ -84,9 +78,7 @@ class User::ItemsController < ApplicationController
       if @item.destroy
         filter
         respond_to do |format|
-          format.html { redirect_to user_packed_bag_path(@packed_bag,
-            cat: @cat, ope: @ope, dis: @dis),
-            notice:   "1 #{item_name} destroyed." }
+          format.html { redirect_to user_packed_bag_path(@packed_bag), notice:   "1 #{item_name} destroyed." }
           format.js { render 'user/items/destroy' }
         end
       else

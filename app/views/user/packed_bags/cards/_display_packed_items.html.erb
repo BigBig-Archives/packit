@@ -1,6 +1,10 @@
 <div id="packed-items">
   <div class="cards-indication">
-    <p class="cards-indication">Here are all your items packed into the bag</p>
+    <p class="cards-indication">
+    Here are all your items packed into the bag
+    <%= " in category" unless session[:category].to_i.zero? %>
+    <strong><%= session[:category_name] unless session[:category].to_i.zero? %></strong>
+  </p>
     <hr>
     <% if @packed_bag.packed_items.empty? %>
       <p>Oh! It looks like you don't have any item packed!</p>
@@ -8,19 +12,13 @@
     <% end %>
   </div>
 
-  <% if @packed_bag.packed_items.any? && (@cat == '0' || @cat.nil?) %>
-    <%= button_to 'unpack all', user_packed_item_path(@packed_bag.packed_items.first, params: {
-      unpack:    'all',
-      packed_bag: @packed_bag,
-      cat: @cat,
-      ope: @ope,
-      dis: @dis
-    }), method: :delete, remote: :true, class: 'item-action item-action-all unpack-all-item' %>
+  <% if @packed_bag.packed_items.any? && session[:category].to_i.zero? %>
+    <%= button_to 'unpack all', user_packed_item_path(@packed_bag.packed_items.first, params: { unpack: 'all', packed_bag: @packed_bag }), method: :delete, remote: :true, class: 'item-action item-action-all unpack-all-item' %>
   <% else %>
     <div class="button-substitute"></div>
   <% end %>
   <div class="items-container">
-    <% if @dis == "group" || @dis.nil? %>
+    <% if session[:display] == "group" %>
       <% @packed_references.sort_by { |reference| reference.name }.each do |packed_reference| %>
         <%= render 'user/packed_items/packed_item_by_reference', reference: packed_reference %>
       <% end %>
