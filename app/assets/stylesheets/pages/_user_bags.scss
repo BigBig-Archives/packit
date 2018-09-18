@@ -1,42 +1,72 @@
 #bags-page {
   min-height: 100vh;
-  background-image: image-url("illustrations/walk6");
-  background-repeat: no-repeat;
-  background-position: left bottom;
-  background-size: 40%;
+
+  .illustration {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 30%;
+    z-index: -1;
+  }
 
   .indications {
     border: solid $p1 red;
-    margin: $p64 15% $p32 35%;
-    width: 50%;
+    margin: $p64 auto $p32 auto;
+    width: 80%;
     text-align: center;
     p {
-      font-size: $p16 + $p4;
       color: lighten($gray, 30%);
     }
   }
 
   .bag-form {
-    border: solid $p1 blue;
-    margin: 0 15% $p32 35%;;
+    border: solid $p1 lighten($gray, 70%);
+    padding: $p16;
+    margin: 0 auto $p32 auto;;
     width: 50%;
-    input {
-      border: none;
-      border-radius: 0;
-      border-bottom: solid $p1 lighten($gray, 30%);
-    }
-    .pictures {
+    .form-group {
       display: flex;
       flex-wrap: wrap;
-      width: 100%;
+      align-items: center;
+      margin: 0;
+    }
+    label {
+      width: $p80;
+      height: auto;
+      margin: 0;
+      font-size: $font-size-normal;
+      margin-right: $p8;
+      margin-bottom: $p8;
+    }
+    input {
+      flex: 3;
+      min-width: $p240;
+      height: auto;
+      border: none;
+      border-radius: 0;
+      border-bottom: solid $p1 lighten($gray, 60%);
+      font-size: $font-size-normal;
+      margin-bottom: $p8;
+    }
+    .picture-indication {
+      width: $p80;
+      font-size: $font-size-normal;
+    }
+    .pictures {
+      margin: $p12 0;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
       .picture {
         flex: 1;
         input {
+          min-width: 0;
           visibility:hidden;
           border: solid $p2;
         }
         .picture-thumb {
-          width: $p80;
+          width: $p64;
           cursor: pointer;
         }
         input[type="radio"] + label {
@@ -47,6 +77,15 @@
           padding-bottom: $p8;
           border-bottom: solid $p8 $blue;
         }
+      }
+    }
+    .submit {
+      margin-top: $p12;
+      text-align: right;
+      input {
+        border: none;
+        background-color: $blue;
+        color: white;
       }
     }
   }
