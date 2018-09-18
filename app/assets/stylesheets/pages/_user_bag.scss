@@ -1,0 +1,47 @@
+#bag-wrapper {
+  #displayed-items {
+    padding: 0 5% $p72 5%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    float: left;
+    width: 50%;
+    height: 200vh;
+  }
+  .displayed-items-left,
+  .displayed-items-left {
+    p {
+      margin: 0 auto;
+    }
+  }
+}
+
+.cards-indication {
+  margin-top: $p16;
+  text-align: center;
+  color: lighten($gray, 30%);
+  .no-items-alert {
+    opacity: 0.6;
+    padding: $p16;
+    background: lighten($yellow, 30%);
+    color: darken($yellow, 20%);
+    border: solid $p1 lighten($yellow, 10%);;
+    border-radius: $p8;
+  }
+}
+
+::-webkit-scrollbar {
+    width: $p8;
+}
+
+::-webkit-scrollbar-track {
+    background: darken($light-gray, 4%);
+}
+
+::-webkit-scrollbar-thumb {
+    background: darken($light-gray, 12%);
+    border-radius: 0 0 $p4 $p4;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: darken($light-gray, 15%);
+}

@@ -8,7 +8,7 @@
 
   <!-- DELETE ITEM -->
 
-  <%= button_to 'delete', user_item_path(item, params: { packed_bag: @packed_bag }),
+  <%= button_to 'delete', user_item_path(item, params: { bag: @bag }),
   method: :delete, remote: :true, class: "item-action delete-item" %>
   <p data-error="delete" class="input-error"></p>
 </div>

@@ -3,7 +3,7 @@
   <% if item.id.nil? %>
     <%= f.input :reference, as: :hidden, input_html: { value: reference.id } %>
   <% end %>
-  <%= f.input :packed_bag, as: :hidden, input_html: { value: @packed_bag.id } %>
+  <%= f.input :bag, as: :hidden, input_html: { value: @bag.id } %>
   <div class="input-with-unit">
     <% if item.id.nil? %> <!-- CREATE -->
       <%= f.input :size, label: 'L', input_html: { value: reference.size, step: 0.1, min: 0, max: 99 } %>

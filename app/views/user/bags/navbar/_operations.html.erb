@@ -1,0 +1,13 @@
+<% if session[:operation] == 'create' %>
+  <%= link_to user_bag_path(@bag, params: { operation: 'pack' }),
+  remote: :true, class: "operation switch-to-pack" do %>
+    <%= image_tag 'interface/pack', class: 'picture' %>
+    <p>Let's pack my bag</p>
+  <% end %>
+<% else %>
+  <%= link_to user_bag_path(@bag, params: { operation: 'create' }),
+  remote: :true, class: "operation switch-to-create" do %>
+  <%= image_tag 'interface/create', class: 'picture' %>
+    <p>Let's create more items</p>
+  <% end %>
+<% end %>

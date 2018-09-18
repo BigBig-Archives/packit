@@ -1,0 +1,22 @@
+.packed-bags-page {
+  width: 80%;
+  margin: $p24 auto;
+  display: flex;
+  justify-content: center;
+  // * { border: solid $p1 red; }
+  #user-bags {
+    display: flex;
+  }
+  #packed-bags-container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax($p152, 1fr) );
+    grid-gap: $p12;
+    .packed-bag-form {
+      border: solid $p1 blue;
+    }
+    .packed-bag {
+      border: solid $p1 blue;
+    }
+  }
+}

@@ -9,6 +9,6 @@
 
   <!-- PACK ITEM(S) -->
 
-  <%= button_to 'pack', user_packed_items_path(params: { pack: 'one', item: item, packed_bag: @packed_bag }), method: :post, remote: :true, class: "item-action pack-item" %>
+  <%= button_to 'pack', user_packed_items_path(params: { pack: 'one', item: item, bag: @bag }), method: :post, remote: :true, class: "item-action pack-item" %>
 
 </div>

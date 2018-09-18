@@ -1,4 +1,4 @@
-<% remaining_items = reference.unpacked_items(current_user, @packed_bag) %>
+<% remaining_items = reference.unpacked_items(current_user, @bag) %>
 
 <div class="item-container <%= "empty-reference" if remaining_items.count.zero? %>" data-item-reference=<%= reference.id %>>
 
@@ -12,7 +12,7 @@
   <%= image_tag "items/#{reference.picture}", class: 'picture' %>
   <p class="name"><%= reference.name %></p>
   <p class="reference-count">
-    <span><%= current_user.reference_count(reference) - @packed_bag.packed_reference_count(reference) %></span>
+    <span><%= current_user.reference_count(reference) - @bag.packed_reference_count(reference) %></span>
     <span> / </span>
     <span><%= current_user.reference_count(reference) %></span>
   </p>
@@ -21,7 +21,7 @@
 
   <%= simple_form_for [:user, @packed_item], remote: :true do |f| %>
     <%= f.input :pack, as: :hidden, input_html: { value: 'many' } %>
-    <%= f.input :packed_bag, as: :hidden, input_html: { value: @packed_bag.id } %>
+    <%= f.input :bag, as: :hidden, input_html: { value: @bag.id } %>
     <% if remaining_items.any? %>
       <%= f.input :item, as: :hidden, input_html: { value: remaining_items.first.id } %>
     <% end %>

@@ -1,9 +1,0 @@
-<% if @journey.errors.any? %>
-  console.log("errors: <%= j @journey.errors.full_messages.join('; ') %>")
-<% else %>
-  content = document.querySelector("[data-journey=\"<%= @journey.id %>\"]");
-content.parentNode.removeChild(content);
-<% end %>
-
-
-

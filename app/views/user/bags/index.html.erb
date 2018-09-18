@@ -1,0 +1,12 @@
+<div class="bags-page">
+  <div id="bags-container">
+    <div class="bag-form">
+      <%= render 'user/bags/form_call' %>
+    </div>
+    <% current_user.bags.each do |bag| %>
+      <div class="bag">
+        <%= render 'user/bags/bag', bag: bag %>
+      </div>
+    <% end %>
+  </div>
+</div>

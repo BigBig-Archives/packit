@@ -1,0 +1,39 @@
+<!-- REFERENCES TO ITEMS -->
+
+ <!-- +--------------+--------------+
+      |              |              |
+      |  references  |     items    |
+      |              |              |
+      +----------------+------------+ -->
+
+<!-- ITEMS TO PACKED ITEMS -->
+
+ <!-- +----------------+------------+
+      |              |              |
+      |     items    | packed_items |
+      |              |              |
+      +--------------+--------------+ -->
+
+<div id="displayed-items">
+  <% if session[:operation] == 'create' %>
+    <div id="references">
+      <%= render 'user/bags/cards/display_references' %>
+    </div>
+  <% else %>
+    <div id="items_to_pack">
+      <%= render 'user/bags/cards/display_items_to_pack' %>
+    </div>
+  <% end %>
+</div>
+<div class="wrapper-separator"></div>
+<div id="displayed-items">
+  <% if session[:operation] == 'create' %>
+    <div id="items-created">
+      <%= render 'user/bags/cards/display_items_created' %>
+    </div>
+  <% else %>
+    <div id="packed-items">
+      <%= render 'user/bags/cards/display_packed_items' %>
+    </div>
+  <% end %>
+</div>

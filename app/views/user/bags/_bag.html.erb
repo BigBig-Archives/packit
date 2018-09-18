@@ -1,10 +1,6 @@
-<div class="col-3">
-  <%= simple_form_for [:user, bag] do |f| %>
-    <%= f.input :journey, as: :hidden, input_html: { value: journey.id } %>
-    <%= f.input :name %>
-    <p data-error="name"></p>
-    <%= f.input :capacity %>
-    <p data-error="capacity"></p>
-    <%= f.button :submit, class: "button" %>
-  <% end %>
-</div>
+<p><%= bag.name %></p>
+<%= button_to 'open', user_bag_path(bag),  method: :get, class: 'btn ' %>
+<%= button_to 'delete', user_bag_path(bag), method: :delete, class: '' %>
+
+
+

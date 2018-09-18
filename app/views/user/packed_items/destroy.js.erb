@@ -15,14 +15,14 @@ function unpackItem() {
     <% end %>
   <% else %>
     container = document.querySelector("#items-to-pack");
-    content = `<%= j render 'user/packed_bags/cards/display_items_to_pack' %>`;
+    content = `<%= j render 'user/bags/cards/display_items_to_pack' %>`;
     container.innerHTML = content;
     container = document.querySelector("#packed-items");
-    content = `<%= j render 'user/packed_bags/cards/display_packed_items' %>`;
+    content = `<%= j render 'user/bags/cards/display_packed_items' %>`;
     container.innerHTML = content;
     // Refresh load
     container = document.querySelector("#navbar #load");
-    content = `<%= j render 'user/packed_bags/navbar/load' %>`;
+    content = `<%= j render 'user/bags/navbar/load' %>`;
     container.innerHTML = content;
   <% end %>
 }
