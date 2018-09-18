@@ -1,21 +1,10 @@
-<h2>My journeys</h2>
-
-<div id="journeys-container">
-  <div class="row">
-    <% current_user.journeys.each do |journey| %>
-        <%= render 'user/journeys/journey',
-          journey: journey
-        %>
+<div class="journeys-page">
+  <div>
+    <%= render 'user/journeys/form' %>
+    <div class="journeys-container">
+      <% current_user.journeys.each do |journey| %>
+        <%= render 'user/journeys/journey', journey: journey %>
       <% end %>
+    </div>
   </div>
-</div>
-
-<hr>
-
-<h2>Add a new journey</h2>
-
-<div class="row">
-  <%= render 'user/journeys/form',
-    journey: @journey
-  %>
 </div>

@@ -1,9 +1,8 @@
-<div class="col-3" data-journey=<%= journey.id %>>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title"><%= journey.name %></h5>
-      <%= button_to 'select', user_journey_path(journey), method: :get, type: 'button', class: 'btn btn-primary btn-sm' %>
-      <%= button_to 'delete', user_journey_path(journey), method: :delete, type: 'button', class: 'btn btn-danger btn-sm' %>
-    </div>
+<div data-journey=<%= journey.id %>>
+  <p class="name"><%= journey.name.upcase %></p>
+  <p class="location"><%= journey.name.upcase %></p>
+  <div class="buttons">
+    <%= button_to 'select', user_journey_path(journey), method: :get, class: 'select' %>
+    <%= button_to 'delete', user_journey_path(journey), method: :delete, class: 'delete' %>
   </div>
 </div>

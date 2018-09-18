@@ -2,7 +2,7 @@ class User::JourneysController < ApplicationController
   before_action :set_journey, only: %i[show update destroy]
 
   def index
-    @journey = Journey.new
+    @journey      = Journey.new
     session[:category] = 0
     session[:operation] = 'create'
     session[:display] = 'group'

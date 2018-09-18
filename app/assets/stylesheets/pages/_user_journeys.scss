@@ -1,0 +1,21 @@
+.journeys-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .journeys-container {
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax($p152, 1fr) );
+    grid-gap: $p12;
+  }
+  .buttons {
+    display: flex;
+    button {
+      padding: 0;
+      border: none;
+      color: white;
+      font-size: $font-size-normal;
+      text-align: center;
+    }
+  }
+}

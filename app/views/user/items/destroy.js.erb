@@ -19,6 +19,10 @@ function destroyItem() {
     console.log("<%= j @filter_on_group.to_s %>");
     content = `<%= j render 'user/packed_bags/cards/display_items_created' %>`;
     container.innerHTML = content;
+    // Refresh load
+    container = document.querySelector("#navbar #load");
+    content = `<%= j render 'user/packed_bags/navbar/load' %>`;
+    container.innerHTML = content;
   <% end %>
 }
 
