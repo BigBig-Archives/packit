@@ -1,7 +1,6 @@
 #operations {
-  margin-top: $p24;
-  width: 50%;
-  margin-right: -$p64;
+  align-self: flex-end;
+  width: 45%;
   .operation {
     display: flex;
     align-items: center;
@@ -12,14 +11,25 @@
     }
     p {
       height: $p48;
-      padding: $p12;
-      color: white;
+      line-height: $p48 - $p2;
+      padding: 0 $p24;
+      border: solid $p2;
     }
   }
   .switch-to-create p {
-    background-color: $green;
+    border-color: $green;
+    color: $green;
   }
   .switch-to-pack p {
-    background-color: $blue;
+    border-color: $blue;
+    color: $blue;
+  }
+  .back-to-bags {
+    margin-top: $p12;
+    display: block;
+    p {
+      color: lighten($gray, 20%);
+      font-size: $font-size-normal;
+    }
   }
 }

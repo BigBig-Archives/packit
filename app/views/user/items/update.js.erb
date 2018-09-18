@@ -19,7 +19,7 @@ function updateItem() {
       content = `<%= j render 'user/bags/cards/display_items_created' %>`;
       container.innerHTML = content;
     <% else %>
-      container = document.querySelector("#items_to_pack");
+      container = document.querySelector("#items-to-pack");
       content = `<%= j render 'user/bags/cards/display_items_to_pack' %>`;
       container.innerHTML = content;
     <% end %>

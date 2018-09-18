@@ -1,22 +1,57 @@
-.packed-bags-page {
-  width: 80%;
-  margin: $p24 auto;
-  display: flex;
-  justify-content: center;
-  // * { border: solid $p1 red; }
-  #user-bags {
-    display: flex;
-  }
-  #packed-bags-container {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat( auto-fit, minmax($p152, 1fr) );
-    grid-gap: $p12;
-    .packed-bag-form {
-      border: solid $p1 blue;
-    }
-    .packed-bag {
-      border: solid $p1 blue;
+#bags-page {
+  min-height: 100vh;
+  background-image: image-url("illustrations/walk6");
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 40%;
+
+  .indications {
+    border: solid $p1 red;
+    margin: $p64 15% $p32 35%;
+    width: 50%;
+    text-align: center;
+    p {
+      font-size: $p16 + $p4;
+      color: lighten($gray, 30%);
     }
   }
+
+  .bag-form {
+    border: solid $p1 blue;
+    margin: 0 15% $p32 35%;;
+    width: 50%;
+    input {
+      border: none;
+      border-radius: 0;
+      border-bottom: solid $p1 lighten($gray, 30%);
+    }
+    .pictures {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      .picture {
+        flex: 1;
+        input {
+          visibility:hidden;
+          border: solid $p2;
+        }
+        .picture-thumb {
+          width: $p80;
+          cursor: pointer;
+        }
+        input[type="radio"] + label {
+          padding-bottom: $p8;
+          border-bottom: solid $p8 transparent;
+        }
+        input[type="radio"]:checked + label {
+          padding-bottom: $p8;
+          border-bottom: solid $p8 $blue;
+        }
+      }
+    }
+  }
+}
+
+#bags-container {
+  display: none;
 }

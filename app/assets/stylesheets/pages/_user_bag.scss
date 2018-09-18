@@ -1,11 +1,12 @@
 #bag-wrapper {
   #displayed-items {
-    padding: 0 5% $p72 5%;
+    padding: 0 5% 0 5%;
     overflow-y: scroll;
     overflow-x: hidden;
     float: left;
     width: 50%;
-    height: 200vh;
+    height: 73vh;
+    background-color: $light-gray;
   }
   .displayed-items-left,
   .displayed-items-left {

@@ -1,12 +1,39 @@
-<div class="bags-page">
+<div id="bags-page">
+
+  <div class="indications">
+    <% if current_user.bags.empty? %>
+      <p>Let's create your first bag and get ready to pack it!</p>
+    <% else %>
+      <p>Select one of your packed bags or <span id="new-bag">start a new empty bag.</span></p>
+      <p>Want to save time? Copy one of your packed bags to start a new bag with already packed items!</p>
+    <% end %>
+  </div>
+
+  <div class="bag-form">
+    <%= render 'user/bags/form' %>
+  </div>
+
   <div id="bags-container">
-    <div class="bag-form">
-      <%= render 'user/bags/form_call' %>
-    </div>
     <% current_user.bags.each do |bag| %>
       <div class="bag">
         <%= render 'user/bags/bag', bag: bag %>
       </div>
     <% end %>
   </div>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut aliquid quo hic veniam qui quia pariatur tempora ducimus, error vitae deleniti quasi, iusto quae odit nobis blanditiis ipsam itaque fugiat.</p>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut aliquid quo hic veniam qui quia pariatur tempora ducimus, error vitae deleniti quasi, iusto quae odit nobis blanditiis ipsam itaque fugiat.</p>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut aliquid quo hic veniam qui quia pariatur tempora ducimus, error vitae deleniti quasi, iusto quae odit nobis blanditiis ipsam itaque fugiat.</p>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut aliquid quo hic veniam qui quia pariatur tempora ducimus, error vitae deleniti quasi, iusto quae odit nobis blanditiis ipsam itaque fugiat.</p>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut aliquid quo hic veniam qui quia pariatur tempora ducimus, error vitae deleniti quasi, iusto quae odit nobis blanditiis ipsam itaque fugiat.</p>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut aliquid quo hic veniam qui quia pariatur tempora ducimus, error vitae deleniti quasi, iusto quae odit nobis blanditiis ipsam itaque fugiat.</p>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut aliquid quo hic veniam qui quia pariatur tempora ducimus, error vitae deleniti quasi, iusto quae odit nobis blanditiis ipsam itaque fugiat.</p>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut aliquid quo hic veniam qui quia pariatur tempora ducimus, error vitae deleniti quasi, iusto quae odit nobis blanditiis ipsam itaque fugiat.</p>
 </div>

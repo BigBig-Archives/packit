@@ -18,9 +18,12 @@
 // GLOBAL RULES
 
 body {
-  background-color: $light-gray;
-  min-height: 200vh;
-  min-width: $p440;
+  background-color: white;
+}
+
+.no-scroll {
+  height: 100vh;
+  overflow: hidden;
 }
 
 a {

@@ -2,7 +2,14 @@ class User::BagsController < ApplicationController
   before_action :set_bag, only: %i[show update destroy copy]
   before_action :set_filters, only: :show
 
+  def index
+    @scroll = true
+    @bags = Bag.all
+    @bag = Bag.new
+  end
+
   def show
+    @scroll = false
     @packed_item = PackedItem.new
     @item        = Item.new
     filter
@@ -14,6 +21,7 @@ class User::BagsController < ApplicationController
 
   def create
     @bag = Bag.new(bag_params)
+    @bag.user = current_user
     if @bag.save
       respond_to do |format|
         format.html { redirect_to user_bag_path(@bag), notice: 'Bag created' }

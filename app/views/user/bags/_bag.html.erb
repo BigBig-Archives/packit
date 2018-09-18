@@ -1,4 +1,6 @@
-<p><%= bag.name %></p>
+<%= image_tag "bags/#{bag.picture}", class: "picture" %>
+<p class="name"><%= bag.name %></p>
+<%= render 'user/bags/form_update', bag: bag %>
 <%= button_to 'open', user_bag_path(bag),  method: :get, class: 'btn ' %>
 <%= button_to 'delete', user_bag_path(bag), method: :delete, class: '' %>
 

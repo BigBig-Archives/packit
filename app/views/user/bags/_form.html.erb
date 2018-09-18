@@ -1,0 +1,35 @@
+<%= simple_form_for [:user, @bag] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :capacity %>
+  <div class="pictures">
+    <div class="picture">
+      <input
+        type="radio" name="bag[picture]" value="back_pack_1" id="bag_picture_back_pack_1" class="input-hidden" checked />
+      <label for="bag_picture_back_pack_1">
+        <%= image_tag "bags/back_pack_1", class: "picture-thumb" %>
+      </label>
+    </div>
+    <div class="picture">
+      <input
+        type="radio" name="bag[picture]" value="back_pack_2" id="bag_picture_back_pack_2" class="input-hidden" />
+      <label for="bag_picture_back_pack_2">
+        <%= image_tag "bags/back_pack_2", class: "picture-thumb" %>
+      </label>
+    </div>
+    <div class="picture">
+      <input
+        type="radio" name="bag[picture]" value="back_pack_3" id="bag_picture_back_pack_3" class="input-hidden" />
+      <label for="bag_picture_back_pack_3">
+        <%= image_tag "bags/back_pack_3", class: "picture-thumb" %>
+      </label>
+    </div>
+    <div class="picture">
+      <input
+        type="radio" name="bag[picture]" value="back_pack_4" id="bag_picture_back_pack_4" class="input-hidden" />
+      <label for="bag_picture_back_pack_4">
+        <%= image_tag "bags/back_pack_4", class: "picture-thumb" %>
+      </label>
+    </div>
+  </div>
+  <%= f.button :submit %>
+<% end %>
