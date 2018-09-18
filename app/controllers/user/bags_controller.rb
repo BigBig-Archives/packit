@@ -4,7 +4,6 @@ class User::BagsController < ApplicationController
 
   def index
     @scroll = true
-    @bags = Bag.all
     @bag = Bag.new
   end
 
@@ -24,10 +23,11 @@ class User::BagsController < ApplicationController
     @bag.user = current_user
     if @bag.save
       respond_to do |format|
-        format.html { redirect_to user_bag_path(@bag), notice: 'Bag created' }
+        format.html { redirect_to user_bags_path, notice: 'Bag created' }
         format.js { render 'user/bags/create' }
       end
     else
+      @scroll = true
       flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
       respond_to do |format|
         format.html { render 'user/bags/index' }
@@ -36,32 +36,54 @@ class User::BagsController < ApplicationController
     end
   end
 
+  def update
+    if @bag.update(bag_params)
+      filter
+      respond_to do |format|
+        format.html { redirect_to user_bags_path, notice: 'Bag updated'}
+        format.js { render 'user/bags/update' }
+      end
+    else
+      @scroll = true
+      @bag  = Bag.new
+      flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
+      respond_to do |format|
+        format.html { render 'user/bags/index' }
+        format.js { render 'user/items/update' }
+      end
+    end
+  end
+
   def copy
-    @copy = Bag.new
-    @copy.name    = @bag.name << ' - copy'
+    @copy = Bag.new(capacity: @bag.capacity, picture: @bag.picture)
+    @copy.name = @bag.name << ' - copy'
+    @copy.user = current_user
     if @copy.save
       @bag.packed_items.each do |packed_item|
-        @packed_item = PackedItem.new
-        @packed_item.bag = @copy
-        @packed_item.item       = packed_item.item
+        @packed_item = PackedItem.new(bag: @copy, item: packed_item.item)
         @packed_item.save
       end
       if @bag.packed_items.count == @copy.packed_items.count
         respond_to do |format|
-          format.html { redirect_to user_bag_path(@copy), notice: 'Bag copied' }
+          format.html { redirect_to user_bags_path, notice: 'Bag copied' }
+          format.js { render 'user/bags/copy' }
         end
       else
         flash[:alert] = 'Error: ' << @copy.errors.full_messages.join(' - ')
-        @bag = Bag.new
+        @scroll = true
+        @bag  = Bag.new
         respond_to do |format|
           format.html { render 'user/bags/index' }
+          format.js { render 'user/bags/copy' }
         end
       end
     else
       flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
-      @bag = Bag.new
+      @scroll = true
+      @bag  = Bag.new
       respond_to do |format|
         format.html { render 'user/bags/index' }
+        format.js { render 'user/bags/copy' }
       end
     end
   end
@@ -74,6 +96,7 @@ class User::BagsController < ApplicationController
       end
     else
       flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
+      @scroll = true
       @bag = Bag.new
       respond_to do |format|
         format.html { render 'user/bags/index' }

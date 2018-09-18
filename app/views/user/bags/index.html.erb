@@ -1,25 +1,40 @@
 <div id="bags-page">
 
-  <%= image_tag "illustrations/walk6", class: "illustration" %>
+  <%#= image_tag "illustrations/walk6", class: "illustration" %>
 
-  <div class="indications">
-    <% if current_user.bags.empty? %>
-      <p>Let's create your first bag and get ready to pack it!</p>
-    <% else %>
-      <p>Select one of your packed bags or <span id="new-bag">start a new empty bag.</span></p>
-      <p>Want to save time? Copy one of your packed bags to start a new bag with already packed items!</p>
-    <% end %>
+  <div>
+    <div id="indications">
+      <% if current_user.bags.empty? %>
+        <p>Let's create your first bag and get ready to pack it!</p>
+      <% else %>
+        <p>Select one of your packed bags or <span id="new-bag">start a new empty bag.</span></p>
+        <p>Want to save time? Copy one of your packed bags to start a new bag with already packed items!</p>
+      <% end %>
+    </div>
   </div>
 
-  <div class="bag-form">
-    <%= render 'user/bags/form' %>
+  <hr>
+
+  <h4>Pack a new bag</h4>
+  <div>
+    <div class="bag-form">
+      <%= render 'user/bags/form' %>
+    </div>
   </div>
 
-  <div id="bags-container">
-    <% current_user.bags.each do |bag| %>
-      <div class="bag">
-        <%= render 'user/bags/bag', bag: bag %>
+  <hr>
+
+  <div id="packed-bags">
+    <% unless current_user.bags.empty? %>
+      <h4>Your packed bags</h4>
+      <div id="bags-container">
+        <% current_user.bags.order(created_at: :desc).each do |bag| %>
+          <div class="bag" data-bag="<%= bag.id %>">
+            <%= render 'user/bags/bag', bag: bag %>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>
+
 </div>

@@ -1,5 +1,6 @@
 #bags-page {
   min-height: 100vh;
+  text-align: center;
 
   .illustration {
     position: fixed;
@@ -9,10 +10,9 @@
     z-index: -1;
   }
 
-  .indications {
-    border: solid $p1 red;
-    margin: $p64 auto $p32 auto;
-    width: 80%;
+  #indications {
+    display: inline-block;
+    margin: $p64 auto $p12 auto;
     text-align: center;
     p {
       color: lighten($gray, 30%);
@@ -20,37 +20,24 @@
   }
 
   .bag-form {
+    display: inline-block;
     border: solid $p1 lighten($gray, 70%);
     padding: $p16;
-    margin: 0 auto $p32 auto;;
-    width: 50%;
-    .form-group {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      margin: 0;
-    }
+    text-align: left;
     label {
-      width: $p80;
       height: auto;
       margin: 0;
-      font-size: $font-size-normal;
       margin-right: $p8;
       margin-bottom: $p8;
     }
     input {
-      flex: 3;
       min-width: $p240;
       height: auto;
+      width: auto;
       border: none;
       border-radius: 0;
       border-bottom: solid $p1 lighten($gray, 60%);
-      font-size: $font-size-normal;
       margin-bottom: $p8;
-    }
-    .picture-indication {
-      width: $p80;
-      font-size: $font-size-normal;
     }
     .pictures {
       margin: $p12 0;
@@ -81,16 +68,124 @@
     }
     .submit {
       margin-top: $p12;
-      text-align: right;
+      width: 100%;
+      text-align: center;
+      border: none;
+      background-color: $blue;
+      color: white;
+    }
+  }
+
+  .update-form {
+      display: inline-block;
+      margin: 0 $p24;
+      padding: $p12;
+      text-align: left;
+      label {
+        height: auto;
+        margin: 0;
+        margin-right: $p4;
+        margin-bottom: $p4;
+        font-size: $font-size-normal;
+      }
       input {
+        height: auto;
+        width: 100%;
         border: none;
-        background-color: $blue;
+        border-radius: 0;
+        border-bottom: solid $p1 lighten($gray, 60%);
+        margin-bottom: $p4;
+        font-size: $font-size-normal;
+      }
+      .pictures {
+        margin: $p4 0;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        .picture {
+          flex: 1;
+          input {
+            min-width: 0;
+            width: 0;
+            visibility: hidden;
+            border: solid $p2;
+          }
+          .picture-thumb {
+            width: $p32;
+            cursor: pointer;
+          }
+          input[type="radio"] + label {
+            padding-bottom: $p4;
+            border-bottom: solid $p4 transparent;
+          }
+          input[type="radio"]:checked + label {
+            padding-bottom: $p4;
+            border-bottom: solid $p4 $blue;
+          }
+        }
+      }
+      .submit {
+        margin-top: $p12;
+        width: auto;
+        text-align: center;
+        border: none;
+        background-color: $yellow;
         color: white;
       }
     }
-  }
-}
 
-#bags-container {
-  display: none;
+  #bags-container {
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: $p64;
+    .bag {
+      display: inline-block;
+      margin: 0;
+      margin: $p8;
+      border: solid $p1 lighten($gray, 70%);
+      border-radius: $p8;
+      text-align: center;
+      padding: $p8;
+      float: left;
+      .bag-picture {
+        display: block;
+        margin: auto;
+        margin-top: $p12;
+        width: $p80;
+      }
+      .name {
+        height: $p40;
+        padding: $p8;
+        word-wrap: break-word;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      input[type=submit] {
+        display: block;
+        min-width: 0;
+        width: 100%;
+        margin: $p8 auto;
+        padding: $p4;
+        border: none;
+        color: white;
+        text-align: center;
+        cursor: pointer;
+      }
+      .open {
+        background-color: $green;
+      }
+      .delete {
+        background-color: $red;
+      }
+      .copy {
+        background-color: $blue;
+      }
+    }
+  }
+  h4 {
+    margin-top: $p24;
+    margin-bottom: $p12;
+  }
 }
