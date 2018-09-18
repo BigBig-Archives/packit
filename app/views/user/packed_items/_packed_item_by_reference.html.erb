@@ -18,6 +18,8 @@
 
   <% packed_item = @packed_bag.packed_items.select { |packed_item| packed_item.item.reference == reference }.last %>
 
+  <!-- UNPACK WITH QUANTITY -->
+
   <%= simple_form_for [:user, packed_item], remote: :true do |f| %>
     <%= f.input :unpack, as: :hidden, input_html: { value: 'many' } %>
     <%= f.input :reference, as: :hidden, input_html: { value: reference.id } %>

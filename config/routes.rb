@@ -4,9 +4,9 @@ Rails.application.routes.draw do
 
   namespace :user do
     resources :bags, only: %i[create update destroy]
-    resources :items, only: %i[index create update destroy]
+    resources :items, only: %i[create update destroy]
     resources :packed_items, only: %i[create update destroy]
-    resources :packed_bags, only: %i[index show create update destroy]
+    resources :packed_bags, only: %i[show create update destroy]
     get 'packed_bags/:id/copy', to: 'packed_bags#copy', as: 'packed_bag_copy'
     resources :journeys, only: %i[index show create update destroy]
   end

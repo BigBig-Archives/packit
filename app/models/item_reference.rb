@@ -6,18 +6,6 @@ class ItemReference < ApplicationRecord
   has_many :packed_items, through: :items
   has_many :packed_bags, through: :packed_items
 
-  # SCOPES
-
-  # scope :unpacked, -> (user, packed_bag) {
-  #   joins(:item)
-  #   .where(items: { reference: self })
-  #   joins(:packed_bag)
-  #   .where(packed_bags: { id: packed_bag })
-  #   .joins(:user)
-  #   .where(users: { id: user })
-  #   .order(created_at: :desc)
-  # }
-
   # METHODS
 
   def count_owned(user)

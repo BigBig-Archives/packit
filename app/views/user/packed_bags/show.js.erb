@@ -1,5 +1,5 @@
 function filter() {
-  // Operation
+  // Operations
   let operations_container = document.querySelector("#navbar #operations");
   let operations = `<%= j render 'user/packed_bags/navbar/operations' %>`;
   operations_container.innerHTML = operations;
@@ -7,7 +7,7 @@ function filter() {
   let categories_container = document.querySelector("#navbar #categories");
   let categories = `<%= j render 'user/packed_bags/navbar/categories' %>`;
   categories_container.innerHTML = categories;
-  // Display
+  // Displays
   let displays_container = document.querySelector("#navbar #displays");
   let displays = `<%= j render 'user/packed_bags/navbar/displays' %>`;
   displays_container.innerHTML = displays;

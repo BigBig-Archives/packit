@@ -17,6 +17,8 @@
     <span><%= current_user.reference_count(reference) %></span>
   </p>
 
+  <!-- PACK WITH QUANTITY -->
+
   <%= simple_form_for [:user, @packed_item], remote: :true do |f| %>
     <%= f.input :pack, as: :hidden, input_html: { value: 'many' } %>
     <%= f.input :packed_bag, as: :hidden, input_html: { value: @packed_bag.id } %>
