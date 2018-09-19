@@ -32,7 +32,7 @@ csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   ItemCategory.create!(
     name:    row['name'],
-    picture: row['picture'] << '.svg',
+    picture: row['picture'],
   )
 end
 
@@ -45,7 +45,7 @@ csv.each do |row|
     name:        row['name'],
     size:        row['size'],
     weight:      row['weight'],
-    picture:     row['picture'] << '.svg',
+    picture:     row['picture'],
     category_id: ItemCategory.where(name: row['category']).first.id
   )
 end
