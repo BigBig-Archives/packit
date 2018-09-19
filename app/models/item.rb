@@ -15,9 +15,9 @@ class Item < ApplicationRecord
     .where(users: { id: user })
     .order(created_at: :desc)
   }
-  scope :packed, -> (packed_bag) {
+  scope :packed, -> (bag) {
     joins(:packed_items)
-    .where(packed_items: { packed_bag_id: packed_bag })
+    .where(packed_items: { bag_id: bag })
   }
 
   # VALIDATIONS
@@ -43,8 +43,8 @@ class Item < ApplicationRecord
     self.reference.picture
   end
 
-  def packed?(packed_bag)
-    self.packed_items.where(packed_bag: packed_bag).any?
+  def packed?(bag)
+    self.packed_items.where(bag: bag).any?
   end
 
   private

@@ -1,15 +1,28 @@
-<% if @bag.errors.any? %>
-  <% @bag.errors.messages.each do |key, value| %>
-    container = document.querySelectorAll("[data-error=\"<%= j key.to_s %>\"]");
-    content = `<%= j value.first.to_s %>`;
-    for(let i = 0; i < container.length; i++){
-      container[i].innerHTML = content;
-    }
+function createBag() {
+  console.log("create bag");
+
+  let form;
+  let container;
+  let content;
+
+  <% if @bag.errors.any? %>
+    form = document.querySelector(".bag-form-create");
+    console.log("error(s)");
+    <% @bag.errors.messages.each do |key, value| %>
+      container = form.querySelector("[data-error=\"<%= j key.to_s %>\"]");
+      content = `<%= j key.to_s %> <%= j value.first.to_s %>` ;
+      container.innerHTML = content;
+    <% end %>
+  <% else %>
+    // refresh list
+    container = document.querySelector("#packed-bags");
+    content = `<%= j render 'user/bags/bags_list' %>`;
+    container.innerHTML = content;
+    // refresh indications
+    container = document.querySelector("#indications");
+    content =`<%= j render 'user/bags/indications' %>`;
+    container.innerHTML = content;
   <% end %>
-<% else %>
-  container = document.querySelector("#bags-container > .row");
-  content = `<%= j render 'bag_to_pack', bag: @bag %>`;
-  container.insertAdjacentHTML('afterbegin', content);
-<% end %>
+}
 
-
+createBag();

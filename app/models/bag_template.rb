@@ -1,2 +1,0 @@
-class BagTemplate < ApplicationRecord
-end

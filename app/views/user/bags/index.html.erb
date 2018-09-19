@@ -1,0 +1,22 @@
+<div id="bags-page">
+
+  <%#= image_tag "illustrations/walk6", class: "illustration" %>
+
+  <div>
+    <div id="indications">
+      <%= render 'user/bags/indications' %>
+    </div>
+  </div>
+
+  <p class="bags-chapter">Pack a new bag</p>
+  <div>
+    <div class="bag-form">
+      <%= render 'user/bags/form_create' %>
+    </div>
+  </div>
+
+  <div id="packed-bags">
+    <%= render 'user/bags/bags_list' %>
+  </div>
+
+</div>

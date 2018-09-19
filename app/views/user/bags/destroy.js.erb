@@ -1,6 +1,23 @@
-<% if @bag.errors.any? %>
-  console.log("errors: <%= j @bag.errors.full_messages.join('; ') %>")
-<% else %>
-  content = document.querySelector("[data-bag=\"<%= @bag.id %>\"]");
-  content.parentNode.removeChild(content);
-<% end %>
+function destroyBag() {
+  console.log("destroy bag");
+
+  let container;
+  let content;
+
+  <% if @bag.errors.any? %>
+    console.log("error(s)");
+  <% else %>
+    content = document.querySelector("[data-bag=\"<%= @bag_id %>\"]");
+    content.parentElement.removeChild(content);
+    // refresh list
+    container = document.querySelector("#packed-bags");
+    content = `<%= j render 'user/bags/bags_list' %>`;
+    container.innerHTML = content;
+    // refresh indications
+    container = document.querySelector("#indications");
+    content =`<%= j render 'user/bags/indications' %>`;
+    container.innerHTML = content;
+  <% end %>
+}
+
+destroyBag();

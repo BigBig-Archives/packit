@@ -2,22 +2,22 @@ class PackedItem < ApplicationRecord
 
   # ASSOCIATIONS
 
-  belongs_to :packed_bag
+  belongs_to :bag
   belongs_to :item
 
   # SCOPES
 
-  scope :packed, -> (category, packed_bag) {
+  scope :packed, -> (category, bag) {
     joins(item: [:reference])
-    .joins(:packed_bag)
+    .joins(:bag)
     .where(item_references: { category_id: category })
-    .where(packed_bag: packed_bag)
+    .where(bag: bag)
     .order(created_at: :desc)
   }
 
   # VALIDATIONS
 
-  validates :item, uniqueness: { scope: :packed_bag, message: "should not be already packed" }
+  validates :item, uniqueness: { scope: :bag, message: "should not be already packed" }
 
   # METHODS
 

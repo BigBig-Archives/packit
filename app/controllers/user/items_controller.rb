@@ -1,7 +1,7 @@
 class User::ItemsController < ApplicationController
   before_action :set_item, only: %i[update destroy]
   before_action :set_reference, only: %i[create]
-  before_action :set_packed_bag, only: %i[create update destroy]
+  before_action :set_bag, only: %i[create update destroy]
 
   def create
     @item = Item.new(item_params)
@@ -18,7 +18,7 @@ class User::ItemsController < ApplicationController
       end
       filter
       respond_to do |format|
-        format.html { redirect_to user_packed_bag_path(@packed_bag), notice: 'Item created.' }
+        format.html { redirect_to user_bag_path(@bag), notice: 'Item created' }
         format.js { render 'user/items/create' }
       end
     else
@@ -28,7 +28,7 @@ class User::ItemsController < ApplicationController
       filter
       flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
       respond_to do |format|
-        format.html { render 'user/packed_bags/show' }
+        format.html { render 'user/bags/show' }
         format.js { 'user/items/create' }
       end
     end
@@ -38,7 +38,7 @@ class User::ItemsController < ApplicationController
     if @item.update(item_params)
       filter
       respond_to do |format|
-        format.html { redirect_to user_packed_bag_path(@packed_bag), notice: 'Item updated.'}
+        format.html { redirect_to user_bag_path(@bag), notice: 'Item updated'}
         format.js { render 'user/items/update' }
       end
     else
@@ -46,7 +46,7 @@ class User::ItemsController < ApplicationController
       filter
       flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
       respond_to do |format|
-        format.html { render 'user/packed_bags/show' }
+        format.html { render 'user/bags/show' }
         format.js { render 'user/items/update' }
       end
     end
@@ -60,15 +60,15 @@ class User::ItemsController < ApplicationController
       if Item.where(reference: @reference, user: current_user).destroy_all
         filter
         respond_to do |format|
-          format.html { redirect_to user_packed_bag_path(@packed_bag),
-            notice:   "#{@count} #{@count > 1 ? @reference.name.pluralize : @reference.name} have been destroyed." }
+          format.html { redirect_to user_bag_path(@bag),
+            notice:   "#{@count} #{@count > 1 ? @reference.name.pluralize : @reference.name} have been destroyed" }
           format.js { render 'user/items/destroy' }
         end
       else
         flash[:alert] = 'Error: ' << 'Something went wrong'
         filter
         respond_to do |format|
-          format.html { render 'user/packed_bag/show' }
+          format.html { render 'user/bag/show' }
           format.js { render 'user/items/destroy' }
         end
       end
@@ -78,14 +78,14 @@ class User::ItemsController < ApplicationController
       if @item.destroy
         filter
         respond_to do |format|
-          format.html { redirect_to user_packed_bag_path(@packed_bag), notice:   "1 #{item_name} destroyed." }
+          format.html { redirect_to user_pbag_path(@bag), notice:   "1 #{item_name} destroyed" }
           format.js { render 'user/items/destroy' }
         end
       else
         filter
         flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
         respond_to do |format|
-          format.html { render 'user/packed_bag/show' }
+          format.html { render 'user/bag/show' }
           format.js { render 'user/items/destroy' }
         end
       end
@@ -101,11 +101,11 @@ class User::ItemsController < ApplicationController
     @reference = ItemReference.find(params[:item][:reference])
   end
 
-  def set_packed_bag
+  def set_bag
     if params.key?(:item)
-      @packed_bag = PackedBag.find(params[:item][:packed_bag])
+      @bag = Bag.find(params[:item][:bag])
     else
-      @packed_bag = PackedBag.find(params[:packed_bag])
+      @bag = Bag.find(params[:bag])
     end
   end
 

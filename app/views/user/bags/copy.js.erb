@@ -1,0 +1,21 @@
+function copyBag() {
+  console.log("copy bag");
+
+  let container;
+  let content;
+
+  <% if @copy.errors.any? %>
+    console.log("error(s)");
+  <% else %>
+    // refresh list
+    container = document.querySelector("#packed-bags");
+    content = `<%= j render 'user/bags/bags_list' %>`;
+    container.innerHTML = content;
+    // refresh indications
+    container = document.querySelector("#indications");
+    content =`<%= j render 'user/bags/indications' %>`;
+    container.innerHTML = content;
+  <% end %>
+}
+
+copyBag();

@@ -4,11 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :bags, dependent: :destroy
-  has_many :packed_bags, through: :bags
   has_many :items, dependent: :destroy
   has_many :references, through: :items
   has_many :packed_items, through: :items
-  has_many :journeys, dependent: :destroy
 
   # METHODS
 

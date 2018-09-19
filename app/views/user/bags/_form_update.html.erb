@@ -1,0 +1,39 @@
+<div class="bag-form-update">
+  <%= simple_form_for [:user, bag], remote: :true do |f| %>
+    <%= f.input :name, input_html: { value: bag.name } %>
+    <p data-error="name" class="input-error"></p>
+    <%= f.input :capacity, input_html: { value: bag.capacity, class: "capacity" }, hint: 'liters' %>
+    <p data-error="capacity" class="input-error"></p>
+    <div class="picture-select">
+      <div class="picture-input">
+        <input
+          type="radio" name="bag[picture]" value="back_pack_1" id="update_bag_<%= bag.id %>_picture_back_pack_1" class="input-hidden" <%= 'checked' if bag.picture == 'back_pack_1' %> />
+        <label for="update_bag_<%= bag.id %>_picture_back_pack_1">
+          <%= image_tag "bags/back_pack_1", class: "picture-thumb" %>
+        </label>
+      </div>
+      <div class="picture-input">
+        <input
+          type="radio" name="bag[picture]" value="back_pack_2" id="update_bag_<%= bag.id %>_picture_back_pack_2" class="input-hidden" <%= 'checked' if bag.picture == 'back_pack_2' %> />
+        <label for="update_bag_<%= bag.id %>_picture_back_pack_2">
+          <%= image_tag "bags/back_pack_2", class: "picture-thumb" %>
+        </label>
+      </div>
+      <div class="picture-input">
+        <input
+          type="radio" name="bag[picture]" value="back_pack_3" id="update_bag_<%= bag.id %>_picture_back_pack_3" class="input-hidden" <%= 'checked' if bag.picture == 'back_pack_3' %> />
+        <label for="update_bag_<%= bag.id %>_picture_back_pack_3">
+          <%= image_tag "bags/back_pack_3", class: "picture-thumb" %>
+        </label>
+      </div>
+      <div class="picture-input">
+        <input
+          type="radio" name="bag[picture]" value="back_pack_4" id="update_bag_<%= bag.id %>_picture_back_pack_4" class="input-hidden" <%= 'checked' if bag.picture == 'back_pack_4' %> />
+        <label for="update_bag_<%= bag.id %>_picture_back_pack_4">
+          <%= image_tag "bags/back_pack_4", class: "picture-thumb" %>
+        </label>
+      </div>
+    </div>
+    <%= f.button :submit, 'update', class: "submit" %>
+  <% end %>
+</div>

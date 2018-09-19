@@ -15,7 +15,7 @@ function createItem() {
     <% end %>
   <% else %>
     container = document.querySelector("#items-created");
-    content = `<%= j render 'user/packed_bags/cards/display_items_created' %>`;
+    content = `<%= j render 'user/bags/cards/display_items_created' %>`;
     container.innerHTML = content;
   <% end %>
 }

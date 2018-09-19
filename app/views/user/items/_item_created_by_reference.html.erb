@@ -11,7 +11,7 @@
   <p class="name"><%= reference.name %></p>
   <p class="reference-count"><%= current_user.reference_count(reference) %></p>
 
-  <%= button_to 'delete all', user_item_path(reference.items.first, params: { destroy_all: 'true', packed_bag:  @packed_bag }),
+  <%= button_to 'delete all', user_item_path(reference.items.first, params: { destroy_all: 'true', bag:  @bag }),
   method: :delete, remote: :true, class: "item-action delete-item" %>
 
 </div>

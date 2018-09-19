@@ -1,10 +1,13 @@
-<div class="col-3">
-  <%= simple_form_for [:user, bag] do |f| %>
-    <%= f.input :journey, as: :hidden, input_html: { value: journey.id } %>
-    <%= f.input :name %>
-    <p data-error="name"></p>
-    <%= f.input :capacity %>
-    <p data-error="capacity"></p>
-    <%= f.button :submit, class: "button" %>
-  <% end %>
+<div class="bag">
+  <%= image_tag "bags/#{bag.picture}", class: "bag-picture" %>
+  <div class="name"><%= bag.name %></div>
+  <div class="details">
+    <small>Actual load: <%= bag.loaded.*100.round(0) %> %</small>
+  </div>
+  <%= render 'user/bags/form_update', bag: bag %>
+  <div class="bag-actions">
+    <%= button_to 'open', user_bag_path(bag),  method: :get, class: "open" %>
+    <%= button_to 'copy', user_bag_copy_path(bag),  method: :get, remote: :true, class: "copy" %>
+    <%= button_to 'delete', user_bag_path(bag), method: :delete, remote: :true, class: "delete" %>
+  </div>
 </div>

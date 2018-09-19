@@ -1,0 +1,8 @@
+<%= link_to 'ALL CATEGORIES', user_bag_path(@bag, params: { category: 0 }),
+remote: :true, class: "category all-categories #{'selected' if session[:category].to_i.zero?}" %>
+<% @categories.each do |category| %>
+  <% unless category.references.empty? %>
+    <%= link_to category.name.upcase, user_bag_path(@bag, params: { category: category.id }),
+    remote: :true, class: "category #{'selected' if session[:category].to_i == category.id}" %>
+  <% end %>
+<% end %>

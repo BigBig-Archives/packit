@@ -5,6 +5,7 @@
 
 #navbar {
   position: sticky;
+  min-height: 27vh;
   overflow: hidden;
   top: 0;
   left: 0;
@@ -13,18 +14,25 @@
   background-color: white;
   border-bottom: solid $p2 darken($light-gray, 10%);
   min-width: $p336;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: baseline;
 
   .navbar-top,
   .navbar-bottom {
+    flex: 1;
+    width: 100%;
+    height: 100%;
     display: flex;
     min-width: $p248;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-end;
     padding: $p8 8% 0 8%;
   }
 
   .navbar-top {
-    margin-bottom: $p24;
+    margin-bottom: $p48;
     justify-content: flex-start;
   }
 

@@ -1,0 +1,35 @@
+#bags-page {
+  min-height: 100vh;
+  text-align: center;
+  padding: $p64 5%;
+  background-color: $light-gray;
+
+  #indications {
+    display: inline-block;
+    min-height: $p104;
+    text-align: center;
+    p {
+      font-size: $p16 + $p4;
+      color: lighten($gray, 30%);
+    }
+  }
+
+  #bags-container {
+    margin: 0 auto;
+    padding-bottom: $p64;
+  }
+
+  .bag-container {
+    display: inline-block;
+  }
+
+  .bags-chapter {
+    margin-top: $p24;
+    margin-bottom: $p12;
+  }
+
+  .input-error {
+    font-size: $font-size-normal - $p2;
+    color: $red;
+  }
+}

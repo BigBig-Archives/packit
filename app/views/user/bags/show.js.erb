@@ -1,0 +1,22 @@
+function filter() {
+  let container
+  let content
+  // Operations
+  container = document.querySelector("#navbar #operations");
+  content = `<%= j render 'user/bags/navbar/operations' %>`;
+  container.innerHTML = content;
+  // Categories
+  container = document.querySelector("#navbar #categories");
+  content = `<%= j render 'user/bags/navbar/categories' %>`;
+  container.innerHTML = content;
+  // Displays
+  container = document.querySelector("#navbar #displays");
+  content = `<%= j render 'user/bags/navbar/displays' %>`;
+  container.innerHTML = content;
+  // Items displayed
+  container = document.querySelector("#bag-wrapper");
+  content = `<%= j render 'user/bags/displayer' %>`;
+  container.innerHTML = content;
+}
+
+filter();
