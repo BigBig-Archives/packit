@@ -21,8 +21,7 @@ csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   User.create!(
     email:      row['email'],
-    password:   row['password'],
-    username:   row['username']
+    password:   row['password']
   )
 end
 
@@ -33,7 +32,7 @@ csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   ItemCategory.create!(
     name:    row['name'],
-    picture: row['picture'],
+    picture: row['picture'] << '.svg',
   )
 end
 
@@ -46,52 +45,7 @@ csv.each do |row|
     name:        row['name'],
     size:        row['size'],
     weight:      row['weight'],
-    picture:     row['picture'],
+    picture:     row['picture'] << '.svg',
     category_id: ItemCategory.where(name: row['category']).first.id
   )
-end
-
-# ITEMS
-
-unless references_only
-  csv_text = File.read(Rails.root.join('lib', 'seeds', 'items.csv'))
-  csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-  csv.each do |row|
-    Item.create!(
-      user_id:      User.where(username: row['user']).first.id,
-      reference_id: ItemReference.where(name: row['reference']).first.id,
-      size:         row['size'],
-      weight:       row['weight'],
-      picture:      row['picture'],
-      commentary:      row['commentary'],
-    )
-  end
-end
-
-# BAGS
-
-unless references_only
-  csv_text = File.read(Rails.root.join('lib', 'seeds', 'bags.csv'))
-  csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-  csv.each do |row|
-    Bag.create!(
-      user_id:  User.where(username: row['user']).first.id,
-      name:     row['name'],
-      capacity: row['capacity'],
-      picture:  row['picture']
-    )
-  end
-end
-
-# PACKED ITEMS
-
-unless references_only
-  csv_text = File.read(Rails.root.join('lib', 'seeds', 'packed_items.csv'))
-  csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-  csv.each do |row|
-    PackedItem.create!(
-      bag_id:  Bag.where(bags: { name: row['bag'] }).first.id,
-      item_id: Item.where(commentary: row['item']).first.id
-    )
-  end
 end
