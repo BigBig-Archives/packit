@@ -14,7 +14,7 @@ class User::BagsController < ApplicationController
     filter
     respond_to do |format|
       format.html { render 'show' }
-      format.js { render 'user/bags/show' }
+      format.js { render 'user/bags/show.js.erb' }
     end
   end
 
@@ -24,7 +24,7 @@ class User::BagsController < ApplicationController
     if @bag.save
       respond_to do |format|
         format.html { redirect_to user_bags_path, notice: 'Bag created' }
-        format.js { render 'user/bags/create' }
+        format.js { render 'user/bags/create.js.erb' }
       end
     else
       @scroll = true
@@ -32,7 +32,7 @@ class User::BagsController < ApplicationController
       flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
       respond_to do |format|
         format.html { render 'user/bags/index' }
-        format.js { render 'user/bags/create' }
+        format.js { render 'user/bags/create.js.erb' }
       end
     end
   end
@@ -42,7 +42,7 @@ class User::BagsController < ApplicationController
       filter
       respond_to do |format|
         format.html { redirect_to user_bags_path, notice: 'Bag updated'}
-        format.js { render 'user/bags/update' }
+        format.js { render 'user/bags/update.js.erb' }
       end
     else
       flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
@@ -50,7 +50,7 @@ class User::BagsController < ApplicationController
       @new_bag = Bag.new
       respond_to do |format|
         format.html { render 'user/bags/index' }
-        format.js { render 'user/bags/update' }
+        format.js { render 'user/bags/update.js.erb' }
       end
     end
   end
@@ -67,7 +67,7 @@ class User::BagsController < ApplicationController
       if @bag.packed_items.count == @copy.packed_items.count
         respond_to do |format|
           format.html { redirect_to user_bags_path, notice: 'Bag copied' }
-          format.js { render 'user/bags/copy' }
+          format.js { render 'user/bags/copy.js.erb' }
         end
       else
         flash[:alert] = 'Error: ' << @copy.errors.full_messages.join(' - ')
@@ -76,7 +76,7 @@ class User::BagsController < ApplicationController
         @bag  = Bag.new
         respond_to do |format|
           format.html { render 'user/bags/index' }
-          format.js { render 'user/bags/copy' }
+          format.js { render 'user/bags/copy.js.erb' }
         end
       end
     else
@@ -86,7 +86,7 @@ class User::BagsController < ApplicationController
       @bag  = Bag.new
       respond_to do |format|
         format.html { render 'user/bags/index' }
-        format.js { render 'user/bags/copy' }
+        format.js { render 'user/bags/copy.js.erb' }
       end
     end
   end
@@ -96,7 +96,7 @@ class User::BagsController < ApplicationController
     if @bag.destroy
       respond_to do |format|
         format.html { redirect_to user_bags_path, notice: 'Bag destroyed.' }
-        format.js { render 'user/bags/destroy' }
+        format.js { render 'user/bags/destroy.js.erb' }
       end
     else
       flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
@@ -104,7 +104,7 @@ class User::BagsController < ApplicationController
       @new_bag = Bag.new
       respond_to do |format|
         format.html { render 'user/bags/index' }
-        format.js { render 'user/bags/destroy' }
+        format.js { render 'user/bags/destroy.js.erb' }
       end
     end
   end
