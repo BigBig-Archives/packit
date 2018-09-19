@@ -4,7 +4,7 @@ class User::BagsController < ApplicationController
 
   def index
     @scroll = true
-    @bag = Bag.new
+    @new_bag = Bag.new
   end
 
   def show
@@ -28,6 +28,7 @@ class User::BagsController < ApplicationController
       end
     else
       @scroll = true
+      @new_bag = Bag.new
       flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
       respond_to do |format|
         format.html { render 'user/bags/index' }
@@ -44,12 +45,12 @@ class User::BagsController < ApplicationController
         format.js { render 'user/bags/update' }
       end
     else
+      flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
       @scroll = true
-      @bag  = Bag.new
-      flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
+      @new_bag = Bag.new
       respond_to do |format|
         format.html { render 'user/bags/index' }
-        format.js { render 'user/items/update' }
+        format.js { render 'user/bags/update' }
       end
     end
   end
@@ -71,6 +72,7 @@ class User::BagsController < ApplicationController
       else
         flash[:alert] = 'Error: ' << @copy.errors.full_messages.join(' - ')
         @scroll = true
+        @new_bag = Bag.new
         @bag  = Bag.new
         respond_to do |format|
           format.html { render 'user/bags/index' }
@@ -80,6 +82,7 @@ class User::BagsController < ApplicationController
     else
       flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
       @scroll = true
+      @new_bag = Bag.new
       @bag  = Bag.new
       respond_to do |format|
         format.html { render 'user/bags/index' }
@@ -89,6 +92,7 @@ class User::BagsController < ApplicationController
   end
 
   def destroy
+    @bag_id = @bag.id
     if @bag.destroy
       respond_to do |format|
         format.html { redirect_to user_bags_path, notice: 'Bag destroyed.' }
@@ -97,7 +101,7 @@ class User::BagsController < ApplicationController
     else
       flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
       @scroll = true
-      @bag = Bag.new
+      @new_bag = Bag.new
       respond_to do |format|
         format.html { render 'user/bags/index' }
         format.js { render 'user/bags/destroy' }

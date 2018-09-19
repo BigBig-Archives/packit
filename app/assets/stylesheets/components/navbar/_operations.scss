@@ -1,6 +1,7 @@
 #operations {
   align-self: flex-end;
   width: 45%;
+  min-width: $p280;
   .operation {
     display: flex;
     align-items: center;

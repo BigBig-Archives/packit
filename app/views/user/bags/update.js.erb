@@ -1,0 +1,23 @@
+function updateBag() {
+  console.log("update bag");
+
+  let bag;
+  let container;
+  let content;
+
+  bag = document.querySelector("[data-bag=\"<%= @bag.id %>\"]");
+
+  <% if @bag.errors.any? %>
+    console.log("error(s)");
+    <% @bag.errors.messages.each do |key, value| %>
+      container = bag.querySelector("[data-error=\"<%= j key.to_s %>\"]");
+      content = `<%= j key.to_s %> <%= j value.first.to_s %>` ;
+      container.innerHTML = content;
+    <% end %>
+  <% else %>
+    content = `<%= j render 'user/bags/bag', bag: @bag %>`;
+    bag.innerHTML = content;
+  <% end %>
+}
+
+updateBag();

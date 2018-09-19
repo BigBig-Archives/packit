@@ -10,8 +10,10 @@ class Bag < ApplicationRecord
   # VALIDATIONS
 
   validates :name, presence: :true
-  validates :capacity, presence: :true
-  # validates :picture, presence: :true
+  validates :capacity, presence: true, inclusion: {
+    in: (5..120).to_a,
+    message: "should be between 5 and 120 liters"
+  }, allow_nil: false
 
   # METHODS
 

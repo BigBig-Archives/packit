@@ -1,0 +1,101 @@
+.bag-form-create,
+.bag-form-update {
+  background-color: white;
+  box-shadow: 0 0 $p1 0 rgba(0, 0, 0, 0.1);
+  border: solid $p1 lighten($gray, 70%);
+  border-radius: $p4;
+  margin: auto;
+  width: $p400;
+  padding: $p16;
+  .form-group {
+    height: $p40;
+    margin: $p8;
+    display: flex;
+    align-items: center;
+    label,
+    input,
+    small {
+      margin: 0;
+      height: $p40;
+    }
+    label {
+      text-align: left;
+      flex: 1;
+      padding: $p8;
+    }
+    input {
+      flex: 3;
+      padding: $p8;
+      border: solid $p1 lighten($gray, 70%);
+      border-radius: $p4;
+    }
+    .capacity {
+      flex: 2;
+      border-radius: $p4 0 0 $p4;
+    }
+    small {
+      flex: 1;
+      line-height: $p40;
+      background-color: lighten($gray, 70%);
+      border-radius: 0 $p4 $p4 0;
+    }
+  }
+  .picture-select {
+    display: flex;
+    justify-content: center;
+    .picture-input {
+      flex: 1;
+      input {
+        min-width: 0;
+        visibility:hidden;
+        border-bottom: solid $p4 transparent;
+      }
+      input + label {
+        cursor: pointer;
+        padding-bottom: $p4;
+      }
+      input:checked + label {
+        border-bottom: solid $p4 $blue;
+      }
+      img {
+        width: $p80;
+      }
+    }
+  }
+  .submit {
+    display: block;
+    width: 100%;
+    text-align: center;
+    border: none;
+    border-radius: 0;
+    background-color: $blue;
+    color: white;
+  }
+}
+
+.bag-form-update {
+  width: $p304;
+  padding: $p8;
+  img {
+    width: $p40;
+  }
+  .form-group {
+    label,
+    input,
+    small {
+      height: $p32;
+      font-size: $font-size-normal;
+    }
+    small {
+      line-height: $p32;
+    }
+  }
+  .picture-select .picture-input .picture-thumb {
+    width: $p56;
+  }
+  .submit {
+    padding: $p2;
+    width: 40%;
+    background-color: $yellow;
+  }
+}

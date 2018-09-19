@@ -1,0 +1,65 @@
+.bag-container {
+  display: inline-block;
+}
+
+.bag {
+  display: inline-block;
+  width: $p328;
+  margin: $p8;
+  border: solid $p1 lighten($gray, 70%);
+  border-radius: $p8;
+  text-align: center;
+  padding: $p8;
+  background-color: white;
+  box-shadow: 0 0 $p1 0 rgba(0, 0, 0, 0.1);
+  .bag-picture {
+    display: block;
+    margin: $p12 auto $p8 auto;
+    width: $p80;
+  }
+  .name {
+    height: $p24;
+    padding: 0 $p8;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .details {
+    margin-bottom: $p8;
+    small {
+      color: lighten($gray, 40%);
+
+    }
+  }
+  input[type=submit] {
+    display: block;
+    min-width: 0;
+    margin: $p8 auto;
+    padding: $p4;
+    border: none;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+  }
+  .bag-actions {
+    width: 100%;
+    display: flex;
+    form {
+      flex: 1;
+      margin: $p4;
+      input {
+        width: 100%;
+      }
+    }
+    .open {
+      background-color: $green;
+    }
+    .delete {
+      background-color: $red;
+    }
+    .copy {
+      background-color: $blue;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+<div class="bag-form-create">
+  <%= simple_form_for [:user, @new_bag], method: :post, remote: :true do |f| %>
+    <%= f.input :name, placeholder: 'Hiking backpack for Portugal' %>
+    <p data-error="name" class="input-error"></p>
+    <%= f.input :capacity, placeholder: '60', hint: 'liters', input_html: { class: "capacity" } %>
+    <p data-error="capacity" class="input-error"></p>
+    <div class="picture-select">
+      <div class="picture-input">
+        <input
+          type="radio" name="bag[picture]" value="back_pack_1" id="bag_picture_back_pack_1" class="input-hidden" checked />
+        <label for="bag_picture_back_pack_1">
+          <%= image_tag "bags/back_pack_1" %>
+        </label>
+      </div>
+      <div class="picture-input">
+        <input
+          type="radio" name="bag[picture]" value="back_pack_2" id="bag_picture_back_pack_2" class="input-hidden" />
+        <label for="bag_picture_back_pack_2">
+          <%= image_tag "bags/back_pack_2" %>
+        </label>
+      </div>
+      <div class="picture-input">
+        <input
+          type="radio" name="bag[picture]" value="back_pack_3" id="bag_picture_back_pack_3" class="input-hidden" />
+        <label for="bag_picture_back_pack_3">
+          <%= image_tag "bags/back_pack_3" %>
+        </label>
+      </div>
+      <div class="picture-input">
+        <input
+          type="radio" name="bag[picture]" value="back_pack_4" id="bag_picture_back_pack_4" class="input-hidden" />
+        <label for="bag_picture_back_pack_4">
+          <%= image_tag "bags/back_pack_4" %>
+        </label>
+      </div>
+    </div>
+    <%= f.button :submit, class: "submit" %>
+  <% end %>
+</div>

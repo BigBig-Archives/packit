@@ -1,0 +1,6 @@
+<% if current_user.bags.empty? %>
+  <p>Let's create your first bag and get ready to pack it!</p>
+<% else %>
+  <p>Select one of your packed bags or <span id="new-bag">start a new empty bag.</span></p>
+  <p>Want to save time? Copy one of your packed bags to start a new bag with already packed items!</p>
+<% end %>

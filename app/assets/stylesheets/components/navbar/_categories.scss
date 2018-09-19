@@ -2,10 +2,9 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  height: $p40;
+  justify-content: left;
   .category {
-    padding: 0 $p8 0 $p8;
+    padding: $p4 + $p2;
     color: lighten($gray, 40%);
     font-size: $font-size-normal;
     word-wrap: break-word;
