@@ -2,16 +2,27 @@ function updateItem() {
   console.log("update item");
 
   let item;
+  let packedItem;
   let container;
   let content;
+  let origin;
 
   <% if @item.errors.any? %>
     console.log("error(s)");
-    item = document.querySelector(`[data-item=\"<%= j @item.id.to_s %>\"]`);
-    <% @item.errors.messages.each do |key, value| %>
-      container = item.querySelector("[data-error=\"<%= j key.to_s %>\"]");
-      content = `<%= j key.to_s %> <%= j value.first.to_s %>` ;
-      container.innerHTML = content;
+    <% if @origin == 'packed_item' %>
+      packedItem = document.querySelector(`[data-packed-item=\"<%= j @item.id.to_s %>\"]`);
+      <% @item.errors.messages.each do |key, value| %>
+        container = packedItem.querySelector("[data-error=\"<%= j key.to_s %>\"]");
+        content = `<%= j key.to_s %> <%= j value.first.to_s %>` ;
+        container.innerHTML = content;
+      <% end %>
+    <% else %>
+      item = document.querySelector(`[data-item=\"<%= j @item.id.to_s %>\"]`);
+      <% @item.errors.messages.each do |key, value| %>
+        container = item.querySelector("[data-error=\"<%= j key.to_s %>\"]");
+        content = `<%= j key.to_s %> <%= j value.first.to_s %>` ;
+        container.innerHTML = content;
+      <% end %>
     <% end %>
   <% else %>
     <% if session[:operation] == 'create' %>
@@ -24,7 +35,7 @@ function updateItem() {
       container.innerHTML = content;
     <% end %>
     // Refresh load
-    container = document.querySelector("#navbar #load");
+    container = document.querySelector("#navbar #load-container");
     content = `<%= j render 'user/bags/navbar/load' %>`;
     container.innerHTML = content;
   <% end %>

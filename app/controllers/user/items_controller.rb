@@ -26,7 +26,7 @@ class User::ItemsController < ApplicationController
       @item.errors.add(:quantity, "should be less than or equal to 30")   if params[:item][:quantity].to_i > 30
       @packed_item  = PackedItem.new
       filter
-      flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
+      flash.now[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
       respond_to do |format|
         format.html { render 'user/bags/show' }
         format.js { 'user/items/create' }
@@ -43,8 +43,9 @@ class User::ItemsController < ApplicationController
       end
     else
       @packed_item  = PackedItem.new
+      @origin = params[:item][:origin]
       filter
-      flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
+      flash.now[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
       respond_to do |format|
         format.html { render 'user/bags/show' }
         format.js { render 'user/items/update' }
@@ -65,7 +66,7 @@ class User::ItemsController < ApplicationController
           format.js { render 'user/items/destroy' }
         end
       else
-        flash[:alert] = 'Error: ' << 'Something went wrong'
+        flash.now[:alert] = 'Error: ' << 'Something went wrong'
         filter
         respond_to do |format|
           format.html { render 'user/bag/show' }
@@ -83,7 +84,7 @@ class User::ItemsController < ApplicationController
         end
       else
         filter
-        flash[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
+        flash.now[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
         respond_to do |format|
           format.html { render 'user/bag/show' }
           format.js { render 'user/items/destroy' }

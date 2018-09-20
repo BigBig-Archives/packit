@@ -20,7 +20,7 @@ function destroyItem() {
     content = `<%= j render 'user/bags/cards/display_items_created' %>`;
     container.innerHTML = content;
     // Refresh load
-    container = document.querySelector("#navbar #load");
+    container = document.querySelector("#navbar #load-container");
     content = `<%= j render 'user/bags/navbar/load' %>`;
     container.innerHTML = content;
   <% end %>

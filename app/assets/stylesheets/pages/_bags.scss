@@ -29,7 +29,8 @@
   }
 
   .input-error {
-    font-size: $font-size-normal - $p2;
-    color: $red;
+      margin-top: $p4;
+      font-size: $font-size-normal - $p1;
+      color: $red;
   }
 }

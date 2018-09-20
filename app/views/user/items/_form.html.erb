@@ -1,4 +1,5 @@
 <%= simple_form_for [:user, item], remote: :true do |f| %>
+  <%= f.input :origin, as: :hidden, input_html: { value: origin } %>
   <!-- CREATE -->
   <% if item.id.nil? %>
     <%= f.input :reference, as: :hidden, input_html: { value: reference.id } %>

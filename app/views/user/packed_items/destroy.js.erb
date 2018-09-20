@@ -21,7 +21,7 @@ function unpackItem() {
     content = `<%= j render 'user/bags/cards/display_packed_items' %>`;
     container.innerHTML = content;
     // Refresh load
-    container = document.querySelector("#navbar #load");
+    container = document.querySelector("#navbar #load-container");
     content = `<%= j render 'user/bags/navbar/load' %>`;
     container.innerHTML = content;
   <% end %>

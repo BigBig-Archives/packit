@@ -1,4 +1,4 @@
-<div class="item-container" data-id=<%= packed_item.id %>>
+<div class="item-container" data-packed-item=<%= packed_item.item.id %>>
   <%= image_tag "items/#{packed_item.picture}", class: "picture" %>
   <div class="space"></div>
   <p class="name"><%= packed_item.name %></p>
@@ -6,7 +6,7 @@
 
   <!-- ITEM FORM (EDIT) -->
 
-  <%= render 'user/items/form', item: packed_item.item %>
+  <%= render 'user/items/form', item: packed_item.item, origin: 'packed_item' %>
 
   <!-- UNPACK ITEM -->
 

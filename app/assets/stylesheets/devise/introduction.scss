@@ -11,14 +11,14 @@
   }
   .introduction {
     background: lighten($blue, 35%);
-    border: solid $p1 lighten($blue, 10%);;
+    border: solid $p1 lighten($blue, 10%);
     p {
       color: darken($blue, 30%);
     }
   }
   .before-form {
     background: lighten($yellow, 35%);
-    border: solid $p1 lighten($yellow, 10%);;
+    border: solid $p1 lighten($yellow, 10%);
     p {
       color: darken($yellow, 30%);
     }

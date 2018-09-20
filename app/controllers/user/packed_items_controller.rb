@@ -17,7 +17,7 @@ class User::PackedItemsController < ApplicationController
           format.js { render 'user/packed_items/create' }
         end
       else
-        flash[:alert] = 'Error: ' << 'Something went wrong'
+        flash.now[:alert] = 'Error: ' << 'Something went wrong'
         @packed_item = PackedItem.new
         @item = Item.new
         filter
@@ -47,7 +47,7 @@ class User::PackedItemsController < ApplicationController
           format.js { render 'user/packed_items/create' }
         end
       else
-        flash[:alert] = 'Error: ' << "You can't pack more #{@item.reference.name.pluralize} than you own (#{unpacked_items.count})"
+        flash.now[:alert] = 'Error: ' << "You can't pack more #{@item.reference.name.pluralize} than you own (#{unpacked_items.count})"
         @packed_item.errors.add(:quantity, "should be greater than or equal to 1") if @quantity < 1
         @packed_item.errors.add(:quantity, "should be less than items not already packed") if @quantity > unpacked_items.count
         @item = Item.new
@@ -75,7 +75,7 @@ class User::PackedItemsController < ApplicationController
           format.js { render 'user/packed_items/create' }
         end
       else
-        flash[:alert] = 'Error: ' << 'Something went wrong'
+        flash.now[:alert] = 'Error: ' << 'Something went wrong'
         @packed_item  = PackedItem.new
         @item         = Item.new
         filter
@@ -87,7 +87,7 @@ class User::PackedItemsController < ApplicationController
 
     # ERROR
     else
-      flash[:alert] = 'Error: ' << 'Something went wrong'
+      flash.now[:alert] = 'Error: ' << 'Something went wrong'
       @packed_item  = PackedItem.new
       @item         = Item.new
       filter
@@ -116,7 +116,7 @@ class User::PackedItemsController < ApplicationController
         format.js { render 'user/packed_items/destroy' }
       end
     else
-      flash[:alert] = 'Error: ' << "You can't unpack more #{@reference.name.pluralize} than you have packed (#{@packed_items.count})"
+      flash.now[:alert] = 'Error: ' << "You can't unpack more #{@reference.name.pluralize} than you have packed (#{@packed_items.count})"
       @packed_item.errors.add(:quantity, "should be greater than or equal to 1") if @quantity < 1
       @packed_item.errors.add(:quantity, "should be less than items packed") if @quantity > @packed_items.count
       @item = Item.new
@@ -142,7 +142,7 @@ class User::PackedItemsController < ApplicationController
           format.js { render 'user/packed_items/destroy' }
         end
       else
-        flash[:alert] = 'Error: ' << @packed_item.errors.full_messages.join(' - ')
+        flash.now[:alert] = 'Error: ' << @packed_item.errors.full_messages.join(' - ')
         @packed_item  = PackedItem.new
         @item         = Item.new
         filter
@@ -164,7 +164,7 @@ class User::PackedItemsController < ApplicationController
           format.js { render 'user/packed_items/destroy' }
         end
       else
-        flash[:alert] = 'Error: ' << 'Something went wrong'
+        flash.now[:alert] = 'Error: ' << 'Something went wrong'
         @packed_item  = PackedItem.new
         @item         = Item.new
         filter

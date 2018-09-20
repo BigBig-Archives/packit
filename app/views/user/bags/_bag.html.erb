@@ -2,7 +2,7 @@
   <%= image_tag "bags/#{bag.picture}", class: "bag-picture" %>
   <div class="name"><%= bag.name %></div>
   <div class="details">
-    <small>Actual load: <%= bag.loaded.*100.round(0) %> %</small>
+    <small>Current load: <%= bag.loaded.*100.round(0) %> %</small>
   </div>
   <%= render 'user/bags/form_update', bag: bag %>
   <div class="bag-actions">

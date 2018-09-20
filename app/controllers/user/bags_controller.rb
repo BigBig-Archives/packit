@@ -29,7 +29,7 @@ class User::BagsController < ApplicationController
     else
       @scroll = true
       @new_bag = Bag.new
-      flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
+      flash.now[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
       respond_to do |format|
         format.html { render 'user/bags/index' }
         format.js { render 'user/bags/create' }
@@ -45,7 +45,7 @@ class User::BagsController < ApplicationController
         format.js { render 'user/bags/update' }
       end
     else
-      flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
+      flash.now[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
       @scroll = true
       @new_bag = Bag.new
       respond_to do |format|
@@ -70,7 +70,7 @@ class User::BagsController < ApplicationController
           format.js { render 'user/bags/copy' }
         end
       else
-        flash[:alert] = 'Error: ' << @copy.errors.full_messages.join(' - ')
+        flash.now[:alert] = 'Error: ' << @copy.errors.full_messages.join(' - ')
         @scroll = true
         @new_bag = Bag.new
         @bag  = Bag.new
@@ -80,7 +80,7 @@ class User::BagsController < ApplicationController
         end
       end
     else
-      flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
+      flash.now[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
       @scroll = true
       @new_bag = Bag.new
       @bag  = Bag.new
@@ -99,7 +99,7 @@ class User::BagsController < ApplicationController
         format.js { render 'user/bags/destroy' }
       end
     else
-      flash[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
+      flash.now[:alert] = 'Error: ' << @bag.errors.full_messages.join(' - ')
       @scroll = true
       @new_bag = Bag.new
       respond_to do |format|
