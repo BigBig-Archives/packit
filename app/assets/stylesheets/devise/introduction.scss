@@ -1,10 +1,30 @@
 #sign {
-  .introduction {
-    margin-bottom: $p24;
+  .introduction,
+  .before-form {
+    opacity: 0.6;
+    padding: $p24;
+    border-radius: $p8;
+    margin-bottom: $p12;
     p {
-      margin-top: $p8;
-      font-size: $font-size-normal + $p8;
-      color: $blue;
+      font-size: $p16;
+    }
+  }
+  .introduction {
+    background: lighten($blue, 35%);
+    border: solid $p1 lighten($blue, 10%);;
+    p {
+      color: darken($blue, 30%);
+    }
+  }
+  .before-form {
+    background: lighten($yellow, 35%);
+    border: solid $p1 lighten($yellow, 10%);;
+    p {
+      color: darken($yellow, 30%);
     }
   }
 }
+
+
+
+

@@ -128,4 +128,10 @@ class User::BagsController < ApplicationController
     session[:operation]  = 'create' if session[:operation].nil?
     session[:category_name] = ItemCategory.find(session[:category].to_i).name unless session[:category].to_i.zero?
   end
+
+  protected
+
+  def authenticate_user!
+    redirect_to new_user_registration_path unless user_signed_in?
+  end
 end
