@@ -9,7 +9,7 @@
     <% if @packed_items.empty? %>
       <div class="no-items-alert" role="alert">
         <p>
-          Oh! It looks like you haven’t packed any item yet…
+          Oh! It looks like you haven’t packed any item yet
           <%= " or that you haven't pack any items from the " unless session[:category_name].nil? %>
           <strong><%= session[:category_name] unless session[:category_name].nil? %></strong>
           <%= " category" unless session[:category_name].nil? %>
