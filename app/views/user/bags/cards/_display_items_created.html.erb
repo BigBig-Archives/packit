@@ -1,14 +1,22 @@
 <div class="cards-indication">
   <p>
-    Here are all you owned items
-    <%= " in category" unless session[:category].to_i.zero? %>
+    Here is your items collection
+    <%= " in the " unless session[:category].to_i.zero? %>
     <strong><%= session[:category_name] unless session[:category].to_i.zero? %></strong>
+    <%= " category" unless session[:category].to_i.zero? %>
     </p>
   <hr>
-  <% if current_user.items.empty? %>
+  <% if @owned_items.empty? %>
     <div class="no-items-alert" role="alert">
-      <p>Oh! It looks like you don't have any item...</p>
-      <p>Select item references on the left to create new items!</p>
+      <p>
+        Oh! It looks like you don't have any items
+        <%= " in the " unless session[:category].to_i.zero? %>
+        <strong><%= session[:category_name] unless session[:category].to_i.zero? %></strong>
+        <%= " category" unless session[:category].to_i.zero? %>
+        ...
+      </p>
+      <p>Select items on the left to add them to your collection!</p>
+      <p>You can custom their features (volume and weight) and add several similar items at a time.</p>
     </div>
   <% end %>
 </div>

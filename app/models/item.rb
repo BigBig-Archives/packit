@@ -22,8 +22,8 @@ class Item < ApplicationRecord
 
   # VALIDATIONS
 
-  validates :size, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 99.9 }
-  validates :weight, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 99.9 }
+  validates :size, numericality: { greater_than: 0, less_than_or_equal_to: 99.9 }
+  validates :weight, numericality: { greater_than: 0, less_than_or_equal_to: 99.9 }
 
   # CALLBACKS
 
@@ -50,10 +50,10 @@ class Item < ApplicationRecord
   private
 
   def set_size
-    self.size = self.reference.size if self.size.nil?
+    self.size = self.size.round(1)
   end
 
   def set_weight
-    self.weight = self.reference.weight if self.weight.nil?
+    self.weight = self.weight.round(1)
   end
 end

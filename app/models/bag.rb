@@ -12,21 +12,21 @@ class Bag < ApplicationRecord
   validates :name, presence: :true
   validates :capacity, presence: true, inclusion: {
     in: (5..120).to_a,
-    message: "should be between 5 and 120 liters"
+    message: "must be between 5 and 120 liters"
   }, allow_nil: false
 
   # METHODS
 
   def load_in_kilos
-    self.packed_items.map(&:weight).sum.round(2)
+    self.packed_items.map(&:weight).sum.round(1)
   end
 
   def load_in_liters
-    self.packed_items.map(&:size).sum.round(2)
+    self.packed_items.map(&:size).sum.round(1)
   end
 
   def loaded
-    (self.load_in_liters / self.capacity).round(2)
+    (self.load_in_liters / self.capacity * 100).round(1)
   end
 
   def packed_reference_count(reference_to_count)

@@ -1,13 +1,14 @@
 class User::BagsController < ApplicationController
   before_action :set_bag, only: %i[show update destroy copy]
-  before_action :set_filters, only: :show
 
   def index
+    reset_filters
     @scroll = true
     @new_bag = Bag.new
   end
 
   def show
+    set_filters
     @scroll = false
     @packed_item = PackedItem.new
     @item        = Item.new
@@ -127,6 +128,14 @@ class User::BagsController < ApplicationController
     session[:operation]  = params[:operation] if params[:operation]
     session[:operation]  = 'create' if session[:operation].nil?
     session[:category_name] = ItemCategory.find(session[:category].to_i).name unless session[:category].to_i.zero?
+    session[:category_name] = nil if session[:category].to_i.zero?
+  end
+
+  def reset_filters
+    session[:category]   = '0'
+    session[:display]    = 'group'
+    session[:operation]  = 'create'
+    session[:category_name] = nil
   end
 
   protected

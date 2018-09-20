@@ -1,13 +1,17 @@
 <div class="bag">
   <%= image_tag "bags/#{bag.picture}", class: "bag-picture" %>
-  <div class="name"><%= bag.name %></div>
+  <div class="name"><%= bag.name %> <small><%= bag.capacity %>'</small></div>
   <div class="details">
-    <small>Current load: <%= bag.loaded.*100.round(0) %> %</small>
+    <small><strong>Current load: <%= bag.loaded %> %</strong></small><br>
+    <small><%= bag.load_in_liters %> / <%= bag.capacity %> liters</small>
+    <small> and </small>
+    <small><%= bag.load_in_kilos %> kilos</small>
   </div>
-  <%= render 'user/bags/form_update', bag: bag %>
   <div class="bag-actions">
     <%= button_to 'open', user_bag_path(bag),  method: :get, class: "open" %>
     <%= button_to 'copy', user_bag_copy_path(bag),  method: :get, remote: :true, class: "copy" %>
     <%= button_to 'delete', user_bag_path(bag), method: :delete, remote: :true, class: "delete" %>
   </div>
+  <hr>
+  <%= render 'user/bags/form_update', bag: bag %>
 </div>

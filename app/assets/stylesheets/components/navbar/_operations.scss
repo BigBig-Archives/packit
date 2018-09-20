@@ -1,7 +1,5 @@
 #operations {
-  flex: 1;
   align-self: flex-end;
-  min-width: $p280;
   margin-bottom: $p48;
   text-align: center;
   .operation {
@@ -14,7 +12,7 @@
       margin-right: $p16;
     }
     p {
-      width: $p240;
+      width: $p272;
       height: $p48;
       line-height: $p48 - $p2;
       padding: 0 $p24;
@@ -30,6 +28,7 @@
     color: $blue;
   }
   .back-to-bags {
+    margin-left: $p64;
     margin-top: $p12;
     display: block;
     p {

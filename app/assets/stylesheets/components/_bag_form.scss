@@ -15,29 +15,30 @@
     label,
     input,
     small {
+      display: block;
       margin: 0;
       height: $p40;
     }
     label {
+      width: $p104;
       text-align: left;
-      flex: 1;
       padding: $p8;
     }
     input {
-      flex: 3;
+      width: $p264;
       padding: $p8;
       border: solid $p1 lighten($gray, 70%);
       border-radius: $p4;
     }
-    .capacity {
-      flex: 2;
-      border-radius: $p4 0 0 $p4;
-    }
     small {
-      flex: 1;
+      width: $p64;
       line-height: $p40;
       background-color: lighten($gray, 70%);
       border-radius: 0 $p4 $p4 0;
+    }
+    .capacity {
+      width: $p192;
+      border-radius: $p4 0 0 $p4;
     }
   }
   .picture-select {
@@ -88,6 +89,12 @@
     }
     small {
       line-height: $p32;
+    }
+    input {
+      width: $p272;
+    }
+    .capacity {
+      width: $p152;
     }
   }
   .picture-select .picture-input .picture-thumb {

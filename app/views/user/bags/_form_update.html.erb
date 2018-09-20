@@ -1,4 +1,5 @@
 <div class="bag-form-update">
+  <small>Edit my bag...</small>
   <%= simple_form_for [:user, bag], remote: :true do |f| %>
     <%= f.input :name, input_html: { value: bag.name } %>
     <p data-error="name" class="input-error"></p>

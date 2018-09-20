@@ -1,16 +1,23 @@
 <div id="packed-items">
   <div class="cards-indication">
     <p class="cards-indication">
-    Here are all your items packed into the bag
+    Here are the items you’ve packed in this bag
     <%= " in category" unless session[:category].to_i.zero? %>
     <strong><%= session[:category_name] unless session[:category].to_i.zero? %></strong>
   </p>
     <hr>
-    <% if @bag.packed_items.empty? %>
+    <% if @packed_items.empty? %>
       <div class="no-items-alert" role="alert">
-        <p>Oh! It looks like you don't have any item packed...</p>
-        <p>Select items on the left to pack them!</p>
-        <p>Select <em>Let's create more items</em> if you need to add items of yours!</p>
+        <p>
+          Oh! It looks like you haven’t packed any item yet…
+          <%= " or that you haven't pack any items from the " unless session[:category_name].nil? %>
+          <strong><%= session[:category_name] unless session[:category_name].nil? %></strong>
+          <%= " category" unless session[:category_name].nil? %>
+          ...
+        </p>
+        <p>Select items in your collection to put them in this bag!</p>
+        <p>Select <strong>Add items to my collection</strong> (on the top left) if you need to expand your collection.</p>
+        <p>You can pack several similar items at a time.</p>
       </div>
     <% end %>
   </div>

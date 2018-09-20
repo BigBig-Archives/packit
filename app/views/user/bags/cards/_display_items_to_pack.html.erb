@@ -1,15 +1,21 @@
 <div id="items-to-pack">
   <div class="cards-indication">
     <p class="cards-indication">
-    Here are all you owned items not already packed
+    Here are the items you haven’t packed already
     <%= " in category" unless session[:category].to_i.zero? %>
     <strong><%= session[:category_name] unless session[:category].to_i.zero? %></strong>
   </p>
     <hr>
-    <% if current_user.items.empty? %>
+    <% if @owned_items.empty? %>
       <div class="no-items-alert" role="alert">
-        <p>Oh! It looks like you don't have any item to pack...</p>
-        <p>Select <em>Let's create more items</em> and start you own collection!</p>
+        <p>
+          Oh! It looks like your collection is empty
+          <%= " or that you don't have any items from the " unless session[:category_name].nil? %>
+          <strong><%= session[:category_name] unless session[:category_name].nil? %></strong>
+          <%= " category" unless session[:category_name].nil? %>
+          ...
+        </p>
+        <p>Select <strong>Add items to my collection</strong> (on the top left) and start it right now!</p>
       </div>
     <% end %>
   </div>

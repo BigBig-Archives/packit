@@ -1,5 +1,4 @@
-<% loaded = (@bag.loaded * 100).round %>
-<% case loaded
+<% case @bag.loaded
     when 0
       load_color = 'load-gray';
       load_bg_color = 'load-bg-gray';
@@ -26,12 +25,12 @@
   <%= image_tag "bags/#{@bag.picture}", class: "picture" %>
   <div class="load-progress-details">
     <div class="load-progress-container">
-      <div class="load-progress<%= ' ' << load_bg_color %>" style="height:<%= loaded < 100 ? loaded : 100 %>%;"></div>
-      <div class="load-arrow-lead" style="bottom:<%= loaded < 100 ? loaded : 100 %>% ">
+      <div class="load-progress<%= ' ' << load_bg_color %>" style="height:<%= @bag.loaded < 100 ? @bag.loaded : 100 %>%;"></div>
+      <div class="load-arrow-lead" style="bottom:<%= @bag.loaded < 100 ? @bag.loaded : 100 %>% ">
         <div class="load-arrow<%= ' ' << load_arrow %>"></div>
         <div class="load-details">
           <p class="#<%= ' ' << load_color %>">
-            <strong><span><%= loaded %> %</span></strong>
+            <strong><span><%= @bag.loaded %> %</span></strong>
             <span> (</span>
             <span class="liters"><%= @bag.load_in_liters %> liters</span>
             <span> and </span>

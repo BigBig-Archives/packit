@@ -48,8 +48,8 @@ class User::PackedItemsController < ApplicationController
         end
       else
         flash.now[:alert] = 'Error: ' << "You can't pack more #{@item.reference.name.pluralize} than you own (#{unpacked_items.count})"
-        @packed_item.errors.add(:quantity, "should be greater than or equal to 1") if @quantity < 1
-        @packed_item.errors.add(:quantity, "should be less than items not already packed") if @quantity > unpacked_items.count
+        @packed_item.errors.add(:quantity, "must be greater than or equal to 1") if @quantity < 1
+        @packed_item.errors.add(:quantity, "must be less than available items") if @quantity > unpacked_items.count
         @item = Item.new
         filter
         respond_to do |format|
@@ -117,8 +117,8 @@ class User::PackedItemsController < ApplicationController
       end
     else
       flash.now[:alert] = 'Error: ' << "You can't unpack more #{@reference.name.pluralize} than you have packed (#{@packed_items.count})"
-      @packed_item.errors.add(:quantity, "should be greater than or equal to 1") if @quantity < 1
-      @packed_item.errors.add(:quantity, "should be less than items packed") if @quantity > @packed_items.count
+      @packed_item.errors.add(:quantity, "must be greater than or equal to 1") if @quantity < 1
+      @packed_item.errors.add(:quantity, "must be less than packed items") if @quantity > @packed_items.count
       @item = Item.new
       filter
       respond_to do |format|

@@ -54,14 +54,15 @@ $card-radius: $p8;
     // LITERS AND KILOS FORMS
     .input-with-unit {
       margin-bottom: $p8;
-      margin-left: $p16;
-      margin-right: $p16;
+      margin-left: auto;
+      margin-right: auto;
+      width: $p72;
       border-bottom: solid $p1 lighten($gray, 70%);
       .form-group {
         display: flex;
         align-items: center;
         justify-content: center;
-        input, label {
+        input, small {
           height: $p24;
           line-height: $p24;
           display: block;
@@ -70,15 +71,16 @@ $card-radius: $p8;
           padding: 0;
         }
         input {
+          text-align: center;
+          width: $p48;
           max-width: 100%;
-          flex: 3;
           border: none;
           font-size: $font-size-normal;
           color: lighten($gray, 60%);
         }
-        label {
-          min-width: $p24;
-          flex: 1;
+        small {
+          text-align: left;
+          width: $p16;
           font-size: $font-size-normal;
           color: lighten($gray, 30%);
         }

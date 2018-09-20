@@ -18,15 +18,17 @@
 
 .cards-indication {
   margin-top: $p16;
-  text-align: center;
   color: lighten($gray, 30%);
   .no-items-alert {
     opacity: 0.6;
     padding: $p16;
-    background: lighten($yellow, 30%);
-    color: darken($yellow, 20%);
-    border: solid $p1 lighten($yellow, 10%);;
+    background: lighten($red, 30%);
+    color: darken($red, 20%);
+    border: solid $p1 lighten($red, 10%);;
     border-radius: $p8;
+    p {
+      padding: $p8;
+    }
   }
 }
 

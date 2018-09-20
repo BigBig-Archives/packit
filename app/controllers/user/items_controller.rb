@@ -22,8 +22,8 @@ class User::ItemsController < ApplicationController
         format.js { render 'user/items/create' }
       end
     else
-      @item.errors.add(:quantity, "should be greater than or equal to 1") if params[:item][:quantity].to_i < 1
-      @item.errors.add(:quantity, "should be less than or equal to 30")   if params[:item][:quantity].to_i > 30
+      @item.errors.add(:quantity, "must be greater than or equal to 1") if params[:item][:quantity].to_i < 1
+      @item.errors.add(:quantity, "must be less than or equal to 30")   if params[:item][:quantity].to_i > 30
       @packed_item  = PackedItem.new
       filter
       flash.now[:alert] = 'Error: ' << @item.errors.full_messages.join(' - ')
