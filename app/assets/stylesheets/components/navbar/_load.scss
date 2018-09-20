@@ -1,98 +1,103 @@
-#load {
+#load-container {
   flex: 1;
+  min-width: $p400;
   margin-top: $p24;
+  margin-bottom: $p48;
   display: flex;
-  justify-content: center;
-  .picture {
-    height: $p104;
-  }
-  .load-container {
-    flex: 1;
-    min-width: $p200;
-    margin-left: $p16;
-    .load-progress-container {
-      position: relative;
-      background-color: lighten($gray, 50%);
+  justify-content: flex-start;
+  .load {
+    display: flex;
+    .picture {
       height: $p104;
-      width: $p24;
-      .load-progress {
-        position: absolute;
-        bottom: 0;
+      margin: auto;
+    }
+    .load-progress-details {
+      flex: 1;
+      margin-left: $p16;
+      .load-progress-container {
+        position: relative;
+        background-color: lighten($gray, 50%);
+        height: $p104;
         width: $p24;
-        border-top: solid $p2 darken($light-gray, 5%);
-      }
-      .load-arrow-lead {
-        position: absolute;
-        right: 0;
-        height: 0;
-        width: 0;
-        background-color: $red;
-        .load-arrow {
+        .load-progress {
           position: absolute;
-          top: -$p8;
-          border-style: solid;
-          border-width: $p8;
-          border-top-color: transparent;
-          border-bottom-color: transparent;
-          border-left-color: transparent;
+          bottom: 0;
+          width: $p24;
+          border-top: solid $p2 darken($light-gray, 5%);
         }
-      }
-      .load-details {
-        position: absolute;
-        width: $p240;
-        height: $p16;
-        top: -$p8;
-        left: $p24;
-        p {
-          font-size: $font-size-normal;
+        .load-arrow-lead {
+          position: absolute;
+          right: 0;
+          height: 0;
+          width: 0;
+          background-color: $red;
+          .load-arrow {
+            position: absolute;
+            top: -$p8;
+            border-style: solid;
+            border-width: $p8;
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+          }
+        }
+        .load-details {
+          position: absolute;
+          width: $p200;
           height: $p16;
+          top: -$p8;
+          left: $p24;
+          p {
+            font-size: $font-size-normal;
+            height: $p16;
+          }
         }
       }
     }
-  }
-  .load-bg-gray {
-    background-color: lighten($gray, 50%);
-  }
-  .load-arrow-gray {
-    border-right-color: lighten($gray, 50%);
-  }
-  .load-gray {
-    color: lighten($gray, 50%);
-  }
-  .load-bg-green {
-    background-color: $green;
-  }
-  .load-arrow-green {
-    border-right-color: $green;
-  }
-  .load-green {
-    color: $green;
-  }
-  .load-bg-yellow {
-    background-color: $yellow;
-  }
-  .load-arrow-yellow {
-    border-right-color: $yellow;
-  }
-  .load-yellow {
-    color: $yellow;
-  }
-  .load-bg-orange {
-    background-color: $orange;
-  }
-  .load-arrow-orange {
-    border-right-color: $orange;
-  }
-  .load-orange {
-    color: $orange;
-  }
-  .load-bg-red {
-    background-color: $red;
-  }
-  .load-arrow-red {
-    border-right-color: $red;
-  }
-  .load-red {
-    color: $red;
+    .load-bg-gray {
+      background-color: lighten($gray, 50%);
+    }
+    .load-arrow-gray {
+      border-right-color: lighten($gray, 50%);
+    }
+    .load-gray {
+      color: lighten($gray, 50%);
+    }
+    .load-bg-green {
+      background-color: $green;
+    }
+    .load-arrow-green {
+      border-right-color: $green;
+    }
+    .load-green {
+      color: $green;
+    }
+    .load-bg-yellow {
+      background-color: $yellow;
+    }
+    .load-arrow-yellow {
+      border-right-color: $yellow;
+    }
+    .load-yellow {
+      color: $yellow;
+    }
+    .load-bg-orange {
+      background-color: $orange;
+    }
+    .load-arrow-orange {
+      border-right-color: $orange;
+    }
+    .load-orange {
+      color: $orange;
+    }
+    .load-bg-red {
+      background-color: $red;
+    }
+    .load-arrow-red {
+      border-right-color: $red;
+    }
+    .load-red {
+      color: $red;
+    }
   }
 }

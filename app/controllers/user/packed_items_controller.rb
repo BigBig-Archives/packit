@@ -139,7 +139,7 @@ class User::PackedItemsController < ApplicationController
         filter
         respond_to do |format|
           format.html { redirect_to user_bag_path(@bag), notice: "1 #{@packed_item_name} have been unpacked from the bag" }
-          format.js { }
+          format.js { render 'user/packed_items/destroy' }
         end
       else
         flash[:alert] = 'Error: ' << @packed_item.errors.full_messages.join(' - ')
@@ -148,7 +148,7 @@ class User::PackedItemsController < ApplicationController
         filter
         respond_to do |format|
           format.html { render 'user/bags/show' }
-          format.js { }
+          format.js { render 'user/packed_items/destroy' }
         end
       end
     end
@@ -161,7 +161,7 @@ class User::PackedItemsController < ApplicationController
         filter
         respond_to do |format|
           format.html { redirect_to user_bag_path(@bag), notice: "All the #{@count} items have been unpacked from the bag" }
-          format.js {  }
+          format.js { render 'user/packed_items/destroy' }
         end
       else
         flash[:alert] = 'Error: ' << 'Something went wrong'
@@ -170,7 +170,7 @@ class User::PackedItemsController < ApplicationController
         filter
         respond_to do |format|
           format.html { render 'user/bags/show' }
-          format.js {  }
+          format.js { render 'user/packed_items/destroy' }
         end
       end
     end

@@ -4,14 +4,13 @@
     <%= image_tag 'interface/pack.svg', class: 'picture' %>
     <p>Let's pack my bag</p>
   <% end %>
-<% else %>
+<% elsif session[:operation] == 'pack' %>
   <%= link_to user_bag_path(@bag, params: { operation: 'create' }),
   remote: :true, class: "operation switch-to-create" do %>
   <%= image_tag 'interface/create.svg', class: 'picture' %>
     <p>Let's create more items</p>
   <% end %>
 <% end %>
-
 <%= link_to user_bags_path, class: "back-to-bags" do %>
-  <p>⟵ or go back to all my bags...</p>
+  <p>or go back to all my bags...</p>
 <% end %>

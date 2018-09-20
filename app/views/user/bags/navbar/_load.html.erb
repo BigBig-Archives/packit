@@ -22,21 +22,23 @@
       load_arrow = 'load-arrow-red';
    end %>
 
-<%= image_tag "bags/#{@bag.picture}", class: "picture" %>
-<div class="load-container">
-  <div class="load-progress-container">
-    <div class="load-progress<%= ' ' << load_bg_color %>" style="height:<%= loaded < 100 ? loaded : 100 %>%;"></div>
-    <div class="load-arrow-lead" style="bottom:<%= loaded < 100 ? loaded : 100 %>% ">
-      <div class="load-arrow<%= ' ' << load_arrow %>"></div>
-      <div class="load-details">
-        <p class="#<%= ' ' << load_color %>">
-          <strong><span><%= loaded %> %</span></strong>
-          <span> (</span>
-          <span class="liters"><%= @bag.load_in_liters %> liters</span>
-          <span> and </span>
-          <span class="kilos"><%= @bag.load_in_kilos %> kilos</span>
-          <span>)</span>
-        </p>
+<div class="load">
+  <%= image_tag "bags/#{@bag.picture}", class: "picture" %>
+  <div class="load-progress-details">
+    <div class="load-progress-container">
+      <div class="load-progress<%= ' ' << load_bg_color %>" style="height:<%= loaded < 100 ? loaded : 100 %>%;"></div>
+      <div class="load-arrow-lead" style="bottom:<%= loaded < 100 ? loaded : 100 %>% ">
+        <div class="load-arrow<%= ' ' << load_arrow %>"></div>
+        <div class="load-details">
+          <p class="#<%= ' ' << load_color %>">
+            <strong><span><%= loaded %> %</span></strong>
+            <span> (</span>
+            <span class="liters"><%= @bag.load_in_liters %> liters</span>
+            <span> and </span>
+            <span class="kilos"><%= @bag.load_in_kilos %> kilos</span>
+            <span>)</span>
+          </p>
+        </div>
       </div>
     </div>
   </div>
