@@ -13,7 +13,7 @@ compass,157,"0,2",0.2,190,"0,2",0.2,compass,compass.svg,tools
 cutlery,134,"0,1",0.1,130,"0,1",0.1,cutlery,cutlery.svg,food
 first aid kit,2 448,"2,4",2.4,700,"0,7",0.7,first_aid_kit,first_aid_kit.svg,aid
 fishing rod,1,"0,1",0.1,3,"0,1",0.1,fishing_rod,fishing_rod.svg,food
-flashlight,234,"0,2",0.2,210,"0,2",0.2,flashlight,flashlight.svg,light
+flashlight,234,"0,2",0.2,210,"0,2",0.2,flashlight,flashlight.svg,lights
 flask,1 000,"1,0",1.0,1 000,"1,0",1.0,flask,flask.svg,food
 gas,1 106,"1,1",1.1,700,"0,7",0.7,gas,gas.svg,food
 gps,478,"0,5",0.5,790,"0,8",0.8,gps,gps.svg,tools
@@ -27,7 +27,7 @@ kayak,99 000,"99,0",99.0,24 000,"24,0",24.0,kayak,kayak.svg,sport
 kayak paddle,1 200,"1,2",1.2,900,"0,9",0.9,kayak_paddle,kayak_paddle.svg,sport
 kite,985,"1,0",1.0,137,"0,1",0.1,kite,kite.svg,hobbies
 knife,85,"0,1",0.1,80,"0,1",0.1,knife,knife.svg,tools
-lantern,1 203,"1,2",1.2,1 102,"1,1",1.1,lantern,lantern.svg,light
+lantern,1 203,"1,2",1.2,1 102,"1,1",1.1,lantern,lantern.svg,lights
 large tent,15 120,"15,1",15.1,3 120,"3,1",3.1,large_tent,large_tent.svg,bedtime
 life vest,1 408,"1,4",1.4,998,"1,0",1.0,life_vest,life_vest.svg,sport
 lifebuoy,7 056,"7,1",7.1,1 057,"1,1",1.1,lifebuoy,lifebuoy.svg,sport
@@ -39,7 +39,7 @@ marshmallow pick,1,"0,1",0.1,3,"0,1",0.1,marshmallow_pick,marshmallow_pick.svg,f
 matches,2,"0,1",0.1,1,"0,1",0.1,matches,matches.svg,tools
 mobile phone,69,"0,1",0.1,140,"0,1",0.1,mobile_phone,mobile_phone.svg,devices
 novel,315,"0,3",0.3,235,"0,2",0.2,novel,novel.svg,hobbies
-oil lamp,1 306,"1,3",1.3,1 567,"1,6",1.6,oil_lamp,oil_lamp.svg,light
+oil lamp,1 306,"1,3",1.3,1 567,"1,6",1.6,oil_lamp,oil_lamp.svg,lights
 passport,1,"0,1",0.1,10,"0,1",0.1,passport,passport.svg,papers
 pill,0,"0,1",0.1,1,"0,1",0.1,pill,pill.svg,aid
 portable compass,94,"0,1",0.1,114,"0,1",0.1,portable_compass,portable_compass.svg,tools
@@ -54,7 +54,7 @@ swiss army knife,75,"0,1",0.1,60,"0,1",0.1,swiss_army_knife,swiss_army_knife.svg
 tablet,414,"0,4",0.4,840,"0,8",0.8,tablet,tablet.svg,devices
 thermo,1 000,"1,0",1.0,1 200,"1,2",1.2,thermo,thermo.svg,food
 toilet paper,1 695,"1,7",1.7,68,"0,1",0.1,toilet_paper,toilet_paper.svg,papers
-torch,328,"0,3",0.3,294,"0,3",0.3,torch,torch.svg,light
+torch,328,"0,3",0.3,294,"0,3",0.3,torch,torch.svg,lights
 walkie-talkie,489,"0,5",0.5,315,"0,3",0.3,walkie-talkie,walkie-talkie.svg,devices
 woolly hat,200,"0,2",0.2,160,"0,2",0.2,woolly_hat,woolly_hat.svg,clothes
 wristwatch,3,"0,1",0.1,50,"0,1",0.1,wristwatch,wristwatch.svg,clothes
