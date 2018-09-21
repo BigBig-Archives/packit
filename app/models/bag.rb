@@ -18,15 +18,22 @@ class Bag < ApplicationRecord
   # METHODS
 
   def load_in_kilos
-    self.packed_items.map(&:weight).sum.round(1)
+    return 0 if self.items.empty?
+    self.items.map(&:weight).sum.round(1)
   end
 
   def load_in_liters
-    self.packed_items.map(&:size).sum.round(1)
+    return 0 if self.items.empty?
+    self.items.map(&:size).sum.round(1)
   end
 
   def loaded
+    return 0 if self.items.empty?
     (self.load_in_liters / self.capacity * 100).round(1)
+  end
+
+  def packed_items_count
+    self.packed_items.count
   end
 
   def packed_reference_count(reference_to_count)

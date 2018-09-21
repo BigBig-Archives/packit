@@ -17,15 +17,15 @@
       line-height: $p48 - $p2;
       padding: 0 $p24;
       border: solid $p2;
+      color: white;
+      font-weight: bold;
     }
   }
   .switch-to-create p {
-    border-color: $green;
-    color: $green;
+    background-color: $green;
   }
   .switch-to-pack p {
-    border-color: $blue;
-    color: $blue;
+    background-color: $blue;
   }
   .back-to-bags {
     margin-left: $p64;
@@ -33,7 +33,8 @@
     display: block;
     p {
       color: lighten($gray, 20%);
-      font-size: $font-size-normal;
+      font-size: $font-size-normal + $p2;
+      font-weight: bold;
     }
   }
 }

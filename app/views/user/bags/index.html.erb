@@ -1,20 +1,17 @@
 <div id="bags-page">
-
-  <div>
-    <div id="indications">
-      <%= render 'user/bags/indications' %>
-    </div>
+  <div id="indications">
+    <%= render 'user/bags/indications' %>
   </div>
 
-  <p class="bags-chapter">Pack a new bag</p>
-  <div>
-    <div class="bag-form">
+  <div id="bags">
+
+    <div id="bag-form">
       <%= render 'user/bags/form_create' %>
     </div>
-  </div>
 
-  <div id="packed-bags">
-    <%= render 'user/bags/bags_list' %>
-  </div>
+    <div id="packed-bags">
+      <%= render 'user/bags/packed_bags' %>
+    </div>
 
+  </div>
 </div>

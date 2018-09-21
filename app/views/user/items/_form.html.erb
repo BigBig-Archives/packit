@@ -7,7 +7,7 @@
   <%= f.input :bag, as: :hidden, input_html: { value: @bag.id } %>
   <div class="input-with-unit">
     <% if item.id.nil? %> <!-- CREATE -->
-      <%= f.input :size, label: false, hint: 'L', input_html: { value: reference.size, step: 0.1, min: 0, max: 99 } %>
+      <%= f.input :size, label: false, hint: 'L', input_html: { value: reference.size, step: 0.1, min: 0.1, max: 99 } %>
     <% else %> <!-- UPDATE -->
       <%= f.input :size, label: false, hint: 'L', input_html: { step: 0.1, min: 0.1, max: 99 } %>
     <% end %>
@@ -15,7 +15,7 @@
   <p data-error="size" class="input-error"></p>
   <div class="input-with-unit">
     <% if item.id.nil? %> <!-- CREATE -->
-      <%= f.input :weight, label: false, hint: 'Kg', input_html: { value: reference.weight, step: 0.1, min: 0, max: 99 } %>
+      <%= f.input :weight, label: false, hint: 'Kg', input_html: { value: reference.weight, step: 0.1, min: 0.1, max: 99 } %>
     <% else %> <!-- UPDATE -->
       <%= f.input :weight, label: false, hint: 'Kg', input_html: { step: 0.1, min: 0.1, max: 99 } %>
     <% end %>

@@ -7,7 +7,7 @@
     </p>
   <hr>
   <% if @owned_items.empty? %>
-    <div class="no-items-alert" role="alert">
+    <div class="alert-message alert-message-red" role="alert">
       <p>
         Oh! It looks like you don't have any items
         <%= " in the " unless session[:category].to_i.zero? %>
@@ -17,7 +17,7 @@
       </p>
       <p>Select items on the left to add them to your collection!</p>
       <p>You can custom their features (volume and weight) and add several similar items at a time.</p>
-      <p>Once your collection is finished, select <strong>Pack my bag</strong> (on the top left)!</p>
+      <p>Once your collection is finished, select <strong>Pack my bag</strong> (on the top right)!</p>
     </div>
   <% end %>
 </div>

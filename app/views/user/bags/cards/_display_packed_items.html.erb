@@ -7,7 +7,7 @@
   </p>
     <hr>
     <% if @packed_items.empty? %>
-      <div class="no-items-alert" role="alert">
+      <div class="alert-message alert-message-red" role="alert">
         <p>
           Oh! It looks like you haven’t packed any item yet
           <%= " or that you haven't pack any items from the " unless session[:category_name].nil? %>
@@ -16,13 +16,13 @@
           ...
         </p>
         <p>Select items in your collection to put them in this bag!</p>
-        <p>Select <strong>Add items to my collection</strong> (on the top left) if you need to expand your collection.</p>
+        <p>Select <strong>Add items to my collection</strong> (on the right) if you need to expand your collection.</p>
         <p>You can pack several similar items at a time.</p>
       </div>
     <% end %>
   </div>
 
-  <% if @bag.packed_items.any? && session[:category].to_i.zero? %>
+  <% if @packed_items.any? && session[:category].to_i.zero? %>
     <%= button_to 'unpack all', user_packed_item_path(@bag.packed_items.first, params: { unpack: 'all', bag: @bag }), method: :delete, remote: :true, class: 'item-action item-action-all unpack-all-item' %>
   <% else %>
     <div class="button-substitute"></div>

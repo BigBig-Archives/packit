@@ -1,0 +1,13 @@
+<% if current_user.bags.empty? %>
+<div class="alert-message alert-message-red">
+  <p>Oh! It looks like you don't have any bags...</p>
+  <p>Use the form to create your first one!</p>
+</div>
+<% else %>
+  <% current_user.bags.order(created_at: :desc).each do |bag| %>
+    <div class="bag-container" data-bag="<%= bag.id %>">
+      <%= render 'user/bags/bag', bag: bag %>
+    </div>
+  <% end %>
+<% end %>
+

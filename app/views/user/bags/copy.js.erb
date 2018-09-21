@@ -9,7 +9,7 @@ function copyBag() {
   <% else %>
     // refresh list
     container = document.querySelector("#packed-bags");
-    content = `<%= j render 'user/bags/bags_list' %>`;
+    content = `<%= j render 'user/bags/packed_bags' %>`;
     container.innerHTML = content;
     // refresh indications
     container = document.querySelector("#indications");

@@ -1,0 +1,28 @@
+.alert-message {
+  margin: $p12 0;
+  opacity: 0.6;
+  padding: $p16;
+  border-radius: $p8;
+  border: solid $p2;
+  p {
+    padding: $p4;
+  }
+}
+
+.alert-message-red {
+  background: lighten($red, 30%);
+  color: darken($red, 20%);
+  border-color: lighten($red, 10%);;
+}
+
+.alert-message-blue {
+  background: lighten($blue, 30%);
+  color: darken($blue, 20%);
+  border-color: lighten($blue, 10%);;
+}
+
+.alert-message-yellow {
+  background: lighten($yellow, 30%);
+  color: darken($yellow, 20%);
+  border-color: lighten($yellow, 10%);;
+}

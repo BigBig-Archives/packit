@@ -1,9 +1,9 @@
 <div class="bag-form-create">
   <%= simple_form_for [:user, @new_bag], method: :post, remote: :true do |f| %>
     <%= f.input :name, placeholder: 'Hiking backpack for Portugal' %>
-    <p data-error="name" class="input-error"></p>
+    <p data-error="name" class="input-error input-error-large"></p>
     <%= f.input :capacity, placeholder: '60', hint: 'liters', input_html: { class: "capacity" } %>
-    <p data-error="capacity" class="input-error"></p>
+    <p data-error="capacity" class="input-error input-error-large"></p>
     <div class="picture-select">
       <div class="picture-input">
         <input

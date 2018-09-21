@@ -1,0 +1,10 @@
+.input-error {
+  margin: $p4 auto;
+  font-size: $font-size-normal;
+  color: $red;
+  text-align: center;
+}
+
+.input-error-large {
+  font-size: $font-size-normal + $p2;
+}

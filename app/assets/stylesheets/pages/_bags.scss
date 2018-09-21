@@ -1,35 +1,44 @@
 #bags-page {
+  margin: $p64 5%;
   min-height: 100vh;
-  text-align: center;
-  padding: $p64 5%;
-  background-color: $light-gray;
 
   #indications {
-    display: inline-block;
+    min-height: $p64;
+    display: block;
     text-align: center;
+    margin-bottom: $p24;
     p {
-      font-size: $p16 + $p4;
+      font-size: $p16;
       color: lighten($gray, 30%);
+    }
+    .main-indication {
+      font-size: $p16 + $p4;
+      color: $blue;
     }
   }
 
-  #bags-container {
-    margin: 0 auto;
-    padding-bottom: $p64;
-  }
+  #bags {
+    display: flex;
+    flex-wrap: wrap;
 
-  .bag-container {
-    display: inline-block;
-  }
+    #bag-form {
+      flex: 1;
+      margin-top: $p12;
+      margin-right: $p24;
+    }
 
-  .bags-chapter {
-    margin-top: $p24;
-    margin-bottom: $p12;
-  }
+    #packed-bags {
+      flex: 2;
+      justify-content: flex-start;
+      background-color: $light-gray;
 
-  .input-error {
-      margin-top: $p4;
-      font-size: $font-size-normal - $p1;
-      color: $red;
+      .bag-container {
+        margin: $p4;
+        display: inline-block;
+      }
+
+
+    }
+
   }
 }
