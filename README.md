@@ -1,3 +1,5 @@
+> September 2018
+
 # Pack it
 
 > A prototype made with **Ruby on Rails**
